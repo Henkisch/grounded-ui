@@ -1,4 +1,4 @@
-// Demo pages: each fixture or example becomes a bare HTML page with only grounded CSS, shown in an iframe.
+// Demo pages: each fixture or example becomes a bare HTML page with only Grounded UI CSS, shown in an iframe.
 // Iframes on purpose: rendering through Astro would prove the component works in Astro, not on any site.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';

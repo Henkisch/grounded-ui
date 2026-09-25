@@ -1,6 +1,6 @@
 // Generates the docs content that must never drift from the repo:
 //   docs/public/grounded/…                   copies of the reference CSS
-//   docs/public/demo/…                    bare demo pages (fixture or example + grounded CSS, nothing else)
+//   docs/public/demo/…                    bare demo pages (fixture or example + Grounded UI CSS, nothing else)
 //   docs/content/components/<slug>.mdx    one contract page per component
 //   docs/content/examples/<name>.mdx      one page per examples/<name>.html
 //   docs/content/_generated/scorecard.mdx the front page's receipts
@@ -69,7 +69,7 @@ for (const [order, impl] of impls.entries()) {
     .map((f) => read(f).replace(/^# (.+)$/m, '## $1').replace(/^## (TF|DG)-/gm, '### $1-'));
   const body = readme.replace(/^# .+\n/, '').replace(/`([a-z-]+)\.md` is generated;/, 'The tables below are generated;');
   writeFileSync(join(out.reports, `${impl}.mdx`), [
-    ...frontmatter({ title, description: `grounded contracts run against ${title}'s published examples.`, sidebar: { order: order + 1 } }),
+    ...frontmatter({ title, description: `Grounded UI contracts run against ${title}'s published examples.`, sidebar: { order: order + 1 } }),
     `{/* Generated from reports/${impl}/ by docs/scripts/generate.mjs. */}`, '', body.trim(), '', ...tables, '',
   ].join('\n'));
   console.log(`docs: report ${impl}`);

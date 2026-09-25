@@ -248,7 +248,7 @@ editor:
 
 # The component's API: the attributes a user writes. Rendered as tables in the docs.
 attributes:
-  - { on: root, name: data-component, type: '"dialog"', required: true, description: Marks the element as a grounded dialog. }
+  - { on: root, name: data-component, type: '"dialog"', required: true, description: Marks the element as a Grounded UI dialog. }
   - { on: root, name: id, type: string, required: true, description: Target for the trigger's commandfor. }
   - { on: root, name: aria-labelledby, type: id, required: true, description: The title's id; gives the dialog its accessible name. }
   - { on: root, name: aria-describedby, type: id, description: "The body's id, when it explains the dialog's purpose." }

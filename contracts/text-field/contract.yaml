@@ -1,6 +1,6 @@
 # Contract: text-field
 # The single source for the conformance tests, warning CSS, editor validation and the docs page.
-# Test selectors name parts ({label}, {control}, …), never grounded's own hooks, so any implementation
+# Test selectors name parts ({label}, {control}, …), never Grounded UI's own hooks, so any implementation
 # can be tested through a binding that maps parts to its markup.
 component: text-field
 contractVersion: 0.2.0
@@ -64,7 +64,7 @@ keyboard:
 # Each rule yields three outputs:
 #   test    → the conformance runner. Selectors use part tokens; `:scope` is the root.
 #             `absent` fails if the root matches the selector or contains a match.
-#   css     → a warning in the generated warnings file (grounded hooks only), or false.
+#   css     → a warning in the generated warnings file (Grounded UI hooks only), or false.
 #   editor  → refuse (refuse to render) or warn. Absent = no editor validation.
 # level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
 rules:
@@ -282,7 +282,7 @@ editor:
 
 # The component's API: the attributes a user writes. Rendered as tables in the docs.
 attributes:
-  - { on: root, name: data-component, type: '"text-field"', required: true, description: Marks the element as a grounded text field. }
+  - { on: root, name: data-component, type: '"text-field"', required: true, description: Marks the element as a Grounded UI text field. }
   - { on: root, name: data-variant, type: '"multiline"', description: Multi-line input; use a textarea as the control. }
   - { on: label, name: for, type: id, required: true, description: The control's id. }
   - { on: control, name: id, type: string, required: true, description: Target for the label's for. }

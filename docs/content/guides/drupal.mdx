@@ -6,7 +6,7 @@ description: Add grounded-ui as a theme library, keep CKEditor from stripping it
 
 ## Test your Drupal forms first
 
-Before changing anything, run the contracts against a page of your existing site. It shows what already works and what doesn't, whether or not you use grounded's CSS:
+Before changing anything, run the contracts against a page of your existing site. It shows what already works and what doesn't, whether or not you use Grounded UI's CSS:
 
 ```sh
 npx grounded-conformance https://your-site.example/contact --binding your-theme.text-field.binding.yaml
@@ -56,8 +56,8 @@ Restricted text formats strip unknown attributes. Allow the hooks the components
 
 ## CSS aggregation
 
-Aggregation combines and may reorder the files. That's safe: every grounded file declares the full layer order at the top, so the first file to load sets the same order. See [cascade layers](/styling/cascade-layers).
+Aggregation combines and may reorder the files. That's safe: every Grounded UI file declares the full layer order at the top, so the first file to load sets the same order. See [cascade layers](/styling/cascade-layers).
 
 ## Single Directory Components
 
-A grounded component maps directly onto an SDC: copy the markup into `component.twig`, put the stylesheet next to it, and read attributes from props. Generated SDC output is on the roadmap.
+A Grounded UI component maps directly onto an SDC: copy the markup into `component.twig`, put the stylesheet next to it, and read attributes from props. Generated SDC output is on the roadmap.

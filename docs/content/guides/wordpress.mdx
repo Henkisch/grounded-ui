@@ -6,7 +6,7 @@ description: Load grounded-ui in a theme so components work on the front end and
 
 ## Test your WordPress forms first
 
-Before changing anything, run the contracts against a page of your existing site. It shows what already works and what doesn't, whether or not you use grounded's CSS:
+Before changing anything, run the contracts against a page of your existing site. It shows what already works and what doesn't, whether or not you use Grounded UI's CSS:
 
 ```sh
 npx grounded-conformance https://your-site.example/contact --binding your-theme.text-field.binding.yaml
@@ -43,7 +43,7 @@ Paste the markup into a **Custom HTML** block. The block keeps `data-*` attribut
 
 ## Map your theme's tokens
 
-Point grounded's custom properties at your `theme.json` presets, so a colour change in the Site Editor reaches the components:
+Point Grounded UI's custom properties at your `theme.json` presets, so a colour change in the Site Editor reaches the components:
 
 ```css
 [data-component] {

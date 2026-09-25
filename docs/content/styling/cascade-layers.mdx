@@ -32,11 +32,11 @@ The `to ([data-component])` part stops the scope at nested components, so a text
 
 ## Aggregation and load order
 
-Some CMSs (Drupal's CSS aggregation, WordPress optimisation plugins) combine and reorder stylesheets. The first `@layer` statement the browser sees fixes the order, so every grounded file repeats the full order statement at the top. Whatever loads first, the order is the same.
+Some CMSs (Drupal's CSS aggregation, WordPress optimisation plugins) combine and reorder stylesheets. The first `@layer` statement the browser sees fixes the order, so every Grounded UI file repeats the full order statement at the top. Whatever loads first, the order is the same.
 
 ## When your site uses layers too
 
-If your site puts its own CSS in layers, place grounded's below yours:
+If your site puts its own CSS in layers, place Grounded UI's below yours:
 
 ```css
 @layer grounded, site;

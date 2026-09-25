@@ -1,6 +1,6 @@
 ---
 title: Test your components
-description: Run grounded's contracts against rendered HTML from any library, theme or CMS, and see which rules pass.
+description: Run Grounded UI's contracts against rendered HTML from any library, theme or CMS, and see which rules pass.
 ---
 
 The contracts test **rendered HTML**, not source code. So they work the same on a React app, a WordPress theme or a 15-year-old CMS template.
@@ -21,7 +21,7 @@ Every component on the page is checked against its contract, and axe runs on the
 
 ## 2. Point it at your markup
 
-grounded's own markup is recognised as is. For anything else, write a **binding**: which selector matches each part of the component.
+Grounded UI's own markup is recognised as is. For anything else, write a **binding**: which selector matches each part of the component.
 
 ```yaml
 # my-theme.text-field.binding.yaml
@@ -44,7 +44,7 @@ Each component page lists its parts under **Test your implementation**.
 ## 3. Read the result
 
 - **Normative** rules are required by a standard; the rule links to it. A failure is an accessibility bug.
-- **Recommended** rules are grounded's judgement, with the reasoning linked. A failure is worth a look, not automatically a bug.
+- **Recommended** rules are Grounded UI's judgement, with the reasoning linked. A failure is worth a look, not automatically a bug.
 - A failure where axe reported nothing is exactly what the contracts are for: component-level problems general tools can't know about.
 
 See the [conformance reports](/reports/govuk-frontend) for a full run against a real library.
@@ -57,7 +57,7 @@ The runner is a plain Node API, so it drops into an existing Playwright suite:
 import { test, expect } from '@playwright/test';
 import { checkPage, failures } from 'grounded-ui/conformance/src/index.mjs';
 
-test('forms meet the grounded contracts', async ({ page }) => {
+test('forms meet the Grounded UI contracts', async ({ page }) => {
   await page.goto('/contact');
   expect(failures(await checkPage(page))).toEqual([]);
 });

@@ -1,4 +1,4 @@
-// Docs-page helper for demo iframes. The demo pages themselves stay pure HTML + grounded CSS.
+// Docs-page helper for demo iframes. The demo pages themselves stay pure HTML + Grounded UI CSS.
 // 1. Fits each iframe's height to its content, at every width (never below data-min-height, e.g. room for a modal).
 // 2. Mirrors Blume's theme (data-theme on <html>) and text colour into the demo, the way a host site sets them.
 const theme = () => (document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');

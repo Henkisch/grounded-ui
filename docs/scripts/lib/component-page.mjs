@@ -59,7 +59,7 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
     `Contract ${code(slug)} version **${c.contractVersion}**: ${c.rules.length} rules, ${card.normative} of them normative. Every number above is generated in the build.`,
     '',
     ...section('Examples', [
-      'The reference implementation. Each example is a standalone page with only grounded CSS and the markup shown — not a framework component.',
+      'The reference implementation. Each example is a standalone page with only Grounded UI CSS and the markup shown — not a framework component.',
       '',
       demos.join('\n\n'),
     ]),
@@ -69,7 +69,7 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
       table(['Id', 'Rule and why', 'Level', 'CSS warning', 'Editor'], ruleRows),
     ]),
     ...section('Test your implementation', [
-      `The contract tests rendered HTML, so it works on any implementation. grounded's own markup is tested as is; for other markup, a binding maps the contract's parts to your selectors.`,
+      `The contract tests rendered HTML, so it works on any implementation. Grounded UI's own markup is tested as is; for other markup, a binding maps the contract's parts to your selectors.`,
       '',
       '```sh',
       `npx grounded-conformance https://example.com/contact --component ${slug}`,
@@ -92,7 +92,7 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
         p.required ? 'Yes' : p.requiredWhen ? `When ${code(p.requiredWhen)}` : 'No',
       ])),
       '',
-      c.domOrder ? `DOM order: ${c.domOrder.map(code).join(' → ')}. In grounded's markup the root carries ${code(`data-component="${slug}"`)} and each part ${code('data-part')}.` : '',
+      c.domOrder ? `DOM order: ${c.domOrder.map(code).join(' → ')}. In Grounded UI's markup the root carries ${code(`data-component="${slug}"`)} and each part ${code('data-part')}.` : '',
     ]),
     ...section('States', c.states?.length && table(['State', 'In the DOM', 'CSS hook'], c.states.map((s) => [cell(s.label ?? s.name), s.dom ? code(s.dom) : '—', code(s.hook)]))),
     ...section('Keyboard', c.keyboard?.length && table(['Key', 'Behavior'], c.keyboard.map((k) => [cell(k.key), cell(k.behavior)]))),
