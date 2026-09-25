@@ -1,4 +1,4 @@
 # generator
 
-Kontraktsfil in, mallfil ut. Byggsteg 5 (varnings-CSS) och 7 (PHP-mall).
-Inget här skrivs för hand som adapter — allt härleds ur `components/*/contract.yaml`.
+Contract in, template file out. Build step 5 (warning CSS) and step 7 (PHP template).
+Nothing here is a hand-written adapter — everything is derived from `components/*/contract.yaml`.

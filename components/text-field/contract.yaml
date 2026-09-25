@@ -1,10 +1,10 @@
-# Kontrakt: text-field
-# Källan som testsviten, varnings-CSS:en, editorvalideringen och docs-sidan härleds ur.
-# Ändra här — skriv aldrig något av det för hand på andra ställen.
+# Contract: text-field
+# The single source the test suite, warning CSS, editor validation and docs page are derived from.
+# Change it here — never write any of those outputs by hand.
 component: text-field
 contractVersion: 0.1.0
-namn: Textfält
-sammanfattning: Ett fält för fritext med etikett, valfri beskrivning och felmeddelande.
+title: Text field
+summary: A free-text field with a label, an optional description and an error message.
 
 budget:
   css: 1536
@@ -12,27 +12,27 @@ budget:
 
 anatomy:
   root:
-    namn: Rot
+    label: Root
     part: field
     element: [div]
     required: true
   label:
-    namn: Etikett
+    label: Label
     element: [label]
     required: true
   description:
-    namn: Beskrivning
+    label: Description
     element: [p, div]
   control:
-    namn: Inmatning
+    label: Control
     element: [input, textarea]
     required: true
   error:
-    namn: Felmeddelande
+    label: Error message
     element: [p, div]
     requiredWhen: '[aria-invalid="true"]'
   required-indicator:
-    namn: Obligatorisk-markör
+    label: Required indicator
     element: [span]
     attrs:
       aria-hidden: "true"
@@ -41,16 +41,16 @@ domOrder: [label, description, control, error]
 
 variants:
   - name: multiline
-    beskrivning: Fleradig inmatning med textarea. field-sizing ger automatisk höjd.
+    description: Multi-line input using textarea. field-sizing gives automatic height.
 
 states:
-  - { name: required, namn: Obligatoriskt, dom: required, hook: ":required" }
-  - { name: invalid, namn: Ogiltigt, dom: 'aria-invalid="true"', hook: '[aria-invalid="true"]' }
-  - { name: disabled, namn: Inaktiverat, dom: disabled, hook: ":disabled" }
-  - { name: readonly, namn: Skrivskyddat, dom: readonly, hook: ":read-only" }
-  - { name: empty, namn: Tomt, dom: inget värde, hook: ":placeholder-shown" }
-  - { name: focus, namn: Fokus, hook: ":focus-visible" }
-  - { name: autofill, namn: Autofyllt, hook: ":autofill" }
+  - { name: required, label: Required, dom: required, hook: ":required" }
+  - { name: invalid, label: Invalid, dom: 'aria-invalid="true"', hook: '[aria-invalid="true"]' }
+  - { name: disabled, label: Disabled, dom: disabled, hook: ":disabled" }
+  - { name: readonly, label: Read-only, dom: readonly, hook: ":read-only" }
+  - { name: empty, label: Empty, dom: no value, hook: ":placeholder-shown" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+  - { name: autofill, label: Autofilled, hook: ":autofill" }
 
 markup:
   - minimal
@@ -62,65 +62,65 @@ markup:
   - readonly
   - autofilled
 
-# Varje regel ger tre utdata:
-#   test    → Playwright-assertion. `absent` körs mot hela dokumentet och använder
-#             css.violation om inget eget selector anges. Övriga körs per rot.
-#   css     → varning i den genererade varningsfilen, eller false när CSS inte kan uttrycka regeln.
-#   editor  → refuse (vägra rendera) eller warn. Saknas = ingen editorvalidering.
+# Each rule yields three outputs:
+#   test    → Playwright assertion. `absent` runs against the whole document and reuses
+#             css.violation unless it has its own selector. Other kinds run per root.
+#   css     → a warning in the generated warnings file, or false when CSS can't express the rule.
+#   editor  → refuse (refuse to render) or warn. Absent = no editor validation.
 rules:
   - id: TF-01
-    beskrivning: Roten har data-component="text-field".
+    description: The root has data-component="text-field".
     since: 0.1.0
     test: { kind: absent, selector: '[data-part="field"]:not([data-component="text-field"])' }
     css: false
 
   - id: TF-02
-    beskrivning: Det finns exakt en [data-part="control"].
+    description: There is exactly one [data-part="control"].
     since: 0.1.0
     test: { kind: count, selector: '[data-part="control"]', equals: 1 }
     css:
       violation: '[data-component="text-field"]:not(:has([data-part="control"]))'
-      message: "TF-02: fältet saknar [data-part=control]."
+      message: "TF-02: the field has no [data-part=control]."
     editor: { level: warn }
 
   - id: TF-03
-    beskrivning: Kontrollen är input eller textarea.
+    description: The control is an input or a textarea.
     since: 0.1.0
     test: { kind: absent }
     css:
       violation: '[data-component="text-field"]:has([data-part="control"]:not(input, textarea))'
-      message: "TF-03: kontrollen måste vara <input> eller <textarea>."
+      message: "TF-03: the control must be an <input> or <textarea>."
 
   - id: TF-04
-    beskrivning: Det finns exakt en [data-part="label"].
+    description: There is exactly one [data-part="label"].
     since: 0.1.0
     test: { kind: count, selector: '[data-part="label"]', equals: 1 }
     css:
       violation: '[data-component="text-field"]:not(:has([data-part="label"]))'
-      message: "TF-04: fältet saknar [data-part=label]."
+      message: "TF-04: the field has no [data-part=label]."
     editor: { level: refuse }
 
   - id: TF-05
-    beskrivning: Etiketten är ett label-element.
+    description: The label is a label element.
     since: 0.1.0
     test: { kind: absent }
     css:
       violation: '[data-component="text-field"]:has([data-part="label"]:not(label))'
-      message: "TF-05: etiketten måste vara ett <label>."
+      message: "TF-05: the label must be a <label>."
 
   - id: TF-06
-    beskrivning: Etiketten har icke-tom text.
+    description: The label has non-empty text.
     since: 0.1.0
     test: { kind: nonEmptyText, selector: '[data-part="label"]' }
     css:
       coverage: partial
       violation: '[data-component="text-field"] [data-part="label"]:empty'
       pseudo: before
-      message: "TF-06: etiketten är tom."
+      message: "TF-06: the label is empty."
     editor: { level: refuse }
 
   - id: TF-07
-    beskrivning: Etikettens for matchar kontrollens id.
+    description: The label's for matches the control's id.
     since: 0.1.0
     test:
       kind: attrEquals
@@ -130,16 +130,16 @@ rules:
     editor: { level: warn }
 
   - id: TF-08
-    beskrivning: Kontrollen har ett name.
+    description: The control has a name.
     since: 0.1.0
     test: { kind: absent }
     css:
       violation: '[data-component="text-field"]:has([data-part="control"]:not([name]))'
-      message: "TF-08: kontrollen saknar name-attribut."
+      message: "TF-08: the control has no name attribute."
     editor: { level: refuse }
 
   - id: TF-09
-    beskrivning: Finns beskrivning, refereras dess id i aria-describedby.
+    description: If there is a description, its id is referenced in aria-describedby.
     since: 0.1.0
     test:
       kind: idrefIncludes
@@ -148,17 +148,17 @@ rules:
     css: false
 
   - id: TF-10
-    beskrivning: Är aria-invalid="true" satt, finns [data-part="error"].
+    description: If aria-invalid="true" is set, there is a [data-part="error"].
     since: 0.1.0
     test: { kind: absent }
     css:
       violation: '[data-component="text-field"]:has([aria-invalid="true"]):not(:has([data-part="error"]))'
-      message: "TF-10: aria-invalid=true men inget [data-part=error]."
-    # Specens regeltabell säger "—" men avsnittet "Vägra rendera" listar TF-10. Vägra rendera vinner.
+      message: "TF-10: aria-invalid=true but no [data-part=error]."
+    # The spec's rule table says "—", but its "refuse to render" section lists TF-10. Refuse wins.
     editor: { level: refuse }
 
   - id: TF-11
-    beskrivning: Felets id står först i aria-describedby.
+    description: The error's id comes first in aria-describedby.
     since: 0.1.0
     test:
       kind: idrefFirst
@@ -167,77 +167,77 @@ rules:
     css: false
 
   - id: TF-12
-    beskrivning: Felmeddelandet har icke-tom text.
+    description: The error message has non-empty text.
     since: 0.1.0
     test: { kind: nonEmptyText, selector: '[data-part="error"]' }
     css:
       coverage: partial
       violation: '[data-component="text-field"] [data-part="error"]:empty'
       pseudo: before
-      message: "TF-12: felmeddelandet är tomt."
+      message: "TF-12: the error message is empty."
     editor: { level: warn }
 
   - id: TF-13
-    beskrivning: Inga id-kollisioner inom fältet.
+    description: No id collisions within the field.
     since: 0.1.0
     test: { kind: uniqueIds }
     css: false
     editor: { level: warn }
 
   - id: TF-14
-    beskrivning: Kontrollen har inget tabindex.
+    description: The control has no tabindex.
     since: 0.1.0
     test: { kind: absent }
     css:
       violation: '[data-component="text-field"]:has([data-part="control"][tabindex])'
-      message: "TF-14: kontrollen ska inte ha tabindex."
+      message: "TF-14: the control must not have a tabindex."
 
   - id: TF-15
-    beskrivning: Placeholder används inte som enda etikett.
+    description: A placeholder is never the only label.
     since: 0.1.0
     test: { kind: absent }
     css:
       violation: '[data-component="text-field"]:not(:has([data-part="label"])):has([placeholder])'
-      message: "TF-15: placeholder ersätter inte en etikett."
+      message: "TF-15: a placeholder does not replace a label."
     editor: { level: warn }
 
   - id: TF-16
-    beskrivning: Fältet har ingen aria-label som krockar med etiketten.
+    description: The control has no aria-label that conflicts with the label.
     since: 0.1.0
     test: { kind: absent }
     css:
       violation: '[data-component="text-field"]:has([data-part="label"]):has([data-part="control"][aria-label])'
-      message: "TF-16: kontrollen har både <label> och aria-label."
+      message: "TF-16: the control has both a <label> and an aria-label."
 
 wcag:
-  - { criterion: "1.3.1", namn: Information och relationer, level: A, hur: "label kopplad med for, beskrivning och fel kopplade med aria-describedby" }
-  - { criterion: "2.4.6", namn: Rubriker och etiketter, level: AA, hur: "Etikett obligatorisk och synlig; placeholder accepteras aldrig som ersättning" }
-  - { criterion: "2.5.3", namn: Etikett i namn, level: A, hur: "Den synliga etikettens text är fältets tillgängliga namn" }
-  - { criterion: "3.3.1", namn: Identifiering av fel, level: A, hur: "aria-invalid plus felmeddelande kopplat via aria-describedby" }
-  - { criterion: "3.3.2", namn: Etiketter eller instruktioner, level: A, hur: "Etikett obligatorisk, beskrivning tillgänglig när instruktion behövs" }
-  - { criterion: "3.3.3", namn: Förslag vid fel, level: AA, hur: "Felmeddelandet måste beskriva hur felet rättas, inte bara att det finns" }
-  - { criterion: "4.1.2", namn: "Namn, roll, värde", level: A, hur: "Nativa formulärelement, inga ARIA-roller som ersätter semantik" }
-  - { criterion: "1.4.11", namn: Kontrast för icke-textuellt innehåll, level: AA, hur: "Fältets kantlinje och fokusmarkering minst 3:1" }
-  - { criterion: "2.4.7", namn: Synligt fokus, level: AA, hur: ":focus-visible med outline, aldrig borttagen" }
-  - { criterion: "1.3.5", namn: Identifiera inmatningssyfte, level: AA, hur: "autocomplete sätts där det är tillämpligt" }
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "label associated via for; description and error associated via aria-describedby" }
+  - { criterion: "2.4.6", name: Headings and Labels, level: AA, how: "Label required and visible; a placeholder is never accepted as a substitute" }
+  - { criterion: "2.5.3", name: Label in Name, level: A, how: "The visible label text is the field's accessible name" }
+  - { criterion: "3.3.1", name: Error Identification, level: A, how: "aria-invalid plus an error message associated via aria-describedby" }
+  - { criterion: "3.3.2", name: Labels or Instructions, level: A, how: "Label required; description available when instructions are needed" }
+  - { criterion: "3.3.3", name: Error Suggestion, level: AA, how: "The error message must say how to fix the error, not just that it exists" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Native form elements; no ARIA roles replacing semantics" }
+  - { criterion: "1.4.11", name: Non-text Contrast, level: AA, how: "Field border and focus indicator at least 3:1" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: ":focus-visible with an outline, never removed" }
+  - { criterion: "1.3.5", name: Identify Input Purpose, level: AA, how: "autocomplete is set where applicable" }
 
 siteResponsibilities:
-  - { criterion: "1.4.3", namn: Textkontrast, text: "Vi ärver sajtens färger. Att etikettens text har 4,5:1 mot bakgrunden är sajtens ansvar." }
-  - { criterion: "2.4.3", namn: Fokusordning, text: "Beror på formulärets och sidans struktur." }
-  - { criterion: "3.3.1", namn: Felsammanfattning vid submit, text: "Hör till formulärkontraktet, inte fältet." }
-  - { criterion: "3.3.3", namn: Begripligt felmeddelande, text: "Vi kan kräva att fältet finns, inte att innehållet är bra. Därav redaktörsvägledningen." }
-  - { criterion: "3.1.1", namn: Språkangivelse, text: "lang på html-elementet är sajtens sak." }
-  - { criterion: "1.4.10", namn: Zoomning och omflöde, text: "Beror på sidans layout, inte på fältet." }
+  - { criterion: "1.4.3", title: Text contrast, text: "We inherit the site's colours. A 4.5:1 contrast between label text and background is the site's responsibility." }
+  - { criterion: "2.4.3", title: Focus order, text: "Depends on the structure of the form and the page." }
+  - { criterion: "3.3.1", title: Error summary on submit, text: "Belongs to the form contract, not the field." }
+  - { criterion: "3.3.3", title: Understandable error messages, text: "We can require the message to exist, not that its content is good. Hence the editor guidance." }
+  - { criterion: "3.1.1", title: Page language, text: "lang on the html element is the site's concern." }
+  - { criterion: "1.4.10", title: Zoom and reflow, text: "Depends on the page layout, not the field." }
 
 editor:
   help:
-    label: 'Beskriv vad användaren ska fylla i. Texten läses upp av skärmläsare när fältet får fokus, så "E-postadress" fungerar bättre än "Fyll i här".'
-    description: "Valfri instruktion, till exempel format eller varför uppgiften behövs. Läses upp tillsammans med etiketten."
-    placeholder: "Används sällan. Texten försvinner när användaren börjar skriva och kan inte ersätta etiketten."
-    error: 'Skriv hur felet rättas, inte bara att det blev fel. "Ange en giltig e-postadress, till exempel namn@exempel.se" hjälper. "Ogiltigt värde" gör det inte.'
-    required: 'Markeras automatiskt för skärmläsare. Du behöver inte skriva "obligatoriskt" i etiketten.'
+    label: 'Describe what the user should enter. Screen readers announce this text when the field gets focus, so "Email address" works better than "Fill in here".'
+    description: "Optional instruction, such as the expected format or why the information is needed. Announced together with the label."
+    placeholder: "Rarely needed. The text disappears as soon as the user starts typing and cannot replace the label."
+    error: 'Say how to fix the error, not just that something went wrong. "Enter a valid email address, for example name@example.com" helps. "Invalid value" does not.'
+    required: 'Announced to screen readers automatically. You do not need to write "required" in the label.'
   softWarnings:
-    - { id: TF-W1, text: 'Etikett som bara är "Fält", "Text" eller liknande' }
-    - { id: TF-W2, text: Felmeddelande kortare än ungefär femton tecken }
-    - { id: TF-W3, text: "Etikett som slutar med kolon, vilket ofta läses upp" }
-    - { id: TF-W4, text: Platshållare ifylld men etikett tom }
+    - { id: TF-W1, text: 'A label that is only "Field", "Text" or similar' }
+    - { id: TF-W2, text: An error message shorter than roughly fifteen characters }
+    - { id: TF-W3, text: "A label ending in a colon, which is often read aloud" }
+    - { id: TF-W4, text: Placeholder filled in but label empty }

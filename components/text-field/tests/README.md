@@ -1,1 +1,1 @@
-Kontraktstester för text-field. Byggsteg 3: Playwright + axe mot `../markup/*.html` och `../markup/broken/*.html`.
+Contract tests for text-field. Build step 3: Playwright + axe against `../markup/*.html` and `../markup/broken/*.html`.

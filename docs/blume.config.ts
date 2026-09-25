@@ -2,7 +2,7 @@ import { defineConfig } from "blume";
 
 export default defineConfig({
   title: "Grund UI",
-  description: "Nativa HTML-komponenter för befintliga CMS-sajter. En CSS-länk plus kopierad markup.",
+  description: "Native HTML components for existing CMS sites. One CSS link plus copied markup.",
   content: {
     root: "content",
   },

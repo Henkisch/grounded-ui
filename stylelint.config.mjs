@@ -1,4 +1,4 @@
-// Enforces "Regler som styr all kod" on everything grund-ui ships.
+// Enforces the code rules (docs: Principles) on everything grund-ui ships.
 // The generated warnings file is dev-only and deliberately uses fixed colours; it is not linted.
 export default {
   plugins: ['stylelint-use-logical', './scripts/stylelint-grund.mjs'],

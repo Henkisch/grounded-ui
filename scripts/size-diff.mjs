@@ -15,11 +15,11 @@ const rows = read(headPath).map((e) => {
 
 console.log(
   [
-    '### Storleksbudget',
+    '### Size budget',
     '',
-    'Minifierat + brotli, jämfört med basgrenen.',
+    'Minified + brotli, compared with the base branch.',
     '',
-    '| | Fil | Typ | Storlek | Diff | Budget |',
+    '| | File | Type | Size | Diff | Budget |',
     '| --- | --- | --- | ---: | ---: | ---: |',
     ...rows,
   ].join('\n'),

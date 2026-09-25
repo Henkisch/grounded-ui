@@ -7,7 +7,9 @@
     "dev": "blume dev",
     "prebuild": "node scripts/sync-demos.mjs",
     "build": "blume build",
-    "doctor": "blume doctor"
+    "doctor": "blume doctor",
+    "preview": "blume preview",
+    "validate": "blume validate"
   },
   "dependencies": {
     "blume": "^2.0.3",

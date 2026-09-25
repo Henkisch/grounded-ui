@@ -25,7 +25,7 @@ const table = (head, rows) =>
   [`| ${head.join(' | ')} |`, `| ${head.map(() => '---').join(' | ')} |`, ...rows.map((r) => `| ${r.join(' | ')} |`)].join('\n');
 
 const shell = (slug, title, markup) => `<!doctype html>
-<html lang="sv">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +33,7 @@ const shell = (slug, title, markup) => `<!doctype html>
 <link rel="stylesheet" href="/grund/core/tokens.css">
 <link rel="stylesheet" href="/grund/core/core.css">
 <link rel="stylesheet" href="/grund/components/${slug}/styles/${slug}.css">
-<!-- Värdsajtens egen CSS. Inget annat laddas. -->
+<!-- The host site's own CSS. Nothing else is loaded. -->
 <style>body { margin: 1rem; font: 1rem/1.5 system-ui, sans-serif; }</style>
 </head>
 <body>
@@ -54,7 +54,7 @@ for (const [order, slug] of slugs.entries()) {
 
   const demos = c.markup.map((name) => {
     const markup = readFileSync(join(dir, 'markup', `${name}.html`), 'utf8');
-    writeFileSync(join(pub, 'demo', slug, `${name}.html`), shell(slug, `${c.namn}: ${name}`, markup));
+    writeFileSync(join(pub, 'demo', slug, `${name}.html`), shell(slug, `${c.title}: ${name}`, markup));
     // Height from the parts present (px at 16px base): body margin, then each part plus grid gap.
     const has = (part) => markup.includes(`data-part="${part}"`);
     const parts = [
@@ -64,73 +64,84 @@ for (const [order, slug] of slugs.entries()) {
       has('error') && 21,
     ].filter(Boolean);
     const height = 32 + parts.reduce((a, b) => a + b, 0) + (parts.length - 1) * 6 + 16;
+    // One box per example: Preview and HTML tabs (Blume's built-in Tabs). No syncing or URL hash,
+    // so switching one example leaves the others alone.
     return [
       `### ${code(name)}`,
       '',
-      `<iframe src="/demo/${slug}/${name}.html" title="${c.namn}: ${name}" loading="lazy" height="${height}" style={{ inlineSize: '100%', border: '1px solid currentColor', borderRadius: '0.5em' }}></iframe>`,
+      '<Tabs sync={false} hash={false}>',
+      '<Tab title="Preview">',
+      '',
+      `<iframe src="/demo/${slug}/${name}.html" title="${c.title}: ${name}" loading="lazy" height="${height}" style={{ inlineSize: '100%', border: 0 }}></iframe>`,
+      '',
+      '</Tab>',
+      '<Tab title="HTML">',
       '',
       '```html',
       markup.trim(),
       '```',
+      '',
+      '</Tab>',
+      '</Tabs>',
     ].join('\n');
   });
 
   const partRows = Object.entries(c.anatomy).map(([key, p]) => [
-    cell(p.namn),
+    cell(p.label),
     code(p.part ?? key),
-    p.element.map(code).join(' eller '),
-    p.required ? 'Ja' : p.requiredWhen ? `När ${code(p.requiredWhen)}` : 'Nej',
+    p.element.map(code).join(' or '),
+    p.required ? 'Yes' : p.requiredWhen ? `When ${code(p.requiredWhen)}` : 'No',
   ]);
 
-  const stateRows = (c.states ?? []).map((s) => [cell(s.namn ?? s.name), s.dom ? code(s.dom) : '—', code(s.hook)]);
+  const stateRows = (c.states ?? []).map((s) => [cell(s.label ?? s.name), s.dom ? code(s.dom) : '—', code(s.hook)]);
 
-  const level = { refuse: 'Vägra rendera', warn: 'Varning' };
+  const level = { refuse: 'Refuse to render', warn: 'Warn' };
   const ruleRows = c.rules.map((r) => [
     `**${r.id}**`,
-    cell(r.beskrivning),
+    cell(r.description),
     code(r.test.kind),
-    r.css ? (r.css.coverage === 'partial' ? 'Delvis' : 'Ja') : '—',
+    r.css ? (r.css.coverage === 'partial' ? 'Partial' : 'Yes') : '—',
     r.editor ? level[r.editor.level] : '—',
     r.since,
   ]);
 
   const page = [
     '---',
-    `title: ${JSON.stringify(c.namn)}`,
-    `description: ${JSON.stringify(c.sammanfattning ?? '')}`,
+    `title: ${JSON.stringify(c.title)}`,
+    `description: ${JSON.stringify(c.summary ?? '')}`,
     'sidebar:',
     `  order: ${order + 1}`,
     '---',
     '',
-    `{/* Genererad ur components/${slug}/contract.yaml av docs/scripts/sync-demos.mjs. Redigera kontraktet, inte den här filen. */}`,
+    `{/* Generated from components/${slug}/contract.yaml by docs/scripts/sync-demos.mjs. Edit the contract, not this file. */}`,
     '',
-    `Kontraktsversion **${c.contractVersion}** · ${code(`data-component="${slug}"`)}`,
+    `Contract version **${c.contractVersion}** · ${code(`data-component="${slug}"`)}`,
     '',
-    '## Anatomi',
+    '## Anatomy',
     '',
-    table(['Del', 'data-part', 'Element', 'Obligatorisk'], partRows),
+    table(['Part', 'data-part', 'Element', 'Required'], partRows),
     '',
-    c.domOrder ? `Ordning i DOM: ${c.domOrder.map(code).join(' → ')}.` : '',
+    c.domOrder ? `DOM order: ${c.domOrder.map(code).join(' → ')}.` : '',
     '',
-    '## Exempel',
+    '## Examples',
     '',
-    'Varje exempel är en egen sida med bara grund-CSS och markupen nedan — inte en ramverkskomponent.',
+    'Each example is a standalone page with only grund CSS and the markup below — not a framework component.',
     '',
     demos.join('\n\n'),
     '',
-    '## Tillstånd',
+    '## States',
     '',
-    table(['Tillstånd', 'I DOM:en', 'CSS-hook'], stateRows),
+    table(['State', 'In the DOM', 'CSS hook'], stateRows),
     '',
-    '## Kontraktsregler',
+    '## Contract rules',
     '',
-    table(['Id', 'Regel', 'Test', 'CSS-varning', 'Editor', 'Sedan'], ruleRows),
+    table(['Id', 'Rule', 'Test', 'CSS warning', 'Editor', 'Since'], ruleRows),
     '',
     ...(c.wcag?.length
-      ? ['## WCAG', '', table(['Kriterium', 'Nivå', 'Hur'], c.wcag.map((w) => [`${w.criterion} ${cell(w.namn)}`, w.level, cell(w.hur)])), '']
+      ? ['## WCAG', '', table(['Criterion', 'Level', 'How'], c.wcag.map((w) => [`${w.criterion} ${cell(w.name)}`, w.level, cell(w.how)])), '']
       : []),
     ...(c.siteResponsibilities?.length
-      ? ['## Vad sajten själv måste lösa', '', ...c.siteResponsibilities.map((s) => `- **${cell(s.namn)}${s.criterion ? ` (${s.criterion})` : ''}.** ${cell(s.text)}`), '']
+      ? ['## What the site must handle', '', ...c.siteResponsibilities.map((s) => `- **${cell(s.title)}${s.criterion ? ` (${s.criterion})` : ''}.** ${cell(s.text)}`), '']
       : []),
   ].join('\n');
 
@@ -140,5 +151,5 @@ for (const [order, slug] of slugs.entries()) {
 
 writeFileSync(
   join(outContent, 'meta.ts'),
-  `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Komponenter", order: 2 });\n`,
+  `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Components", order: 2 });\n`,
 );

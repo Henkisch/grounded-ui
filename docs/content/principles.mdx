@@ -1,37 +1,37 @@
 ---
-title: Principer
-description: Reglerna som styr all kod i grund-ui, och budgetarna som failar bygget.
+title: Principles
+description: The rules that govern all grund-ui code, and the budgets that fail the build.
 sidebar:
   order: 1
 ---
 
-## Regler som styr all kod
+## Rules for all code
 
-- Tillstånd syns i DOM:en, native först. JS rör aldrig klasser. CSS kräver aldrig JS.
-- Styling hakar bara på `data-component`, `data-part` och `data-variant`. Klassattributet är fritt åt sajten.
-- Allt i `@layer` och `@scope`, `:where()` för noll specificitet. Ingen global reset, inga nakna elementselektorer.
-- Inga färgvärden. Bara `currentColor`, `inherit` eller custom property.
-- `em` och `lh`, inte `px`. Logiska egenskaper.
-- Inga beroenden, inga polyfills, inget byggsteg i det som levereras.
+- State is visible in the DOM, native first. JS never touches classes. CSS never requires JS.
+- Styling hooks only on `data-component`, `data-part` and `data-variant`. The class attribute belongs to the site.
+- Everything in `@layer` and `@scope`, `:where()` for zero specificity. No global reset, no bare element selectors.
+- No colour values. Only `currentColor`, `inherit` or a custom property.
+- `em` and `lh`, not `px`. Logical properties.
+- No dependencies, no polyfills, no build step in what ships.
 
-Reglerna kontrolleras av stylelint i varje bygge.
+stylelint enforces these rules on every build.
 
-## Lagerordning
+## Layer order
 
 ```css
 @layer grund.core, grund.components, grund.warnings;
 ```
 
-Ordningen deklareras först i `core.css`, eftersom vissa plattformar aggregerar och omordnar CSS. Sajtens egen CSS ligger utanför lagren och vinner alltid, utan `!important`.
+The order is declared first in `core.css`, because some platforms aggregate and reorder CSS. The site's own CSS sits outside the layers and always wins, without `!important`.
 
-## Budgetar som failar bygget
+## Budgets that fail the build
 
-| Sak | Budget |
+| Item | Budget |
 | --- | --- |
-| Kärn-CSS, minifierad och brotlad | högst 3 kB |
-| CSS per komponent | högst 1,5 kB |
-| JS per komponent | högst 1 kB, noll är utgångsläget |
-| Externa beroenden | 0 |
-| CLS-bidrag | 0 |
+| Core CSS, minified and brotli-compressed | 3 kB max |
+| CSS per component | 1.5 kB max |
+| JS per component | 1 kB max, zero by default |
+| External dependencies | 0 |
+| CLS contribution | 0 |
 
-Storleksdiff redovisas i varje pull request.
+Every pull request reports the size diff.

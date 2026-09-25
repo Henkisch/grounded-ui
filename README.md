@@ -1,28 +1,28 @@
 # grund-ui
 
-Nativa HTML-komponenter för befintliga CMS-sajter. En CSS-länk plus kopierad markup ska fungera i en HTML-ruta i vilket CMS som helst, utan en enda ändring i sajtens egen CSS.
+Native HTML components for existing CMS sites. One CSS link plus copied markup should work in an HTML block in any CMS, without a single change to the site's own CSS.
 
-## Struktur
+## Structure
 
-| Sökväg | Innehåll |
+| Path | Contents |
 | --- | --- |
-| `components/<slug>/contract.yaml` | Kontraktet. Sanningen som allt annat härleds ur |
-| `components/<slug>/markup/` | Kanonisk HTML per tillstånd. `broken/` bryter mot en regel var |
-| `components/<slug>/styles/` | Referens-CSS |
-| `components/<slug>/tests/` | Kontraktstester |
-| `core/` | Tokens och kärn-CSS |
-| `schema/` | JSON Schema för kontraktsfiler |
-| `generator/` | Kontraktsfil in, mallfil ut |
-| `docs/` | Blume-sajten |
+| `components/<slug>/contract.yaml` | The contract. The source everything else is derived from |
+| `components/<slug>/markup/` | Canonical HTML per state. `broken/` holds one rule violation per file |
+| `components/<slug>/styles/` | Reference CSS |
+| `components/<slug>/tests/` | Contract tests |
+| `core/` | Tokens and core CSS |
+| `schema/` | JSON Schema for contract files |
+| `generator/` | Contract in, template file out |
+| `docs/` | The Blume docs site |
 
-## Kommandon
+## Commands
 
 ```sh
 pnpm install
 pnpm check               # validate + lint:css + check-deps + budget
-pnpm --filter docs dev   # docs, genereras ur kontrakten
+pnpm --filter docs dev   # docs, generated from the contracts
 ```
 
-Innan första publicering: `npm view grund-ui` för att bekräfta att namnet är ledigt.
+Before the first publish: run `npm view grund-ui` to confirm the name is free.
 
 MIT © Henrik Larsson
