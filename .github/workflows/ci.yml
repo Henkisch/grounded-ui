@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm validate
+      - run: pnpm lint:css
+      - run: pnpm check-deps
+      - run: pnpm budget
+
+      # Size diff against the base branch, posted as a sticky PR comment.
+      - name: Measure base branch
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch --depth=1 origin ${{ github.base_ref }}
+          git worktree add ../base FETCH_HEAD
+          cp scripts/budget.mjs ../base/scripts/budget.mjs 2>/dev/null || true
+          cd ../base
+          if [ -f budgets.json ]; then
+            ln -s "$GITHUB_WORKSPACE/node_modules" node_modules
+            node scripts/budget.mjs || true
+          fi
+      - name: Build size report
+        if: github.event_name == 'pull_request'
+        run: node scripts/size-diff.mjs ../base/dist/sizes.json dist/sizes.json > dist/size-report.md
+      - uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          header: size
+          path: dist/size-report.md
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter docs build

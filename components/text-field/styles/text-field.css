@@ -1,0 +1,9 @@
+/* Placeholder. Reference CSS is written in build step 4, against the 1.5 kB budget. */
+@layer grund.components.text-field {
+  @scope ([data-component="text-field"]) {
+    :scope {
+      display: grid;
+      gap: var(--grund-gap);
+    }
+  }
+}

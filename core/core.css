@@ -1,0 +1,16 @@
+/*
+ * grund-ui core.
+ * Explicit layer order: some platforms aggregate and reorder CSS files,
+ * so the order is declared up front. Unlayered site CSS always wins.
+ */
+@layer grund.core, grund.components, grund.warnings;
+
+@layer grund.core {
+  :where([data-component]) {
+    box-sizing: border-box;
+  }
+
+  :where([data-component] *, [data-component] ::before, [data-component] ::after) {
+    box-sizing: inherit;
+  }
+}

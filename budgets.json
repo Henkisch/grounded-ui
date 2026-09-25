@@ -1,0 +1,5 @@
+{
+  "$comment": "Bytes after lightningcss minify + brotli. Build fails if exceeded. Per-component overrides live in contract.yaml under budget:.",
+  "core": { "css": 3072 },
+  "component": { "css": 1536, "js": 1024 }
+}

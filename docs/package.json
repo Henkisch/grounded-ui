@@ -1,0 +1,16 @@
+{
+  "name": "docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/sync-demos.mjs",
+    "dev": "blume dev",
+    "prebuild": "node scripts/sync-demos.mjs",
+    "build": "blume build",
+    "doctor": "blume doctor"
+  },
+  "dependencies": {
+    "blume": "^2.0.3",
+    "yaml": "^2.9.1"
+  }
+}
