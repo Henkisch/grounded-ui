@@ -12,3 +12,12 @@ components:
       - url: https://designsystem.forsakringskassan.se/latest/components/input/textfield-specialized.html
         name: textfield-specialized.html, email in error state
         fill: { selector: 'input#email', value: not-an-email }
+  dialog:
+    binding: dialog.binding.yaml
+    pages:
+      - url: https://designsystem.forsakringskassan.se/latest/components/modal/fmodal.html
+        name: fmodal.html, opened
+        click: 'button:has-text("Öppna modal")'
+      - url: https://designsystem.forsakringskassan.se/latest/components/modal/fconfirmmodal.html
+        name: fconfirmmodal.html, opened
+        click: 'button:has-text("Ta bort")'

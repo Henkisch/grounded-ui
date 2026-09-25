@@ -2,7 +2,7 @@
 // Usage: node reports/run.mjs <implementation-folder>   e.g. node reports/run.mjs govuk-frontend
 // Reads reports/<impl>/report.yaml; writes reports/<impl>/<component>.json and .md.
 // Examples come from `fixtures` (the package's own rendered-HTML fixtures) and/or `pages` (live docs pages,
-// optionally after filling a field with an invalid value to reach the error state).
+// optionally after filling a field with an invalid value (error state) or clicking an opener (dialogs).
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { execFileSync } from 'node:child_process';
@@ -37,17 +37,21 @@ for (const [slug, spec] of Object.entries(config.components)) {
         .filter((f) => !f.hidden)
         .map((f) => ({ source: file.split('/').at(-2), name: f.name, html: f.html })),
     ),
-    ...(spec.pages ?? []).map((p) => ({ source: 'docs', name: p.name ?? p.url.split('/').at(-1), url: p.url, fill: p.fill })),
+    ...(spec.pages ?? []).map((p) => ({ source: 'docs', name: p.name ?? p.url.split('/').at(-1), url: p.url, fill: p.fill, click: p.click })),
   ];
 
   const rows = [];
-  for (const { html, url, fill, ...example } of examples) {
+  for (const { html, url, fill, click, ...example } of examples) {
     if (url) {
       await page.goto(url, { waitUntil: 'networkidle' });
       if (fill) {
         await page.locator(fill.selector).fill(fill.value);
         await page.locator(fill.selector).blur();
         await page.waitForTimeout(300);
+      }
+      if (click) {
+        await page.locator(click).first().click();
+        await page.waitForTimeout(600);
       }
     } else {
       await page.setContent(`<!doctype html><html lang="en"><body>${html}</body></html>`);

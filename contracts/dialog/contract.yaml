@@ -3,7 +3,7 @@
 # The single source for the conformance tests, warning CSS, editor validation and the docs page.
 # Test selectors name parts ({title}, {close}, …); `:scope` is the root; {id} is the root's id.
 component: dialog
-contractVersion: 0.2.0
+contractVersion: 0.2.1
 title: Dialog
 summary: A modal dialog that opens and closes without JavaScript, using the native dialog element and invoker commands.
 
@@ -188,14 +188,14 @@ rules:
     editor: { level: warn }
 
   - id: DG-11
-    description: The only role override allowed is role="alertdialog".
+    description: On a native <dialog>, the only role override allowed is role="alertdialog".
     level: normative
     source: https://www.w3.org/TR/html-aria/#el-dialog
-    rationale: ARIA in HTML allows only alertdialog on a dialog element; any other role breaks its semantics.
+    rationale: ARIA in HTML allows only alertdialog on a dialog element; any other role breaks its semantics. (A div with role="dialog" is a different technique, not an override.)
     since: 0.1.0
-    test: { kind: absent, selector: ':scope[role]:not([role="alertdialog"])' }
+    test: { kind: absent, selector: ':scope:is(dialog)[role]:not([role="alertdialog"])' }
     css:
-      violation: '[data-component="dialog"][role]:not([role="alertdialog"])'
+      violation: '[data-component="dialog"]:is(dialog)[role]:not([role="alertdialog"])'
       message: "DG-11: the dialog's role may only be alertdialog."
 
   - id: DG-12
