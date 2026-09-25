@@ -68,6 +68,8 @@ states:
 keyboard:
   - { key: Enter / Space on trigger, behavior: Opens the dialog and moves focus inside it }
   - { key: Tab / Shift + Tab, behavior: "Moves between the dialog's controls; the page behind is inert and unreachable" }
+  - { key: Tab past the last control, behavior: "Focus may move to the browser's own UI (address bar) and back into the dialog. The page stays unreachable. This is the HTML spec's behaviour and what WCAG 2.1.2 (No Keyboard Trap) asks for, so there is no JavaScript focus loop." }
+  - { key: Tab in Safari, behavior: "Safari tabs only to form fields and links by default, so it skips the dialog's buttons. Users reach them with Option + Tab, or by turning on \"Press Tab to highlight each item\". This is Safari behaviour on every site." }
   - { key: Esc, behavior: Closes the dialog }
   - { key: Close, behavior: Focus returns to the trigger }
 
