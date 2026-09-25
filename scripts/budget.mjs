@@ -31,9 +31,15 @@ for (const slug of readdirSync(componentsDir).sort()) {
   const contractPath = join(dir, 'contract.yaml');
   const override = existsSync(contractPath) ? parse(readFileSync(contractPath, 'utf8'))?.budget ?? {} : {};
 
-  const cssPath = join(dir, 'styles', `${slug}.css`);
-  const cssBytes = existsSync(cssPath) ? brotli(minifyCss([cssPath])) : 0;
-  entries.push({ name: slug, kind: 'css', bytes: cssBytes, limit: override.css ?? budgets.component.css });
+  // Base and styled are linked separately, so each is measured alone; the budget covers both together.
+  const cssLimit = override.css ?? budgets.component.css;
+  const basePath = join(dir, 'styles', `${slug}.css`);
+  const styledPath = join(dir, 'styles', `${slug}.styled.css`);
+  const base = existsSync(basePath) ? brotli(minifyCss([basePath])) : 0;
+  const styled = existsSync(styledPath) ? brotli(minifyCss([styledPath])) : 0;
+  entries.push({ name: slug, kind: 'css base', bytes: base, limit: cssLimit });
+  entries.push({ name: slug, kind: 'css styled', bytes: styled, limit: cssLimit });
+  entries.push({ name: slug, kind: 'css total', bytes: base + styled, limit: cssLimit });
 
   // JS is optional; absent file = 0 bytes. Shipped as-is, no minifier in the chain.
   const jsPath = join(dir, 'scripts', `${slug}.js`);

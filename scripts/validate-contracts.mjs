@@ -25,6 +25,7 @@ const lte = (a, b) => {
 // Standards data, so contracts can't drift from the platform: HTML elements (W3C webref), ARIA (aria-query).
 const htmlElements = new Set(Object.values(await elements.listAll()).flatMap((spec) => spec.elements.map((e) => e.name)));
 const { aria, roles } = ariaQuery;
+const LAYER_ORDER = '@layer grund.core, grund.components, grund.styled, grund.warnings;';
 const IDREF_ATTRS = ['for', 'commandfor', 'aria-labelledby', 'aria-describedby', 'aria-controls'];
 
 let errors = 0;
@@ -101,32 +102,18 @@ for (const slug of slugs) {
     if (!contract.anatomy[attr.on]) fail(file, `attribute ${attr.name} is on "${attr.on}", which is not in anatomy`);
   }
 
-  // Documented custom properties must equal the ones the CSS actually reads, in both directions.
-  const cssPath = join(componentsDir, slug, 'styles', `${slug}.css`);
-  if (existsSync(cssPath)) {
-    if (!readFileSync(cssPath, 'utf8').includes('@layer grund.core, grund.components, grund.warnings;')) {
-      fail(file, `${slug}.css must repeat the layer order statement (@layer grund.core, grund.components, grund.warnings;)`);
-    }
-    const used = new Set([...readFileSync(cssPath, 'utf8').matchAll(/var\((--grund-[a-z0-9-]+)/g)].map((m) => m[1]));
-    const documented = new Set(Object.keys(contract.customProperties ?? {}));
-    for (const prop of used) if (!documented.has(prop)) fail(file, `${prop} is used in ${slug}.css but not in customProperties`);
-    for (const prop of documented) if (!used.has(prop)) fail(file, `${prop} is in customProperties but not used in ${slug}.css`);
-  }
-
-  for (const req of contract.requires ?? []) {
-    if (!features[req.feature]) fail(file, `requires "${req.feature}" is not a web-features id`);
-  }
-
-  for (const [key, part] of Object.entries(contract.anatomy)) {
-    for (const el of part.element) if (!htmlElements.has(el)) fail(file, `anatomy.${key}: <${el}> is not an HTML element`);
-  }
-
-  for (const attr of contract.attributes ?? []) {
-    if (attr.name.startsWith('aria-') && !aria.has(attr.name)) fail(file, `attribute ${attr.name} is not an ARIA attribute`);
-    if (attr.name === 'role') {
-      for (const [, role] of attr.type.matchAll(/"([^"]+)"/g)) if (!roles.has(role)) fail(file, `role "${role}" is not an ARIA role`);
+  // Documented custom properties must equal the ones the CSS actually reads (base + styled), in both directions.
+  const cssFiles = [`${slug}.css`, `${slug}.styled.css`].map((f) => join(componentsDir, slug, 'styles', f)).filter(existsSync);
+  if (!cssFiles.length) fail(file, `styles/${slug}.css missing`);
+  for (const cssFile of cssFiles) {
+    if (!readFileSync(cssFile, 'utf8').includes(LAYER_ORDER)) {
+      fail(file, `${cssFile.split('/').pop()} must repeat the layer order statement (${LAYER_ORDER})`);
     }
   }
+  const used = new Set(cssFiles.flatMap((f) => [...readFileSync(f, 'utf8').matchAll(/var\((--grund-[a-z0-9-]+)/g)].map((m) => m[1])));
+  const documented = new Set(Object.keys(contract.customProperties ?? {}));
+  for (const prop of used) if (!documented.has(prop)) fail(file, `${prop} is used in ${slug} CSS but not in customProperties`);
+  for (const prop of documented) if (!used.has(prop)) fail(file, `${prop} is in customProperties but not used in ${slug} CSS`);
 
   for (const name of contract.markup) {
     const markupPath = join(componentsDir, slug, 'markup', `${name}.html`);

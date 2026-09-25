@@ -30,7 +30,65 @@ const table = (head, rows) =>
 // Every component the markup uses gets its stylesheet, as a real page would link them.
 const usedComponents = (markup) => [...new Set([...markup.matchAll(/data-component="([a-z0-9-]+)"/g)].map((m) => m[1]))];
 
-const shell = (title, markup) => `<!doctype html>
+const componentLinks = (markup, styled) =>
+  usedComponents(markup)
+    .flatMap((s) => [
+      `<link rel="stylesheet" href="/grund/components/${s}/styles/${s}.css">`,
+      styled && existsSync(join(componentsDir, s, 'styles', `${s}.styled.css`))
+        ? `<link rel="stylesheet" href="/grund/components/${s}/styles/${s}.styled.css">`
+        : null,
+    ])
+    .filter(Boolean)
+    .join('\n');
+
+const cssFilesFor = (markup) =>
+  usedComponents(markup).flatMap((s) =>
+    [`${s}.css`, `${s}.styled.css`].filter((f) => existsSync(join(componentsDir, s, 'styles', f))).map((f) => ({ slug: s, file: f })),
+  );
+
+// Styled · Base · HTML · CSS in one box (Blume's built-in Tabs). No syncing or URL hash, so switching one
+// example leaves the others alone. `src` is the styled demo page; the base page sits next to it as *.base.html.
+const previewTabs = ({ src, title, height, minHeight, markup }) => {
+  const frame = (url) =>
+    `<iframe data-demo${minHeight ? ` data-min-height="${minHeight}"` : ''} src="${url}" title="${esc(title)}" loading="lazy" height="${height}" style={{ inlineSize: '100%', border: 0 }}></iframe>`;
+  return [
+    '<Tabs sync={false} hash={false}>',
+    '<Tab title="Styled">',
+    '',
+    frame(src),
+    '',
+    '</Tab>',
+    '<Tab title="Base">',
+    '',
+    frame(src.replace(/\.html$/, '.base.html')),
+    '',
+    '</Tab>',
+    '<Tab title="HTML">',
+    '',
+    '```html',
+    markup.trim(),
+    '```',
+    '',
+    '</Tab>',
+    '<Tab title="CSS">',
+    '',
+    ...cssFilesFor(markup).flatMap(({ slug, file }) => [
+      '```css title="' + file + '"',
+      readFileSync(join(componentsDir, slug, 'styles', file), 'utf8').trim(),
+      '```',
+      '',
+    ]),
+    '</Tab>',
+    '</Tabs>',
+  ];
+};
+
+const writeDemo = (path, title, markup) => {
+  writeFileSync(path, shell(title, markup, true));
+  writeFileSync(path.replace(/\.html$/, '.base.html'), shell(`${title} (base)`, markup, false));
+};
+
+const shell = (title, markup, styled) => `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -38,7 +96,7 @@ const shell = (title, markup) => `<!doctype html>
 <title>${title}</title>
 <link rel="stylesheet" href="/grund/core/tokens.css">
 <link rel="stylesheet" href="/grund/core/core.css">
-${usedComponents(markup).map((s) => `<link rel="stylesheet" href="/grund/components/${s}/styles/${s}.css">`).join('\n')}
+${componentLinks(markup, styled)}
 <meta name="color-scheme" content="light dark">
 <!-- The host site's own CSS. Nothing else is loaded. The component inherits the colour scheme. -->
 <style>
@@ -79,7 +137,7 @@ for (const [order, slug] of slugs.entries()) {
 
   const demos = c.markup.map((name) => {
     const markup = readFileSync(join(dir, 'markup', `${name}.html`), 'utf8');
-    writeFileSync(join(pub, 'demo', slug, `${name}.html`), shell(`${c.title}: ${name}`, markup));
+    writeDemo(join(pub, 'demo', slug, `${name}.html`), `${c.title}: ${name}`, markup);
     // Fallback height from the parts present (px at 16px base); /demo-frame.js fits it exactly.
     const has = (part) => markup.includes(`data-part="${part}"`);
     const parts = [
@@ -90,34 +148,10 @@ for (const [order, slug] of slugs.entries()) {
     ].filter(Boolean);
     const minHeight = c.demo?.minHeight ?? 0;
     const height = Math.max(minHeight, 16 + parts.reduce((a, b) => a + b, 0) + (parts.length - 1) * 6);
-    // One box per example: Preview and HTML tabs (Blume's built-in Tabs). No syncing or URL hash,
-    // so switching one example leaves the others alone.
     return [
       `### ${code(name)}`,
       '',
-      '<Tabs sync={false} hash={false}>',
-      '<Tab title="Preview">',
-      '',
-      `<iframe data-demo${minHeight ? ` data-min-height="${minHeight}"` : ''} src="/demo/${slug}/${name}.html" title="${c.title}: ${name}" loading="lazy" height="${height}" style={{ inlineSize: '100%', border: 0 }}></iframe>`,
-      '',
-      '</Tab>',
-      '<Tab title="HTML">',
-      '',
-      '```html',
-      markup.trim(),
-      '```',
-      '',
-      '</Tab>',
-      '<Tab title="CSS">',
-      '',
-      ...usedComponents(markup).flatMap((used) => [
-        '```css title="' + `${used}.css` + '"',
-        readFileSync(join(componentsDir, used, 'styles', `${used}.css`), 'utf8').trim(),
-        '```',
-        '',
-      ]),
-      '</Tab>',
-      '</Tabs>',
+      ...previewTabs({ src: `/demo/${slug}/${name}.html`, title: `${c.title}: ${name}`, height, minHeight, markup }),
     ].join('\n');
   });
 
@@ -154,13 +188,17 @@ for (const [order, slug] of slugs.entries()) {
     '',
     '## Installation',
     '',
-    'Link the core once per page, then one stylesheet per component. No JavaScript.',
+    'Link the core once per page, then the component. No JavaScript.',
     '',
     '```html',
     '<link rel="stylesheet" href="grund-ui/core/tokens.css">',
     '<link rel="stylesheet" href="grund-ui/core/core.css">',
     `<link rel="stylesheet" href="grund-ui/components/${slug}/styles/${slug}.css">`,
+    '<!-- Optional: the finished look -->',
+    `<link rel="stylesheet" href="grund-ui/components/${slug}/styles/${slug}.styled.css">`,
     '```',
+    '',
+    `\`${slug}.css\` is the base: everything the contract needs, nothing more. \`${slug}.styled.css\` adds the look shown in the **Styled** tab; leave it out to start from the browser's defaults and your own CSS.`,
     '',
     '## Anatomy',
     '',
@@ -280,7 +318,7 @@ for (const [order, fileName] of exampleFiles.entries()) {
   const source = readFileSync(join(examplesDir, fileName), 'utf8');
   const meta = (key) => source.match(new RegExp(`<!--\\s*${key}:\\s*(.+?)\\s*-->`))?.[1] ?? '';
   const markup = source.replace(/^(\s*<!--.*?-->\s*)+/s, '');
-  writeFileSync(join(pub, 'demo', 'examples', fileName), shell(meta('title'), markup));
+  writeDemo(join(pub, 'demo', 'examples', fileName), meta('title'), markup);
   const minHeight = markup.includes('<dialog') ? 380 : 0;
   const page = [
     '---',
@@ -294,20 +332,7 @@ for (const [order, fileName] of exampleFiles.entries()) {
     '',
     `Uses: ${usedComponents(markup).map((u) => `[${u}](/components/${u})`).join(', ')}.`,
     '',
-    '<Tabs sync={false} hash={false}>',
-    '<Tab title="Preview">',
-    '',
-    `<iframe data-demo${minHeight ? ` data-min-height="${minHeight}"` : ''} src="/demo/examples/${fileName}" title="${esc(meta('title'))}" loading="lazy" height="${minHeight || 300}" style={{ inlineSize: '100%', border: 0 }}></iframe>`,
-    '',
-    '</Tab>',
-    '<Tab title="HTML">',
-    '',
-    '```html',
-    markup.trim(),
-    '```',
-    '',
-    '</Tab>',
-    '</Tabs>',
+    ...previewTabs({ src: `/demo/examples/${fileName}`, title: meta('title'), height: minHeight || 300, minHeight, markup }),
     '',
     '<script src="/demo-frame.js" type="module"></script>',
     '',

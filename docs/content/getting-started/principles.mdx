@@ -19,7 +19,7 @@ stylelint enforces these rules on every build.
 ## Layer order
 
 ```css
-@layer grund.core, grund.components, grund.warnings;
+@layer grund.core, grund.components, grund.styled, grund.warnings;
 ```
 
 The order is declared first in `core.css`, because some platforms aggregate and reorder CSS. The site's own CSS sits outside the layers and always wins, without `!important`.

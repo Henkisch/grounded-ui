@@ -1,10 +1,10 @@
 /*
- * text-field reference CSS.
- * Zero specificity (:where), scoped to the component, layered under site CSS.
- * No colour values: every colour is currentColor, inherit or a --grund-* property.
+ * text-field base CSS: only what the contract and accessibility need.
+ * Layout of the parts, touch target, focus ring, a non-colour error cue. Everything else is the browser's
+ * or the site's. For a finished look, add text-field.styled.css.
  */
 /* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
-@layer grund.core, grund.components, grund.warnings;
+@layer grund.core, grund.components, grund.styled, grund.warnings;
 
 @layer grund.components.text-field {
   @scope ([data-component="text-field"]) to ([data-component]) {
@@ -19,55 +19,28 @@
       margin: 0;
     }
 
-    :where([data-part="label"]) {
-      font-weight: 500;
-      color: var(--grund-label-color, inherit);
-    }
-
-    /* Description reads as part of the label group: smaller, pulled up towards it. */
-    :where([data-part="description"]) {
-      margin-block-start: calc(var(--grund-gap, 0.375em) * -0.5);
-      font-size: 0.875em;
-      color: var(--grund-muted-color, inherit);
-    }
-
     :where([data-part="control"]) {
       inline-size: 100%;
       min-block-size: var(--grund-touch-target, 2.75em);
-      padding-block: 0.5em;
-      padding-inline: 0.625em;
       font: inherit;
       color: inherit;
-      background: var(--grund-control-bg, transparent);
-      border: 1px solid var(--grund-border-color, currentColor);
-      border-radius: var(--grund-radius, 0.25em);
     }
 
+    /* WCAG 2.4.7 / 1.4.11: at least 2 CSS px, never removed. */
     :where([data-part="control"]):focus-visible {
       outline: 2px solid var(--grund-focus-color, currentColor);
       outline-offset: 2px;
     }
 
-    :where([data-part="control"]):disabled {
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-
+    /* Error is shown by more than colour (WCAG 1.4.1). */
     :where([data-part="control"][aria-invalid="true"]) {
       border-width: 2px;
-      border-color: var(--grund-error-color, currentColor);
-    }
-
-    :where([data-part="error"]) {
-      font-size: 0.875em;
-      font-weight: 500;
-      color: var(--grund-error-color, inherit);
+      border-style: solid;
     }
 
     :where([data-variant="multiline"] [data-part="control"]) {
       min-block-size: 4lh;
       field-sizing: content;
-      resize: vertical;
     }
   }
 }

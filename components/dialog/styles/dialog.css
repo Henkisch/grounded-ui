@@ -1,62 +1,21 @@
 /*
- * dialog reference CSS.
- * Native <dialog> in the top layer; opens and closes with invoker commands, zero JS.
- * Colours fall back to the browser's Canvas/CanvasText; the backdrop dims with a filter, no colour value.
+ * dialog base CSS: only what the contract needs.
+ * Native <dialog> in the top layer, opened and closed with invoker commands, zero JS.
+ * Sizing, parts layout and scroll lock; the browser draws the surface and backdrop.
+ * For a finished look, add dialog.styled.css.
  */
 /* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
-@layer grund.core, grund.components, grund.warnings;
+@layer grund.core, grund.components, grund.styled, grund.warnings;
 
 @layer grund.components.dialog {
   @scope ([data-component="dialog"]) to ([data-component]) {
     :scope {
       inline-size: min(100% - 2em, 32em);
       max-block-size: min(100% - 2em, 40em);
-      padding: 1.5em;
-      color: var(--grund-dialog-color, CanvasText);
-      background: var(--grund-dialog-bg, Canvas);
-      border: 1px solid var(--grund-border-color, currentColor);
-      border-radius: var(--grund-radius-large, 0.5em);
-      opacity: 0;
-      translate: 0 0.5em;
-      transition-property: opacity, translate, overlay, display;
-      transition-duration: var(--grund-duration, 150ms);
-      transition-timing-function: ease-out;
-      transition-behavior: allow-discrete;
-    }
-
-    :scope[open] {
-      opacity: 1;
-      translate: 0 0;
-
-      @starting-style {
-        opacity: 0;
-        translate: 0 0.5em;
-      }
-    }
-
-    :scope::backdrop {
-      backdrop-filter: brightness(0.4);
-      opacity: 0;
-      transition-property: opacity, overlay, display;
-      transition-duration: var(--grund-duration, 150ms);
-      transition-behavior: allow-discrete;
-    }
-
-    :scope[open]::backdrop {
-      opacity: 1;
-
-      @starting-style {
-        opacity: 0;
-      }
     }
 
     :where([data-part]) {
       margin: 0;
-    }
-
-    :where([data-part="title"]) {
-      font-size: 1.25em;
-      line-height: 1.3;
     }
 
     :where([data-part="body"]) {
@@ -69,13 +28,6 @@
       justify-content: flex-end;
       gap: 0.5em;
       margin-block-start: 1.5em;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      :scope,
-      :scope::backdrop {
-        transition-duration: 0s;
-      }
     }
   }
 

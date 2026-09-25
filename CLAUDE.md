@@ -12,12 +12,13 @@ Planning lives in Claude Docs (Swedish; read with the Claude Docs connector): bu
 
 - Everything in the repo is English: docs, contract prose, editor texts, warning messages, example markup (`lang="en"`).
 - Size in `em` and `lh`. rem breaks on old themes that set `html { font-size: 62.5% }`.
-- CSS layers: `@layer grund.core, grund.components, grund.warnings`; components use `grund.components.<slug>`; tokens are `--grund-*`.
+- CSS layers: `@layer grund.core, grund.components, grund.styled, grund.warnings`; components use `grund.components.<slug>`; tokens are `--grund-*`.
+- Each component has two stylesheets: `<slug>.css` (base: only what the contract and accessibility need, layer `grund.components.<slug>`) and `<slug>.styled.css` (optional look: radius, padding, colours, animation, layer `grund.styled.<slug>`). When adding a rule, put it in base only if removing it would break the contract or accessibility.
 - Component CSS uses donut scope, `@scope ([data-component="<slug>"]) to ([data-component])`, so it never styles a nested component (e.g. a text field inside a dialog).
 - Slug is identical in folder name, `component:` and `data-component`.
 - `pnpm check` enforces the code rules, budgets and standards data; run it before committing.
 - Standards facts come from data packages, never from memory: browser support from `web-features` (contract `requires` takes feature ids), elements from `@webref/elements`, ARIA from `aria-query`, markup via `html-validate`, CSS via the Baseline stylelint plugin.
-- Every component CSS file repeats `@layer grund.core, grund.components, grund.warnings;` at the top (the validator enforces it).
+- Every component CSS file repeats `@layer grund.core, grund.components, grund.styled, grund.warnings;` at the top (the validator enforces it).
 - `examples/*.html` are composed page fragments; their two leading comments (`title:`, `description:`) become the docs page. Page-level layout CSS belongs in the example, not in a component.
 
 ## Docs (Blume 2)
