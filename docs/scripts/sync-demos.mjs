@@ -24,7 +24,10 @@ const cell = (s) => esc(s).replace(/\|/g, '\\|');
 const table = (head, rows) =>
   [`| ${head.join(' | ')} |`, `| ${head.map(() => '---').join(' | ')} |`, ...rows.map((r) => `| ${r.join(' | ')} |`)].join('\n');
 
-const shell = (slug, title, markup) => `<!doctype html>
+// Every component the markup uses gets its stylesheet, as a real page would link them.
+const usedComponents = (markup) => [...new Set([...markup.matchAll(/data-component="([a-z0-9-]+)"/g)].map((m) => m[1]))];
+
+const shell = (title, markup) => `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -32,15 +35,34 @@ const shell = (slug, title, markup) => `<!doctype html>
 <title>${title}</title>
 <link rel="stylesheet" href="/grund/core/tokens.css">
 <link rel="stylesheet" href="/grund/core/core.css">
-<link rel="stylesheet" href="/grund/components/${slug}/styles/${slug}.css">
-<!-- The host site's own CSS. Nothing else is loaded. -->
-<style>body { margin: 1rem; font: 1rem/1.5 system-ui, sans-serif; }</style>
+${usedComponents(markup).map((s) => `<link rel="stylesheet" href="/grund/components/${s}/styles/${s}.css">`).join('\n')}
+<meta name="color-scheme" content="light dark">
+<!-- The host site's own CSS. Nothing else is loaded. The component inherits the colour scheme. -->
+<style>
+  :root { color-scheme: light dark; color: CanvasText; }
+  body { margin: 0.5rem; font: 1rem/1.5 system-ui, sans-serif; }
+</style>
 </head>
 <body>
 ${markup.trim()}
 </body>
 </html>
 `;
+
+// Every var(--grund-*, fallback) in a stylesheet, with its fallback (balanced parens).
+const cssDefaults = (css) => {
+  const found = {};
+  for (const m of css.matchAll(/var\((--grund-[a-z0-9-]+)\s*,\s*/g)) {
+    let depth = 1;
+    let i = m.index + m[0].length;
+    const start = i;
+    for (; i < css.length && depth; i++) depth += css[i] === '(' ? 1 : css[i] === ')' ? -1 : 0;
+    found[m[1]] ??= css.slice(start, i - 1).trim();
+  }
+  return found;
+};
+const cssType = (value) => (/\d(ms|s)$/.test(value) ? '<time>' : /\d(em|rem|lh|px|%)?$/.test(value) || /\d(em|lh)\b/.test(value) ? '<length>' : '<color>');
+const typeTable = (rows) => `<TypeTable type={${JSON.stringify(rows)}} />`;
 
 const componentsDir = join(repo, 'components');
 const slugs = readdirSync(componentsDir).filter((s) => existsSync(join(componentsDir, s, 'contract.yaml')));
@@ -54,8 +76,8 @@ for (const [order, slug] of slugs.entries()) {
 
   const demos = c.markup.map((name) => {
     const markup = readFileSync(join(dir, 'markup', `${name}.html`), 'utf8');
-    writeFileSync(join(pub, 'demo', slug, `${name}.html`), shell(slug, `${c.title}: ${name}`, markup));
-    // Height from the parts present (px at 16px base): body margin, then each part plus grid gap.
+    writeFileSync(join(pub, 'demo', slug, `${name}.html`), shell(`${c.title}: ${name}`, markup));
+    // Fallback height from the parts present (px at 16px base); /demo-frame.js fits it exactly.
     const has = (part) => markup.includes(`data-part="${part}"`);
     const parts = [
       has('label') && 24,
@@ -63,7 +85,8 @@ for (const [order, slug] of slugs.entries()) {
       has('control') && (markup.includes('<textarea') ? 112 : 44),
       has('error') && 21,
     ].filter(Boolean);
-    const height = 32 + parts.reduce((a, b) => a + b, 0) + (parts.length - 1) * 6 + 16;
+    const minHeight = c.demo?.minHeight ?? 0;
+    const height = Math.max(minHeight, 16 + parts.reduce((a, b) => a + b, 0) + (parts.length - 1) * 6);
     // One box per example: Preview and HTML tabs (Blume's built-in Tabs). No syncing or URL hash,
     // so switching one example leaves the others alone.
     return [
@@ -72,7 +95,7 @@ for (const [order, slug] of slugs.entries()) {
       '<Tabs sync={false} hash={false}>',
       '<Tab title="Preview">',
       '',
-      `<iframe src="/demo/${slug}/${name}.html" title="${c.title}: ${name}" loading="lazy" height="${height}" style={{ inlineSize: '100%', border: 0 }}></iframe>`,
+      `<iframe data-demo${minHeight ? ` data-min-height="${minHeight}"` : ''} src="/demo/${slug}/${name}.html" title="${c.title}: ${name}" loading="lazy" height="${height}" style={{ inlineSize: '100%', border: 0 }}></iframe>`,
       '',
       '</Tab>',
       '<Tab title="HTML">',
@@ -82,14 +105,23 @@ for (const [order, slug] of slugs.entries()) {
       '```',
       '',
       '</Tab>',
+      '<Tab title="CSS">',
+      '',
+      ...usedComponents(markup).flatMap((used) => [
+        '```css title="' + `${used}.css` + '"',
+        readFileSync(join(componentsDir, used, 'styles', `${used}.css`), 'utf8').trim(),
+        '```',
+        '',
+      ]),
+      '</Tab>',
       '</Tabs>',
     ].join('\n');
   });
 
   const partRows = Object.entries(c.anatomy).map(([key, p]) => [
     cell(p.label),
-    code(p.part ?? key),
-    p.element.map(code).join(' or '),
+    p.part ? code(p.part) : key === 'root' ? '—' : code(key),
+    p.element.map(code).join(' or ') + (p.outside ? ' (outside the root)' : ''),
     p.required ? 'Yes' : p.requiredWhen ? `When ${code(p.requiredWhen)}` : 'No',
   ]);
 
@@ -117,6 +149,16 @@ for (const [order, slug] of slugs.entries()) {
     '',
     `Contract version **${c.contractVersion}** · ${code(`data-component="${slug}"`)}`,
     '',
+    '## Installation',
+    '',
+    'Link the core once per page, then one stylesheet per component. No JavaScript.',
+    '',
+    '```html',
+    '<link rel="stylesheet" href="grund-ui/core/tokens.css">',
+    '<link rel="stylesheet" href="grund-ui/core/core.css">',
+    `<link rel="stylesheet" href="grund-ui/components/${slug}/styles/${slug}.css">`,
+    '```',
+    '',
     '## Anatomy',
     '',
     table(['Part', 'data-part', 'Element', 'Required'], partRows),
@@ -133,6 +175,52 @@ for (const [order, slug] of slugs.entries()) {
     '',
     table(['State', 'In the DOM', 'CSS hook'], stateRows),
     '',
+    ...(c.keyboard?.length
+      ? ['## Keyboard', '', table(['Key', 'Behavior'], c.keyboard.map((k) => [cell(k.key), cell(k.behavior)])), '']
+      : []),
+    ...(c.requires?.length
+      ? ['## Browser support', '', table(['Feature', 'Supported from', 'Without it'], c.requires.map((r) => [cell(r.feature), cell(r.support), cell(r.fallback ?? '—')])), '']
+      : []),
+    ...(c.attributes?.length
+      ? [
+          '## Attributes',
+          '',
+          ...Object.keys(c.anatomy)
+            .filter((part) => c.attributes.some((a) => a.on === part))
+            .flatMap((part) => [
+              `### ${cell(c.anatomy[part].label)}`,
+              '',
+              typeTable(
+                Object.fromEntries(
+                  c.attributes
+                    .filter((a) => a.on === part)
+                    .map((a) => [a.name, { type: a.type, description: a.description, ...(a.required && { required: true }), ...(a.default && { default: a.default }) }]),
+                ),
+              ),
+              '',
+            ]),
+        ]
+      : []),
+    ...(c.customProperties
+      ? (() => {
+          const defaults = cssDefaults(readFileSync(join(dir, 'styles', `${slug}.css`), 'utf8'));
+          return [
+            '## Custom properties',
+            '',
+            'Set these from the site\'s own CSS to theme the component. No `!important` needed.',
+            '',
+            typeTable(
+              Object.fromEntries(
+                Object.entries(c.customProperties).map(([name, description]) => [
+                  name,
+                  { type: cssType(defaults[name] ?? ''), description, ...(defaults[name] && { default: defaults[name] }) },
+                ]),
+              ),
+            ),
+            '',
+          ];
+        })()
+      : []),
     '## Contract rules',
     '',
     table(['Id', 'Rule', 'Test', 'CSS warning', 'Editor', 'Since'], ruleRows),
@@ -143,6 +231,8 @@ for (const [order, slug] of slugs.entries()) {
     ...(c.siteResponsibilities?.length
       ? ['## What the site must handle', '', ...c.siteResponsibilities.map((s) => `- **${cell(s.title)}${s.criterion ? ` (${s.criterion})` : ''}.** ${cell(s.text)}`), '']
       : []),
+    '<script src="/demo-frame.js" type="module"></script>',
+    '',
   ].join('\n');
 
   writeFileSync(join(outContent, `${slug}.mdx`), page);

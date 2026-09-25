@@ -4,7 +4,7 @@
  * No colour values: every colour is currentColor, inherit or a --grund-* property.
  */
 @layer grund.components.text-field {
-  @scope ([data-component="text-field"]) {
+  @scope ([data-component="text-field"]) to ([data-component]) {
     :scope {
       display: grid;
       gap: var(--grund-gap, 0.375em);

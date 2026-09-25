@@ -44,7 +44,26 @@ for (const slug of slugs) {
   }
 
   if (!validate(contract)) {
-    for (const e of validate.errors) fail(file, `${e.instancePath || '/'} ${e.message}`);
+    // oneOf reports every branch it tried; for rule tests keep only the branch matching test.kind.
+    const seen = new Set();
+    for (const e of validate.errors) {
+      const testError = e.instancePath.match(/^\/rules\/(\d+)\/test(\/|$)/);
+      if (testError) {
+        if (e.keyword === 'oneOf') continue;
+        const kind = contract.rules[testError[1]]?.test?.kind;
+        const branch = schema.$defs.test.oneOf[Number(e.schemaPath.match(/oneOf\/(\d+)/)?.[1])];
+        const kinds = branch ? [branch.properties.kind.const ?? branch.properties.kind.enum].flat() : [];
+        if (!kinds.includes(kind)) {
+          if (e.instancePath.endsWith('/kind') && !schema.$defs.test.properties.kind.enum.includes(kind)) {
+            const msg = `${e.instancePath} "${kind}" is not a test kind`;
+            if (!seen.has(msg)) seen.add(msg), fail(file, msg);
+          }
+          continue;
+        }
+      }
+      const msg = `${e.instancePath || '/'} ${e.message}${e.params?.additionalProperty ? ` "${e.params.additionalProperty}"` : ''}`;
+      if (!seen.has(msg)) seen.add(msg), fail(file, msg);
+    }
     continue;
   }
 
@@ -68,6 +87,19 @@ for (const slug of slugs) {
 
   for (const part of contract.domOrder ?? []) {
     if (!contract.anatomy[part]) fail(file, `domOrder "${part}" is not in anatomy`);
+  }
+
+  for (const attr of contract.attributes ?? []) {
+    if (!contract.anatomy[attr.on]) fail(file, `attribute ${attr.name} is on "${attr.on}", which is not in anatomy`);
+  }
+
+  // Documented custom properties must equal the ones the CSS actually reads, in both directions.
+  const cssPath = join(componentsDir, slug, 'styles', `${slug}.css`);
+  if (existsSync(cssPath)) {
+    const used = new Set([...readFileSync(cssPath, 'utf8').matchAll(/var\((--grund-[a-z0-9-]+)/g)].map((m) => m[1]));
+    const documented = new Set(Object.keys(contract.customProperties ?? {}));
+    for (const prop of used) if (!documented.has(prop)) fail(file, `${prop} is used in ${slug}.css but not in customProperties`);
+    for (const prop of documented) if (!used.has(prop)) fail(file, `${prop} is in customProperties but not used in ${slug}.css`);
   }
 
   for (const name of contract.markup) {

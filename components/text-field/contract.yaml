@@ -241,3 +241,31 @@ editor:
     - { id: TF-W2, text: An error message shorter than roughly fifteen characters }
     - { id: TF-W3, text: "A label ending in a colon, which is often read aloud" }
     - { id: TF-W4, text: Placeholder filled in but label empty }
+
+# The component's API: the attributes a user writes. Rendered as tables in the docs.
+attributes:
+  - { on: root, name: data-component, type: '"text-field"', required: true, description: Marks the element as a grund text field. }
+  - { on: root, name: data-variant, type: '"multiline"', description: Multi-line input; use a textarea as the control. }
+  - { on: label, name: for, type: id, required: true, description: The control's id. }
+  - { on: control, name: id, type: string, required: true, description: Target for the label's for. }
+  - { on: control, name: name, type: string, required: true, description: The form field name sent on submit. }
+  - { on: control, name: type, type: '"text" | "email" | "tel" | "url" | "search" | "password" | …', default: '"text"', description: Input type; not used on textarea. }
+  - { on: control, name: aria-describedby, type: id list, description: 'Error id first, then the description id.' }
+  - { on: control, name: aria-invalid, type: '"true"', description: Set by the server or script when the value is invalid. Requires an error part. }
+  - { on: control, name: autocomplete, type: string, description: 'Input purpose, for example "email" or "given-name" (WCAG 1.3.5).' }
+  - { on: control, name: required, type: boolean, description: Marks the field as required for browsers and screen readers. }
+  - { on: control, name: disabled, type: boolean, description: Removes the field from tab order and the accessibility tree. }
+  - { on: control, name: readonly, type: boolean, description: Reachable but not editable. }
+  - { on: description, name: id, type: string, description: Referenced from the control's aria-describedby. }
+  - { on: error, name: id, type: string, description: Referenced first in the control's aria-describedby. }
+
+customProperties:
+  --grund-gap: Space between parts.
+  --grund-label-color: Label text colour.
+  --grund-muted-color: Description text colour.
+  --grund-control-bg: Control background.
+  --grund-border-color: Control border colour.
+  --grund-radius: Control corner radius.
+  --grund-touch-target: Minimum control height.
+  --grund-focus-color: Focus ring colour.
+  --grund-error-color: Error text and border colour.

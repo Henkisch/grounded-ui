@@ -1,0 +1,10 @@
+<button type="button" commandfor="delete-draft" command="show-modal">Delete draft</button>
+
+<dialog data-component="dialog" data-variant="alert" role="alertdialog" id="delete-draft" aria-labelledby="delete-draft-title" aria-describedby="delete-draft-desc">
+  <h2 data-part="title" id="delete-draft-title">Delete this draft?</h2>
+  <p data-part="body" id="delete-draft-desc">The draft and its attachments are removed permanently. This cannot be undone.</p>
+  <div data-part="actions">
+    <button type="button" commandfor="delete-draft" command="close" autofocus>Cancel</button>
+    <button type="button" commandfor="delete-draft" command="close">Delete</button>
+  </div>
+</dialog>

@@ -201,6 +201,103 @@
     },
     "summary": {
       "type": "string"
+    },
+    "requires": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "feature",
+          "support"
+        ],
+        "properties": {
+          "feature": {
+            "type": "string"
+          },
+          "support": {
+            "type": "string"
+          },
+          "fallback": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "keyboard": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "behavior"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "behavior": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "demo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minHeight": {
+          "type": "integer",
+          "minimum": 0,
+          "$comment": "px; docs iframe never shrinks below this (e.g. room for a modal)"
+        }
+      }
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "on",
+          "name",
+          "type",
+          "description"
+        ],
+        "properties": {
+          "on": {
+            "$ref": "#/$defs/slug",
+            "$comment": "an anatomy key"
+          },
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "type": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "default": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "customProperties": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^--grund-[a-z0-9-]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      },
+      "$comment": "must equal the set of var(--grund-*) used in the component CSS"
     }
   },
   "$defs": {
@@ -270,6 +367,10 @@
         },
         "label": {
           "type": "string"
+        },
+        "outside": {
+          "type": "boolean",
+          "$comment": "lives outside the component root, e.g. a dialog trigger"
         }
       }
     },
@@ -369,8 +470,41 @@
               "const": "uniqueIds"
             }
           }
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "attr"
+          ],
+          "properties": {
+            "kind": {
+              "const": "referencedBy"
+            },
+            "attr": {
+              "type": "string",
+              "minLength": 1
+            },
+            "where": {
+              "$ref": "#/$defs/selector"
+            }
+          },
+          "$comment": "the document contains an element (matching where) whose attr equals the root's id"
         }
-      ]
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "absent",
+            "count",
+            "nonEmptyText",
+            "attrEquals",
+            "idrefIncludes",
+            "idrefFirst",
+            "uniqueIds",
+            "referencedBy"
+          ]
+        }
+      }
     },
     "css": {
       "oneOf": [
