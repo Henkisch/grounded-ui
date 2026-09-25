@@ -1,0 +1,268 @@
+# Contract: dialog
+# A modal dialog on the native <dialog> element, opened and closed with invoker commands.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({title}, {close}, …); `:scope` is the root; {id} is the root's id.
+component: dialog
+contractVersion: 0.2.0
+title: Dialog
+summary: A modal dialog that opens and closes without JavaScript, using the native dialog element and invoker commands.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+# Support versions and Baseline status are read from the web-features package, never written by hand.
+requires:
+  - feature: dialog
+  - feature: invoker-commands
+    fallback: Without support the trigger does nothing. Keep essential content reachable without the dialog.
+  - feature: dialog-closedby
+    optional: true
+    fallback: Ignored where unsupported; Esc and the close button still work.
+  - feature: scope
+  - feature: starting-style
+    optional: true
+    fallback: The dialog opens without the fade-in.
+
+anatomy:
+  root:
+    label: Root
+    element: [dialog]
+    required: true
+  trigger:
+    label: Trigger
+    element: [button]
+    required: true
+    outside: true
+  title:
+    label: Title
+    element: [h2, h3]
+    required: true
+  body:
+    label: Body
+    element: [p, div, form]
+  actions:
+    label: Actions
+    element: [div]
+  close:
+    label: Close control
+    element: [button]
+    required: true
+
+domOrder: [title, body, actions]
+
+variants:
+  - name: alert
+    description: Confirmation that interrupts the user. Adds role="alertdialog", no light dismiss, focus starts on the safe choice.
+
+states:
+  - { name: open, label: Open (modal), dom: "open, via show-modal", hook: ":modal" }
+  - { name: closed, label: Closed, dom: no open attribute, hook: ":not([open])" }
+
+keyboard:
+  - { key: Enter / Space on trigger, behavior: Opens the dialog and moves focus inside it }
+  - { key: Tab / Shift + Tab, behavior: "Moves between the dialog's controls; the page behind is inert and unreachable" }
+  - { key: Tab past the last control, behavior: "Focus may move to the browser's own UI (address bar) and back into the dialog. The page stays unreachable. This is the HTML spec's behaviour and what WCAG 2.1.2 (No Keyboard Trap) asks for, so there is no JavaScript focus loop." }
+  - { key: Tab in Safari, behavior: "Safari tabs only to form fields and links by default, so it skips the dialog's buttons. Users reach them with Option + Tab, or by turning on \"Press Tab to highlight each item\". This is Safari behaviour on every site." }
+  - { key: Esc, behavior: Closes the dialog }
+  - { key: Close, behavior: Focus returns to the trigger }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+rules:
+  - id: DG-01
+    description: The root is a <dialog> element.
+    level: recommended
+    source: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element
+    rationale: The native element gives the modal behaviour (inert page, top layer, Esc) without JavaScript.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(dialog)' }
+    css:
+      violation: '[data-component="dialog"]:not(dialog)'
+      message: "DG-01: data-component=dialog must be a <dialog> element."
+    editor: { level: refuse }
+
+  - id: DG-02
+    description: The dialog has an id, so triggers can point at it.
+    level: recommended
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-commandfor
+    rationale: Invoker commands reference the dialog by id; without one, nothing can open it.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not([id])' }
+    css:
+      violation: '[data-component="dialog"]:not([id])'
+      message: "DG-02: the dialog has no id."
+    editor: { level: refuse }
+
+  - id: DG-03
+    description: There is exactly one title.
+    level: recommended
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+    rationale: A single visible title names the dialog for everyone.
+    since: 0.1.0
+    test: { kind: count, selector: '{title}', equals: 1 }
+    css:
+      violation: '[data-component="dialog"]:not(:has([data-part="title"]))'
+      message: "DG-03: the dialog has no [data-part=title]."
+    editor: { level: refuse }
+
+  - id: DG-04
+    description: The title has non-empty text.
+    level: normative
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: An empty title leaves the dialog without an accessible name.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{title}' }
+    css:
+      coverage: partial
+      violation: '[data-component="dialog"] [data-part="title"]:empty'
+      pseudo: before
+      message: "DG-04: the title is empty."
+    editor: { level: refuse }
+
+  - id: DG-05
+    description: The dialog has an accessible name via aria-labelledby.
+    level: normative
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+    rationale: The dialog role requires an accessible name; screen readers announce it when focus moves in.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not([aria-labelledby])' }
+    css:
+      violation: '[data-component="dialog"]:not([aria-labelledby])'
+      message: "DG-05: the dialog has no aria-labelledby."
+
+  - id: DG-06
+    description: aria-labelledby points at the title's id.
+    level: recommended
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+    rationale: Naming the dialog after its visible title keeps what users see and hear the same.
+    since: 0.1.0
+    test:
+      kind: attrEquals
+      a: { selector: ':scope', attr: aria-labelledby }
+      b: { selector: '{title}', attr: id }
+    css: false
+    editor: { level: warn }
+
+  - id: DG-07
+    description: A trigger on the page points at the dialog with commandfor and command="show-modal".
+    level: recommended
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-command
+    rationale: show-modal is what makes the page inert and moves focus in; a dialog nothing opens is dead content.
+    since: 0.1.0
+    test: { kind: referencedBy, attr: commandfor, where: '[command="show-modal"]' }
+    css: false
+    editor: { level: warn }
+
+  - id: DG-08
+    description: The trigger is a <button>.
+    level: recommended
+    source: https://www.w3.org/WAI/WCAG22/Understanding/keyboard
+    rationale: Invoker commands only work on buttons, and a button is keyboard operable by default.
+    since: 0.1.0
+    test: { kind: absent, scope: document, selector: '[commandfor="{id}"][command="show-modal"]:not(button)' }
+    css: false
+
+  - id: DG-09
+    description: The dialog contains a close control (command="close" or a form with method="dialog").
+    level: recommended
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+    rationale: Esc isn't discoverable; touch and pointer users need a visible way out.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(:has([command="close"], form[method="dialog"]))' }
+    css:
+      violation: '[data-component="dialog"]:not(:has([command="close"], form[method="dialog"]))'
+      message: "DG-09: the dialog has no close control."
+    editor: { level: warn }
+
+  - id: DG-10
+    description: The dialog is not rendered with a static open attribute; it opens as a modal via show-modal.
+    level: recommended
+    source: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element
+    rationale: A statically open dialog is non-modal; the page behind stays reachable and focus doesn't move in.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope[open]:not(:modal)' }
+    css:
+      violation: '[data-component="dialog"][open]:not(:modal)'
+      message: "DG-10: open without show-modal gives a non-modal dialog: page behind stays active."
+    editor: { level: warn }
+
+  - id: DG-11
+    description: The only role override allowed is role="alertdialog".
+    level: normative
+    source: https://www.w3.org/TR/html-aria/#el-dialog
+    rationale: ARIA in HTML allows only alertdialog on a dialog element; any other role breaks its semantics.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope[role]:not([role="alertdialog"])' }
+    css:
+      violation: '[data-component="dialog"][role]:not([role="alertdialog"])'
+      message: "DG-11: the dialog's role may only be alertdialog."
+
+  - id: DG-12
+    description: The dialog itself has no tabindex.
+    level: recommended
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-order
+    rationale: The browser manages focus when the dialog opens; a tabindex adds a stray focus stop.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope[tabindex]' }
+    css:
+      violation: '[data-component="dialog"][tabindex]'
+      message: "DG-12: the dialog must not have a tabindex."
+
+  - id: DG-13
+    description: The alert variant has role="alertdialog" and no light dismiss.
+    level: recommended
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/
+    rationale: An alert interrupts on purpose; closing it on a stray click would skip the decision.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope[data-variant="alert"]:is(:not([role="alertdialog"]), [closedby="any"])' }
+    css:
+      violation: '[data-component="dialog"][data-variant="alert"]:is(:not([role="alertdialog"]), [closedby="any"])'
+      message: "DG-13: alert dialogs need role=alertdialog and must not close on outside click."
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "Title associated via aria-labelledby, body via aria-describedby when it explains the purpose" }
+  - { criterion: "2.1.1", name: Keyboard, level: A, how: "Native dialog and button: opens, closes and is operable by keyboard" }
+  - { criterion: "2.1.2", name: No Keyboard Trap, level: A, how: "Esc and the close control always leave the dialog" }
+  - { criterion: "2.4.3", name: Focus Order, level: A, how: "Focus moves into the dialog on open and returns to the trigger on close; the page behind is inert" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "Focus styles are left to the browser and the site's button styles, never removed" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Native dialog role, or alertdialog for confirmations; accessible name from the title" }
+  - { criterion: "2.3.3", name: Animation from Interactions, level: AAA, how: "Open and close transitions are removed under prefers-reduced-motion" }
+
+siteResponsibilities:
+  - { criterion: "1.4.3", title: Text contrast, text: "The dialog uses the browser's Canvas and CanvasText unless the site sets --grund-dialog-bg and --grund-dialog-color." }
+  - { criterion: "2.4.7", title: Button focus styles, text: "Trigger and action buttons are the site's own buttons; their focus indicator is the site's responsibility." }
+  - { criterion: "3.2.2", title: Unexpected dialogs, text: "Open dialogs from a user action only, never on page load." }
+  - { title: Older browsers, text: "Browsers without invoker commands ignore the trigger. Don't put content only inside a dialog if it must reach everyone." }
+
+editor:
+  help:
+    title: 'Say what the dialog is for, as a short heading. It becomes the dialog''s name for screen readers: "Delete this draft?" works better than "Warning".'
+    body: "Explain what happens and what the choices mean. Keep it to a few sentences."
+    trigger: 'Label the button with what opens, for example "Cookie settings", not "Click here".'
+    actions: 'Name buttons after the result: "Delete" and "Cancel", not "Yes" and "No".'
+  softWarnings:
+    - { id: DG-W1, text: 'A title that is only "Warning", "Info" or similar' }
+    - { id: DG-W2, text: 'Action buttons labelled "Yes" / "No" or "OK"' }
+    - { id: DG-W3, text: More than three action buttons }
+
+# The component's API: the attributes a user writes. Rendered as tables in the docs.
+attributes:
+  - { on: root, name: data-component, type: '"dialog"', required: true, description: Marks the element as a grund dialog. }
+  - { on: root, name: id, type: string, required: true, description: Target for the trigger's commandfor. }
+  - { on: root, name: aria-labelledby, type: id, required: true, description: The title's id; gives the dialog its accessible name. }
+  - { on: root, name: aria-describedby, type: id, description: "The body's id, when it explains the dialog's purpose." }
+  - { on: root, name: closedby, type: '"any" | "closerequest" | "none"', default: '"closerequest"', description: 'What closes the dialog. "any" adds click outside (light dismiss); never use it on alert.' }
+  - { on: root, name: role, type: '"alertdialog"', description: Only for the alert variant. }
+  - { on: root, name: data-variant, type: '"alert"', description: Confirmation that interrupts the user. }
+  - { on: trigger, name: commandfor, type: id, required: true, description: The dialog's id. }
+  - { on: trigger, name: command, type: '"show-modal"', required: true, description: Opens the dialog as a modal. }
+  - { on: close, name: commandfor, type: id, required: true, description: The dialog's id. }
+  - { on: close, name: command, type: '"close"', required: true, description: Closes the dialog. }
+
+customProperties:
+  --grund-dialog-bg: Dialog background.
+  --grund-dialog-color: Dialog text colour.
+  --grund-border-color: Border colour.
+  --grund-radius-large: Corner radius.
+  --grund-duration: Open and close transition duration.

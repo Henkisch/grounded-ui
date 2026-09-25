@@ -1,0 +1,46 @@
+---
+title: Use the reference components
+description: Link the core CSS, then one stylesheet per component, and copy the markup. No build step, no JavaScript.
+---
+
+The reference implementation is plain CSS and copyable HTML that passes its own contracts. There is nothing to compile and nothing to run.
+
+## Link the stylesheets
+
+```html
+<link rel="stylesheet" href="/grund-ui/reference/core/core.css">
+<link rel="stylesheet" href="/grund-ui/reference/text-field/text-field.css">
+<link rel="stylesheet" href="/grund-ui/reference/dialog/dialog.css">
+```
+
+Order doesn't matter. Every file declares the same cascade layer order, so a CMS that aggregates or reorders stylesheets can't break it.
+
+## Base or styled
+
+| File | What it holds | Link it |
+| --- | --- | --- |
+| `<slug>.css` | **Base**: layout of the parts, touch targets, focus ring, what the contract needs | Always |
+| `<slug>.styled.css` | **Styled**: radius, padding, borders, type sizes, animation | For the finished look |
+
+Base alone is correct, accessible and looks like your site plus the browser's defaults. Add the styled file for the look in each component's **Styled** tab, then adjust it with [custom properties](/styling/theming).
+
+## Get the files
+
+Until the first npm release, copy `reference/core/` and the component folders you need from the [repository](https://github.com/Henkisch/grund-ui) into your theme:
+
+<FileTree>
+
+- reference/
+  - core/
+    - core.css
+  - dialog/
+    - dialog.css
+    - dialog.styled.css
+
+</FileTree>
+
+The markup to copy is on each component page, under **Examples**, in the **HTML** tab. Every example there is also a test fixture, so it passes the contract.
+
+## Next
+
+Add your [first component](/getting-started/first-component).

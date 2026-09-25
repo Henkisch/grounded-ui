@@ -3,6 +3,17 @@ title: WordPress
 description: Load grund-ui in a theme so components work on the front end and inside the block editor's iframe.
 ---
 
+
+## Test your WordPress forms first
+
+Before changing anything, run the contracts against a page of your existing site. It shows what already works and what doesn't, whether or not you use grund's CSS:
+
+```sh
+npx grund-conformance https://your-site.example/contact --binding your-theme.text-field.binding.yaml
+```
+
+See [Test your components](/getting-started/test-your-components) for writing the binding.
+
 ## Load the stylesheets
 
 Copy `core/` and the component folders into your theme, then enqueue them on `enqueue_block_assets`. That hook runs on the front end **and** inside the block editor's iframe, so blocks preview correctly while editing.
@@ -11,13 +22,12 @@ Copy `core/` and the component folders into your theme, then enqueue them on `en
 // functions.php
 add_action( 'enqueue_block_assets', function () {
     $base = get_theme_file_uri( 'grund-ui' );
-    wp_enqueue_style( 'grund-tokens', "$base/core/tokens.css", [], '0.1.0' );
-    wp_enqueue_style( 'grund-core', "$base/core/core.css", [ 'grund-tokens' ], '0.1.0' );
+    wp_enqueue_style( 'grund-core', "$base/reference/core/core.css", [], '0.1.0' );
 
     foreach ( [ 'text-field', 'dialog' ] as $component ) {
         wp_enqueue_style(
             "grund-$component",
-            "$base/components/$component/styles/$component.css",
+            "$base/reference/$component/$component.css",
             [ 'grund-core' ],
             '0.1.0'
         );

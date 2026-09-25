@@ -1,23 +1,28 @@
 ---
-title: Introduction
-description: Native HTML components for existing CMS sites. One CSS link plus copied markup, with no changes to the site's own CSS.
+title: Grund UI
+description: Back to the basics. Accessible, fast and compatible UI components that still look and feel great — with the receipts to prove it.
 ---
 
-One CSS link plus copied markup should work in an HTML block in any CMS — Drupal, WordPress, Craft, Optimizely or Sitevision — without a single change to the site's own CSS.
+**Back to the basics.** Accessible, fast and compatible is usually sold as a compromise: pick it, and accept something that looks plain and feels dated. We don't accept that trade.
 
-The core is an HTML contract: elements, ARIA, parts and states. CSS and JS are swappable reference implementations. Every component has a contract file that the tests, CSS warnings, editor validation and this documentation are derived from.
+- **Accessible** — proven by an open, executable contract that any implementation can be tested against.
+- **Fast** — zero JavaScript by default, a few hundred bytes of CSS per component.
+- **Compatible** — native HTML on Baseline browser features. Works in any CMS, framework or old theme.
+- **And it still looks and feels great.**
+
+## The receipts
+
+Generated on every build, never typed:
+
+<include>/_generated/scorecard.mdx</include>
+
+## Two ways in
 
 <CardGroup cols={2}>
-  <Card title="Installation" href="/getting-started/installation">
-    Link the CSS, copy the markup. No build step.
+  <Card title="Test your components" href="/getting-started/test-your-components">
+    Run the contracts against your own site, library or theme. Any framework, any CMS.
   </Card>
-  <Card title="Principles" href="/getting-started/principles">
-    The rules that make components safe on a site that already has CSS.
-  </Card>
-  <Card title="Theming" href="/styling/theming">
-    Custom properties, dark mode and overriding from your own CSS.
-  </Card>
-  <Card title="Examples" href="/examples/contact-form">
-    Components composed into real page fragments.
+  <Card title="Use the reference components" href="/getting-started/use-the-reference">
+    Copy the markup, link the CSS. Zero JavaScript, and it passes its own contract.
   </Card>
 </CardGroup>

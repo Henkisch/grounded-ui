@@ -3,6 +3,17 @@ title: Drupal
 description: Add grund-ui as a theme library, keep CKEditor from stripping its attributes, and stay safe under CSS aggregation.
 ---
 
+
+## Test your Drupal forms first
+
+Before changing anything, run the contracts against a page of your existing site. It shows what already works and what doesn't, whether or not you use grund's CSS:
+
+```sh
+npx grund-conformance https://your-site.example/contact --binding your-theme.text-field.binding.yaml
+```
+
+See [Test your components](/getting-started/test-your-components) for writing the binding.
+
 ## Define a library
 
 ```yaml
@@ -11,10 +22,9 @@ grund:
   version: 0.1.0
   css:
     component:
-      grund-ui/core/tokens.css: {}
-      grund-ui/core/core.css: {}
-      grund-ui/components/text-field/styles/text-field.css: {}
-      grund-ui/components/dialog/styles/dialog.css: {}
+      grund-ui/reference/core/core.css: {}
+      grund-ui/reference/text-field/text-field.css: {}
+      grund-ui/reference/dialog/dialog.css: {}
 ```
 
 Attach it globally:
@@ -32,9 +42,8 @@ Load the same CSS in the editor so content previews correctly:
 ```yaml
 # mytheme.info.yml
 ckeditor5-stylesheets:
-  - grund-ui/core/tokens.css
-  - grund-ui/core/core.css
-  - grund-ui/components/text-field/styles/text-field.css
+  - grund-ui/reference/core/core.css
+  - grund-ui/reference/text-field/text-field.css
 ```
 
 Restricted text formats strip unknown attributes. Allow the hooks the components use in the format's **Allowed HTML tags**, for example:

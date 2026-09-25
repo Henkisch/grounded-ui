@@ -6,12 +6,12 @@
   .contact-form [data-component] { justify-self: stretch; }
 </style>
 <form class="contact-form" action="/contact" method="post" novalidate>
-  <div data-component="text-field" data-part="field">
+  <div data-component="text-field">
     <label data-part="label" for="contact-name">Name</label>
     <input data-part="control" type="text" id="contact-name" name="name" autocomplete="name" value="Anna Berg">
   </div>
 
-  <div data-component="text-field" data-part="field">
+  <div data-component="text-field">
     <label data-part="label" for="contact-email">
       Email
       <span data-part="required-indicator" aria-hidden="true">*</span>
@@ -31,7 +31,7 @@
     </p>
   </div>
 
-  <div data-component="text-field" data-variant="multiline" data-part="field">
+  <div data-component="text-field" data-variant="multiline">
     <label data-part="label" for="contact-message">Message</label>
     <p data-part="description" id="contact-message-desc">We reply within two working days.</p>
     <textarea data-part="control" id="contact-message" name="message" rows="4" aria-describedby="contact-message-desc"></textarea>

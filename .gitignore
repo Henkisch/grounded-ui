@@ -7,3 +7,7 @@ docs/public/grund/
 docs/content/components/
 .playwright-mcp/
 docs/content/examples/
+test-results/
+playwright-report/
+docs/content/_generated/
+docs/content/reports/

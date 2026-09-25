@@ -1,0 +1,2911 @@
+{
+  "implementation": "GOV.UK Frontend",
+  "version": "6.5.1",
+  "contract": "0.2.0",
+  "examples": [
+    {
+      "source": "input",
+      "name": "default",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"test-name\">\n    National Insurance number\n  </label>\n  <input class=\"govuk-input\" id=\"test-name\" name=\"test-name\" type=\"text\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with hint text",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-with-hint-text\">\n    National insurance number\n  </label>\n  <div id=\"input-with-hint-text-hint\" class=\"govuk-hint\">\n    It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.\n  </div>\n  <input class=\"govuk-input\" id=\"input-with-hint-text\" name=\"test-name-2\" type=\"text\" aria-describedby=\"input-with-hint-text-hint\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with error message",
+      "html": "<div class=\"govuk-form-group govuk-form-group--error\">\n  <label class=\"govuk-label\" for=\"input-with-error-message\">\n    National Insurance number\n  </label>\n  <p id=\"input-with-error-message-error\" class=\"govuk-error-message\">\n    <span class=\"govuk-visually-hidden\">Error:</span> Enter a National Insurance number in the correct format\n  </p>\n  <input class=\"govuk-input govuk-input--error\" id=\"input-with-error-message\" name=\"test-name-3\" type=\"text\" aria-describedby=\"input-with-error-message-error\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with error and hint",
+      "html": "<div class=\"govuk-form-group govuk-form-group--error\">\n  <label class=\"govuk-label\" for=\"with-error-hint\">\n    National insurance number\n  </label>\n  <div id=\"with-error-hint-hint\" class=\"govuk-hint\">\n    It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.\n  </div>\n  <p id=\"with-error-hint-error\" class=\"govuk-error-message\">\n    <span class=\"govuk-visually-hidden\">Error:</span> Enter a National Insurance number in the correct format\n  </p>\n  <input class=\"govuk-input govuk-input--error\" id=\"with-error-hint\" name=\"with-error-hint\" type=\"text\" aria-describedby=\"with-error-hint-hint with-error-hint-error\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": false,
+              "detail": "aria-describedby=\"with-error-hint-hint with-error-hint-error\" does not start with the error id \"with-error-hint-error\""
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-2 class",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-width-2\">\n    National insurance number\n  </label>\n  <div id=\"input-width-2-hint\" class=\"govuk-hint\">\n    It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.\n  </div>\n  <input class=\"govuk-input govuk-input--width-2\" id=\"input-width-2\" name=\"test-width-2\" type=\"text\" aria-describedby=\"input-width-2-hint\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-3 class",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-width-3\">\n    National insurance number\n  </label>\n  <div id=\"input-width-3-hint\" class=\"govuk-hint\">\n    It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.\n  </div>\n  <input class=\"govuk-input govuk-input--width-3\" id=\"input-width-3\" name=\"test-width-3\" type=\"text\" aria-describedby=\"input-width-3-hint\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-4 class",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-width-4\">\n    National insurance number\n  </label>\n  <div id=\"input-width-4-hint\" class=\"govuk-hint\">\n    It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.\n  </div>\n  <input class=\"govuk-input govuk-input--width-4\" id=\"input-width-4\" name=\"test-width-4\" type=\"text\" aria-describedby=\"input-width-4-hint\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-5 class",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-width-5\">\n    National insurance number\n  </label>\n  <div id=\"input-width-5-hint\" class=\"govuk-hint\">\n    It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.\n  </div>\n  <input class=\"govuk-input govuk-input--width-5\" id=\"input-width-5\" name=\"test-width-5\" type=\"text\" aria-describedby=\"input-width-5-hint\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-10 class",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-width-10\">\n    National insurance number\n  </label>\n  <div id=\"input-width-10-hint\" class=\"govuk-hint\">\n    It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.\n  </div>\n  <input class=\"govuk-input govuk-input--width-10\" id=\"input-width-10\" name=\"test-width-10\" type=\"text\" aria-describedby=\"input-width-10-hint\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-20 class",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-width-20\">\n    National insurance number\n  </label>\n  <div id=\"input-width-20-hint\" class=\"govuk-hint\">\n    It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.\n  </div>\n  <input class=\"govuk-input govuk-input--width-20\" id=\"input-width-20\" name=\"test-width-20\" type=\"text\" aria-describedby=\"input-width-20-hint\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-30 class",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-width-30\">\n    National insurance number\n  </label>\n  <div id=\"input-width-30-hint\" class=\"govuk-hint\">\n    It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.\n  </div>\n  <input class=\"govuk-input govuk-input--width-30\" id=\"input-width-30\" name=\"test-width-30\" type=\"text\" aria-describedby=\"input-width-30-hint\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with label as page heading",
+      "html": "<div class=\"govuk-form-group\">\n  <h1 class=\"govuk-label-wrapper\">\n    <label class=\"govuk-label govuk-label--l\" for=\"input-with-page-heading\">\n      National Insurance number\n    </label>\n  </h1>\n  <input class=\"govuk-input\" id=\"input-with-page-heading\" name=\"test-name\" type=\"text\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with prefix",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-with-prefix\">\n    Amount, in pounds\n  </label>\n  <div class=\"govuk-input__wrapper\">\n    <div class=\"govuk-input__prefix\" aria-hidden=\"true\">£</div>\n    <input class=\"govuk-input\" id=\"input-with-prefix\" name=\"amount\" type=\"text\">\n  </div>\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with suffix",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-with-suffix\">\n    Weight, in kilograms\n  </label>\n  <div class=\"govuk-input__wrapper\">\n    <input class=\"govuk-input\" id=\"input-with-suffix\" name=\"weight\" type=\"text\">\n    <div class=\"govuk-input__suffix\" aria-hidden=\"true\">kg</div>\n  </div>\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with prefix and suffix",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-with-prefix-suffix\">\n    Cost per item, in pounds\n  </label>\n  <div class=\"govuk-input__wrapper\">\n    <div class=\"govuk-input__prefix\" aria-hidden=\"true\">£</div>\n    <input class=\"govuk-input\" id=\"input-with-prefix-suffix\" name=\"cost\" type=\"text\">\n    <div class=\"govuk-input__suffix\" aria-hidden=\"true\">per item</div>\n  </div>\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with prefix and suffix and error",
+      "html": "<div class=\"govuk-form-group govuk-form-group--error\">\n  <label class=\"govuk-label\" for=\"input-with-prefix-suffix\">\n    Cost per item, in pounds\n  </label>\n  <p id=\"input-with-prefix-suffix-error\" class=\"govuk-error-message\">\n    <span class=\"govuk-visually-hidden\">Error:</span> Error message goes here\n  </p>\n  <div class=\"govuk-input__wrapper\">\n    <div class=\"govuk-input__prefix\" aria-hidden=\"true\">£</div>\n    <input class=\"govuk-input govuk-input--error\" id=\"input-with-prefix-suffix\" name=\"cost\" type=\"text\" aria-describedby=\"input-with-prefix-suffix-error\">\n    <div class=\"govuk-input__suffix\" aria-hidden=\"true\">per item</div>\n  </div>\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with prefix and suffix and width modifier",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-with-prefix-suffix\">\n    Cost per item, in pounds\n  </label>\n  <div class=\"govuk-input__wrapper\">\n    <div class=\"govuk-input__prefix\" aria-hidden=\"true\">£</div>\n    <input class=\"govuk-input govuk-input--width-5\" id=\"input-with-prefix-suffix\" name=\"cost\" type=\"text\">\n    <div class=\"govuk-input__suffix\" aria-hidden=\"true\">per item</div>\n  </div>\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with extra letter spacing",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"input-with-extra-letter-spacing\">\n    National insurance number\n  </label>\n  <input class=\"govuk-input govuk-input--width-30 govuk-input--extra-letter-spacing\" id=\"input-with-extra-letter-spacing\" name=\"input-with-extra-letter-spacing\" type=\"text\" value=\"QQ 12 34 56 C\">\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "textarea",
+      "name": "default",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"more-detail\">\n    Can you provide more detail?\n  </label>\n  <textarea class=\"govuk-textarea\" id=\"more-detail\" name=\"more-detail\" rows=\"5\"></textarea>\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "textarea",
+      "name": "with hint",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"more-detail\">\n    Can you provide more detail?\n  </label>\n  <div id=\"more-detail-hint\" class=\"govuk-hint\">\n    Don&#39;t include personal or financial information, eg your National Insurance number or credit card details.\n  </div>\n  <textarea class=\"govuk-textarea\" id=\"more-detail\" name=\"more-detail\" rows=\"5\" aria-describedby=\"more-detail-hint\"></textarea>\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "textarea",
+      "name": "with error message",
+      "html": "<div class=\"govuk-form-group govuk-form-group--error\">\n  <label class=\"govuk-label\" for=\"no-ni-reason\">\n    Why can’t you provide a National Insurance number?\n  </label>\n  <p id=\"no-ni-reason-error\" class=\"govuk-error-message\">\n    <span class=\"govuk-visually-hidden\">Error:</span> You must provide an explanation\n  </p>\n  <textarea class=\"govuk-textarea govuk-textarea--error\" id=\"no-ni-reason\" name=\"no-ni-reason\" rows=\"5\" aria-describedby=\"no-ni-reason-error\"></textarea>\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "textarea",
+      "name": "with default value",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"full-address\">\n    Full address\n  </label>\n  <textarea class=\"govuk-textarea\" id=\"full-address\" name=\"address\" rows=\"5\">221B Baker Street\nLondon\nNW1 6XE\n</textarea>\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "textarea",
+      "name": "with custom rows",
+      "html": "<div class=\"govuk-form-group\">\n  <label class=\"govuk-label\" for=\"full-address\">\n    Full address\n  </label>\n  <textarea class=\"govuk-textarea\" id=\"full-address\" name=\"address\" rows=\"8\"></textarea>\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "textarea",
+      "name": "with label as page heading",
+      "html": "<div class=\"govuk-form-group\">\n  <h1 class=\"govuk-label-wrapper\">\n    <label class=\"govuk-label govuk-label--l\" for=\"textarea-with-page-heading\">\n      Full address\n    </label>\n  </h1>\n  <textarea class=\"govuk-textarea\" id=\"textarea-with-page-heading\" name=\"address\" rows=\"5\"></textarea>\n</div>",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    }
+  ]
+}

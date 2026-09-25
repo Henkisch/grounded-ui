@@ -1,0 +1,309 @@
+# Contract: text-field
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({label}, {control}, …), never grund's own hooks, so any implementation
+# can be tested through a binding that maps parts to its markup.
+component: text-field
+contractVersion: 0.2.0
+title: Text field
+summary: A free-text field with a label, an optional description and an error message.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+  - feature: field-sizing
+    optional: true
+    fallback: The multiline variant keeps its minimum height instead of growing with its content.
+
+anatomy:
+  root:
+    label: Root
+    element: [div]
+    required: true
+  label:
+    label: Label
+    element: [label]
+    required: true
+  description:
+    label: Description
+    element: [p, div]
+  control:
+    label: Control
+    element: [input, textarea]
+    required: true
+  error:
+    label: Error message
+    element: [p, div]
+    requiredWhen: '[aria-invalid="true"]'
+  required-indicator:
+    label: Required indicator
+    element: [span]
+
+domOrder: [label, description, control, error]
+
+variants:
+  - name: multiline
+    description: Multi-line input using textarea. field-sizing gives automatic height.
+
+states:
+  - { name: required, label: Required, dom: required, hook: ":required" }
+  - { name: invalid, label: Invalid, dom: 'aria-invalid="true"', hook: '[aria-invalid="true"]' }
+  - { name: disabled, label: Disabled, dom: disabled, hook: ":disabled" }
+  - { name: readonly, label: Read-only, dom: readonly, hook: ":read-only" }
+  - { name: empty, label: Empty, dom: no value, hook: ":placeholder-shown" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+  - { name: autofill, label: Autofilled, hook: ":autofill" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: Moves focus to and from the control }
+  - { key: Click on the label, behavior: Moves focus to the control }
+
+# Each rule yields three outputs:
+#   test    → the conformance runner. Selectors use part tokens; `:scope` is the root.
+#             `absent` fails if the root matches the selector or contains a match.
+#   css     → a warning in the generated warnings file (grund hooks only), or false.
+#   editor  → refuse (refuse to render) or warn. Absent = no editor validation.
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+rules:
+  - id: TF-02
+    description: There is exactly one control.
+    level: recommended
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: One label describes one control; a second control in the field has no label of its own.
+    since: 0.1.0
+    test: { kind: count, selector: '{control}', equals: 1 }
+    css:
+      violation: '[data-component="text-field"]:not(:has([data-part="control"]))'
+      message: "TF-02: the field has no [data-part=control]."
+    editor: { level: warn }
+
+  - id: TF-03
+    description: The control is an input or a textarea.
+    level: recommended
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: Native form controls bring their role, value, keyboard and autofill for free.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:not(input, textarea)' }
+    css:
+      violation: '[data-component="text-field"]:has([data-part="control"]:not(input, textarea))'
+      message: "TF-03: the control must be an <input> or <textarea>."
+
+  - id: TF-04
+    description: There is exactly one label.
+    level: normative
+    source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
+    rationale: WCAG 3.3.2 requires a label for input; one label keeps the accessible name unambiguous.
+    since: 0.1.0
+    test: { kind: count, selector: '{label}', equals: 1 }
+    css:
+      violation: '[data-component="text-field"]:not(:has([data-part="label"]))'
+      message: "TF-04: the field has no [data-part=label]."
+    editor: { level: refuse }
+
+  - id: TF-05
+    description: The label is a label element.
+    level: recommended
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H44
+    rationale: A native label is clickable, gives the control its name and survives CSS and JS failures.
+    since: 0.1.0
+    test: { kind: absent, selector: '{label}:not(label)' }
+    css:
+      violation: '[data-component="text-field"]:has([data-part="label"]:not(label))'
+      message: "TF-05: the label must be a <label>."
+
+  - id: TF-06
+    description: The label has non-empty text.
+    level: normative
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: An empty label leaves the control without an accessible name.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{label}' }
+    css:
+      coverage: partial
+      violation: '[data-component="text-field"] [data-part="label"]:empty'
+      pseudo: before
+      message: "TF-06: the label is empty."
+    editor: { level: refuse }
+
+  - id: TF-07
+    description: The label's for matches the control's id.
+    level: normative
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H44
+    rationale: Without the association the label is only visual; screen readers announce an unnamed field.
+    since: 0.1.0
+    test:
+      kind: attrEquals
+      a: { selector: '{label}', attr: for }
+      b: { selector: '{control}', attr: id }
+    css: false
+    editor: { level: warn }
+
+  - id: TF-08
+    description: The control has a name.
+    level: recommended
+    source: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#naming-form-controls:-the-name-attribute
+    rationale: Without a name the value is never submitted, which fails silently for the user.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:not([name])' }
+    css:
+      violation: '[data-component="text-field"]:has([data-part="control"]:not([name]))'
+      message: "TF-08: the control has no name attribute."
+    editor: { level: refuse }
+
+  - id: TF-09
+    description: If there is a description, its id is referenced in aria-describedby.
+    level: recommended
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: An unassociated description is invisible to screen-reader users when the field has focus.
+    since: 0.1.0
+    test:
+      kind: idrefIncludes
+      from: { selector: '{control}', attr: aria-describedby }
+      to: '{description}'
+    css: false
+
+  - id: TF-10
+    description: If the control has aria-invalid="true", there is an error message.
+    level: normative
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: WCAG 3.3.1 requires the error to be described in text, not only flagged.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:has({control}[aria-invalid="true"]):not(:has({error}))' }
+    css:
+      violation: '[data-component="text-field"]:has([aria-invalid="true"]):not(:has([data-part="error"]))'
+      message: "TF-10: aria-invalid=true but no [data-part=error]."
+    editor: { level: refuse }
+
+  - id: TF-11
+    description: The error's id comes first in aria-describedby.
+    level: recommended
+    source: https://www.w3.org/TR/wai-aria-1.2/#aria-describedby
+    rationale: Screen readers read describedby in id order; the error is the most urgent information.
+    since: 0.1.0
+    test:
+      kind: idrefFirst
+      from: { selector: '{control}', attr: aria-describedby }
+      to: '{error}'
+    css: false
+
+  - id: TF-12
+    description: The error message has non-empty text.
+    level: normative
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: An empty error part flags the field without saying what is wrong.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{error}' }
+    css:
+      coverage: partial
+      violation: '[data-component="text-field"] [data-part="error"]:empty'
+      pseudo: before
+      message: "TF-12: the error message is empty."
+    editor: { level: warn }
+
+  - id: TF-13
+    description: Ids inside the field are unique on the page.
+    level: normative
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes for and aria-describedby point at the wrong element.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+    editor: { level: warn }
+
+  - id: TF-14
+    description: The control has no tabindex.
+    level: recommended
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-order
+    rationale: A positive tabindex breaks the natural focus order; the control is focusable already.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}[tabindex]' }
+    css:
+      violation: '[data-component="text-field"]:has([data-part="control"][tabindex])'
+      message: "TF-14: the control must not have a tabindex."
+
+  - id: TF-15
+    description: A placeholder is never the only label.
+    level: normative
+    source: https://html.spec.whatwg.org/multipage/input.html#the-placeholder-attribute
+    rationale: The HTML spec says placeholder must not be used as a replacement for a label; it disappears on input.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(:has({label})):has({control}[placeholder])' }
+    css:
+      violation: '[data-component="text-field"]:not(:has([data-part="label"])):has([placeholder])'
+      message: "TF-15: a placeholder does not replace a label."
+    editor: { level: warn }
+
+  - id: TF-16
+    description: The control has no aria-label competing with the label.
+    level: recommended
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: aria-label overrides the visible label as the name; if the texts differ, voice control users can't target the field.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:has({label}):has({control}[aria-label])' }
+    css:
+      violation: '[data-component="text-field"]:has([data-part="label"]):has([data-part="control"][aria-label])'
+      message: "TF-16: the control has both a <label> and an aria-label."
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "label associated via for; description and error associated via aria-describedby" }
+  - { criterion: "2.4.6", name: Headings and Labels, level: AA, how: "Label required and visible; a placeholder is never accepted as a substitute" }
+  - { criterion: "2.5.3", name: Label in Name, level: A, how: "The visible label text is the field's accessible name" }
+  - { criterion: "3.3.1", name: Error Identification, level: A, how: "aria-invalid plus an error message associated via aria-describedby" }
+  - { criterion: "3.3.2", name: Labels or Instructions, level: A, how: "Label required; description available when instructions are needed" }
+  - { criterion: "3.3.3", name: Error Suggestion, level: AA, how: "The error message must say how to fix the error, not just that it exists" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Native form elements; no ARIA roles replacing semantics" }
+  - { criterion: "1.4.11", name: Non-text Contrast, level: AA, how: "Field border and focus indicator at least 3:1" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: ":focus-visible with an outline, never removed" }
+  - { criterion: "1.3.5", name: Identify Input Purpose, level: AA, how: "autocomplete is set where applicable" }
+
+siteResponsibilities:
+  - { criterion: "1.4.3", title: Text contrast, text: "We inherit the site's colours. A 4.5:1 contrast between label text and background is the site's responsibility." }
+  - { criterion: "2.4.3", title: Focus order, text: "Depends on the structure of the form and the page." }
+  - { criterion: "3.3.1", title: Error summary on submit, text: "Belongs to the form contract, not the field." }
+  - { criterion: "3.3.3", title: Understandable error messages, text: "We can require the message to exist, not that its content is good. Hence the editor guidance." }
+  - { criterion: "3.1.1", title: Page language, text: "lang on the html element is the site's concern." }
+  - { criterion: "1.4.10", title: Zoom and reflow, text: "Depends on the page layout, not the field." }
+
+editor:
+  help:
+    label: 'Describe what the user should enter. Screen readers announce this text when the field gets focus, so "Email address" works better than "Fill in here".'
+    description: "Optional instruction, such as the expected format or why the information is needed. Announced together with the label."
+    placeholder: "Rarely needed. The text disappears as soon as the user starts typing and cannot replace the label."
+    error: 'Say how to fix the error, not just that something went wrong. "Enter a valid email address, for example name@example.com" helps. "Invalid value" does not.'
+    required: 'Announced to screen readers automatically. You do not need to write "required" in the label.'
+  softWarnings:
+    - { id: TF-W1, text: 'A label that is only "Field", "Text" or similar' }
+    - { id: TF-W2, text: An error message shorter than roughly fifteen characters }
+    - { id: TF-W3, text: "A label ending in a colon, which is often read aloud" }
+    - { id: TF-W4, text: Placeholder filled in but label empty }
+
+# The component's API: the attributes a user writes. Rendered as tables in the docs.
+attributes:
+  - { on: root, name: data-component, type: '"text-field"', required: true, description: Marks the element as a grund text field. }
+  - { on: root, name: data-variant, type: '"multiline"', description: Multi-line input; use a textarea as the control. }
+  - { on: label, name: for, type: id, required: true, description: The control's id. }
+  - { on: control, name: id, type: string, required: true, description: Target for the label's for. }
+  - { on: control, name: name, type: string, required: true, description: The form field name sent on submit. }
+  - { on: control, name: type, type: '"text" | "email" | "tel" | "url" | "search" | "password" | …', default: '"text"', description: Input type; not used on textarea. }
+  - { on: control, name: aria-describedby, type: id list, description: 'Error id first, then the description id.' }
+  - { on: control, name: aria-invalid, type: '"true"', description: Set by the server or script when the value is invalid. Requires an error part. }
+  - { on: control, name: autocomplete, type: string, description: 'Input purpose, for example "email" or "given-name" (WCAG 1.3.5).' }
+  - { on: control, name: required, type: boolean, description: Marks the field as required for browsers and screen readers. }
+  - { on: control, name: disabled, type: boolean, description: Removes the field from tab order and the accessibility tree. }
+  - { on: control, name: readonly, type: boolean, description: Reachable but not editable. }
+  - { on: description, name: id, type: string, description: Referenced from the control's aria-describedby. }
+  - { on: error, name: id, type: string, description: Referenced first in the control's aria-describedby. }
+
+customProperties:
+  --grund-gap: Space between parts.
+  --grund-label-color: Label text colour.
+  --grund-muted-color: Description text colour.
+  --grund-control-bg: Control background.
+  --grund-border-color: Control border colour.
+  --grund-radius: Control corner radius.
+  --grund-touch-target: Minimum control height.
+  --grund-focus-color: Focus ring colour.
+  --grund-error-color: Error text and border colour.
