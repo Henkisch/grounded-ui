@@ -55,8 +55,15 @@ for (const [order, slug] of slugs.entries()) {
   const demos = c.markup.map((name) => {
     const markup = readFileSync(join(dir, 'markup', `${name}.html`), 'utf8');
     writeFileSync(join(pub, 'demo', slug, `${name}.html`), shell(slug, `${c.namn}: ${name}`, markup));
-    const lines = markup.trim().split('\n').filter((l) => !l.trim().startsWith('<!--')).length;
-    const height = 64 + lines * 14;
+    // Height from the parts present (px at 16px base): body margin, then each part plus grid gap.
+    const has = (part) => markup.includes(`data-part="${part}"`);
+    const parts = [
+      has('label') && 24,
+      has('description') && 21,
+      has('control') && (markup.includes('<textarea') ? 112 : 44),
+      has('error') && 21,
+    ].filter(Boolean);
+    const height = 32 + parts.reduce((a, b) => a + b, 0) + (parts.length - 1) * 6 + 16;
     return [
       `### ${code(name)}`,
       '',
