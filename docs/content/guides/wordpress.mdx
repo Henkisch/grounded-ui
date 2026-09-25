@@ -1,15 +1,15 @@
 ---
 title: WordPress
-description: Load grund-ui in a theme so components work on the front end and inside the block editor's iframe.
+description: Load grounded-ui in a theme so components work on the front end and inside the block editor's iframe.
 ---
 
 
 ## Test your WordPress forms first
 
-Before changing anything, run the contracts against a page of your existing site. It shows what already works and what doesn't, whether or not you use grund's CSS:
+Before changing anything, run the contracts against a page of your existing site. It shows what already works and what doesn't, whether or not you use grounded's CSS:
 
 ```sh
-npx grund-conformance https://your-site.example/contact --binding your-theme.text-field.binding.yaml
+npx grounded-conformance https://your-site.example/contact --binding your-theme.text-field.binding.yaml
 ```
 
 See [Test your components](/getting-started/test-your-components) for writing the binding.
@@ -21,14 +21,14 @@ Copy `core/` and the component folders into your theme, then enqueue them on `en
 ```php
 // functions.php
 add_action( 'enqueue_block_assets', function () {
-    $base = get_theme_file_uri( 'grund-ui' );
-    wp_enqueue_style( 'grund-core', "$base/reference/core/core.css", [], '0.1.0' );
+    $base = get_theme_file_uri( 'grounded-ui' );
+    wp_enqueue_style( 'grounded-core', "$base/reference/core/core.css", [], '0.1.0' );
 
     foreach ( [ 'text-field', 'dialog' ] as $component ) {
         wp_enqueue_style(
-            "grund-$component",
+            "grounded-$component",
             "$base/reference/$component/$component.css",
-            [ 'grund-core' ],
+            [ 'grounded-core' ],
             '0.1.0'
         );
     }
@@ -43,15 +43,15 @@ Paste the markup into a **Custom HTML** block. The block keeps `data-*` attribut
 
 ## Map your theme's tokens
 
-Point grund's custom properties at your `theme.json` presets, so a colour change in the Site Editor reaches the components:
+Point grounded's custom properties at your `theme.json` presets, so a colour change in the Site Editor reaches the components:
 
 ```css
 [data-component] {
-  --grund-focus-color: var(--wp--preset--color--primary);
-  --grund-radius: var(--wp--custom--radius, 0.25em);
+  --grounded-focus-color: var(--wp--preset--color--primary);
+  --grounded-radius: var(--wp--custom--radius, 0.25em);
 }
 ```
 
 ## Heavy themes and page builders
 
-Elementor, Divi and older Bootstrap themes ship aggressive resets. They're usually unlayered, so they win over grund. If a component looks off, look for a theme rule on bare elements (`input`, `button`, `p`) and scope it away from `[data-component]` in your child theme.
+Elementor, Divi and older Bootstrap themes ship aggressive resets. They're usually unlayered, so they win over grounded. If a component looks off, look for a theme rule on bare elements (`input`, `button`, `p`) and scope it away from `[data-component]` in your child theme.

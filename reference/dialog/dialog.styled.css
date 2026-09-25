@@ -4,20 +4,20 @@
  * Remove this file and the component still meets its contract.
  */
 /* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
-@layer grund.core, grund.components, grund.styled, grund.warnings;
+@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
 
-@layer grund.styled.dialog {
+@layer grounded.styled.dialog {
   @scope ([data-component="dialog"]) to ([data-component]) {
     :scope {
       padding: 1.5em;
-      color: var(--grund-dialog-color, CanvasText);
-      background: var(--grund-dialog-bg, Canvas);
-      border: 1px solid var(--grund-border-color, currentColor);
-      border-radius: var(--grund-radius-large, 0.5em);
+      color: var(--grounded-dialog-color, CanvasText);
+      background: var(--grounded-dialog-bg, Canvas);
+      border: 1px solid var(--grounded-border-color, currentColor);
+      border-radius: var(--grounded-radius-large, 0.5em);
       opacity: 0;
       translate: 0 0.5em;
       transition-property: opacity, translate, overlay, display;
-      transition-duration: var(--grund-duration, 150ms);
+      transition-duration: var(--grounded-duration, 150ms);
       transition-timing-function: ease-out;
       transition-behavior: allow-discrete;
     }
@@ -36,7 +36,7 @@
       backdrop-filter: brightness(0.4);
       opacity: 0;
       transition-property: opacity, overlay, display;
-      transition-duration: var(--grund-duration, 150ms);
+      transition-duration: var(--grounded-duration, 150ms);
       transition-behavior: allow-discrete;
     }
 

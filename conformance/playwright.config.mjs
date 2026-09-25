@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-// Self-conformance: grund's own fixtures against grund's own contracts, in all three engines.
+// Self-conformance: grounded's own fixtures against grounded's own contracts, in all three engines.
 export default defineConfig({
   testDir: './test',
   reporter: process.env.CI ? 'github' : 'list',

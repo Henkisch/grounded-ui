@@ -1,22 +1,22 @@
 ---
 title: Cascade layers
-description: Why grund-ui never fights your CSS, and how the layer order survives CMS aggregation.
+description: Why grounded-ui never fights your CSS, and how the layer order survives CMS aggregation.
 ---
 
-All grund-ui CSS lives in named cascade layers:
+All grounded-ui CSS lives in named cascade layers:
 
 ```css
-@layer grund.core, grund.components, grund.styled, grund.warnings;
+@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
 ```
 
 Styles outside any layer — which is all of your site's existing CSS — always beat layered styles. That's why an override needs no `!important` and no extra specificity.
 
 ## Inside the layers
 
-- **`grund.core`**: the minimal base: box sizing inside components. No reset, no element styles outside components.
-- **`grund.components`**: each component's base CSS, one sub-layer per component, such as `grund.components.dialog`. Only what the contract needs.
-- **`grund.styled`**: the optional finished look from `<slug>.styled.css`, such as `grund.styled.dialog`. Sits above base, below your CSS.
-- **`grund.warnings`**: contract warnings for editing and test environments. Never loaded in production.
+- **`grounded.core`**: the minimal base: box sizing inside components. No reset, no element styles outside components.
+- **`grounded.components`**: each component's base CSS, one sub-layer per component, such as `grounded.components.dialog`. Only what the contract needs.
+- **`grounded.styled`**: the optional finished look from `<slug>.styled.css`, such as `grounded.styled.dialog`. Sits above base, below your CSS.
+- **`grounded.warnings`**: contract warnings for editing and test environments. Never loaded in production.
 
 ## Zero specificity and scope
 
@@ -32,12 +32,12 @@ The `to ([data-component])` part stops the scope at nested components, so a text
 
 ## Aggregation and load order
 
-Some CMSs (Drupal's CSS aggregation, WordPress optimisation plugins) combine and reorder stylesheets. The first `@layer` statement the browser sees fixes the order, so every grund file repeats the full order statement at the top. Whatever loads first, the order is the same.
+Some CMSs (Drupal's CSS aggregation, WordPress optimisation plugins) combine and reorder stylesheets. The first `@layer` statement the browser sees fixes the order, so every grounded file repeats the full order statement at the top. Whatever loads first, the order is the same.
 
 ## When your site uses layers too
 
-If your site puts its own CSS in layers, place grund's below yours:
+If your site puts its own CSS in layers, place grounded's below yours:
 
 ```css
-@layer grund, site;
+@layer grounded, site;
 ```

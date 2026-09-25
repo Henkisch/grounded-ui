@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://grund-ui.dev/schema/contract.schema.json",
-  "title": "grund-ui component contract",
+  "$id": "https://grounded-ui.dev/schema/contract.schema.json",
+  "title": "grounded-ui component contract",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -273,12 +273,12 @@
     "customProperties": {
       "type": "object",
       "propertyNames": {
-        "pattern": "^--grund-[a-z0-9-]+$"
+        "pattern": "^--grounded-[a-z0-9-]+$"
       },
       "additionalProperties": {
         "type": "string"
       },
-      "$comment": "must equal the set of var(--grund-*) used in the component CSS"
+      "$comment": "must equal the set of var(--grounded-*) used in the component CSS"
     }
   },
   "$defs": {
@@ -589,5 +589,5 @@
       }
     }
   },
-  "description": "Contract format for grund-ui components. Test selectors use part tokens ({label}, {control}, …) that a binding maps to an implementation's markup; :scope is the component root."
+  "description": "Contract format for grounded-ui components. Test selectors use part tokens ({label}, {control}, …) that a binding maps to an implementation's markup; :scope is the component root."
 }

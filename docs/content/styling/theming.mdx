@@ -3,7 +3,7 @@ title: Theming
 description: Every component takes its font and colours from your site, and exposes custom properties for the rest.
 ---
 
-grund-ui has no theme of its own. Text and borders use `currentColor`, backgrounds are transparent or the browser's `Canvas`, and sizes are in `em` — so a component placed on your site already looks like it belongs there.
+grounded-ui has no theme of its own. Text and borders use `currentColor`, backgrounds are transparent or the browser's `Canvas`, and sizes are in `em` — so a component placed on your site already looks like it belongs there.
 
 ## Custom properties
 
@@ -12,18 +12,18 @@ When you want more control, set the component's custom properties from your own 
 ```css
 /* your-site.css */
 [data-component] {
-  --grund-radius: 0;
-  --grund-border-color: #6b6b6b;
-  --grund-focus-color: #0b57d0;
+  --grounded-radius: 0;
+  --grounded-border-color: #6b6b6b;
+  --grounded-focus-color: #0b57d0;
 }
 
 [data-component="dialog"] {
-  --grund-dialog-bg: #fffdf7;
-  --grund-radius-large: 0.25rem;
+  --grounded-dialog-bg: #fffdf7;
+  --grounded-radius-large: 0.25rem;
 }
 ```
 
-No `!important` and no extra specificity: grund's own rules sit in a lower cascade layer, so any rule of yours wins.
+No `!important` and no extra specificity: grounded's own rules sit in a lower cascade layer, so any rule of yours wins.
 
 ## Scope a theme
 
@@ -31,8 +31,8 @@ Custom properties inherit, so you can theme one area of a page:
 
 ```css
 .site-footer {
-  --grund-border-color: currentColor;
-  --grund-control-bg: transparent;
+  --grounded-border-color: currentColor;
+  --grounded-control-bg: transparent;
 }
 ```
 

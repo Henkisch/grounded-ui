@@ -1,4 +1,4 @@
-// Size budgets for everything grund-ui ships.
+// Size budgets for everything grounded-ui ships.
 // Each file: lightningcss minify, brotli, compare against budgets.json
 // (per-component overrides from contract.yaml `budget:`). Writes dist/sizes.json.
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';

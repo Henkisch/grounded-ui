@@ -1,11 +1,11 @@
 /*
- * grund-ui core.
+ * grounded-ui core.
  * Explicit layer order: some platforms aggregate and reorder CSS files,
  * so the order is declared up front. Unlayered site CSS always wins.
  */
-@layer grund.core, grund.components, grund.styled, grund.warnings;
+@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
 
-@layer grund.core {
+@layer grounded.core {
   :where([data-component]) {
     box-sizing: border-box;
   }

@@ -1,6 +1,6 @@
 ---
 title: Principles
-description: The rules that govern all grund-ui code, and the budgets that fail the build.
+description: The rules that govern all grounded-ui code, and the budgets that fail the build.
 sidebar:
   order: 1
 ---
@@ -19,7 +19,7 @@ stylelint enforces these rules on every build.
 ## Layer order
 
 ```css
-@layer grund.core, grund.components, grund.styled, grund.warnings;
+@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
 ```
 
 The order is declared first in `core.css`, because some platforms aggregate and reorder CSS. The site's own CSS sits outside the layers and always wins, without `!important`.

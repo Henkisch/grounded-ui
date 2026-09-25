@@ -3,7 +3,7 @@ dist/
 .DS_Store
 # generated from contracts
 docs/public/demo/
-docs/public/grund/
+docs/public/grounded/
 docs/content/components/
 .playwright-mcp/
 docs/content/examples/

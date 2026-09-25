@@ -230,7 +230,7 @@ wcag:
   - { criterion: "2.3.3", name: Animation from Interactions, level: AAA, how: "Open and close transitions are removed under prefers-reduced-motion" }
 
 siteResponsibilities:
-  - { criterion: "1.4.3", title: Text contrast, text: "The dialog uses the browser's Canvas and CanvasText unless the site sets --grund-dialog-bg and --grund-dialog-color." }
+  - { criterion: "1.4.3", title: Text contrast, text: "The dialog uses the browser's Canvas and CanvasText unless the site sets --grounded-dialog-bg and --grounded-dialog-color." }
   - { criterion: "2.4.7", title: Button focus styles, text: "Trigger and action buttons are the site's own buttons; their focus indicator is the site's responsibility." }
   - { criterion: "3.2.2", title: Unexpected dialogs, text: "Open dialogs from a user action only, never on page load." }
   - { title: Older browsers, text: "Browsers without invoker commands ignore the trigger. Don't put content only inside a dialog if it must reach everyone." }
@@ -248,7 +248,7 @@ editor:
 
 # The component's API: the attributes a user writes. Rendered as tables in the docs.
 attributes:
-  - { on: root, name: data-component, type: '"dialog"', required: true, description: Marks the element as a grund dialog. }
+  - { on: root, name: data-component, type: '"dialog"', required: true, description: Marks the element as a grounded dialog. }
   - { on: root, name: id, type: string, required: true, description: Target for the trigger's commandfor. }
   - { on: root, name: aria-labelledby, type: id, required: true, description: The title's id; gives the dialog its accessible name. }
   - { on: root, name: aria-describedby, type: id, description: "The body's id, when it explains the dialog's purpose." }
@@ -261,8 +261,8 @@ attributes:
   - { on: close, name: command, type: '"close"', required: true, description: Closes the dialog. }
 
 customProperties:
-  --grund-dialog-bg: Dialog background.
-  --grund-dialog-color: Dialog text colour.
-  --grund-border-color: Border colour.
-  --grund-radius-large: Corner radius.
-  --grund-duration: Open and close transition duration.
+  --grounded-dialog-bg: Dialog background.
+  --grounded-dialog-color: Dialog text colour.
+  --grounded-border-color: Border colour.
+  --grounded-radius-large: Corner radius.
+  --grounded-duration: Open and close transition duration.

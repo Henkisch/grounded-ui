@@ -1,4 +1,4 @@
-// Demo pages: each fixture or example becomes a bare HTML page with only grund CSS, shown in an iframe.
+// Demo pages: each fixture or example becomes a bare HTML page with only grounded CSS, shown in an iframe.
 // Iframes on purpose: rendering through Astro would prove the component works in Astro, not on any site.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -17,8 +17,8 @@ const shell = (referenceDir, title, markup, styled) => `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title>
-<link rel="stylesheet" href="/grund/core/core.css">
-${cssFiles(referenceDir, markup, styled).map(({ slug, file }) => `<link rel="stylesheet" href="/grund/${slug}/${file}">`).join('\n')}
+<link rel="stylesheet" href="/grounded/core/core.css">
+${cssFiles(referenceDir, markup, styled).map(({ slug, file }) => `<link rel="stylesheet" href="/grounded/${slug}/${file}">`).join('\n')}
 <meta name="color-scheme" content="light dark">
 <!-- The host site's own CSS. Nothing else is loaded. The component inherits the colour scheme. -->
 <style>

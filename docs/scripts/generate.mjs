@@ -1,6 +1,6 @@
 // Generates the docs content that must never drift from the repo:
-//   docs/public/grund/…                   copies of the reference CSS
-//   docs/public/demo/…                    bare demo pages (fixture or example + grund CSS, nothing else)
+//   docs/public/grounded/…                   copies of the reference CSS
+//   docs/public/demo/…                    bare demo pages (fixture or example + grounded CSS, nothing else)
 //   docs/content/components/<slug>.mdx    one contract page per component
 //   docs/content/examples/<name>.mdx      one page per examples/<name>.html
 //   docs/content/_generated/scorecard.mdx the front page's receipts
@@ -19,9 +19,9 @@ const docs = join(repo, 'docs');
 const pub = join(docs, 'public');
 const out = { components: join(docs, 'content', 'components'), examples: join(docs, 'content', 'examples'), generated: join(docs, 'content', '_generated'), reports: join(docs, 'content', 'reports') };
 
-for (const dir of [join(pub, 'grund'), join(pub, 'demo'), ...Object.values(out)]) rmSync(dir, { recursive: true, force: true });
+for (const dir of [join(pub, 'grounded'), join(pub, 'demo'), ...Object.values(out)]) rmSync(dir, { recursive: true, force: true });
 for (const dir of [join(pub, 'demo', 'examples'), ...Object.values(out)]) mkdirSync(dir, { recursive: true });
-cpSync(join(repo, 'reference'), join(pub, 'grund'), { recursive: true });
+cpSync(join(repo, 'reference'), join(pub, 'grounded'), { recursive: true });
 
 const contracts = loadContracts(join(repo, 'contracts'));
 const cards = await scorecards(repo, contracts);
@@ -69,7 +69,7 @@ for (const [order, impl] of impls.entries()) {
     .map((f) => read(f).replace(/^# (.+)$/m, '## $1').replace(/^## (TF|DG)-/gm, '### $1-'));
   const body = readme.replace(/^# .+\n/, '').replace(/`([a-z-]+)\.md` is generated;/, 'The tables below are generated;');
   writeFileSync(join(out.reports, `${impl}.mdx`), [
-    ...frontmatter({ title, description: `grund contracts run against ${title}'s published examples.`, sidebar: { order: order + 1 } }),
+    ...frontmatter({ title, description: `grounded contracts run against ${title}'s published examples.`, sidebar: { order: order + 1 } }),
     `{/* Generated from reports/${impl}/ by docs/scripts/generate.mjs. */}`, '', body.trim(), '', ...tables, '',
   ].join('\n'));
   console.log(`docs: report ${impl}`);

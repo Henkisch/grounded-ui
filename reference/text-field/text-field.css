@@ -4,13 +4,13 @@
  * or the site's. For a finished look, add text-field.styled.css.
  */
 /* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
-@layer grund.core, grund.components, grund.styled, grund.warnings;
+@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
 
-@layer grund.components.text-field {
+@layer grounded.components.text-field {
   @scope ([data-component="text-field"]) to ([data-component]) {
     :scope {
       display: grid;
-      gap: var(--grund-gap, 0.375em);
+      gap: var(--grounded-gap, 0.375em);
       justify-items: start;
     }
 
@@ -21,14 +21,14 @@
 
     :where([data-part="control"]) {
       inline-size: 100%;
-      min-block-size: var(--grund-touch-target, 2.75em);
+      min-block-size: var(--grounded-touch-target, 2.75em);
       font: inherit;
       color: inherit;
     }
 
     /* WCAG 2.4.7 / 1.4.11: at least 2 CSS px, never removed. */
     :where([data-part="control"]):focus-visible {
-      outline: 2px solid var(--grund-focus-color, currentColor);
+      outline: 2px solid var(--grounded-focus-color, currentColor);
       outline-offset: 2px;
     }
 

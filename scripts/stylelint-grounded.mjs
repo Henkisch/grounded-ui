@@ -1,8 +1,8 @@
-// grund/type-only-in-where: element selectors are allowed only inside :where(),
+// grounded/type-only-in-where: element selectors are allowed only inside :where(),
 // so they carry zero specificity and can never match globally on a host site.
 import stylelint from 'stylelint';
 
-const ruleName = 'grund/type-only-in-where';
+const ruleName = 'grounded/type-only-in-where';
 const messages = stylelint.utils.ruleMessages(ruleName, {
   rejected: (sel) => `Element selector outside :where() in "${sel}"`,
 });

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// grund-conformance <url-or-file>… [--component <slug>] [--binding <file.yaml>]… [--json] [--no-axe]
+// grounded-conformance <url-or-file>… [--component <slug>] [--binding <file.yaml>]… [--json] [--no-axe]
 // Tests every instance of each component on the page against its contract. Exit 1 on any failure.
 import { resolve } from 'node:path';
 import { existsSync } from 'node:fs';
@@ -20,7 +20,7 @@ const { values, positionals } = parseArgs({
 });
 
 if (values.help || !positionals.length) {
-  console.log('Usage: grund-conformance <url-or-file>… [--component <slug>] [--binding <file.yaml>] [--json] [--no-axe]');
+  console.log('Usage: grounded-conformance <url-or-file>… [--component <slug>] [--binding <file.yaml>] [--json] [--no-axe]');
   process.exit(values.help ? 0 : 2);
 }
 

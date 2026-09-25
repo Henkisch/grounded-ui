@@ -5,9 +5,9 @@
  * For a finished look, add dialog.styled.css.
  */
 /* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
-@layer grund.core, grund.components, grund.styled, grund.warnings;
+@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
 
-@layer grund.components.dialog {
+@layer grounded.components.dialog {
   @scope ([data-component="dialog"]) to ([data-component]) {
     :scope {
       inline-size: min(100% - 2em, 32em);

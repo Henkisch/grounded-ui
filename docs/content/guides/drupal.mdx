@@ -1,15 +1,15 @@
 ---
 title: Drupal
-description: Add grund-ui as a theme library, keep CKEditor from stripping its attributes, and stay safe under CSS aggregation.
+description: Add grounded-ui as a theme library, keep CKEditor from stripping its attributes, and stay safe under CSS aggregation.
 ---
 
 
 ## Test your Drupal forms first
 
-Before changing anything, run the contracts against a page of your existing site. It shows what already works and what doesn't, whether or not you use grund's CSS:
+Before changing anything, run the contracts against a page of your existing site. It shows what already works and what doesn't, whether or not you use grounded's CSS:
 
 ```sh
-npx grund-conformance https://your-site.example/contact --binding your-theme.text-field.binding.yaml
+npx grounded-conformance https://your-site.example/contact --binding your-theme.text-field.binding.yaml
 ```
 
 See [Test your components](/getting-started/test-your-components) for writing the binding.
@@ -18,13 +18,13 @@ See [Test your components](/getting-started/test-your-components) for writing th
 
 ```yaml
 # mytheme.libraries.yml
-grund:
+grounded:
   version: 0.1.0
   css:
     component:
-      grund-ui/reference/core/core.css: {}
-      grund-ui/reference/text-field/text-field.css: {}
-      grund-ui/reference/dialog/dialog.css: {}
+      grounded-ui/reference/core/core.css: {}
+      grounded-ui/reference/text-field/text-field.css: {}
+      grounded-ui/reference/dialog/dialog.css: {}
 ```
 
 Attach it globally:
@@ -32,7 +32,7 @@ Attach it globally:
 ```yaml
 # mytheme.info.yml
 libraries:
-  - mytheme/grund
+  - mytheme/grounded
 ```
 
 ## CKEditor 5
@@ -42,8 +42,8 @@ Load the same CSS in the editor so content previews correctly:
 ```yaml
 # mytheme.info.yml
 ckeditor5-stylesheets:
-  - grund-ui/reference/core/core.css
-  - grund-ui/reference/text-field/text-field.css
+  - grounded-ui/reference/core/core.css
+  - grounded-ui/reference/text-field/text-field.css
 ```
 
 Restricted text formats strip unknown attributes. Allow the hooks the components use in the format's **Allowed HTML tags**, for example:
@@ -56,8 +56,8 @@ Restricted text formats strip unknown attributes. Allow the hooks the components
 
 ## CSS aggregation
 
-Aggregation combines and may reorder the files. That's safe: every grund file declares the full layer order at the top, so the first file to load sets the same order. See [cascade layers](/styling/cascade-layers).
+Aggregation combines and may reorder the files. That's safe: every grounded file declares the full layer order at the top, so the first file to load sets the same order. See [cascade layers](/styling/cascade-layers).
 
 ## Single Directory Components
 
-A grund component maps directly onto an SDC: copy the markup into `component.twig`, put the stylesheet next to it, and read attributes from props. Generated SDC output is on the roadmap.
+A grounded component maps directly onto an SDC: copy the markup into `component.twig`, put the stylesheet next to it, and read attributes from props. Generated SDC output is on the roadmap.

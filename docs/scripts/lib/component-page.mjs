@@ -7,10 +7,10 @@ import { cell, code, frontmatter, table, typeTable } from './mdx.mjs';
 import { previewTabs, writeDemo } from './demos.mjs';
 import { scorecardTable } from './scorecard.mjs';
 
-// Every var(--grund-*, fallback) in a stylesheet, with its fallback (balanced parens).
+// Every var(--grounded-*, fallback) in a stylesheet, with its fallback (balanced parens).
 function cssDefaults(css) {
   const found = {};
-  for (const m of css.matchAll(/var\((--grund-[a-z0-9-]+)\s*,\s*/g)) {
+  for (const m of css.matchAll(/var\((--grounded-[a-z0-9-]+)\s*,\s*/g)) {
     let depth = 1;
     let i = m.index + m[0].length;
     const start = i;
@@ -59,7 +59,7 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
     `Contract ${code(slug)} version **${c.contractVersion}**: ${c.rules.length} rules, ${card.normative} of them normative. Every number above is generated in the build.`,
     '',
     ...section('Examples', [
-      'The reference implementation. Each example is a standalone page with only grund CSS and the markup shown — not a framework component.',
+      'The reference implementation. Each example is a standalone page with only grounded CSS and the markup shown — not a framework component.',
       '',
       demos.join('\n\n'),
     ]),
@@ -69,11 +69,11 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
       table(['Id', 'Rule and why', 'Level', 'CSS warning', 'Editor'], ruleRows),
     ]),
     ...section('Test your implementation', [
-      `The contract tests rendered HTML, so it works on any implementation. grund's own markup is tested as is; for other markup, a binding maps the contract's parts to your selectors.`,
+      `The contract tests rendered HTML, so it works on any implementation. grounded's own markup is tested as is; for other markup, a binding maps the contract's parts to your selectors.`,
       '',
       '```sh',
-      `npx grund-conformance https://example.com/contact --component ${slug}`,
-      `npx grund-conformance page.html --binding my-${slug}.binding.yaml`,
+      `npx grounded-conformance https://example.com/contact --component ${slug}`,
+      `npx grounded-conformance page.html --binding my-${slug}.binding.yaml`,
       '```',
       '',
       '```yaml',
@@ -92,7 +92,7 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
         p.required ? 'Yes' : p.requiredWhen ? `When ${code(p.requiredWhen)}` : 'No',
       ])),
       '',
-      c.domOrder ? `DOM order: ${c.domOrder.map(code).join(' → ')}. In grund's markup the root carries ${code(`data-component="${slug}"`)} and each part ${code('data-part')}.` : '',
+      c.domOrder ? `DOM order: ${c.domOrder.map(code).join(' → ')}. In grounded's markup the root carries ${code(`data-component="${slug}"`)} and each part ${code('data-part')}.` : '',
     ]),
     ...section('States', c.states?.length && table(['State', 'In the DOM', 'CSS hook'], c.states.map((s) => [cell(s.label ?? s.name), s.dom ? code(s.dom) : '—', code(s.hook)]))),
     ...section('Keyboard', c.keyboard?.length && table(['Key', 'Behavior'], c.keyboard.map((k) => [cell(k.key), cell(k.behavior)]))),
@@ -110,10 +110,10 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
       'Link the core once per page, then the component. No JavaScript.',
       '',
       '```html',
-      '<link rel="stylesheet" href="grund-ui/reference/core/core.css">',
-      `<link rel="stylesheet" href="grund-ui/reference/${slug}/${slug}.css">`,
+      '<link rel="stylesheet" href="grounded-ui/reference/core/core.css">',
+      `<link rel="stylesheet" href="grounded-ui/reference/${slug}/${slug}.css">`,
       '<!-- Optional: the finished look -->',
-      `<link rel="stylesheet" href="grund-ui/reference/${slug}/${slug}.styled.css">`,
+      `<link rel="stylesheet" href="grounded-ui/reference/${slug}/${slug}.styled.css">`,
       '```',
       '',
       `${code(`${slug}.css`)} is the base: everything the contract needs, nothing more. ${code(`${slug}.styled.css`)} adds the look in the **Styled** tab.`,

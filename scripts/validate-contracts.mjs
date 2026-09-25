@@ -18,7 +18,7 @@ const validate = ajv.compile(schema);
 // Standards data, so contracts can't drift from the platform: HTML elements (W3C webref), ARIA (aria-query).
 const htmlElements = new Set(Object.values(await elements.listAll()).flatMap((spec) => spec.elements.map((e) => e.name)));
 const { aria, roles } = ariaQuery;
-const LAYER_ORDER = '@layer grund.core, grund.components, grund.styled, grund.warnings;';
+const LAYER_ORDER = '@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;';
 const IDREF_ATTRS = ['for', 'commandfor', 'aria-labelledby', 'aria-describedby', 'aria-controls'];
 
 let errors = 0;
@@ -120,7 +120,7 @@ for (const slug of slugs) {
   for (const cssFile of cssFiles) {
     if (!readFileSync(cssFile, 'utf8').includes(LAYER_ORDER)) fail(file, `${cssFile.split('/').pop()} must repeat ${LAYER_ORDER}`);
   }
-  const used = new Set(cssFiles.flatMap((f) => [...readFileSync(f, 'utf8').matchAll(/var\((--grund-[a-z0-9-]+)/g)].map((m) => m[1])));
+  const used = new Set(cssFiles.flatMap((f) => [...readFileSync(f, 'utf8').matchAll(/var\((--grounded-[a-z0-9-]+)/g)].map((m) => m[1])));
   const documented = new Set(Object.keys(contract.customProperties ?? {}));
   for (const prop of used) if (!documented.has(prop)) fail(file, `${prop} is used in the ${slug} CSS but not in customProperties`);
   for (const prop of documented) if (!used.has(prop)) fail(file, `${prop} is in customProperties but not used in the ${slug} CSS`);

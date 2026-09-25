@@ -1,6 +1,6 @@
-// grund conformance: test rendered HTML against grund contracts.
+// grounded conformance: test rendered HTML against grounded contracts.
 // Works on any implementation. A binding maps the contract's parts to that implementation's markup;
-// without one, grund's own hooks (data-component / data-part) are used.
+// without one, grounded's own hooks (data-component / data-part) are used.
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'yaml';
@@ -8,7 +8,7 @@ import { AxeBuilder } from '@axe-core/playwright';
 import { evaluateComponent } from './engine.js';
 
 const repo = new URL('../..', import.meta.url).pathname;
-const MARKER = 'data-grund-conformance-root';
+const MARKER = 'data-grounded-conformance-root';
 
 /** All contracts in contracts/, keyed by slug. */
 export function loadContracts(dir = join(repo, 'contracts')) {
@@ -19,12 +19,12 @@ export function loadContracts(dir = join(repo, 'contracts')) {
   );
 }
 
-/** grund's own markup: the root carries data-component, parts carry data-part. */
+/** grounded's own markup: the root carries data-component, parts carry data-part. */
 export function defaultBinding(contract) {
   const parts = Object.keys(contract.anatomy).filter((key) => key !== 'root');
   return {
     component: contract.component,
-    implementation: 'grund hooks (data-component / data-part)',
+    implementation: 'grounded hooks (data-component / data-part)',
     root: `[data-component="${contract.component}"]`,
     boundary: '[data-component]',
     parts: Object.fromEntries(parts.map((part) => [part, `[data-part="${part}"]`])),

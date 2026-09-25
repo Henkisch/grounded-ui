@@ -1,4 +1,4 @@
-# grund-ui
+# grounded-ui
 
 **Back to the basics.** Accessible, fast and compatible UI components that still look and feel great — with the receipts to prove it.
 
@@ -13,7 +13,7 @@
 | `contracts/<slug>/contract.yaml` | The contract: anatomy, rules (with level, source, rationale), states, WCAG, editor texts |
 | `contracts/<slug>/fixtures/valid/` | HTML that must pass every rule. Also the copyable markup in the docs |
 | `contracts/<slug>/fixtures/broken/` | One file per rule, failing exactly that rule |
-| `conformance/` | The runner: Node API, CLI (`grund-conformance`) and its self-tests |
+| `conformance/` | The runner: Node API, CLI (`grounded-conformance`) and its self-tests |
 | `reference/` | The reference CSS: `core/`, then `<slug>.css` (base) and `<slug>.styled.css` (look) |
 | `spec/` | JSON Schema for the contract format |
 | `reports/<impl>/` | Contracts run against outside implementations: binding, generated results, human reading |
@@ -26,7 +26,7 @@
 pnpm install
 pnpm check                          # contracts, lint, dependencies, budgets
 pnpm conformance                    # fixtures × runner in Chromium, Firefox and WebKit
-pnpm exec grund-conformance <url>   # test any page
+pnpm exec grounded-conformance <url>   # test any page
 pnpm report govuk-frontend          # rerun an outside-implementation report
 pnpm --filter docs dev              # docs, generated from the contracts
 ```
