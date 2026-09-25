@@ -1,0 +1,1745 @@
+{
+  "implementation": "Försäkringskassan FKUI",
+  "version": "6.59.0",
+  "contract": "0.2.0",
+  "examples": [
+    {
+      "source": "docs",
+      "name": "ftextfield.html",
+      "url": "https://designsystem.forsakringskassan.se/latest/components/input/ftextfield.html",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"fkui-vue-element-0001\" type=\"text\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        },
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"fkui-vue-element-0013\" type=\"text\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "docs",
+      "name": "textfield-specialized.html",
+      "url": "https://designsystem.forsakringskassan.se/latest/components/input/textfield-specialized.html",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"email\" type=\"email\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        },
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"fkui-vue-element-0001\" type=\"email\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        },
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"fkui-vue-element-0002\" type=\"email\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        },
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"fkui-vue-element-0003\" type=\"tel\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        },
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"fkui-vue-element-0004\" type=\"tel\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        },
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"fkui-vue-element-0005\" type=\"tel\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "docs",
+      "name": "ftextareafield.html",
+      "url": "https://designsystem.forsakringskassan.se/latest/components/input/ftextareafield.html",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"textarea-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": false,
+              "detail": "expected 1, found 2"
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": false,
+              "detail": "<label class=\"label\" for=\"fkui-vue-element-0001\" aria-live=\"polite\"> has no text"
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <textarea id=\"fkui-vue-element-0001\" class=\"textarea-field__textarea textarea-field__resize--none\" rows=\"4\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": false,
+              "detail": "aria-describedby does not reference the description (<span class=\"label__description\">)"
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "docs",
+      "name": "textfield-specialized.html, email in error state",
+      "url": "https://designsystem.forsakringskassan.se/latest/components/input/textfield-specialized.html",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field text-field--error\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"email\" type=\"email\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": false,
+              "detail": "aria-describedby=\"\" does not start with the error id \"\""
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        },
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"fkui-vue-element-0001\" type=\"email\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        },
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"fkui-vue-element-0002\" type=\"email\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        },
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"fkui-vue-element-0003\" type=\"tel\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        },
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"fkui-vue-element-0004\" type=\"tel\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        },
+        {
+          "component": "text-field",
+          "contractVersion": "0.2.0",
+          "implementation": "Försäkringskassan FKUI",
+          "element": "<div class=\"text-field\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "normative",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "normative",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "description": "The control has a name.",
+              "pass": false,
+              "detail": "found <input id=\"fkui-vue-element-0005\" type=\"tel\" class=\"text-field__input\">"
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    }
+  ]
+}
