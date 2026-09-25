@@ -6,4 +6,12 @@ export default defineConfig({
   content: {
     root: "content",
   },
+  navigation: {
+    tabs: [
+      { label: "Docs", path: "/" },
+      { label: "Components", path: "/components" },
+      { label: "Examples", path: "/examples" },
+      { label: "Guides", path: "/guides" },
+    ],
+  },
 });
