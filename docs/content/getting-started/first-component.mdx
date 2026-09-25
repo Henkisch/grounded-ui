@@ -1,0 +1,29 @@
+---
+title: Your first component
+description: Copy a text field into a page, check it against the contract, then theme it.
+---
+
+## 1. Copy the markup
+
+Pick an example from the [text field](/components/text-field) page and paste it into your template, or into an HTML block in your CMS:
+
+```html
+<div data-component="text-field" data-part="field">
+  <label data-part="label" for="email">Email</label>
+  <input data-part="control" type="email" id="email" name="email" autocomplete="email">
+</div>
+```
+
+`data-component` and `data-part` are the styling hooks. The `class` attribute is yours: add your own classes or Tailwind utilities freely.
+
+## 2. Keep the ids unique
+
+`for` must match the control's `id`, and every id must be unique on the page. When you paste the same field twice, rename both. The component's **Contract rules** table lists everything the markup must satisfy.
+
+## 3. Make it look like your site
+
+The component inherits your site's font and colours. To change spacing, radius or colours, set its [custom properties](/styling/theming) from your own CSS.
+
+## 4. Add states
+
+States are plain HTML attributes, never classes: `required`, `disabled`, `readonly`, and `aria-invalid="true"` together with an error part. See the component's **States** table.

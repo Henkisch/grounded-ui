@@ -3,6 +3,9 @@
  * Zero specificity (:where), scoped to the component, layered under site CSS.
  * No colour values: every colour is currentColor, inherit or a --grund-* property.
  */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer grund.core, grund.components, grund.warnings;
+
 @layer grund.components.text-field {
   @scope ([data-component="text-field"]) to ([data-component]) {
     :scope {

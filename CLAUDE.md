@@ -4,7 +4,7 @@ Native HTML components for existing CMS sites: one CSS link plus copied markup, 
 
 ## Source of truth
 
-`components/<slug>/contract.yaml` is the single source. Tests, warning CSS, editor validation and the docs component pages are generated from it — edit the contract, then regenerate. Generated (gitignored): `docs/content/components/`, `docs/public/demo/`, `docs/public/grund/`, `dist/`.
+`components/<slug>/contract.yaml` is the single source. Tests, warning CSS, editor validation and the docs component pages are generated from it — edit the contract, then regenerate. Generated (gitignored): `docs/content/components/`, `docs/content/examples/`, `docs/public/demo/`, `docs/public/grund/`, `dist/`.
 
 Planning lives in Claude Docs (Swedish; read with the Claude Docs connector): build plan `65a6ee9b-694b-41e2-a69f-53067e55a59b`, strategy `74947edf-24ba-48e5-a8ef-fdbfdbc2e0da`, Spec: Text Field `ba612b1a-f3db-4314-92f1-3ea0f0b73b62`. The build plan's step order governs what gets built next.
 
@@ -15,7 +15,10 @@ Planning lives in Claude Docs (Swedish; read with the Claude Docs connector): bu
 - CSS layers: `@layer grund.core, grund.components, grund.warnings`; components use `grund.components.<slug>`; tokens are `--grund-*`.
 - Component CSS uses donut scope, `@scope ([data-component="<slug>"]) to ([data-component])`, so it never styles a nested component (e.g. a text field inside a dialog).
 - Slug is identical in folder name, `component:` and `data-component`.
-- `pnpm check` enforces the code rules and budgets; run it before committing.
+- `pnpm check` enforces the code rules, budgets and standards data; run it before committing.
+- Standards facts come from data packages, never from memory: browser support from `web-features` (contract `requires` takes feature ids), elements from `@webref/elements`, ARIA from `aria-query`, markup via `html-validate`, CSS via the Baseline stylelint plugin.
+- Every component CSS file repeats `@layer grund.core, grund.components, grund.warnings;` at the top (the validator enforces it).
+- `examples/*.html` are composed page fragments; their two leading comments (`title:`, `description:`) become the docs page. Page-level layout CSS belongs in the example, not in a component.
 
 ## Docs (Blume 2)
 

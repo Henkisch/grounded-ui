@@ -1,23 +1,23 @@
 ---
-title: Grund UI
+title: Introduction
 description: Native HTML components for existing CMS sites. One CSS link plus copied markup, with no changes to the site's own CSS.
 ---
 
 One CSS link plus copied markup should work in an HTML block in any CMS — Drupal, WordPress, Craft, Optimizely or Sitevision — without a single change to the site's own CSS.
 
-```html
-<link rel="stylesheet" href="grund-ui/core/tokens.css">
-<link rel="stylesheet" href="grund-ui/core/core.css">
-<link rel="stylesheet" href="grund-ui/components/text-field/styles/text-field.css">
-```
-
 The core is an HTML contract: elements, ARIA, parts and states. CSS and JS are swappable reference implementations. Every component has a contract file that the tests, CSS warnings, editor validation and this documentation are derived from.
 
 <CardGroup cols={2}>
-  <Card title="Principles" href="./principles">
-    The rules that make components safe to drop into a site that already has CSS.
+  <Card title="Installation" href="/getting-started/installation">
+    Link the CSS, copy the markup. No build step.
   </Card>
-  <Card title="Text field" href="./components/text-field">
-    The first component, and the template for all others.
+  <Card title="Principles" href="/getting-started/principles">
+    The rules that make components safe on a site that already has CSS.
+  </Card>
+  <Card title="Theming" href="/styling/theming">
+    Custom properties, dark mode and overriding from your own CSS.
+  </Card>
+  <Card title="Examples" href="/examples/contact-form">
+    Components composed into real page fragments.
   </Card>
 </CardGroup>

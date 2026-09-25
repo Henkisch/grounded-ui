@@ -1,0 +1,20 @@
+# Standards data (browser support, HTML/ARIA specs, Baseline) is bumped weekly.
+# A bump that changes what's valid or supported turns CI red, so drift surfaces as a pull request.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      standards-data:
+        patterns:
+          - web-features
+          - "@webref/*"
+          - aria-query
+          - html-validate
+          - stylelint-plugin-use-baseline
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

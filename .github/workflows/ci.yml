@@ -22,6 +22,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm validate
       - run: pnpm lint:css
+      - run: pnpm lint:html
       - run: pnpm check-deps
       - run: pnpm budget
 

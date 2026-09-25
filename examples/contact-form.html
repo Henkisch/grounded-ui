@@ -1,0 +1,41 @@
+<!-- title: Contact form -->
+<!-- description: Three text fields in a plain form, one of them in an error state after a failed submit. -->
+<!-- The site's own CSS: spacing between fields is page layout, not part of the component. -->
+<style>
+  .contact-form { display: grid; gap: 1.25rem; justify-items: start; max-inline-size: 32rem; }
+  .contact-form [data-component] { justify-self: stretch; }
+</style>
+<form class="contact-form" action="/contact" method="post" novalidate>
+  <div data-component="text-field" data-part="field">
+    <label data-part="label" for="contact-name">Name</label>
+    <input data-part="control" type="text" id="contact-name" name="name" autocomplete="name" value="Anna Berg">
+  </div>
+
+  <div data-component="text-field" data-part="field">
+    <label data-part="label" for="contact-email">
+      Email
+      <span data-part="required-indicator" aria-hidden="true">*</span>
+    </label>
+    <input data-part="control"
+           type="email"
+           id="contact-email"
+           name="email"
+           autocomplete="email"
+           value="anna.berg@"
+           required
+           aria-invalid="true"
+           aria-describedby="contact-email-error">
+    <p data-part="error" id="contact-email-error">
+      <span aria-hidden="true">⚠</span>
+      Enter a complete email address, for example anna@example.com
+    </p>
+  </div>
+
+  <div data-component="text-field" data-variant="multiline" data-part="field">
+    <label data-part="label" for="contact-message">Message</label>
+    <p data-part="description" id="contact-message-desc">We reply within two working days.</p>
+    <textarea data-part="control" id="contact-message" name="message" rows="4" aria-describedby="contact-message-desc"></textarea>
+  </div>
+
+  <button type="submit">Send</button>
+</form>

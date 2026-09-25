@@ -1,0 +1,47 @@
+---
+title: WordPress
+description: Load grund-ui in a theme so components work on the front end and inside the block editor's iframe.
+---
+
+## Load the stylesheets
+
+Copy `core/` and the component folders into your theme, then enqueue them on `enqueue_block_assets`. That hook runs on the front end **and** inside the block editor's iframe, so blocks preview correctly while editing.
+
+```php
+// functions.php
+add_action( 'enqueue_block_assets', function () {
+    $base = get_theme_file_uri( 'grund-ui' );
+    wp_enqueue_style( 'grund-tokens', "$base/core/tokens.css", [], '0.1.0' );
+    wp_enqueue_style( 'grund-core', "$base/core/core.css", [ 'grund-tokens' ], '0.1.0' );
+
+    foreach ( [ 'text-field', 'dialog' ] as $component ) {
+        wp_enqueue_style(
+            "grund-$component",
+            "$base/components/$component/styles/$component.css",
+            [ 'grund-core' ],
+            '0.1.0'
+        );
+    }
+} );
+```
+
+Classic editor (TinyMCE) themes load editor CSS with `add_editor_style()` instead.
+
+## Use a component
+
+Paste the markup into a **Custom HTML** block. The block keeps `data-*` attributes as written.
+
+## Map your theme's tokens
+
+Point grund's custom properties at your `theme.json` presets, so a colour change in the Site Editor reaches the components:
+
+```css
+[data-component] {
+  --grund-focus-color: var(--wp--preset--color--primary);
+  --grund-radius: var(--wp--custom--radius, 0.25em);
+}
+```
+
+## Heavy themes and page builders
+
+Elementor, Divi and older Bootstrap themes ship aggressive resets. They're usually unlayered, so they win over grund. If a component looks off, look for a theme rule on bare elements (`input`, `button`, `p`) and scope it away from `[data-component]` in your child theme.

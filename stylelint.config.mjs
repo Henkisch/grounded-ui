@@ -1,7 +1,7 @@
 // Enforces the code rules (docs: Principles) on everything grund-ui ships.
 // The generated warnings file is dev-only and deliberately uses fixed colours; it is not linted.
 export default {
-  plugins: ['stylelint-use-logical', './scripts/stylelint-grund.mjs'],
+  plugins: ['stylelint-use-logical', 'stylelint-plugin-use-baseline', './scripts/stylelint-grund.mjs'],
   rules: {
     // No colour values: currentColor, inherit or a custom property only.
     'color-no-hex': true,
@@ -26,5 +26,17 @@ export default {
     // Element selectors only inside :where()/:is()/:not() so they carry zero specificity and never go global.
     'grund/type-only-in-where': true,
     'declaration-no-important': true,
+
+    // Platform drift: only CSS that is Baseline (newly available or better), per the web-features data.
+    // Progressive enhancements below Baseline are listed explicitly and must be `optional` in the contract's requires.
+    'property-no-unknown': true,
+    'plugin/use-baseline': [
+      true,
+      {
+        available: 'newly',
+        // resize: ignored on iOS Safari, where the textarea simply isn't user-resizable. Harmless.
+        ignoreProperties: { resize: ['/^.+$/'] },
+      },
+    ],
   },
 };

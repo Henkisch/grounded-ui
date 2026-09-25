@@ -1,0 +1,41 @@
+---
+title: Installation
+description: Link the core CSS once, then one stylesheet per component. No build step, no JavaScript.
+---
+
+grund-ui ships as plain CSS files and copyable HTML. There is nothing to compile and nothing to run.
+
+## Link the stylesheets
+
+Add the core once per page, then the stylesheet for each component you use:
+
+```html
+<link rel="stylesheet" href="/grund-ui/core/tokens.css">
+<link rel="stylesheet" href="/grund-ui/core/core.css">
+<link rel="stylesheet" href="/grund-ui/components/text-field/styles/text-field.css">
+<link rel="stylesheet" href="/grund-ui/components/dialog/styles/dialog.css">
+```
+
+Order doesn't matter. Every file declares the same cascade layer order, so a CMS that aggregates or reorders stylesheets can't break it.
+
+## Get the files
+
+Until the first npm release, copy `core/` and the component folders you need from the [repository](https://github.com/Henkisch/grund-ui) into your theme. Each component folder holds:
+
+<FileTree>
+
+- components/
+  - dialog/
+    - contract.yaml
+    - markup/
+      - basic.html
+    - styles/
+      - dialog.css
+
+</FileTree>
+
+`styles/` is what you link. `markup/` is the HTML you copy. `contract.yaml` is the rulebook the markup follows.
+
+## Next
+
+Add your [first component](/getting-started/first-component).

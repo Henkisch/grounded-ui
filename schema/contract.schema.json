@@ -208,15 +208,16 @@
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "feature",
-          "support"
+          "feature"
         ],
         "properties": {
           "feature": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$",
+            "$comment": "web-features id"
           },
-          "support": {
-            "type": "string"
+          "optional": {
+            "type": "boolean"
           },
           "fallback": {
             "type": "string"

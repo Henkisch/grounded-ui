@@ -10,6 +10,13 @@ budget:
   css: 1536
   js: 0
 
+# Browser features the component relies on, by web-features id. Support data comes from the web-features package.
+requires:
+  - feature: scope
+  - feature: field-sizing
+    optional: true
+    fallback: The multiline variant keeps its minimum height instead of growing with its content.
+
 anatomy:
   root:
     label: Root

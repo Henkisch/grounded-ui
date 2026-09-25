@@ -10,13 +10,19 @@ budget:
   css: 1536
   js: 0
 
+# Browser features the component relies on, by web-features id (https://web-platform-dx.github.io/web-features/).
+# Support versions and Baseline status are read from the web-features package, never written by hand.
 requires:
-  - feature: Invoker commands (commandfor / command)
-    support: Chrome 135, Safari 18.4, Firefox 144
+  - feature: dialog
+  - feature: invoker-commands
     fallback: Without support the trigger does nothing. Keep essential content reachable without the dialog.
-  - feature: closedby attribute (light dismiss)
-    support: Chrome 134, Firefox 141
-    fallback: Optional. Ignored where unsupported; Esc and the close button still work.
+  - feature: dialog-closedby
+    optional: true
+    fallback: Ignored where unsupported; Esc and the close button still work.
+  - feature: scope
+  - feature: starting-style
+    optional: true
+    fallback: The dialog opens without the fade-in.
 
 anatomy:
   root:
@@ -61,7 +67,7 @@ states:
 
 keyboard:
   - { key: Enter / Space on trigger, behavior: Opens the dialog and moves focus inside it }
-  - { key: Tab / Shift + Tab, behavior: Cycles focus within the dialog; the page behind is inert }
+  - { key: Tab / Shift + Tab, behavior: "Moves between the dialog's controls; the page behind is inert and unreachable" }
   - { key: Esc, behavior: Closes the dialog }
   - { key: Close, behavior: Focus returns to the trigger }
 

@@ -1,0 +1,54 @@
+---
+title: Drupal
+description: Add grund-ui as a theme library, keep CKEditor from stripping its attributes, and stay safe under CSS aggregation.
+---
+
+## Define a library
+
+```yaml
+# mytheme.libraries.yml
+grund:
+  version: 0.1.0
+  css:
+    component:
+      grund-ui/core/tokens.css: {}
+      grund-ui/core/core.css: {}
+      grund-ui/components/text-field/styles/text-field.css: {}
+      grund-ui/components/dialog/styles/dialog.css: {}
+```
+
+Attach it globally:
+
+```yaml
+# mytheme.info.yml
+libraries:
+  - mytheme/grund
+```
+
+## CKEditor 5
+
+Load the same CSS in the editor so content previews correctly:
+
+```yaml
+# mytheme.info.yml
+ckeditor5-stylesheets:
+  - grund-ui/core/tokens.css
+  - grund-ui/core/core.css
+  - grund-ui/components/text-field/styles/text-field.css
+```
+
+Restricted text formats strip unknown attributes. Allow the hooks the components use in the format's **Allowed HTML tags**, for example:
+
+```html
+<div data-component data-part data-variant> <label for data-part> <p id data-part>
+<dialog id data-component data-variant aria-labelledby aria-describedby closedby role>
+<button type commandfor command>
+```
+
+## CSS aggregation
+
+Aggregation combines and may reorder the files. That's safe: every grund file declares the full layer order at the top, so the first file to load sets the same order. See [cascade layers](/styling/cascade-layers).
+
+## Single Directory Components
+
+A grund component maps directly onto an SDC: copy the markup into `component.twig`, put the stylesheet next to it, and read attributes from props. Generated SDC output is on the roadmap.

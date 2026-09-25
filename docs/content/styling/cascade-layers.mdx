@@ -1,0 +1,42 @@
+---
+title: Cascade layers
+description: Why grund-ui never fights your CSS, and how the layer order survives CMS aggregation.
+---
+
+All grund-ui CSS lives in named cascade layers:
+
+```css
+@layer grund.core, grund.components, grund.warnings;
+```
+
+Styles outside any layer — which is all of your site's existing CSS — always beat layered styles. That's why an override needs no `!important` and no extra specificity.
+
+## Inside the layers
+
+- **`grund.core`**: the minimal base: box sizing inside components. No reset, no element styles outside components.
+- **`grund.components`**: one sub-layer per component, such as `grund.components.dialog`.
+- **`grund.warnings`**: contract warnings for editing and test environments. Never loaded in production.
+
+## Zero specificity and scope
+
+Within a component, selectors are wrapped in `:where()` and limited with `@scope`:
+
+```css
+@scope ([data-component="dialog"]) to ([data-component]) {
+  :where([data-part="title"]) { font-size: 1.25em; }
+}
+```
+
+The `to ([data-component])` part stops the scope at nested components, so a text field inside a dialog is styled only by its own CSS.
+
+## Aggregation and load order
+
+Some CMSs (Drupal's CSS aggregation, WordPress optimisation plugins) combine and reorder stylesheets. The first `@layer` statement the browser sees fixes the order, so every grund file repeats the full order statement at the top. Whatever loads first, the order is the same.
+
+## When your site uses layers too
+
+If your site puts its own CSS in layers, place grund's below yours:
+
+```css
+@layer grund, site;
+```

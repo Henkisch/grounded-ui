@@ -1,0 +1,18 @@
+<!-- title: Newsletter sign-up in a dialog -->
+<!-- description: A dialog containing a text field. Each component keeps its own styles because component CSS stops at nested components. -->
+<button type="button" commandfor="newsletter-signup" command="show-modal">Get the newsletter</button>
+
+<dialog data-component="dialog" id="newsletter-signup" aria-labelledby="newsletter-signup-title" aria-describedby="newsletter-signup-desc" closedby="any">
+  <h2 data-part="title" id="newsletter-signup-title">Get the newsletter</h2>
+  <form data-part="body" method="dialog">
+    <p id="newsletter-signup-desc">One email a month. Unsubscribe any time.</p>
+    <div data-component="text-field" data-part="field">
+      <label data-part="label" for="newsletter-signup-email">Email</label>
+      <input data-part="control" type="email" id="newsletter-signup-email" name="email" autocomplete="email">
+    </div>
+    <div data-part="actions">
+      <button type="button" commandfor="newsletter-signup" command="close">Not now</button>
+      <button type="submit">Subscribe</button>
+    </div>
+  </form>
+</dialog>

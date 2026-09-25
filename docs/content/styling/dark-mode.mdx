@@ -1,0 +1,31 @@
+---
+title: Dark mode
+description: Components follow your site's colour scheme automatically. You only set tokens where you want something different.
+---
+
+Components have no light or dark mode of their own. They inherit:
+
+- **Text and borders** use `currentColor`, so they follow your text colour.
+- **The dialog** uses the browser's `Canvas` and `CanvasText`, which follow the page's `color-scheme`.
+
+So a site that switches its text colour for dark mode already gets dark components. Declare the colour scheme so browser-drawn parts (the dialog surface, form controls, scrollbars) match:
+
+```css
+:root { color-scheme: light dark; }
+```
+
+## Site-controlled dark mode
+
+If your site toggles dark mode with a class or attribute instead of the OS setting, set the scheme there, and any tokens you've customised:
+
+```css
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --grund-dialog-bg: #1b1b1f;
+  --grund-border-color: #8a8a8a;
+}
+```
+
+## Contrast is yours
+
+Because colours are inherited, text contrast (WCAG 1.4.3) depends on your site's colours. Check both schemes.

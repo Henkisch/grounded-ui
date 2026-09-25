@@ -1,0 +1,22 @@
+---
+title: Browser support
+description: grund-ui targets Baseline — features available in all major browsers — and treats anything newer as a progressive enhancement.
+---
+
+grund-ui uses web platform features that are **Baseline**: supported in the current versions of Chrome, Edge, Firefox and Safari. Support data comes from the [web-features](https://web-platform-dx.github.io/web-features/) project, never from memory.
+
+## What the core relies on
+
+| Feature | Used for |
+| --- | --- |
+| [Cascade layers](https://web-platform-dx.github.io/web-features-explorer/features/cascade-layers/) | Keeps every grund style below your site's CSS |
+| [@scope](https://web-platform-dx.github.io/web-features-explorer/features/scope/) | Limits each component's CSS to its own markup |
+| [:where()](https://web-platform-dx.github.io/web-features-explorer/features/where/) | Zero specificity, so one site selector overrides |
+
+Each component page has its own **Browser support** table, generated from the same data, including what happens without each feature.
+
+## How we keep it current
+
+- CSS is linted against Baseline on every build. A feature below Baseline fails the build unless it's listed as an enhancement.
+- Contracts reference features by web-features id. The support tables in these docs are generated from that data.
+- The standards data is updated weekly. When support changes, it shows up as a pull request with a failing or passing build.

@@ -2,17 +2,20 @@
 //   docs/public/grund/…              copies of the shipped CSS
 //   docs/public/demo/<slug>/<n>.html bare HTML pages: markup verbatim + grund CSS, nothing else
 //   docs/content/components/<slug>.mdx  generated page (anatomy, states, demos, rules, WCAG)
+//   docs/content/examples/<name>.mdx    one page per examples/<name>.html (composed, real-world markup)
 // Demos are iframes on purpose: rendering them through Astro would prove the wrong thing.
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, rmSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'yaml';
+import { features } from 'web-features';
 
 const repo = new URL('../..', import.meta.url).pathname;
 const docs = join(repo, 'docs');
 const pub = join(docs, 'public');
 const outContent = join(docs, 'content', 'components');
 
-for (const dir of [join(pub, 'grund'), join(pub, 'demo'), outContent]) rmSync(dir, { recursive: true, force: true });
+const outExamples = join(docs, 'content', 'examples');
+for (const dir of [join(pub, 'grund'), join(pub, 'demo'), outContent, outExamples]) rmSync(dir, { recursive: true, force: true });
 mkdirSync(outContent, { recursive: true });
 
 cpSync(join(repo, 'core'), join(pub, 'grund', 'core'), { recursive: true });
@@ -179,7 +182,29 @@ for (const [order, slug] of slugs.entries()) {
       ? ['## Keyboard', '', table(['Key', 'Behavior'], c.keyboard.map((k) => [cell(k.key), cell(k.behavior)])), '']
       : []),
     ...(c.requires?.length
-      ? ['## Browser support', '', table(['Feature', 'Supported from', 'Without it'], c.requires.map((r) => [cell(r.feature), cell(r.support), cell(r.fallback ?? '—')])), '']
+      ? [
+          '## Browser support',
+          '',
+          `From the [web-features](https://web-platform-dx.github.io/web-features/) data, updated with every release.`,
+          '',
+          table(
+            ['Feature', 'Baseline', 'Chrome', 'Firefox', 'Safari', 'Without it'],
+            c.requires.map((r) => {
+              const f = features[r.feature];
+              const { baseline, baseline_low_date: since, support } = f.status;
+              const status = baseline === 'high' ? 'Widely available' : baseline === 'low' ? `Newly available (${since})` : 'Limited';
+              return [
+                `[${cell(f.name)}](https://web-platform-dx.github.io/web-features-explorer/features/${r.feature}/)${r.optional ? ' (optional)' : ''}`,
+                status,
+                support.chrome ?? '—',
+                support.firefox ?? '—',
+                support.safari ?? '—',
+                cell(r.fallback ?? '—'),
+              ];
+            }),
+          ),
+          '',
+        ]
       : []),
     ...(c.attributes?.length
       ? [
@@ -241,5 +266,53 @@ for (const [order, slug] of slugs.entries()) {
 
 writeFileSync(
   join(outContent, 'meta.ts'),
-  `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Components", order: 2 });\n`,
+  `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Components", order: 3 });\n`,
 );
+
+// Examples: composed, real-world markup from examples/*.html. Title and description come from the
+// file's two leading comments. Same iframe rules as component demos.
+mkdirSync(outExamples, { recursive: true });
+mkdirSync(join(pub, 'demo', 'examples'), { recursive: true });
+const examplesDir = join(repo, 'examples');
+const exampleFiles = existsSync(examplesDir) ? readdirSync(examplesDir).filter((f) => f.endsWith('.html')).sort() : [];
+for (const [order, fileName] of exampleFiles.entries()) {
+  const name = fileName.replace(/\.html$/, '');
+  const source = readFileSync(join(examplesDir, fileName), 'utf8');
+  const meta = (key) => source.match(new RegExp(`<!--\\s*${key}:\\s*(.+?)\\s*-->`))?.[1] ?? '';
+  const markup = source.replace(/^(\s*<!--.*?-->\s*)+/s, '');
+  writeFileSync(join(pub, 'demo', 'examples', fileName), shell(meta('title'), markup));
+  const minHeight = markup.includes('<dialog') ? 380 : 0;
+  const page = [
+    '---',
+    `title: ${JSON.stringify(meta('title'))}`,
+    `description: ${JSON.stringify(meta('description'))}`,
+    'sidebar:',
+    `  order: ${order + 1}`,
+    '---',
+    '',
+    `{/* Generated from examples/${fileName} by docs/scripts/sync-demos.mjs. */}`,
+    '',
+    `Uses: ${usedComponents(markup).map((u) => `[${u}](/components/${u})`).join(', ')}.`,
+    '',
+    '<Tabs sync={false} hash={false}>',
+    '<Tab title="Preview">',
+    '',
+    `<iframe data-demo${minHeight ? ` data-min-height="${minHeight}"` : ''} src="/demo/examples/${fileName}" title="${esc(meta('title'))}" loading="lazy" height="${minHeight || 300}" style={{ inlineSize: '100%', border: 0 }}></iframe>`,
+    '',
+    '</Tab>',
+    '<Tab title="HTML">',
+    '',
+    '```html',
+    markup.trim(),
+    '```',
+    '',
+    '</Tab>',
+    '</Tabs>',
+    '',
+    '<script src="/demo-frame.js" type="module"></script>',
+    '',
+  ].join('\n');
+  writeFileSync(join(outExamples, `${name}.mdx`), page);
+  console.log(`docs: example ${name}`);
+}
+writeFileSync(join(outExamples, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Examples", order: 4 });\n`);

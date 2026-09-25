@@ -1,0 +1,13 @@
+<!-- title: Confirm before deleting -->
+<!-- description: An alert dialog that stops a destructive action. Focus starts on the safe choice, and clicking outside does nothing. -->
+<p>Draft: <strong>Opening hours, summer 2026</strong></p>
+<button type="button" commandfor="confirm-delete" command="show-modal">Delete draft</button>
+
+<dialog data-component="dialog" data-variant="alert" role="alertdialog" id="confirm-delete" aria-labelledby="confirm-delete-title" aria-describedby="confirm-delete-desc">
+  <h2 data-part="title" id="confirm-delete-title">Delete "Opening hours, summer 2026"?</h2>
+  <p data-part="body" id="confirm-delete-desc">The draft is removed for everyone. This cannot be undone.</p>
+  <div data-part="actions">
+    <button type="button" commandfor="confirm-delete" command="close" autofocus>Keep draft</button>
+    <button type="button" commandfor="confirm-delete" command="close">Delete</button>
+  </div>
+</dialog>
