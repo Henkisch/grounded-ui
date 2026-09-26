@@ -1,0 +1,12 @@
+# Maps the dialog contract's parts to Bootstrap 5's modal (div.modal, opened by Bootstrap's script, which adds
+# role="dialog" and aria-modal). Only the open modal (.modal.show) is tested.
+component: dialog
+implementation: Bootstrap 5
+root: .modal.show
+boundary: .modal
+parts:
+  trigger: ':not(*)'
+  title: .modal-title
+  body: .modal-body
+  actions: .modal-footer
+  close: '.btn-close, .modal-footer [data-bs-dismiss="modal"]'

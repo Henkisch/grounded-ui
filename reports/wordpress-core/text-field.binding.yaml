@@ -1,0 +1,15 @@
+# Maps the text-field contract's parts to WordPress core's own form markup: the comment form (comment_form()),
+# the Search block, the post password form and the log-in screen. One root per field.
+component: text-field
+implementation: WordPress core
+root: >-
+  #commentform .comment-form-comment, #commentform .comment-form-author, #commentform .comment-form-email,
+  #commentform .comment-form-url, form.wp-block-search, .post-password-form p:has(input[type="password"]),
+  #loginform p:has(#user_login), #loginform .user-pass-wrap
+parts:
+  label: 'label:not([for="wp-comment-cookies-consent"], [for="rememberme"])'
+  # The email hint (#email-notes) and the log-in error (#login_error) sit outside the field, at form level.
+  description: ':not(*)'
+  control: 'input:is([type="text"], [type="email"], [type="url"], [type="search"], [type="password"]), textarea'
+  error: ':not(*)'
+  required-indicator: .required
