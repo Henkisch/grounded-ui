@@ -1,14 +1,48 @@
 ---
 title: Grounded UI
-description: Back to the basics. Accessible, fast and compatible UI components that still look and feel great — with the receipts to prove it.
+description: Proof, not promises. Accessible components you and your AI agent can verify.
 ---
 
-**Back to the basics.** Accessible, fast and compatible is usually sold as a compromise: pick it, and accept something that looks plain and feels dated. We don't accept that trade.
+**The proof layer for accessible UI:** native components that pass their own tests, and a check that works on yours.
 
-- **Accessible** — proven by an open, executable contract that any implementation can be tested against.
-- **Fast** — zero JavaScript by default, a few hundred bytes of CSS per component.
-- **Compatible** — native HTML on Baseline browser features. Works in any CMS, framework or old theme.
-- **And it still looks and feels great.**
+<CardGroup cols={2}>
+  <Card title="Check a component" href="/getting-started/test-your-components" cta="Run the contracts on any HTML" arrow>
+    Your site, your library, or what your AI agent just wrote. Any framework, any CMS.
+  </Card>
+  <Card title="Get a component" href="/components" cta="Browse the components" arrow>
+    Native HTML and a few hundred bytes of CSS. Zero JavaScript, and it passes its own contract.
+  </Card>
+</CardGroup>
+
+## Get it, check it, prove it
+
+An agent writes an email field. It looks right, and axe reports nothing:
+
+```text
+text-field — 9/10 outcome rules pass, axe: 0 violation(s)
+  FAIL TF-20 (normative) If there is an error message, its text
+       reaches the control's accessible description or name.
+       the error text "enter a complete email address …" is in
+       neither the accessible name nor the description of
+       <input type="email" id="email">
+```
+
+A screen reader user would hear "Email, invalid" and never the reason. One attribute later:
+
+```text
+text-field — 10/10 outcome rules pass, axe: 0 violation(s)
+```
+
+Every rule links to the WCAG criterion, ARIA pattern or HTML spec it comes from. The check judges what the browser actually exposes, so any markup that gets the result right passes.
+
+## What gets shipped without it
+
+We ran the contracts on ten real implementations. Well-built libraries pass. Typical CMS markup doesn't, in ways axe doesn't report:
+
+- **Drupal core:** the inline error never reaches the field, and by default an invalid field has no message tied to it. [Report](/reports/drupal)
+- **Bootstrap:** validation errors never reach the field; a placeholder is the only visible label. [Report](/reports/bootstrap)
+- **Elementor Pro:** two forms on one page share ids, so a label names the wrong field. [Report](/reports/elementor)
+- **WordPress:** Twenty Twenty's menu modal has no dialog role or name. [Report](/reports/wordpress-core)
 
 ## The receipts
 
@@ -16,13 +50,22 @@ Generated on every build, never typed:
 
 <include>/_generated/scorecard.mdx</include>
 
-## Two ways in
+## Back to the basics
 
-<CardGroup cols={2}>
-  <Card title="Test your components" href="/getting-started/test-your-components">
-    Run the contracts against your own site, library or theme. Any framework, any CMS.
-  </Card>
-  <Card title="Use the reference components" href="/getting-started/use-the-reference">
-    Copy the markup, link the CSS. Zero JavaScript, and it passes its own contract.
-  </Card>
-</CardGroup>
+Accessible, fast and compatible is usually sold as a compromise. We don't accept that trade.
+
+- **Accessible:** proven by an open, executable contract.
+- **Fast:** zero JavaScript, a few hundred bytes of CSS per component.
+- **Compatible:** native HTML on Baseline features, in any CMS or framework, measured the same in Chromium, Firefox and WebKit.
+- **And it still looks and feels great.**
+
+## For AI agents
+
+Every page is available as Markdown (add `.md` to the URL), and the site publishes [`llms.txt`](/llms.txt). An agent can read a component's contract, use the reference markup, then run the check before it says it's done. An installable skill and an MCP server are next.
+
+## What Grounded UI is not
+
+- Not a component library to lock into: the contracts work on any markup.
+- Not a replacement for axe or audits: we run axe, and add the component rules it can't know.
+- Not a certification of whole sites: we prove components, not pages.
+- Not a new standard competing with W3C: we build on WCAG, the ARIA Authoring Practices and ACT, and contribute back.
