@@ -23,9 +23,10 @@ ${cssFiles(referenceDir, markup, styled).map(({ slug, file }) => `<link rel="sty
 <!-- The host site's own CSS. Nothing else is loaded. The component inherits the colour scheme. -->
 <style>
   :root { color-scheme: light dark; color: CanvasText; }
-  body { margin: 0.5rem; font: 1rem/1.5 system-ui, sans-serif; }${markup.includes('<dialog') ? `
-  /* A dialog demo is only its trigger until opened: centre it in the room kept for the modal. */
-  body { display: grid; place-items: center; min-block-size: calc(100dvb - 1rem); }` : ''}
+  body { margin: 0.5rem; font: 1rem/1.5 system-ui, sans-serif; }
+  /* Every example sits centred in the same-height box; a dialog demo is only its trigger until opened. */
+  body { display: grid; align-content: center; min-block-size: calc(100dvb - 1rem); }${markup.includes('<dialog') ? `
+  body { place-items: center; }` : ''}
 </style>
 </head>
 <body>
@@ -40,15 +41,10 @@ export function writeDemo(referenceDir, path, title, markup) {
   writeFileSync(path.replace(/\.html$/, '.base.html'), shell(referenceDir, `${title} (base)`, markup, false));
 }
 
-// Fallback iframe height (px at 16px base); /demo-frame.js fits the real height after load.
-export function demoHeight(markup) {
-  if (markup.includes('<dialog')) return { height: 380, minHeight: 380 };
-  // Room for an open popover (toggletip) below its trigger.
-  if (markup.includes(' popover')) return { height: 220, minHeight: 220 };
-  const has = (part) => markup.includes(`data-part="${part}"`);
-  const parts = [has('label') && 24, has('description') && 21, has('control') && (markup.includes('<textarea') ? 112 : 44), has('error') && 21].filter(Boolean);
-  return { height: Math.max(90, 16 + parts.reduce((a, b) => a + b, 0) + (parts.length - 1) * 6), minHeight: 0 };
-}
+// Every example box has the dialog's height, so switching tabs doesn't jump and pickers and popovers have room.
+// /demo-frame.js still grows a frame whose content is taller.
+const DEMO_HEIGHT = 380;
+export const demoHeight = () => ({ height: DEMO_HEIGHT, minHeight: DEMO_HEIGHT });
 
 /** Styled · Base · HTML · CSS in one box (Blume's built-in Tabs), independent of other examples. */
 export function previewTabs(referenceDir, { src, title, markup }) {
