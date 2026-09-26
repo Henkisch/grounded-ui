@@ -3,7 +3,7 @@
 # Test selectors name parts ({label}, {control}, …), never Grounded UI's own hooks, so any implementation
 # can be tested through a binding that maps parts to its markup.
 component: text-field
-contractVersion: 0.3.0
+contractVersion: 0.3.1
 title: Text field
 summary: A free-text field with a label, an optional description and an error message.
 
@@ -245,7 +245,7 @@ rules:
     level: normative
     type: outcome
     source: https://html.spec.whatwg.org/multipage/input.html#the-placeholder-attribute
-    rationale: The HTML spec says placeholder must not be used as a replacement for a label; it disappears on input.
+    rationale: The HTML spec says placeholder should not be used instead of a label; it disappears as soon as the user types, and an aria-label alone leaves sighted users without one.
     since: 0.1.0
     test: { kind: absent, selector: ':scope:not(:has({label})):has({control}[placeholder])' }
     css:
@@ -306,13 +306,13 @@ rules:
     css: false
 
   - id: TF-21
-    description: The control has the role textbox or searchbox.
+    description: The control has the role textbox or searchbox (combobox when it has a suggestion list).
     level: normative
     type: outcome
     source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
     rationale: The role tells users they can type here; a text field exposed as anything else is misannounced.
     since: 0.3.0
-    test: { kind: role, selector: '{control}', oneOf: [textbox, searchbox] }
+    test: { kind: role, selector: '{control}:not([list])', oneOf: [textbox, searchbox] }
     css: false
 
 wcag:

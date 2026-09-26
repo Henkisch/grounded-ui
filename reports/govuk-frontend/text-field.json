@@ -1,7 +1,7 @@
 {
   "implementation": "GOV.UK Frontend",
   "version": "6.5.1",
-  "contract": "0.3.0",
+  "contract": "0.3.1",
   "examples": [
     {
       "source": "input",
@@ -9,7 +9,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -169,7 +169,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -184,7 +184,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -344,7 +344,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -359,7 +359,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
           "results": [
@@ -519,7 +519,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -534,7 +534,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
           "results": [
@@ -694,7 +694,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -709,7 +709,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -869,7 +869,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -884,7 +884,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -1044,7 +1044,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1059,7 +1059,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -1219,7 +1219,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1234,7 +1234,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -1394,7 +1394,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1409,7 +1409,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -1569,7 +1569,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1584,7 +1584,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -1744,7 +1744,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1759,7 +1759,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -1919,7 +1919,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1934,7 +1934,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -2094,7 +2094,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2109,7 +2109,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -2269,7 +2269,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2284,7 +2284,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -2444,7 +2444,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2459,7 +2459,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -2619,7 +2619,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2634,7 +2634,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
           "results": [
@@ -2794,7 +2794,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2809,7 +2809,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -2969,7 +2969,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2984,7 +2984,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -3144,7 +3144,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -3159,7 +3159,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -3319,7 +3319,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -3334,7 +3334,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -3494,7 +3494,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -3509,7 +3509,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
           "results": [
@@ -3669,7 +3669,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -3684,7 +3684,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -3844,7 +3844,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -3859,7 +3859,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -4019,7 +4019,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -4034,7 +4034,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -4194,7 +4194,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }

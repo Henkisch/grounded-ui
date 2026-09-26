@@ -1,7 +1,7 @@
 {
   "implementation": "Drupal core",
   "version": "11.4.7",
-  "contract": "0.3.0",
+  "contract": "0.3.1",
   "examples": [
     {
       "source": "docs",
@@ -10,7 +10,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-search js-form-type-search form-item-keys js-form-item-keys form-no-label\">",
           "results": [
@@ -170,7 +170,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -179,7 +179,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-search js-form-type-search form-item-keys js-form-item-keys form-no-label\">",
           "results": [
@@ -339,7 +339,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -348,7 +348,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-textfield js-form-type-textfield form-item-name js-form-item-name\">",
           "results": [
@@ -508,7 +508,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -517,7 +517,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-email js-form-type-email form-item-mail js-form-item-mail\">",
           "results": [
@@ -677,7 +677,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -686,7 +686,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-textfield js-form-type-textfield form-item-subject-0-value js-form-item-subject-0-value\">",
           "results": [
@@ -846,7 +846,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -855,7 +855,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-textarea js-form-type-textarea form-item-message-0-value js-form-item-message-0-value\">",
           "results": [
@@ -1015,7 +1015,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1031,7 +1031,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-search js-form-type-search form-item-keys js-form-item-keys form-no-label\">",
           "results": [
@@ -1191,7 +1191,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1200,7 +1200,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-search js-form-type-search form-item-keys js-form-item-keys form-no-label\">",
           "results": [
@@ -1360,7 +1360,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1369,7 +1369,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-textfield js-form-type-textfield form-item-name js-form-item-name\">",
           "results": [
@@ -1529,7 +1529,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1545,7 +1545,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-search js-form-type-search form-item-keys js-form-item-keys form-no-label\">",
           "results": [
@@ -1705,7 +1705,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1714,7 +1714,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-search js-form-type-search form-item-keys js-form-item-keys form-no-label\">",
           "results": [
@@ -1874,7 +1874,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1883,7 +1883,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-email js-form-type-email form-item-mail js-form-item-mail\">",
           "results": [
@@ -2043,7 +2043,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2052,7 +2052,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-textfield js-form-type-textfield form-item-name js-form-item-name\">",
           "results": [
@@ -2212,7 +2212,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2228,7 +2228,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-name form-item--site-name\">",
           "results": [
@@ -2388,7 +2388,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2397,7 +2397,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-slogan form-item--site-slogan\">",
           "results": [
@@ -2557,7 +2557,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2566,7 +2566,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-email form-type--email js-form-item-site-mail form-item--site-mail\">",
           "results": [
@@ -2726,7 +2726,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2735,7 +2735,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-frontpage form-item--site-frontpage\">",
           "results": [
@@ -2895,7 +2895,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2904,7 +2904,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-403 form-item--site-403\">",
           "results": [
@@ -3064,7 +3064,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -3073,7 +3073,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-404 form-item--site-404\">",
           "results": [
@@ -3233,7 +3233,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -3249,7 +3249,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-anonymous form-item--anonymous\">",
           "results": [
@@ -3409,7 +3409,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -3418,7 +3418,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-email form-type--email js-form-item-mail-notification-address form-item--mail-notification-address\">",
           "results": [
@@ -3578,7 +3578,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -3587,7 +3587,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-user-mail-register-admin-created-subject form-item--user-mail-register-admin-created-subject\">",
           "results": [
@@ -3747,7 +3747,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -3756,7 +3756,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textarea form-type--textarea js-form-item-user-mail-register-admin-created-body form-item--user-mail-register-admin-created-body\">",
           "results": [
@@ -3916,7 +3916,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -3925,7 +3925,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-user-mail-register-pending-approval-subject form-item--user-mail-register-pending-approval-subject\">",
           "results": [
@@ -4085,7 +4085,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -4094,7 +4094,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textarea form-type--textarea js-form-item-user-mail-register-pending-approval-body form-item--user-mail-register-pending-approval-body\">",
           "results": [
@@ -4254,7 +4254,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -4263,7 +4263,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-register-pending-approval-admin-subject form-item--register-pending-approval-admin-subject\">",
           "results": [
@@ -4423,7 +4423,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -4432,7 +4432,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textarea form-type--textarea js-form-item-register-pending-approval-admin-body form-item--register-pending-approval-admin-body\">",
           "results": [
@@ -4592,7 +4592,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -4601,7 +4601,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-user-mail-register-no-approval-required-subject form-item--user-mail-register-no-approval-required-subject\">",
           "results": [
@@ -4761,7 +4761,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -4770,7 +4770,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textarea form-type--textarea js-form-item-user-mail-register-no-approval-required-body form-item--user-mail-register-no-approval-required-body\">",
           "results": [
@@ -4930,7 +4930,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -4939,7 +4939,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-user-mail-status-activated-subject form-item--user-mail-status-activated-subject\">",
           "results": [
@@ -5099,7 +5099,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -5108,7 +5108,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textarea form-type--textarea js-form-item-user-mail-status-activated-body form-item--user-mail-status-activated-body\">",
           "results": [
@@ -5268,7 +5268,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -5277,7 +5277,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-user-mail-status-blocked-subject form-item--user-mail-status-blocked-subject\">",
           "results": [
@@ -5437,7 +5437,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -5446,7 +5446,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textarea form-type--textarea js-form-item-user-mail-status-blocked-body form-item--user-mail-status-blocked-body\">",
           "results": [
@@ -5606,7 +5606,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -5615,7 +5615,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-user-mail-cancel-confirm-subject form-item--user-mail-cancel-confirm-subject\">",
           "results": [
@@ -5775,7 +5775,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -5784,7 +5784,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textarea form-type--textarea js-form-item-user-mail-cancel-confirm-body form-item--user-mail-cancel-confirm-body\">",
           "results": [
@@ -5944,7 +5944,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -5953,7 +5953,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-user-mail-status-canceled-subject form-item--user-mail-status-canceled-subject\">",
           "results": [
@@ -6113,7 +6113,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -6122,7 +6122,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textarea form-type--textarea js-form-item-user-mail-status-canceled-body form-item--user-mail-status-canceled-body\">",
           "results": [
@@ -6282,7 +6282,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -6291,7 +6291,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-user-mail-password-reset-subject form-item--user-mail-password-reset-subject\">",
           "results": [
@@ -6451,7 +6451,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -6460,7 +6460,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textarea form-type--textarea js-form-item-user-mail-password-reset-body form-item--user-mail-password-reset-body\">",
           "results": [
@@ -6620,7 +6620,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -6636,7 +6636,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-name form-item--site-name\">",
           "results": [
@@ -6796,7 +6796,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -6805,7 +6805,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-slogan form-item--site-slogan\">",
           "results": [
@@ -6965,7 +6965,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -6974,7 +6974,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-email form-type--email js-form-item-site-mail form-item--site-mail\">",
           "results": [
@@ -7134,7 +7134,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -7143,7 +7143,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-frontpage form-item--site-frontpage\">",
           "results": [
@@ -7303,7 +7303,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -7312,7 +7312,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-403 form-item--site-403\">",
           "results": [
@@ -7472,7 +7472,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -7481,7 +7481,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-404 form-item--site-404\">",
           "results": [
@@ -7641,7 +7641,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -7657,7 +7657,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-name form-item--site-name\">",
           "results": [
@@ -7817,7 +7817,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -7826,7 +7826,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-slogan form-item--site-slogan\">",
           "results": [
@@ -7986,7 +7986,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -7995,7 +7995,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-email form-type--email js-form-item-site-mail form-item--site-mail\">",
           "results": [
@@ -8155,7 +8155,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -8164,7 +8164,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-frontpage form-item--site-frontpage form-item--error\">",
           "results": [
@@ -8324,7 +8324,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -8333,7 +8333,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-403 form-item--site-403\">",
           "results": [
@@ -8493,7 +8493,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -8502,7 +8502,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-site-404 form-item--site-404\">",
           "results": [
@@ -8662,7 +8662,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -8678,7 +8678,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-search js-form-type-search form-item-keys js-form-item-keys form-no-label\">",
           "results": [
@@ -8838,7 +8838,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -8847,7 +8847,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-search js-form-type-search form-item-keys js-form-item-keys form-no-label\">",
           "results": [
@@ -9007,7 +9007,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -9016,7 +9016,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-textfield js-form-type-textfield form-item-site-name js-form-item-site-name\">",
           "results": [
@@ -9176,7 +9176,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -9185,7 +9185,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-textfield js-form-type-textfield form-item-site-slogan js-form-item-site-slogan\">",
           "results": [
@@ -9345,7 +9345,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -9354,7 +9354,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-email js-form-type-email form-item-site-mail js-form-item-site-mail\">",
           "results": [
@@ -9514,7 +9514,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -9523,7 +9523,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-textfield js-form-type-textfield form-item-site-frontpage js-form-item-site-frontpage form-item--error\">",
           "results": [
@@ -9683,7 +9683,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -9692,7 +9692,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-textfield js-form-type-textfield form-item-site-403 js-form-item-site-403\">",
           "results": [
@@ -9852,7 +9852,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -9861,7 +9861,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item form-type-textfield js-form-type-textfield form-item-site-404 js-form-item-site-404\">",
           "results": [
@@ -10021,7 +10021,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -10037,7 +10037,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-search form-type--search js-form-item- form-item-- form-item--no-label\">",
           "results": [
@@ -10197,7 +10197,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -10219,7 +10219,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-view-args form-item--view-args\">",
           "results": [
@@ -10379,7 +10379,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -10388,7 +10388,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-label form-item--label\">",
           "results": [
@@ -10548,7 +10548,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -10557,7 +10557,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Drupal core (Olivero, Claro)",
           "element": "<div class=\"js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-description form-item--description\">",
           "results": [
@@ -10717,7 +10717,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }

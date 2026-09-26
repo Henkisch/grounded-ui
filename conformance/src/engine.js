@@ -7,12 +7,31 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
   const roots = [...document.querySelectorAll(rootSelector)];
   const ax = window.axe;
   ax.setup(document);
-  // includeHidden: a closed dialog still has a name; hidden parts referenced by idrefs still count.
-  const accText = (el) => ax.commons.text.accessibleTextVirtual(ax.utils.getNodeFromTree(el), { includeHidden: true });
+  // Hidden content counts only where the platform counts it: an element that isn't rendered (a closed dialog)
+  // still has a name, and an idref target that is itself hidden still contributes its text. aria-hidden
+  // descendants of a rendered element never do.
+  const rendered = (el) => el.checkVisibility?.({ visibilityProperty: true }) ?? el.getClientRects().length > 0;
+  const text = (el, context = {}) =>
+    ax.commons.text.accessibleTextVirtual(ax.utils.getNodeFromTree(el), { ...context, includeHidden: !rendered(el) });
+  const refsOf = (el, attr) => (el.getAttribute(attr) ?? '').split(/\s+/).filter(Boolean).map((ref) => document.getElementById(ref)).filter(Boolean);
+  // aria-labelledby first, resolved per target, since axe drops hidden targets when includeHidden is off.
+  const accText = (el) => {
+    const refs = refsOf(el, 'aria-labelledby');
+    const labelled = refs.map((ref) => text(ref, { inLabelledByContext: true })).join(' ').trim();
+    return labelled || text(el);
+  };
   const accDescription = (el) => {
-    const refs = (el.getAttribute('aria-describedby') ?? '').split(/\s+/).filter(Boolean).map((ref) => document.getElementById(ref)).filter(Boolean);
-    if (refs.length) return refs.map((ref) => ax.commons.text.accessibleTextVirtual(ax.utils.getNodeFromTree(ref), { includeHidden: true, inLabelledByContext: true })).join(' ');
+    const refs = refsOf(el, 'aria-describedby');
+    if (refs.length) return refs.map((ref) => text(ref, { inLabelledByContext: true })).join(' ');
     return el.getAttribute('aria-description') ?? '';
+  };
+  // A part's visible words: without aria-hidden descendants (an error tip inside a label) or nested controls.
+  // A part that is aria-hidden as a whole keeps its text: it is the visible copy being checked.
+  const visibleText = (el) => {
+    if (el.closest('[aria-hidden="true"]')) return el.textContent;
+    const copy = el.cloneNode(true);
+    copy.querySelectorAll('[aria-hidden="true"], input, textarea, select').forEach((node) => node.remove());
+    return copy.textContent;
   };
   // Words only, so punctuation, symbols such as a required "*" and spacing don't decide a match.
   const words = (text) => text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
@@ -90,7 +109,7 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
         if (!includes) return name ? null : `${describe(el)} has no accessible name`;
         if (!name) return null; // an empty name is the plain name rule's job
         const [part] = within(includes);
-        const expected = part ? words(part.textContent) : '';
+        const expected = part ? words(visibleText(part)) : '';
         if (!expected) return null; // a missing or empty part is another rule's job
         return name.includes(expected) ? null : `accessible name ${quote(accText(el).trim())} does not contain the ${raw.includes.replace(/[{}]/g, '')} text ${quote(expected)}`;
       },
@@ -98,7 +117,7 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
         const [el] = pick(selector);
         const [part] = within(text);
         if (!el || !part) return null;
-        const expected = words(part.textContent);
+        const expected = words(visibleText(part));
         if (!expected) return null;
         const exposed = words(`${accText(el)} ${accDescription(el)}`);
         return exposed.includes(expected) ? null : `the ${raw.text.replace(/[{}]/g, '')} text ${quote(expected)} is in neither the accessible name nor the description of ${describe(el)}`;

@@ -1,7 +1,7 @@
 {
   "implementation": "Försäkringskassan FKUI",
   "version": "6.59.0",
-  "contract": "0.3.0",
+  "contract": "0.3.1",
   "examples": [
     {
       "source": "docs",
@@ -10,7 +10,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -170,7 +170,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -179,7 +179,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -339,7 +339,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -355,7 +355,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -515,7 +515,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -524,7 +524,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -684,7 +684,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -693,7 +693,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -853,7 +853,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -862,7 +862,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -1022,7 +1022,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1031,7 +1031,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -1191,7 +1191,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1200,7 +1200,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -1360,7 +1360,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1376,7 +1376,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"textarea-field\">",
           "results": [
@@ -1536,7 +1536,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1552,7 +1552,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field text-field--error\">",
           "results": [
@@ -1712,7 +1712,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1721,7 +1721,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -1881,7 +1881,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -1890,7 +1890,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -2050,7 +2050,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2059,7 +2059,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -2219,7 +2219,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2228,7 +2228,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -2388,7 +2388,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }
@@ -2397,7 +2397,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.0",
+          "contractVersion": "0.3.1",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
@@ -2557,7 +2557,7 @@
               "id": "TF-21",
               "level": "normative",
               "type": "outcome",
-              "description": "The control has the role textbox or searchbox.",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
             }

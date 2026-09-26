@@ -1,0 +1,17 @@
+<div data-component="text-field">
+  <label data-part="label" for="municipality">Municipality</label>
+  <p data-part="description" id="municipality-desc">Start typing to see suggestions.</p>
+  <input data-part="control"
+         type="text"
+         id="municipality"
+         name="municipality"
+         list="municipality-list"
+         autocomplete="off"
+         aria-describedby="municipality-desc">
+  <datalist id="municipality-list">
+    <option value="Göteborg"></option>
+    <option value="Malmö"></option>
+    <option value="Stockholm"></option>
+    <option value="Uppsala"></option>
+  </datalist>
+</div>
