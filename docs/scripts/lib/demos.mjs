@@ -43,6 +43,8 @@ export function writeDemo(referenceDir, path, title, markup) {
 // Fallback iframe height (px at 16px base); /demo-frame.js fits the real height after load.
 export function demoHeight(markup) {
   if (markup.includes('<dialog')) return { height: 380, minHeight: 380 };
+  // Room for an open popover (toggletip) below its trigger.
+  if (markup.includes(' popover')) return { height: 220, minHeight: 220 };
   const has = (part) => markup.includes(`data-part="${part}"`);
   const parts = [has('label') && 24, has('description') && 21, has('control') && (markup.includes('<textarea') ? 112 : 44), has('error') && 21].filter(Boolean);
   return { height: Math.max(90, 16 + parts.reduce((a, b) => a + b, 0) + (parts.length - 1) * 6), minHeight: 0 };

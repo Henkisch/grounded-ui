@@ -1,0 +1,41 @@
+/*
+ * select base CSS: only what the contract and accessibility need.
+ * Layout of the parts, touch target, focus ring, a non-colour error cue. The browser draws the control and its
+ * drop-down list. For a finished look, add select.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
+
+@layer grounded.components.select {
+  @scope ([data-component="select"]) to ([data-component]) {
+    :scope {
+      display: grid;
+      gap: var(--grounded-gap, 0.375em);
+      justify-items: start;
+    }
+
+    /* Parts sit in the grid gap; user-agent margins on p/label would double it. */
+    :where([data-part]) {
+      margin: 0;
+    }
+
+    :where([data-part="control"]) {
+      inline-size: 100%;
+      min-block-size: var(--grounded-touch-target, 2.75em);
+      font: inherit;
+      color: inherit;
+    }
+
+    /* WCAG 2.4.7 / 1.4.11: at least 2 CSS px, never removed. */
+    :where([data-part="control"]):focus-visible {
+      outline: 2px solid var(--grounded-focus-color, currentColor);
+      outline-offset: 2px;
+    }
+
+    /* Error is shown by more than colour (WCAG 1.4.1). */
+    :where([data-part="control"][aria-invalid="true"]) {
+      border-width: 2px;
+      border-style: solid;
+    }
+  }
+}

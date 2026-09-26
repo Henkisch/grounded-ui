@@ -1,0 +1,31 @@
+/*
+ * accordion base CSS: only what the contract and accessibility need.
+ * Native <details>/<summary>: the browser draws the marker and handles the state. Base adds the touch target,
+ * the focus ring, and keeps a heading inside the summary on the marker's line.
+ * For a finished look, add accordion.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
+
+@layer grounded.components.accordion {
+  @scope ([data-component="accordion"]) to ([data-component]) {
+    /* WCAG 2.5.8: the summary is the button; keep it tappable. */
+    :where([data-part="summary"]) {
+      min-block-size: var(--grounded-touch-target, 2.75em);
+      cursor: pointer;
+    }
+
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :where([data-part="summary"]):focus-visible {
+      outline: 2px solid var(--grounded-focus-color, currentColor);
+      outline-offset: 2px;
+    }
+
+    /* A block heading would drop below the marker and separate the label from its control. */
+    :where([data-part="heading"]) {
+      display: inline;
+      margin: 0;
+      font-size: inherit;
+    }
+  }
+}

@@ -1,0 +1,241 @@
+# Contract: toggletip
+# A button that shows a short explanation in a popover on click, opened and closed with invoker commands.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({trigger}, {content}, …); `:scope` is the root; {id} is the root's id.
+component: toggletip
+contractVersion: 0.1.0
+title: Toggletip
+summary: A small button that shows a short explanation on click, using the native popover attribute and invoker commands. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+# Support versions and Baseline status are read from the web-features package, never written by hand.
+requires:
+  - feature: popover
+  - feature: invoker-commands
+    fallback: Without support the trigger does nothing. Never put information only in a toggletip if everyone must get it.
+  - feature: scope
+  - feature: anchor-positioning
+    optional: true
+    fallback: The explanation opens centred in the viewport instead of next to the button.
+  - feature: starting-style
+    optional: true
+    fallback: The explanation appears without the fade-in.
+
+anatomy:
+  root:
+    label: Root
+    element: [span, div]
+    required: true
+  trigger:
+    label: Trigger
+    element: [button]
+    required: true
+  content:
+    label: Explanation
+    element: [span, div]
+    required: true
+  close:
+    label: Close control
+    element: [button]
+
+domOrder: [trigger, content]
+
+states:
+  - { name: closed, label: Closed, dom: no popover open, hook: ":not(:popover-open)" }
+  - { name: open, label: Open, dom: "shown, via toggle-popover", hook: ":popover-open" }
+  - { name: focus, label: Trigger focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Enter / Space on trigger, behavior: Opens or closes the explanation; focus stays on the trigger }
+  - { key: Tab, behavior: "Moves from the trigger into the explanation (a link or close button inside), then on through the page" }
+  - { key: Esc, behavior: Closes the explanation }
+  - { key: Click outside, behavior: Closes the explanation (light dismiss) }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: TT-01
+    description: The trigger has the role button.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: A toggletip is operated like a button; announced as anything else, users don't know they can press it.
+    since: 0.1.0
+    test: { kind: role, selector: '{trigger}', oneOf: [button] }
+    css: false
+
+  - id: TT-02
+    description: The trigger has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: An icon-only "i" button without a name is announced as just "button".
+    since: 0.1.0
+    test: { kind: name, selector: '{trigger}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: TT-03
+    description: The trigger's name says what it explains, not just "info", "help" or a symbol.
+    level: recommended
+    type: outcome
+    source: https://inclusive-components.design/tooltips-toggletips/
+    rationale: Several "Info" buttons on one page are indistinguishable in a list of controls; "About VAT numbers" is not.
+    since: 0.1.0
+    test: { kind: absent, selector: '{trigger}:is([aria-label="i" i], [aria-label="?"], [aria-label="info" i], [aria-label="information" i], [aria-label="more info" i], [aria-label="help" i], [aria-label="more" i])' }
+    css:
+      violation: '[data-component="toggletip"] [data-part="trigger"]:is([aria-label="i" i], [aria-label="?"], [aria-label="info" i], [aria-label="help" i])'
+      message: "TT-03: name the topic, not just \"info\"."
+    editor: { level: warn }
+
+  - id: TT-04
+    description: The explanation has non-empty text.
+    level: recommended
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/popover.html#the-popover-attribute
+    rationale: An empty popover opens a blank box and tells the user nothing.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{content}' }
+    css:
+      coverage: partial
+      violation: '[data-component="toggletip"] [data-part="content"]:empty'
+      message: "TT-04: the explanation is empty."
+    editor: { level: refuse }
+
+  - id: TT-05
+    description: The explanation comes directly after the trigger in the DOM.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence
+    rationale: The popover is drawn in the top layer, but screen readers and Tab follow the DOM; right after the trigger, it's the next thing they reach.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(:has({trigger} + {content}))' }
+    css:
+      violation: '[data-component="toggletip"]:not(:has([data-part="trigger"] + [data-part="content"]))'
+      message: "TT-05: put the explanation directly after the trigger."
+
+  - id: TT-06
+    description: A close control, if there is one, has an accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: A lone "×" is announced as "times" or nothing at all.
+    since: 0.1.0
+    test: { kind: name, selector: '{close}' }
+    css: false
+
+  - id: TT-07
+    description: The trigger is a <button type="button">.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-type
+    rationale: Invoker commands only work on buttons; without type="button" a trigger inside a form submits it.
+    since: 0.1.0
+    test: { kind: absent, selector: '{trigger}:not(button[type="button"])' }
+    css:
+      violation: '[data-component="toggletip"] [data-part="trigger"]:not([type="button"])'
+      message: "TT-07: the trigger needs type=\"button\"."
+
+  - id: TT-08
+    description: The explanation is an auto popover (popover or popover="auto").
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/popover.html#attr-popover
+    rationale: An auto popover closes on Esc and on a click outside, and only one is open at a time, with no script.
+    since: 0.1.0
+    test: { kind: absent, selector: '{content}:not([popover=""], [popover="auto"])' }
+    css:
+      violation: '[data-component="toggletip"] [data-part="content"]:not([popover=""], [popover="auto"])'
+      message: "TT-08: the explanation must be an auto popover."
+
+  - id: TT-09
+    description: The trigger's commandfor points at the explanation.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-commandfor
+    rationale: The reference is what opens the popover and what the browser uses to expose the expanded state and placement.
+    since: 0.1.0
+    test:
+      kind: idrefIncludes
+      from: { selector: '{trigger}', attr: commandfor }
+      to: '{content}'
+    css: false
+    editor: { level: refuse }
+
+  - id: TT-10
+    description: The trigger uses command="toggle-popover".
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-command
+    rationale: Toggle lets the same button open and close the explanation; show-popover can't close it again.
+    since: 0.1.0
+    test: { kind: absent, selector: '{trigger}:not([command="toggle-popover"])' }
+    css:
+      violation: '[data-component="toggletip"] [data-part="trigger"]:not([command="toggle-popover"])'
+      message: "TT-10: use command=\"toggle-popover\"."
+
+  - id: TT-11
+    description: Ids inside the toggletip are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes the trigger open the wrong explanation, or none.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+    editor: { level: warn }
+
+wcag:
+  - { criterion: "1.3.2", name: Meaningful Sequence, level: A, how: "The explanation follows the trigger in the DOM, so it is read and tabbed to next" }
+  - { criterion: "1.4.13", name: Content on Hover or Focus, level: AA, how: "Opens on a deliberate press, stays until dismissed, and Esc closes it" }
+  - { criterion: "2.1.1", name: Keyboard, level: A, how: "A native button; Enter and Space toggle, Esc closes" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "A 2px outline on the trigger, never removed" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "The trigger is at least 1.5em (24 CSS px at 16px text) in both directions" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Button role and a name that names the topic; the browser exposes the expanded state from commandfor" }
+
+siteResponsibilities:
+  - { criterion: "1.4.3", title: Text contrast, text: "The explanation uses the browser's Canvas and CanvasText unless the site sets --grounded-toggletip-bg and --grounded-toggletip-color." }
+  - { title: Essential information, text: "A toggletip is extra help. Instructions everyone needs belong in the field description or the page, not behind a button." }
+  - { criterion: "2.1.1", title: Let Escape through, text: "A site script that cancels every Escape keydown stops Esc from closing the popover." }
+  - { title: Older browsers, text: "Browsers without invoker commands ignore the trigger, so the explanation never opens there." }
+
+editor:
+  help:
+    trigger: 'Name the topic, for example "About VAT numbers". It becomes the button''s name for screen readers.'
+    content: "One or two short sentences. A toggletip is a hint, not a page."
+  softWarnings:
+    - { id: TT-W1, text: More than two sentences in the explanation }
+    - { id: TT-W2, text: 'A trigger labelled "Info", "Help" or "?"' }
+
+# The component's API: the attributes a user writes. Rendered as tables in the docs.
+attributes:
+  - { on: root, name: data-component, type: '"toggletip"', required: true, description: Marks the element as a Grounded UI toggletip. }
+  - { on: trigger, name: type, type: '"button"', required: true, description: Keeps the trigger from submitting a surrounding form. }
+  - { on: trigger, name: commandfor, type: id, required: true, description: The explanation's id. }
+  - { on: trigger, name: command, type: '"toggle-popover"', required: true, description: Opens and closes the explanation. }
+  - { on: trigger, name: aria-label, type: string, description: 'The topic, when the visible text is a symbol such as "i".' }
+  - { on: content, name: id, type: string, required: true, description: Target for the trigger's commandfor. }
+  - { on: content, name: popover, type: '"" | "auto"', required: true, description: Makes the explanation a light-dismissable popover. }
+  - { on: close, name: commandfor, type: id, required: true, description: The explanation's id. }
+  - { on: close, name: command, type: '"hide-popover"', required: true, description: Closes the explanation. }
+
+customProperties:
+  --grounded-target-size: Minimum trigger size.
+  --grounded-focus-color: Focus ring colour.
+  --grounded-border-color: Trigger border colour.
+  --grounded-border-hover-color: Trigger border colour on hover and while open.
+  --grounded-toggletip-bg: Explanation background.
+  --grounded-toggletip-color: Explanation text colour.
+  --grounded-toggletip-border-color: Explanation border colour.
+  --grounded-toggletip-width: Maximum explanation width.
+  --grounded-radius: Explanation corner radius.
+  --grounded-shadow: Explanation shadow.
+  --grounded-duration: Open transition duration.
+  --grounded-duration-exit: Close transition duration.
+  --grounded-easing: Open transition easing.

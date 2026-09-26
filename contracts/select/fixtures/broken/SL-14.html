@@ -1,0 +1,7 @@
+<!-- Breaks SL-14: an aria-label repeats the visible label: harmless today, but the two drift apart. -->
+<div data-component="select">
+  <label data-part="label" for="city">City</label>
+  <select data-part="control" id="city" name="city" aria-label="City">
+    <option value="malmo">Malmö</option>
+  </select>
+</div>
