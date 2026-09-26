@@ -68,7 +68,8 @@
       text-wrap: balance;
     }
 
-    :where([data-part="body"]) {
+    /* Muted only when the body is running text; a form body keeps full-strength labels. */
+    :where(p[data-part="body"]) {
       color: var(--grounded-muted-color, color-mix(in oklab, CanvasText 70%, Canvas));
     }
 
