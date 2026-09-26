@@ -72,5 +72,5 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       # The docs build runs the contracts to generate each component's scorecard.
-      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm exec playwright install --with-deps chromium firefox webkit
       - run: pnpm --filter docs build

@@ -25,6 +25,10 @@ export async function scorecards(repo, contracts) {
   const sizes = JSON.parse(readFileSync(sizesPath, 'utf8'));
   const size = (slug, kind) => sizes.find((e) => e.name === slug && e.kind === kind)?.bytes ?? 0;
 
+  // Cross-engine consistency, from scripts/consistency.mjs (optional: absent means not measured).
+  const consistencyPath = join(repo, 'dist', 'consistency.json');
+  const consistency = existsSync(consistencyPath) ? JSON.parse(readFileSync(consistencyPath, 'utf8')) : {};
+
   const browser = await chromium.launch();
   const page = await (await browser.newContext()).newPage();
   const cards = {};
@@ -54,6 +58,7 @@ export async function scorecards(repo, contracts) {
       js: size(slug, 'js'),
       baseline: baseline(contract),
       wcag: (contract.wcag ?? []).length,
+      consistency: consistency[slug] ?? null,
     };
   }
   await browser.close();
@@ -101,5 +106,6 @@ export function scorecardBadges(card) {
     `<Badge tooltip="Brotli-compressed; base is required, styled optional">${kb(card.cssBase)} + ${kb(card.cssStyled)} CSS</Badge>`,
     `<Badge tooltip="JavaScript shipped">${card.js === 0 ? '0 B' : kb(card.js)} JS</Badge>`,
     `<Badge tooltip="From the web-features data">Baseline: ${card.baseline.label}</Badge>`,
+    ...(card.consistency ? [badge(card.consistency.unexplained === 0, `${card.consistency.unexplained === 0 ? '✓' : '✗'} Same in 3 engines`, `${card.consistency.passed} of ${card.consistency.checks} measurements match in Chromium, Firefox and WebKit${card.consistency.checks - card.consistency.passed ? `; ${card.consistency.checks - card.consistency.passed} known difference(s)` : ''}`)] : []),
   ].join(' ');
 }

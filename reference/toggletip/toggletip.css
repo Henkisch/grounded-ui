@@ -10,14 +10,14 @@
 @layer grounded.components.toggletip {
   @scope ([data-component="toggletip"]) to ([data-component]) {
     /* WCAG 2.5.8: at least 24 CSS px at 16px text, even for an "i" in running text. */
-    :where([data-part="trigger"]) {
+    :where([data-part="trigger"], [data-part="close"]) {
       min-inline-size: var(--grounded-target-size, 1.5em);
       min-block-size: var(--grounded-target-size, 1.5em);
       font: inherit;
     }
 
     /* WCAG 2.4.7: at least 2 CSS px, never removed. */
-    :where([data-part="trigger"]):focus-visible {
+    :where([data-part="trigger"], [data-part="close"]):focus-visible {
       outline: 2px solid var(--grounded-focus-color, currentColor);
       outline-offset: 2px;
     }

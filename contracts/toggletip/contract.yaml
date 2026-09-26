@@ -225,6 +225,12 @@ attributes:
   - { on: close, name: commandfor, type: id, required: true, description: The explanation's id. }
   - { on: close, name: command, type: '"hide-popover"', required: true, description: Closes the explanation. }
 
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences:
+  - part: content
+    property: block-size
+    reason: Firefox places an anchored popover 2px further along than Chromium and WebKit. Near the viewport edge that leaves 2px less room, so a long explanation can wrap onto one more line.
+
 customProperties:
   --grounded-target-size: Minimum trigger size.
   --grounded-focus-color: Focus ring colour.

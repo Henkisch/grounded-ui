@@ -4,7 +4,7 @@
 //   3. what it guarantees: outcome rules up front, technique rules collapsed
 //   4. test your own implementation
 //   5. reference details, collapsed into one accordion
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync, copyFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { features } from 'web-features';
 import { cell, code, esc, frontmatter, table, typeTable } from './mdx.mjs';
@@ -43,6 +43,24 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
     return { name, markup, tabs: previewTabs(referenceDir, { src: `/demo/${slug}/${name}.html`, title: `${c.title}: ${name}`, markup }) };
   });
   const [primary] = examples;
+
+  // Same in every browser: screenshots of the first example per engine (scripts/consistency.mjs) + what differs.
+  const engines = ['chromium', 'firefox', 'webkit'];
+  const shots = engines.filter((e) => existsSync(join(repo, 'dist', 'consistency', `${slug}-${e}.png`)));
+  for (const e of shots) copyFileSync(join(repo, 'dist', 'consistency', `${slug}-${e}.png`), join(pub, 'demo', slug, `engine-${e}.png`));
+  const engineName = { chromium: 'Chromium', firefox: 'Firefox', webkit: 'WebKit' };
+  const same = card.consistency && [
+    `<Expandable title="Same in every browser: ${card.consistency.passed} of ${card.consistency.checks} measurements match">`,
+    '',
+    `Every example is rendered in Chromium, Firefox and WebKit, overlays opened. Each part's size, spacing, type and border, and the keyboard focus ring, are compared within 1px.`,
+    '',
+    ...(shots.length ? [`<Tabs sync={false} hash={false}>`, ...shots.flatMap((e) => [`<Tab title="${engineName[e]}">`, '', `![${c.title} (${code(names[0])}) in ${engineName[e]}](/demo/${slug}/engine-${e}.png)`, '', '</Tab>']), '</Tabs>', ''] : []),
+    ...(card.consistency.differences.length ? [
+      table(['Example', 'Part', 'Property', ...engines.map((e) => engineName[e]), 'Why'], card.consistency.differences.map((d) => [code(d.fixture.replace(/\.html$/, '')), cell(d.part.split(' ')[1] ?? d.part), code(d.property), ...engines.map((e) => cell(d.values[e])), d.known ? cell(d.known) : '**Not explained yet**'])),
+    ] : ['No differences.']),
+    '',
+    '</Expandable>',
+  ].join('\n');
 
   const css = {
     core: readFileSync(join(referenceDir, 'core', 'core.css'), 'utf8').trim(),
@@ -161,6 +179,8 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
       `${outcome.length} **outcome rules**: what any implementation must achieve, judged on the rendered result (the accessible name, role and description the browser computes). Outside implementations are judged on these.`,
       '',
       ...outcome.map((r) => `- ${levelBadge(r)} **${r.id}** [${cell(r.description)}](${r.source})`),
+      '',
+      same || '',
       '',
       c.wcag?.length ? `<Expandable title="WCAG criteria (${c.wcag.length})">\n\n${table(['Criterion', 'Level', 'How'], c.wcag.map((w) => [`${w.criterion} ${cell(w.name)}`, w.level, cell(w.how)]))}\n\n</Expandable>` : '',
       '',

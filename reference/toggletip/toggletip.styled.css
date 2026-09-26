@@ -76,11 +76,13 @@
       }
     }
 
+    /* Explicit box: user-agent button padding differs per engine (Firefox 4px, others 6px). */
     :where([data-part="close"]) {
       display: block;
       margin-block-start: 0.5em;
       margin-inline-start: auto;
-      font: inherit;
+      padding-block: 0.125em;
+      padding-inline: 0.625em;
     }
 
     /* Next to the button, flipping when it would leave the viewport. Only where the popover's implicit

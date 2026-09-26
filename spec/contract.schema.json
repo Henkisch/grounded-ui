@@ -279,6 +279,30 @@
         "type": "string"
       },
       "$comment": "must equal the set of var(--grounded-*) used in the component CSS"
+    },
+    "knownDifferences": {
+      "type": "array",
+      "$comment": "Where the component can't look the same in every engine (scripts/consistency.mjs), and why.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "part",
+          "reason"
+        ],
+        "properties": {
+          "part": {
+            "type": "string"
+          },
+          "property": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
     }
   },
   "$defs": {

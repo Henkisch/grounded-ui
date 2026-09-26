@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "node ../scripts/budget.mjs >/dev/null && node scripts/generate.mjs",
+    "predev": "node ../scripts/budget.mjs >/dev/null && node ../scripts/consistency.mjs >/dev/null && node scripts/generate.mjs",
     "dev": "blume dev",
-    "prebuild": "node ../scripts/budget.mjs >/dev/null && node scripts/generate.mjs",
+    "prebuild": "node ../scripts/budget.mjs >/dev/null && node ../scripts/consistency.mjs >/dev/null && node scripts/generate.mjs",
     "build": "blume build",
     "doctor": "blume doctor",
     "preview": "blume preview",
