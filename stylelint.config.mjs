@@ -20,7 +20,7 @@ export default {
     // Logical properties, no assumed writing direction.
     'csstools/use-logical': ['always', { except: ['float'] }],
 
-    // Styling hooks only on data-component / data-part / data-variant. Class attribute belongs to the site.
+    // Styling hooks only on data-gui / data-gui-part / data-gui-variant. Class attribute belongs to the site.
     'selector-max-class': 0,
     'selector-max-id': 0,
     // Element selectors only inside :where()/:is()/:not() so they carry zero specificity and never go global.

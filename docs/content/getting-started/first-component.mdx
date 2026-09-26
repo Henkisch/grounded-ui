@@ -8,13 +8,13 @@ description: Copy a text field into a page, check it against the contract, then 
 Pick an example from the [text field](/components/text-field) page and paste it into your template, or into an HTML block in your CMS:
 
 ```html
-<div data-component="text-field">
-  <label data-part="label" for="email">Email</label>
-  <input data-part="control" type="email" id="email" name="email" autocomplete="email">
+<div data-gui="text-field">
+  <label data-gui-part="label" for="email">Email</label>
+  <input data-gui-part="control" type="email" id="email" name="email" autocomplete="email">
 </div>
 ```
 
-`data-component` and `data-part` are the styling hooks. The `class` attribute is yours: add your own classes or Tailwind utilities freely.
+`data-gui` and `data-gui-part` are the styling hooks. The `class` attribute is yours: add your own classes or Tailwind utilities freely.
 
 ## 2. Keep the ids unique
 

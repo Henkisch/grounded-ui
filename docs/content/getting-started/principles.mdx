@@ -8,7 +8,7 @@ sidebar:
 ## Rules for all code
 
 - State is visible in the DOM, native first. JS never touches classes. CSS never requires JS.
-- Styling hooks only on `data-component`, `data-part` and `data-variant`. The class attribute belongs to the site.
+- Styling hooks only on `data-gui`, `data-gui-part` and `data-gui-variant`. The class attribute belongs to the site.
 - Everything in `@layer` and `@scope`, `:where()` for zero specificity. No global reset, no bare element selectors.
 - No colour values. Only `currentColor`, `inherit` or a custom property.
 - `em` and `lh`, not `px`. Logical properties.
@@ -19,7 +19,7 @@ stylelint enforces these rules on every build.
 ## Layer order
 
 ```css
-@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
+@layer gui.core, gui.components, gui.styled, gui.warnings;
 ```
 
 The order is declared first in `core.css`, because some platforms aggregate and reorder CSS. The site's own CSS sits outside the layers and always wins, without `!important`.
