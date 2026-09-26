@@ -39,4 +39,13 @@ export default {
       },
     ],
   },
+  overrides: [
+    {
+      // The styled look may use OKLCH for the one chromatic default (the error colour). Base stays colour-free.
+      files: ['reference/**/*.styled.css'],
+      rules: {
+        'function-disallowed-list': ['rgb', 'rgba', 'hsl', 'hsla', 'hwb', 'lab', 'lch', 'oklab', 'color'],
+      },
+    },
+  ],
 };
