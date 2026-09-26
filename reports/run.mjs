@@ -17,8 +17,9 @@ if (!impl) throw new Error('usage: node reports/run.mjs <implementation-folder>'
 const dir = new URL(impl + '/', import.meta.url).pathname;
 const config = parse(readFileSync(join(dir, 'report.yaml'), 'utf8'));
 // The installed package's version, or the latest published one when only live pages are tested.
-let version;
-try {
+// report.yaml may pin `version` (e.g. a WordPress plugin or a live site with no npm package).
+let version = config.version;
+if (!version) try {
   version = JSON.parse(readFileSync(require.resolve(`${config.package}/package.json`), 'utf8')).version;
 } catch {
   version = execFileSync('npm', ['view', config.package, 'version'], { encoding: 'utf8' }).trim();
