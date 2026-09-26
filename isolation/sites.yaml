@@ -1,0 +1,34 @@
+# Ten public pages typical of agency and CMS work. CMS/theme from the generator meta or asset paths (probe.mjs).
+# Each page gets Grounded UI's CSS added and the reference markup pasted into its main content area; nothing of
+# the site is removed.
+sites:
+  - id: elementor
+    url: https://elementor.com/
+    cms: WordPress 7.0.6 + Elementor (the builder's own site)
+  - id: divi
+    url: https://www.elegantthemes.com/preview/Divi/
+    cms: WordPress + Divi 4.27.9 (official demo)
+  - id: astra
+    url: https://wpastra.com/
+    cms: WordPress + Astra + Elementor 4.3.1
+  - id: generatepress
+    url: https://generatepress.com/
+    cms: WordPress 7.1.2 + GeneratePress
+  - id: bootstrap3
+    url: https://getbootstrap.com/docs/3.4/examples/jumbotron/
+    cms: Bootstrap 3.4 (official example, the base of many older themes)
+  - id: twentytwentyfive
+    url: https://wp-themes.com/twentytwentyfive/
+    cms: WordPress 7.2-alpha, Twenty Twenty-Five (default block theme)
+  - id: olivero
+    url: http://127.0.0.1:8899/
+    cms: Drupal 11.4.7, Olivero (local standard-profile install from reports/drupal/sandbox; no public Olivero site found)
+  - id: lund
+    url: https://www.lund.se/
+    cms: Sitevision + Bootstrap (Lunds kommun)
+  - id: uppsala
+    url: https://www.uppsala.se/
+    cms: EPiServer CMS + Bootstrap (Uppsala kommun)
+  - id: krisinformation
+    url: https://www.krisinformation.se/
+    cms: Custom .NET CMS (Krisinformation.se, MSB)
