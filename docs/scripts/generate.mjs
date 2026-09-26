@@ -78,7 +78,9 @@ for (const [order, impl] of impls.entries()) {
   const readme = read('README.md');
   const title = readme.match(/^# (.+?)(?: —.*)?$/m)?.[1] ?? impl;
   const tables = readdirSync(join(reportsDir, impl)).filter((f) => f.endsWith('.md') && f !== 'README.md').sort()
-    .map((f) => read(f).replace(/^# (.+)$/m, '## $1').replace(/^## (TF|DG)-/gm, '### $1-'));
+    .map((f) => read(f).replace(/^# (.+)$/m, '## $1').replace(/^## (TF|DG)-/gm, '### $1-')
+      // Table cells quote markup (<div class=…>, <dialog>): escape it so MDX reads text, not JSX.
+      .replace(/^\|.*$/gm, (row) => row.replace(/[{}<>]/g, (c) => ({ '{': '&#123;', '}': '&#125;', '<': '&lt;', '>': '&gt;' })[c])));
   const body = readme.replace(/^# .+\n/, '').replace(/`([a-z-]+)\.md` is generated;/, 'The tables below are generated;');
   writeFileSync(join(out.reports, `${impl}.mdx`), [
     ...frontmatter({ title, description: `Grounded UI contracts run against ${title}'s published examples.`, sidebar: { order: order + 1 } }),
