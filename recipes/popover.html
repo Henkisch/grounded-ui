@@ -1,0 +1,35 @@
+<style>
+  .demo { min-block-size: 12em; }
+  .demo p { margin: 0; max-inline-size: 30em; }
+  .demo button {
+    inline-size: 1.75em; block-size: 1.75em; padding: 0;
+    font: inherit; font-weight: 700; line-height: 1;
+    border: 1px solid color-mix(in oklab, CanvasText 40%, Canvas);
+    border-radius: 50%;
+    background: Canvas; color: CanvasText; cursor: pointer;
+  }
+  .demo button:focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
+  .tip {
+    max-inline-size: min(100vw - 2em, 18em);
+    padding: 0.75em 1em;
+    color: CanvasText;
+    background: Canvas;
+    border: 1px solid color-mix(in oklab, CanvasText 14%, Canvas);
+    border-radius: 0.5em;
+    box-shadow: 0 0.75em 1.5em -0.5em oklch(0% 0 0 / 0.25);
+    opacity: 0;
+    translate: 0 -0.25em;
+    transition: opacity 150ms, translate 150ms, overlay 150ms allow-discrete, display 150ms allow-discrete;
+  }
+  .tip:popover-open { opacity: 1; translate: 0 0; @starting-style { opacity: 0; translate: 0 -0.25em; } }
+  @supports (position-anchor: auto) {
+    .tip { inset: auto; margin: 0.5em 0 0; position-area: block-end span-inline-end; position-try-fallbacks: flip-block, flip-inline; }
+  }
+  @media (prefers-reduced-motion: reduce) { .tip { transition-duration: 0s; } }
+</style>
+<div class="demo">
+  <p>Invoices go to your organisation number
+    <button type="button" commandfor="tip-1" command="toggle-popover" aria-label="About the organisation number">i</button>
+    <span id="tip-1" popover class="tip">Ten digits, found on the registration certificate from Bolagsverket.</span>
+    unless you choose another address.</p>
+</div>

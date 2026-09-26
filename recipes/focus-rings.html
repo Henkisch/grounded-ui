@@ -1,0 +1,23 @@
+<style>
+  .demo { display: grid; gap: 1em; }
+  .row { display: flex; flex-wrap: wrap; gap: 1em; align-items: center; }
+  .btn {
+    font: inherit; min-block-size: 2.75em; padding: 0.5em 1em; border-radius: 0.375em; cursor: pointer;
+    border: 1px solid color-mix(in oklab, CanvasText 40%, Canvas); background: Canvas; color: CanvasText;
+  }
+  .outline:focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
+  .soft:focus-visible { outline: 2px solid transparent; box-shadow: 0 0 0 2px Canvas, 0 0 0 4px CanvasText; }
+  .removed:focus { outline: 0; }
+  input { font: inherit; padding: 0.5em 0.75em; border: 1px solid color-mix(in oklab, CanvasText 40%, Canvas); border-radius: 0.375em; background: Canvas; color: CanvasText; }
+  input:focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
+  .note { margin: 0; font-size: 0.875em; color: color-mix(in oklab, CanvasText 60%, Canvas); }
+</style>
+<div class="demo">
+  <p class="note">Press Tab to move through the controls.</p>
+  <div class="row">
+    <button type="button" class="btn outline">Outline ring</button>
+    <button type="button" class="btn soft">Box-shadow ring</button>
+    <button type="button" class="btn removed">Outline removed (don't)</button>
+  </div>
+  <label>Search <input type="search" name="q"></label>
+</div>

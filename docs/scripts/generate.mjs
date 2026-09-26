@@ -5,22 +5,25 @@
 //   docs/content/examples/<name>.mdx      one page per examples/<name>.html
 //   docs/content/_generated/scorecard.mdx the front page's receipts
 //   docs/content/reports/<impl>.mdx        conformance reports from reports/<impl>/ (README + generated tables)
+//   docs/content/recipes/<slug>.mdx       CSS recipes from recipes/<slug>.md (+ optional <slug>.html demo)
 // Run after `node scripts/budget.mjs` (the scorecard reads dist/sizes.json).
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, rmSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadContracts } from '../../conformance/src/index.mjs';
 import { componentPage } from './lib/component-page.mjs';
 import { previewTabs, usedComponents, writeDemo } from './lib/demos.mjs';
-import { frontmatter } from './lib/mdx.mjs';
+import { cell, esc, frontmatter } from './lib/mdx.mjs';
+import { parse } from 'yaml';
+import { features } from 'web-features';
 import { scorecards, scorecardOverview } from './lib/scorecard.mjs';
 
 const repo = new URL('../..', import.meta.url).pathname;
 const docs = join(repo, 'docs');
 const pub = join(docs, 'public');
-const out = { components: join(docs, 'content', 'components'), examples: join(docs, 'content', 'examples'), generated: join(docs, 'content', '_generated'), reports: join(docs, 'content', 'reports') };
+const out = { components: join(docs, 'content', 'components'), examples: join(docs, 'content', 'examples'), generated: join(docs, 'content', '_generated'), reports: join(docs, 'content', 'reports'), recipes: join(docs, 'content', 'recipes') };
 
 for (const dir of [join(pub, 'grounded'), join(pub, 'demo'), ...Object.values(out)]) rmSync(dir, { recursive: true, force: true });
-for (const dir of [join(pub, 'demo', 'examples'), ...Object.values(out)]) mkdirSync(dir, { recursive: true });
+for (const dir of [join(pub, 'demo', 'examples'), join(pub, 'demo', 'recipes'), ...Object.values(out)]) mkdirSync(dir, { recursive: true });
 cpSync(join(repo, 'reference'), join(pub, 'grounded'), { recursive: true });
 
 const contracts = loadContracts(join(repo, 'contracts'));
@@ -89,3 +92,68 @@ for (const [order, impl] of impls.entries()) {
   console.log(`docs: report ${impl}`);
 }
 writeFileSync(join(out.reports, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Conformance reports", order: 4 });\n`);
+
+// CSS recipes: recipes/<slug>.md (frontmatter: title, description, order, features = web-features ids) plus an
+// optional recipes/<slug>.html demo: a standalone fragment with its own <style>, no Grounded UI CSS. The demo
+// lands where the body says {/* demo */} (else after the intro); browser support is read from web-features.
+const recipesDir = join(repo, 'recipes');
+const recipeFiles = existsSync(recipesDir) ? readdirSync(recipesDir).filter((f) => f.endsWith('.md')).sort() : [];
+for (const fileName of recipeFiles) {
+  const slug = fileName.replace(/\.md$/, '');
+  const source = readFileSync(join(recipesDir, fileName), 'utf8');
+  const [, head, body] = source.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/) ?? [];
+  if (!head) throw new Error(`recipes/${fileName}: missing frontmatter`);
+  const meta = parse(head);
+  const demoPath = join(recipesDir, `${slug}.html`);
+  let demo = '';
+  if (existsSync(demoPath)) {
+    const markup = readFileSync(demoPath, 'utf8').trim();
+    writeFileSync(join(pub, 'demo', 'recipes', `${slug}.html`), recipeShell(meta.title, markup));
+    const lines = markup.split('\n').length;
+    demo = [
+      '<Tabs sync={false} hash={false}>',
+      '<Tab title="Result">', '',
+      `<iframe data-demo src="/demo/recipes/${slug}.html" title="${esc(meta.title)} recipe" loading="lazy" height="${Math.min(640, 80 + lines * 6)}" style={{ inlineSize: '100%', border: 0 }}></iframe>`,
+      '', '</Tab>',
+      '<Tab title="Code">', '', '```html', markup, '```', '', '</Tab>',
+      '</Tabs>',
+    ].join('\n');
+  }
+  const support = (meta.features ?? []).map((id) => {
+    const f = features[id];
+    if (!f) throw new Error(`recipes/${fileName}: unknown web-features id "${id}"`);
+    const { baseline, baseline_low_date: since, support: s } = f.status;
+    const status = baseline === 'high' ? 'Widely available' : baseline === 'low' ? `Newly available (${since})` : 'Limited';
+    return `| [${cell(f.name)}](https://web-platform-dx.github.io/web-features-explorer/features/${id}/) | ${status} | ${s.chrome ?? '—'} | ${s.firefox ?? '—'} | ${s.safari ?? '—'} |`;
+  });
+  const text = body.includes('{/* demo */}') ? body.replace('{/* demo */}', demo) : body.replace(/\n\n/, `\n\n${demo}\n\n`);
+  writeFileSync(join(out.recipes, `${slug}.mdx`), [
+    ...frontmatter({ title: meta.title, description: meta.description ?? '', sidebar: { order: meta.order ?? 99 } }),
+    `{/* Generated from recipes/${fileName} by docs/scripts/generate.mjs. */}`, '',
+    text.trim(), '',
+    ...(support.length ? ['## Browser support', '', 'From the [web-features](https://web-platform-dx.github.io/web-features/) data.', '', '| Feature | Baseline | Chrome | Firefox | Safari |', '| --- | --- | --- | --- | --- |', ...support, ''] : []),
+    demo ? '<script src="/demo-frame.js" type="module"></script>\n' : '',
+  ].join('\n'));
+  console.log(`docs: recipe ${slug}`);
+}
+if (recipeFiles.length) writeFileSync(join(out.recipes, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "CSS recipes", order: 2.5 });\n`);
+
+function recipeShell(title, markup) {
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${title}</title>
+<meta name="color-scheme" content="light dark">
+<style>
+  :root { color-scheme: light dark; color: CanvasText; }
+  body { margin: 0.5rem; font: 1rem/1.5 system-ui, sans-serif; }
+</style>
+</head>
+<body>
+${markup}
+</body>
+</html>
+`;
+}

@@ -1,0 +1,24 @@
+<style>
+  .demo { display: grid; gap: 0.75em; }
+  .switch { display: flex; gap: 0.75em; align-items: center; }
+    .switch input {
+      appearance: none; font: inherit; inline-size: 2.5em; block-size: 1.5em; margin: 0; flex: none;
+      border: 2px solid color-mix(in oklab, CanvasText 60%, Canvas); border-radius: 1em; background: Canvas;
+      display: inline-grid; align-items: center; padding: 0.125em;
+    }
+    .switch input::before {
+      content: ""; inline-size: 1em; block-size: 1em; border-radius: 50%;
+      background: color-mix(in oklab, CanvasText 60%, Canvas);
+      transition: translate 150ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    .switch input:checked { background: CanvasText; border-color: CanvasText; }
+    .switch input:checked::before { background: Canvas; translate: 1em 0; }
+    .switch input:disabled { opacity: 0.5; cursor: not-allowed; }
+  .switch input:focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { .switch input::before { transition: none; } }
+</style>
+<div class="demo">
+  <label class="switch"><input type="checkbox" role="switch" switch checked> Dark mode</label>
+  <label class="switch"><input type="checkbox" role="switch" switch> Email notifications</label>
+  <label class="switch"><input type="checkbox" role="switch" switch disabled> Beta features (unavailable)</label>
+</div>

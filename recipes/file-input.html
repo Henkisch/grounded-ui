@@ -1,0 +1,40 @@
+<style>
+  .upload { display: grid; gap: 0.5em; max-inline-size: 28em; }
+  .upload label { font-weight: 600; }
+  .upload .hint { margin: 0; font-size: 0.875em; color: color-mix(in oklab, CanvasText 55%, Canvas); }
+
+  /* The input itself is the drop zone: make its box big and visible. */
+  .upload input[type="file"] {
+    font: inherit;
+    color: inherit;
+    box-sizing: border-box;
+    inline-size: 100%;
+    padding: 1.5em 1em;
+    border: 1px dashed color-mix(in oklab, CanvasText 40%, Canvas);
+    border-radius: 0.5em;
+    background: color-mix(in oklab, CanvasText 3%, Canvas);
+    cursor: pointer;
+  }
+
+  /* The button part, in every current browser. */
+  .upload input[type="file"]::file-selector-button {
+    font: inherit;
+    font-weight: 600;
+    margin-inline-end: 1em;
+    padding: 0.5em 1em;
+    color: Canvas;
+    background: CanvasText;
+    border: 0;
+    border-radius: 0.375em;
+    cursor: pointer;
+  }
+
+  .upload input[type="file"]:hover { background: color-mix(in oklab, CanvasText 6%, Canvas); }
+  .upload input[type="file"]:focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
+</style>
+
+<div class="upload">
+  <label for="attachment">Attach a photo</label>
+  <p class="hint" id="attachment-hint">JPEG or PNG, up to 10 MB. Drop the file here or choose one.</p>
+  <input type="file" id="attachment" name="attachment" accept="image/jpeg,image/png" aria-describedby="attachment-hint">
+</div>

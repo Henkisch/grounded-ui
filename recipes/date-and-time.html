@@ -1,0 +1,35 @@
+<style>
+  .dates { display: grid; gap: 1em; max-inline-size: 22em; }
+  .dates label { display: grid; gap: 0.25em; font-weight: 600; }
+
+  .dates input {
+    font: inherit;
+    font-weight: 400;
+    color: inherit;
+    padding: 0.5em 0.75em;
+    background: Canvas;
+    border: 1px solid color-mix(in oklab, CanvasText 40%, Canvas);
+    border-radius: 0.375em;
+    /* Same height as a text field: date inputs are taller in Chromium and Safari. */
+    block-size: 2.625em;
+    /* Same width in every browser: their intrinsic widths differ a lot. */
+    inline-size: 100%;
+  }
+
+  /* The picker icon and popup follow color-scheme: without it, Chromium's icon stays black in dark mode. */
+  .dates input { color-scheme: light dark; }
+
+  /* Chromium only: the calendar icon. */
+  .dates input::-webkit-calendar-picker-indicator { cursor: pointer; }
+
+  /* An empty required field matches :invalid; use it to dim the format hint until a date is set. */
+  .dates input:required:invalid:not(:focus) { color: color-mix(in oklab, CanvasText 55%, Canvas); }
+
+  .dates input:focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
+</style>
+
+<div class="dates">
+  <label>Moving date <input type="date" name="moving" required></label>
+  <label>Pickup time <input type="time" name="pickup" value="09:30"></label>
+  <label>Appointment <input type="datetime-local" name="appointment" value="2026-10-05T14:00"></label>
+</div>

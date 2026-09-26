@@ -1,0 +1,58 @@
+<style>
+  .bars { display: grid; gap: 1.25em; max-inline-size: 24em; }
+  .bars label { display: grid; gap: 0.5em; font-weight: 600; }
+  .bars .ends { display: flex; justify-content: space-between; font-size: 0.875em; font-weight: 400; color: color-mix(in oklab, CanvasText 55%, Canvas); }
+
+  /* Shared box for both. */
+  .bars :is(progress, meter) {
+    appearance: none;
+    inline-size: 100%;
+    block-size: 0.625em;
+    border: 0;
+    border-radius: 1em;
+    overflow: hidden;
+    background: color-mix(in oklab, CanvasText 15%, Canvas); /* Firefox: the empty track */
+  }
+
+  /* progress, Chromium and Safari: track and value. */
+  .bars progress::-webkit-progress-bar { background: color-mix(in oklab, CanvasText 15%, Canvas); }
+  .bars progress::-webkit-progress-value { background: CanvasText; border-radius: 1em; }
+  /* progress, Firefox: the value. */
+  .bars progress::-moz-progress-bar { background: CanvasText; border-radius: 1em; }
+
+  /* Indeterminate (no value): after the reset, Chromium and Safari show an empty track and Firefox a full bar.
+     Draw a moving band on the element itself and make the engine's own bars transparent. */
+  .bars progress:indeterminate {
+    background: linear-gradient(90deg, transparent 0 35%, CanvasText 35% 65%, transparent 65%) 0 0 / 250% 100% no-repeat,
+                color-mix(in oklab, CanvasText 15%, Canvas);
+    animation: bars-busy 1.4s linear infinite;
+  }
+  .bars progress:indeterminate::-webkit-progress-bar { background: transparent; }
+  .bars progress:indeterminate::-moz-progress-bar { background: transparent; }
+  @keyframes bars-busy { from { background-position: 100% 0, 0 0; } to { background-position: 0% 0, 0 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .bars progress:indeterminate { animation: none; background-position: 50% 0, 0 0; }
+  }
+
+  /* meter, Chromium and Safari: track, then one pseudo-element per state. */
+  .bars meter::-webkit-meter-bar { background: color-mix(in oklab, CanvasText 15%, Canvas); border: 0; block-size: 0.625em; border-radius: 1em; }
+  .bars meter::-webkit-meter-optimum-value { background: color-mix(in oklab, oklch(55% 0.13 150) 80%, CanvasText); }
+  .bars meter::-webkit-meter-suboptimum-value { background: color-mix(in oklab, oklch(70% 0.15 75) 80%, CanvasText); }
+  .bars meter::-webkit-meter-even-less-good-value { background: color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText); }
+  /* meter, Firefox: one bar, state as a pseudo-class on the meter. */
+  .bars meter::-moz-meter-bar { background: color-mix(in oklab, oklch(55% 0.13 150) 80%, CanvasText); }
+  .bars meter:-moz-meter-sub-optimum::-moz-meter-bar { background: color-mix(in oklab, oklch(70% 0.15 75) 80%, CanvasText); }
+  .bars meter:-moz-meter-sub-sub-optimum::-moz-meter-bar { background: color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText); }
+</style>
+
+<div class="bars">
+  <label>Uploading report.pdf <progress value="64" max="100">64 %</progress></label>
+  <label>Checking your file <progress>Checking…</progress></label>
+  <label>Storage used: 3.1 of 5 GB
+    <meter min="0" max="5" low="3" high="4.5" optimum="1" value="3.1">3.1 GB</meter>
+    <span class="ends"><span>0 GB</span><span>5 GB</span></span>
+  </label>
+  <label>Storage used: 4.8 of 5 GB
+    <meter min="0" max="5" low="3" high="4.5" optimum="1" value="4.8">4.8 GB</meter>
+  </label>
+</div>
