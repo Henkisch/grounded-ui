@@ -136,7 +136,7 @@ for (const fileName of recipeFiles) {
   ].join('\n'));
   console.log(`docs: recipe ${slug}`);
 }
-if (recipeFiles.length) writeFileSync(join(out.recipes, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "CSS recipes", order: 2.5 });\n`);
+if (recipeFiles.length) writeFileSync(join(out.recipes, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "CSS recipes", order: 3.5 });\n`);
 
 function recipeShell(title, markup) {
   return `<!doctype html>
