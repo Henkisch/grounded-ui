@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-// Self-conformance: Grounded UI's own fixtures against Grounded UI's own contracts, in all three engines.
+// Self-conformance: Grounded UI's own markup against Grounded UI's own contracts, in all three engines.
 export default defineConfig({
   testDir: './test',
   reporter: process.env.CI ? 'github' : 'list',

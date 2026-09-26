@@ -11,10 +11,10 @@ import { cell, code, esc, frontmatter, table, typeTable } from './mdx.mjs';
 import { previewTabs, writeDemo } from './demos.mjs';
 import { scorecardBadges } from './scorecard.mjs';
 
-// Every var(--grounded-*, fallback) in a stylesheet, with its fallback (balanced parens).
+// Every component token var(--gui-<slug>-*, fallback) in a stylesheet, with its fallback (balanced parens).
 function cssDefaults(css) {
   const found = {};
-  for (const m of css.matchAll(/var\((--grounded-[a-z0-9-]+)\s*,\s*/g)) {
+  for (const m of css.matchAll(/var\((--gui-[a-z0-9-]+)\s*,\s*/g)) {
     let depth = 1;
     let i = m.index + m[0].length;
     const start = i;
@@ -23,7 +23,9 @@ function cssDefaults(css) {
   }
   return found;
 }
-const cssType = (v) => (/\d(ms|s)$/.test(v) ? '<time>' : /\d(em|rem|lh|px|%)?$/.test(v) || /\d(em|lh)\b/.test(v) ? '<length>' : '<color>');
+const innermost = (v) => { const m = v.match(/^var\(--[a-z0-9-]+,\s*(.*)\)$/s); return m ? innermost(m[1]) : v; };
+const cssType = (raw) => { const v = innermost(raw); return typeOf(v); };
+const typeOf = (v) => (/\d(ms|s)$/.test(v) ? '<time>' : /\d(em|rem|lh|px|%)?$/.test(v) || /\d(em|lh)\b/.test(v) ? '<length>' : '<color>');
 
 // Canonical examples first, the rest alphabetically.
 const FIRST = ['minimal', 'basic'];
@@ -34,7 +36,7 @@ const levelBadge = (r) => `<Badge variant="${r.level === 'normative' ? 'accent' 
 
 export function componentPage({ repo, pub, slug, contract: c, order, card }) {
   const referenceDir = join(repo, 'reference');
-  const validDir = join(repo, 'contracts', slug, 'fixtures', 'valid');
+  const validDir = join(repo, 'contracts', slug, 'markup', 'valid');
   const names = readdirSync(validDir).filter((f) => f.endsWith('.html')).map((f) => f.replace(/\.html$/, '')).sort(byImportance);
 
   const examples = names.map((name) => {
@@ -90,7 +92,7 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
     `Add the Grounded UI ${c.title.toLowerCase()} component to this project. It is plain HTML and CSS: add no JavaScript and no framework wrapper.`,
     '',
     `1. Add the core CSS once per page, if the project doesn't have it yet (\`core.css\`), then the component's base CSS (\`${slug}.css\`) and, for the finished look, the styled CSS (\`${slug}.styled.css\`). Put them where the project keeps its stylesheets; order doesn't matter.`,
-    `2. Use this markup. Keep every \`data-component\` and \`data-part\` attribute.${idAttrs.length ? ` Give each copy on a page unique ids, and update the attributes that point at them (${idAttrs.map((a) => `\`${a}\``).join(', ')}).` : ''}`,
+    `2. Use this markup. Keep every \`data-gui\` and \`data-gui-part\` attribute.${idAttrs.length ? ` Give each copy on a page unique ids, and update the attributes that point at them (${idAttrs.map((a) => `\`${a}\``).join(', ')}).` : ''}`,
     '',
     '```html',
     primary.markup.trim(),
@@ -100,7 +102,7 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
     '',
     ...outcome.map((r) => `   - ${r.id}: ${r.description.replace(/<[^>]+>/g, (tag) => `\`${tag}\``)}`),
     '',
-    '4. Theme it only with the `--grounded-*` custom properties, set on the component or an ancestor, never by editing the files.',
+    `4. Theme it only with custom properties, set on the component or an ancestor, never by editing the files: the shared roles \`--gui-border\`, \`--gui-focus\`, \`--gui-danger\`, \`--gui-radius\`, or this component's own \`--gui-${slug}-*\` tokens.`,
     '',
     ...['core.css', `${slug}.css`, `${slug}.styled.css`].flatMap((file, i) => ['```css title="' + file + '"', [css.core, css.base, css.styled][i], '```', '']),
   ];
@@ -146,7 +148,7 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
       '</Step>',
       '<Step title="Paste the markup">',
       '',
-      `Copy the **HTML** tab of the example you picked. Keep the ${code('data-component')} and ${code('data-part')} attributes${idAttrs.length ? `, and make the ids unique per page (${idAttrs.map(code).join(', ')})` : ''}.`,
+      `Copy the **HTML** tab of the example you picked. Keep the ${code('data-gui')} and ${code('data-gui-part')} attributes${idAttrs.length ? `, and make the ids unique per page (${idAttrs.map(code).join(', ')})` : ''}.`,
       '',
       '</Step>',
       '<Step title="Theme it">',
@@ -171,7 +173,7 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
       '',
       ...(c.siteResponsibilities?.length ? [
         ':::warning[Your part]',
-        ...c.siteResponsibilities.map((s) => `- **${cell(s.title)}${s.criterion ? ` (${s.criterion})` : ''}.** ${cell(s.text).replace(/--grounded-[a-z0-9-]+/g, code)}`),
+        ...c.siteResponsibilities.map((s) => `- **${cell(s.title)}${s.criterion ? ` (${s.criterion})` : ''}.** ${cell(s.text).replace(/--gui-[a-z0-9-]+/g, code)}`),
         ':::',
       ] : []),
     ]),
@@ -227,7 +229,7 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
           p.required ? 'Yes' : p.requiredWhen ? `When ${code(p.requiredWhen)}` : 'No',
         ])),
         '',
-        c.domOrder ? `DOM order: ${c.domOrder.map(code).join(' → ')}. In Grounded UI's markup the root carries ${code(`data-component="${slug}"`)} and each part ${code('data-part')}.` : '',
+        c.domOrder ? `DOM order: ${c.domOrder.map(code).join(' → ')}. In Grounded UI's markup the root carries ${code(`data-gui="${slug}"`)} and each part ${code('data-gui-part')}.` : '',
       ]),
       ...item('Attributes', c.attributes?.length && Object.keys(c.anatomy)
         .filter((part) => c.attributes.some((a) => a.on === part))
@@ -240,7 +242,7 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
       ...item('Keyboard', c.keyboard?.length && table(['Key', 'Behavior'], c.keyboard.map((k) => [cell(k.key), cell(k.behavior)]))),
       ...item('States', c.states?.length && table(['State', 'In the DOM', 'CSS hook'], c.states.map((s) => [cell(s.label ?? s.name), s.dom ? code(s.dom) : '—', code(s.hook)]))),
       ...item('Custom properties', [
-        "Set these from the site's own CSS, on the component or any ancestor. No `!important` needed.",
+        "Set these from the site's own CSS, on the component or any ancestor. No `!important` needed. Tokens marked with a role fall back to it (`--gui-border`, `--gui-focus`, `--gui-danger`, `--gui-radius`), so one role value themes every component; set the component token to change only this one.",
         '',
         typeTable(Object.fromEntries(Object.entries(c.customProperties ?? {}).map(([name, description]) => [name, { type: cssType(defaults[name] ?? ''), description, ...(defaults[name] && { default: defaults[name] }) }]))),
       ]),

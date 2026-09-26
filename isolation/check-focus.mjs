@@ -10,7 +10,7 @@ for (const [id, url] of [['divi', 'https://www.elegantthemes.com/preview/Divi/']
   await p.goto(url, { waitUntil: 'domcontentloaded' });
   await p.waitForTimeout(2500);
   await p.addStyleTag({ content: css });
-  await p.evaluate((h) => { const s = document.createElement('section'); s.id = 'gi'; s.style.padding = '2em'; s.innerHTML = h; (document.querySelector('main, article') ?? document.body).prepend(s); s.scrollIntoView({ block: 'center' }); }, read('contracts/text-field/fixtures/valid/with-description.html'));
+  await p.evaluate((h) => { const s = document.createElement('section'); s.id = 'gi'; s.style.padding = '2em'; s.innerHTML = h; (document.querySelector('main, article') ?? document.body).prepend(s); s.scrollIntoView({ block: 'center' }); }, read('contracts/text-field/markup/valid/with-description.html'));
   await p.locator('#gi input').focus();
   await p.keyboard.press('Shift+Tab'); await p.keyboard.press('Tab'); // keyboard focus → :focus-visible
   await p.waitForTimeout(300);

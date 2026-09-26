@@ -1,6 +1,6 @@
 // Grounded UI conformance: test rendered HTML against Grounded UI contracts.
 // Works on any implementation. A binding maps the contract's parts to that implementation's markup;
-// without one, Grounded UI's own hooks (data-component / data-part) are used.
+// without one, Grounded UI's own hooks (data-gui / data-gui-part) are used.
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { createRequire } from 'node:module';
@@ -21,15 +21,15 @@ export function loadContracts(dir = join(repo, 'contracts')) {
   );
 }
 
-/** Grounded UI's own markup: the root carries data-component, parts carry data-part. */
+/** Grounded UI's own markup: the root carries data-gui, parts carry data-gui-part. */
 export function defaultBinding(contract) {
   const parts = Object.keys(contract.anatomy).filter((key) => key !== 'root');
   return {
     component: contract.component,
-    implementation: 'grounded hooks (data-component / data-part)',
-    root: `[data-component="${contract.component}"]`,
-    boundary: '[data-component]',
-    parts: Object.fromEntries(parts.map((part) => [part, `[data-part="${part}"]`])),
+    implementation: 'grounded hooks (data-gui / data-gui-part)',
+    root: `[data-gui="${contract.component}"]`,
+    boundary: '[data-gui]',
+    parts: Object.fromEntries(parts.map((part) => [part, `[data-gui-part="${part}"]`])),
   };
 }
 

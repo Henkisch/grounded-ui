@@ -1,0 +1,9 @@
+<!-- Breaks SL-11: the description id comes before the error id. -->
+<div data-gui="select">
+  <label data-gui-part="label" for="city">City</label>
+  <p data-gui-part="description" id="city-desc">Where you live today.</p>
+  <select data-gui-part="control" id="city" name="city" aria-invalid="true" aria-describedby="city-desc city-error">
+    <option value="">Choose a city</option>
+  </select>
+  <p data-gui-part="error" id="city-error">Choose the city you live in</p>
+</div>

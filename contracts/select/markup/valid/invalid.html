@@ -1,0 +1,17 @@
+<div data-gui="select">
+  <label data-gui-part="label" for="school">School</label>
+  <p data-gui-part="description" id="school-desc">The school your child attends this autumn.</p>
+  <select data-gui-part="control"
+          id="school"
+          name="school"
+          aria-invalid="true"
+          aria-describedby="school-error school-desc">
+    <option value="" selected>Choose a school</option>
+    <option value="ekbacken">Ekbackens skola</option>
+    <option value="solberga">Solberga skola</option>
+  </select>
+  <p data-gui-part="error" id="school-error">
+    <span aria-hidden="true">⚠</span>
+    Choose the school your child attends
+  </p>
+</div>

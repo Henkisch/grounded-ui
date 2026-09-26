@@ -3,14 +3,14 @@
  * Explicit layer order: some platforms aggregate and reorder CSS files,
  * so the order is declared up front. Unlayered site CSS always wins.
  */
-@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
+@layer gui.core, gui.components, gui.styled, gui.warnings;
 
-@layer grounded.core {
-  :where([data-component]) {
+@layer gui.core {
+  :where([data-gui]) {
     box-sizing: border-box;
   }
 
-  :where([data-component] *, [data-component] ::before, [data-component] ::after) {
+  :where([data-gui] *, [data-gui] ::before, [data-gui] ::after) {
     box-sizing: inherit;
   }
 }

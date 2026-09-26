@@ -1,0 +1,7 @@
+<!-- Breaks SL-05: the label part is a span, not a <label>; aria-labelledby still names the control. -->
+<div data-gui="select">
+  <span data-gui-part="label" id="city-label" for="city">City</span>
+  <select data-gui-part="control" id="city" name="city" aria-labelledby="city-label">
+    <option value="malmo">Malmö</option>
+  </select>
+</div>

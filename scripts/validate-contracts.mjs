@@ -18,7 +18,7 @@ const validate = ajv.compile(schema);
 // Standards data, so contracts can't drift from the platform: HTML elements (W3C webref), ARIA (aria-query).
 const htmlElements = new Set(Object.values(await elements.listAll()).flatMap((spec) => spec.elements.map((e) => e.name)));
 const { aria, roles } = ariaQuery;
-const LAYER_ORDER = '@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;';
+const LAYER_ORDER = '@layer gui.core, gui.components, gui.styled, gui.warnings;';
 const IDREF_ATTRS = ['for', 'commandfor', 'aria-labelledby', 'aria-describedby', 'aria-controls'];
 
 let errors = 0;
@@ -89,15 +89,15 @@ for (const slug of slugs) {
       }
     }
     for (const role of rule.test.oneOf ?? []) if (!roles.has(role)) fail(file, `${rule.id}: role "${role}" is not an ARIA role`);
-    if (rule.css && !rule.css.violation.startsWith(`[data-component="${slug}"]`)) {
-      fail(file, `${rule.id} css.violation must start with [data-component="${slug}"]`);
+    if (rule.css && !rule.css.violation.startsWith(`[data-gui="${slug}"]`)) {
+      fail(file, `${rule.id} css.violation must start with [data-gui="${slug}"]`);
     }
-    if (!existsSync(join(contractsDir, slug, 'fixtures', 'broken', `${rule.id}.html`))) {
-      fail(file, `${rule.id} has no fixtures/broken/${rule.id}.html`);
+    if (!existsSync(join(contractsDir, slug, 'markup', 'broken', `${rule.id}.html`))) {
+      fail(file, `${rule.id} has no markup/broken/${rule.id}.html`);
     }
   }
-  for (const broken of htmlFiles(join(contractsDir, slug, 'fixtures', 'broken'))) {
-    if (!ids.has(broken.replace(/\.html$/, ''))) fail(file, `fixtures/broken/${broken} matches no rule`);
+  for (const broken of htmlFiles(join(contractsDir, slug, 'markup', 'broken'))) {
+    if (!ids.has(broken.replace(/\.html$/, ''))) fail(file, `markup/broken/${broken} matches no rule`);
   }
 
   for (const part of contract.domOrder ?? []) if (!parts.has(part)) fail(file, `domOrder "${part}" is not in anatomy`);
@@ -115,32 +115,33 @@ for (const slug of slugs) {
     if (!features[req.feature]) fail(file, `requires "${req.feature}" is not a web-features id`);
   }
 
-  // Reference CSS: layer order in every file; documented custom properties equal the ones used, both ways.
+  // Reference CSS: layer order in every file; documented component tokens (--gui-<slug>-*) equal the ones used,
+  // both ways. Shared roles (--gui-border, --gui-focus, --gui-danger, --gui-radius) are documented once, in Theming.
   const cssFiles = [`${slug}.css`, `${slug}.styled.css`].map((f) => join(root, 'reference', slug, f)).filter(existsSync);
   if (!cssFiles.length) fail(file, `reference/${slug}/${slug}.css missing`);
   for (const cssFile of cssFiles) {
     if (!readFileSync(cssFile, 'utf8').includes(LAYER_ORDER)) fail(file, `${cssFile.split('/').pop()} must repeat ${LAYER_ORDER}`);
   }
-  const used = new Set(cssFiles.flatMap((f) => [...readFileSync(f, 'utf8').matchAll(/var\((--grounded-[a-z0-9-]+)/g)].map((m) => m[1])));
+  const used = new Set(cssFiles.flatMap((f) => [...readFileSync(f, 'utf8').matchAll(new RegExp(`var\\((--gui-${slug}-[a-z0-9-]+)`, 'g'))].map((m) => m[1])));
   const documented = new Set(Object.keys(contract.customProperties ?? {}));
   for (const prop of used) if (!documented.has(prop)) fail(file, `${prop} is used in the ${slug} CSS but not in customProperties`);
   for (const prop of documented) if (!used.has(prop)) fail(file, `${prop} is in customProperties but not used in the ${slug} CSS`);
 
   // Valid fixtures: at least one, and what html-validate can't see (unknown ARIA, dangling id references).
-  const validDir = join(contractsDir, slug, 'fixtures', 'valid');
+  const validDir = join(contractsDir, slug, 'markup', 'valid');
   const valid = htmlFiles(validDir);
-  if (!valid.length) fail(file, 'fixtures/valid/ has no .html files');
+  if (!valid.length) fail(file, 'markup/valid/ has no .html files');
   for (const name of valid) {
     const html = readFileSync(join(validDir, name), 'utf8');
     const htmlIds = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
-    for (const [, attr] of html.matchAll(/\s(aria-[a-z]+)=/g)) if (!aria.has(attr)) fail(file, `fixtures/valid/${name}: ${attr} is not an ARIA attribute`);
-    for (const [, role] of html.matchAll(/\srole="([^"]+)"/g)) if (!roles.has(role)) fail(file, `fixtures/valid/${name}: role "${role}" is not an ARIA role`);
+    for (const [, attr] of html.matchAll(/\s(aria-[a-z]+)=/g)) if (!aria.has(attr)) fail(file, `markup/valid/${name}: ${attr} is not an ARIA attribute`);
+    for (const [, role] of html.matchAll(/\srole="([^"]+)"/g)) if (!roles.has(role)) fail(file, `markup/valid/${name}: role "${role}" is not an ARIA role`);
     for (const [, attr, value] of html.matchAll(new RegExp(`\\s(${IDREF_ATTRS.join('|')})="([^"]+)"`, 'g'))) {
-      for (const ref of value.split(/\s+/)) if (!htmlIds.has(ref)) fail(file, `fixtures/valid/${name}: ${attr}="${ref}" points at no id`);
+      for (const ref of value.split(/\s+/)) if (!htmlIds.has(ref)) fail(file, `markup/valid/${name}: ${attr}="${ref}" points at no id`);
     }
   }
 
-  if (errors === errorsBefore) console.log(`ok   ${file}: ${contract.rules.length} rules, ${valid.length} valid fixtures, contract ${contract.contractVersion}`);
+  if (errors === errorsBefore) console.log(`ok   ${file}: ${contract.rules.length} rules, ${valid.length} valid examples, contract ${contract.contractVersion}`);
 }
 
 if (errors) {

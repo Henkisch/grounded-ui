@@ -1,0 +1,8 @@
+<!-- Breaks SL-09: the description is repeated in aria-description instead of being referenced by id. Screen readers still get it. -->
+<div data-gui="select">
+  <label data-gui-part="label" for="city">City</label>
+  <p data-gui-part="description" id="city-desc">Where you live today.</p>
+  <select data-gui-part="control" id="city" name="city" aria-description="Where you live today.">
+    <option value="malmo">Malmö</option>
+  </select>
+</div>

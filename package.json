@@ -8,7 +8,7 @@
   "files": [
     "reference/**/*.css",
     "contracts/*/contract.yaml",
-    "contracts/*/fixtures/**/*.html",
+    "contracts/*/markup/**/*.html",
     "spec/*.json",
     "conformance/src/*",
     "examples/*.html"
@@ -19,7 +19,7 @@
     "check-deps": "node scripts/check-deps.mjs",
     "budget": "node scripts/budget.mjs",
     "check": "pnpm validate && pnpm lint:css && pnpm lint:html && pnpm check-deps && pnpm budget",
-    "lint:html": "html-validate \"contracts/*/fixtures/valid/*.html\" \"examples/*.html\" \"recipes/*.html\"",
+    "lint:html": "html-validate \"contracts/*/markup/valid/*.html\" \"examples/*.html\" \"recipes/*.html\"",
     "conformance": "playwright test -c conformance/playwright.config.mjs",
     "report": "node reports/run.mjs",
     "consistency": "node scripts/consistency.mjs"

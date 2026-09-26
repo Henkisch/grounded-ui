@@ -80,8 +80,8 @@ rules:
     since: 0.1.0
     test: { kind: count, selector: '{control}', equals: 1 }
     css:
-      violation: '[data-component="select"]:not(:has([data-part="control"]))'
-      message: "SL-01: the field has no [data-part=control]."
+      violation: '[data-gui="select"]:not(:has([data-gui-part="control"]))'
+      message: "SL-01: the field has no [data-gui-part=control]."
     editor: { level: warn }
 
   - id: SL-02
@@ -93,7 +93,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{control}:not(select)' }
     css:
-      violation: '[data-component="select"]:has([data-part="control"]:not(select))'
+      violation: '[data-gui="select"]:has([data-gui-part="control"]:not(select))'
       message: "SL-02: the control must be a <select>."
 
   - id: SL-03
@@ -105,7 +105,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{control}:is([multiple], [size]:not([size="0"], [size="1"]))' }
     css:
-      violation: '[data-component="select"]:has([data-part="control"]:is([multiple], [size]:not([size="0"], [size="1"])))'
+      violation: '[data-gui="select"]:has([data-gui-part="control"]:is([multiple], [size]:not([size="0"], [size="1"])))'
       message: "SL-03: use a checkbox group instead of a multi-select list."
     editor: { level: warn }
 
@@ -118,8 +118,8 @@ rules:
     since: 0.1.0
     test: { kind: count, selector: '{label}', equals: 1 }
     css:
-      violation: '[data-component="select"]:not(:has([data-part="label"]))'
-      message: "SL-04: the field has no [data-part=label]."
+      violation: '[data-gui="select"]:not(:has([data-gui-part="label"]))'
+      message: "SL-04: the field has no [data-gui-part=label]."
     editor: { level: refuse }
 
   - id: SL-05
@@ -131,7 +131,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{label}:not(label)' }
     css:
-      violation: '[data-component="select"]:has([data-part="label"]:not(label))'
+      violation: '[data-gui="select"]:has([data-gui-part="label"]:not(label))'
       message: "SL-05: the label must be a <label>."
 
   - id: SL-06
@@ -144,7 +144,7 @@ rules:
     test: { kind: nonEmptyText, selector: '{label}' }
     css:
       coverage: partial
-      violation: '[data-component="select"] [data-part="label"]:empty'
+      violation: '[data-gui="select"] [data-gui-part="label"]:empty'
       pseudo: before
       message: "SL-06: the label is empty."
     editor: { level: refuse }
@@ -172,7 +172,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{control}:not([name])' }
     css:
-      violation: '[data-component="select"]:has([data-part="control"]:not([name]))'
+      violation: '[data-gui="select"]:has([data-gui-part="control"]:not([name]))'
       message: "SL-08: the control has no name attribute."
     editor: { level: refuse }
 
@@ -198,8 +198,8 @@ rules:
     since: 0.1.0
     test: { kind: invalidHasError, control: '{control}', error: '{error}' }
     css:
-      violation: '[data-component="select"]:has([aria-invalid="true"]):not(:has([data-part="error"]))'
-      message: "SL-10: aria-invalid=true but no [data-part=error]."
+      violation: '[data-gui="select"]:has([aria-invalid="true"]):not(:has([data-gui-part="error"]))'
+      message: "SL-10: aria-invalid=true but no [data-gui-part=error]."
     editor: { level: refuse }
 
   - id: SL-11
@@ -225,7 +225,7 @@ rules:
     test: { kind: nonEmptyText, selector: '{error}' }
     css:
       coverage: partial
-      violation: '[data-component="select"] [data-part="error"]:empty'
+      violation: '[data-gui="select"] [data-gui-part="error"]:empty'
       pseudo: before
       message: "SL-12: the error message is empty."
     editor: { level: warn }
@@ -250,7 +250,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: ':scope:has({label}):has({control}[aria-label])' }
     css:
-      violation: '[data-component="select"]:has([data-part="label"]):has([data-part="control"][aria-label])'
+      violation: '[data-gui="select"]:has([data-gui-part="label"]):has([data-gui-part="control"][aria-label])'
       message: "SL-14: the control has both a <label> and an aria-label."
 
   - id: SL-15
@@ -347,7 +347,7 @@ editor:
 
 # The component's API: the attributes a user writes. Rendered as tables in the docs.
 attributes:
-  - { on: root, name: data-component, type: '"select"', required: true, description: Marks the element as a Grounded UI select. }
+  - { on: root, name: data-gui, type: '"select"', required: true, description: Marks the element as a Grounded UI select. }
   - { on: label, name: for, type: id, required: true, description: The control's id. }
   - { on: control, name: id, type: string, required: true, description: Target for the label's for. }
   - { on: control, name: name, type: string, required: true, description: The form field name sent on submit. }
@@ -360,18 +360,18 @@ attributes:
   - { on: error, name: id, type: string, description: Referenced first in the control's aria-describedby. }
 
 customProperties:
-  --grounded-gap: Space between parts.
-  --grounded-label-color: Label text colour.
-  --grounded-label-weight: Label font weight.
-  --grounded-muted-color: Description, arrow, group label and disabled text colour.
-  --grounded-control-bg: Control and picker background.
-  --grounded-border-color: Control border colour (keep it at least 3:1 against the background).
-  --grounded-border-hover-color: Control border colour on hover.
-  --grounded-control-muted-bg: Background of disabled controls, and of the highlighted option.
-  --grounded-radius: Control and picker corner radius.
-  --grounded-touch-target: Minimum control and option height.
-  --grounded-focus-color: Focus ring colour.
-  --grounded-error-color: Error text and border colour.
-  --grounded-shadow: Picker elevation shadow.
-  --grounded-duration: Hover and picker transition duration.
-  --grounded-easing: Transition easing.
+  --gui-select-gap: Space between parts.
+  --gui-select-label: Label text colour.
+  --gui-select-label-weight: Label font weight.
+  --gui-select-muted: Description, arrow, group label and disabled text colour.
+  --gui-select-control-bg: Control and picker background.
+  --gui-select-border: Control border colour (keep it at least 3:1 against the background).
+  --gui-select-border-hover: Control border colour on hover.
+  --gui-select-control-muted-bg: Background of disabled controls, and of the highlighted option.
+  --gui-select-radius: Control and picker corner radius.
+  --gui-select-touch-target: Minimum control and option height.
+  --gui-select-focus: Focus ring colour.
+  --gui-select-danger: Error text and border colour.
+  --gui-select-shadow: Picker elevation shadow.
+  --gui-select-duration: Hover and picker transition duration.
+  --gui-select-easing: Transition easing.

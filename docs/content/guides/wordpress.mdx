@@ -46,12 +46,12 @@ Paste the markup into a **Custom HTML** block. The block keeps `data-*` attribut
 Point Grounded UI's custom properties at your `theme.json` presets, so a colour change in the Site Editor reaches the components:
 
 ```css
-[data-component] {
-  --grounded-focus-color: var(--wp--preset--color--primary);
-  --grounded-radius: var(--wp--custom--radius, 0.25em);
+:root {
+  --gui-focus: var(--wp--preset--color--primary);
+  --gui-radius: var(--wp--custom--radius, 0.25em);
 }
 ```
 
 ## Heavy themes and page builders
 
-Elementor, Divi and older Bootstrap themes ship aggressive resets. They're usually unlayered, so they win over grounded. If a component looks off, look for a theme rule on bare elements (`input`, `button`, `p`) and scope it away from `[data-component]` in your child theme.
+Elementor, Divi and older Bootstrap themes ship aggressive resets. They're usually unlayered, so they win over grounded. If a component looks off, look for a theme rule on bare elements (`input`, `button`, `p`) and scope it away from `[data-gui]` in your child theme.

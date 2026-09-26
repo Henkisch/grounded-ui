@@ -1,0 +1,6 @@
+<!-- Breaks DG-13: an alert dialog that closes on outside click. -->
+<button type="button" commandfor="d" command="show-modal">Open</button>
+<dialog data-gui="dialog" data-gui-variant="alert" role="alertdialog" id="d" aria-labelledby="d-title" closedby="any">
+  <h2 data-gui-part="title" id="d-title">Delete the draft?</h2>
+  <div data-gui-part="actions"><button type="button" commandfor="d" command="close">Cancel</button></div>
+</dialog>

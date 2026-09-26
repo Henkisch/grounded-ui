@@ -1,0 +1,15 @@
+<button type="button" commandfor="callback" command="show-modal">Request a callback</button>
+
+<dialog data-gui="dialog" id="callback" aria-labelledby="callback-title">
+  <h2 data-gui-part="title" id="callback-title">Request a callback</h2>
+  <form data-gui-part="body" method="dialog">
+    <div data-gui="text-field">
+      <label data-gui-part="label" for="callback-phone">Phone number</label>
+      <input data-gui-part="control" type="tel" id="callback-phone" name="phone" autocomplete="tel">
+    </div>
+    <div data-gui-part="actions">
+      <button type="button" commandfor="callback" command="close">Cancel</button>
+      <button type="submit">Send</button>
+    </div>
+  </form>
+</dialog>

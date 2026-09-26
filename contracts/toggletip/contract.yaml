@@ -90,7 +90,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{trigger}:is([aria-label="i" i], [aria-label="?"], [aria-label="info" i], [aria-label="information" i], [aria-label="more info" i], [aria-label="help" i], [aria-label="more" i])' }
     css:
-      violation: '[data-component="toggletip"] [data-part="trigger"]:is([aria-label="i" i], [aria-label="?"], [aria-label="info" i], [aria-label="help" i])'
+      violation: '[data-gui="toggletip"] [data-gui-part="trigger"]:is([aria-label="i" i], [aria-label="?"], [aria-label="info" i], [aria-label="help" i])'
       message: "TT-03: name the topic, not just \"info\"."
     editor: { level: warn }
 
@@ -104,7 +104,7 @@ rules:
     test: { kind: nonEmptyText, selector: '{content}' }
     css:
       coverage: partial
-      violation: '[data-component="toggletip"] [data-part="content"]:empty'
+      violation: '[data-gui="toggletip"] [data-gui-part="content"]:empty'
       message: "TT-04: the explanation is empty."
     editor: { level: refuse }
 
@@ -117,7 +117,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: ':scope:not(:has({trigger} + {content}))' }
     css:
-      violation: '[data-component="toggletip"]:not(:has([data-part="trigger"] + [data-part="content"]))'
+      violation: '[data-gui="toggletip"]:not(:has([data-gui-part="trigger"] + [data-gui-part="content"]))'
       message: "TT-05: put the explanation directly after the trigger."
 
   - id: TT-06
@@ -139,7 +139,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{trigger}:not(button[type="button"])' }
     css:
-      violation: '[data-component="toggletip"] [data-part="trigger"]:not([type="button"])'
+      violation: '[data-gui="toggletip"] [data-gui-part="trigger"]:not([type="button"])'
       message: "TT-07: the trigger needs type=\"button\"."
 
   - id: TT-08
@@ -151,7 +151,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{content}:not([popover=""], [popover="auto"])' }
     css:
-      violation: '[data-component="toggletip"] [data-part="content"]:not([popover=""], [popover="auto"])'
+      violation: '[data-gui="toggletip"] [data-gui-part="content"]:not([popover=""], [popover="auto"])'
       message: "TT-08: the explanation must be an auto popover."
 
   - id: TT-09
@@ -177,7 +177,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{trigger}:not([command="toggle-popover"])' }
     css:
-      violation: '[data-component="toggletip"] [data-part="trigger"]:not([command="toggle-popover"])'
+      violation: '[data-gui="toggletip"] [data-gui-part="trigger"]:not([command="toggle-popover"])'
       message: "TT-10: use command=\"toggle-popover\"."
 
   - id: TT-11
@@ -200,7 +200,7 @@ wcag:
   - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Button role and a name that names the topic; the browser exposes the expanded state from commandfor" }
 
 siteResponsibilities:
-  - { criterion: "1.4.3", title: Text contrast, text: "The explanation uses the browser's Canvas and CanvasText unless the site sets --grounded-toggletip-bg and --grounded-toggletip-color." }
+  - { criterion: "1.4.3", title: Text contrast, text: "The explanation uses the browser's Canvas and CanvasText unless the site sets --gui-toggletip-bg and --gui-toggletip-color." }
   - { title: Essential information, text: "A toggletip is extra help. Instructions everyone needs belong in the field description or the page, not behind a button." }
   - { criterion: "2.1.1", title: Let Escape through, text: "A site script that cancels every Escape keydown stops Esc from closing the popover." }
   - { title: Older browsers, text: "Browsers without invoker commands ignore the trigger, so the explanation never opens there." }
@@ -215,7 +215,7 @@ editor:
 
 # The component's API: the attributes a user writes. Rendered as tables in the docs.
 attributes:
-  - { on: root, name: data-component, type: '"toggletip"', required: true, description: Marks the element as a Grounded UI toggletip. }
+  - { on: root, name: data-gui, type: '"toggletip"', required: true, description: Marks the element as a Grounded UI toggletip. }
   - { on: trigger, name: type, type: '"button"', required: true, description: Keeps the trigger from submitting a surrounding form. }
   - { on: trigger, name: commandfor, type: id, required: true, description: The explanation's id. }
   - { on: trigger, name: command, type: '"toggle-popover"', required: true, description: Opens and closes the explanation. }
@@ -232,16 +232,16 @@ knownDifferences:
     reason: Firefox places an anchored popover 2px further along than Chromium and WebKit. Near the viewport edge that leaves 2px less room, so a long explanation can wrap onto one more line.
 
 customProperties:
-  --grounded-target-size: Minimum trigger size.
-  --grounded-focus-color: Focus ring colour.
-  --grounded-border-color: Trigger border colour.
-  --grounded-border-hover-color: Trigger border colour on hover and while open.
-  --grounded-toggletip-bg: Explanation background.
-  --grounded-toggletip-color: Explanation text colour.
-  --grounded-toggletip-border-color: Explanation border colour.
-  --grounded-toggletip-width: Maximum explanation width.
-  --grounded-radius: Explanation corner radius.
-  --grounded-shadow: Explanation shadow.
-  --grounded-duration: Open transition duration.
-  --grounded-duration-exit: Close transition duration.
-  --grounded-easing: Open transition easing.
+  --gui-toggletip-target-size: Minimum trigger size.
+  --gui-toggletip-focus: Focus ring colour.
+  --gui-toggletip-border: Trigger border colour.
+  --gui-toggletip-border-hover: Trigger border colour on hover and while open.
+  --gui-toggletip-bg: Explanation background.
+  --gui-toggletip-color: Explanation text colour.
+  --gui-toggletip-content-border: Explanation border colour.
+  --gui-toggletip-width: Maximum explanation width.
+  --gui-toggletip-radius: Explanation corner radius.
+  --gui-toggletip-shadow: Explanation shadow.
+  --gui-toggletip-duration: Open transition duration.
+  --gui-toggletip-duration-exit: Close transition duration.
+  --gui-toggletip-easing: Open transition easing.

@@ -44,4 +44,4 @@ Every interactive element needs a visible focus indicator (WCAG 2.4.7). Style it
 
 ## In Grounded UI
 
-Every Grounded UI control has a 2px `:focus-visible` outline in base CSS, themeable with `--grounded-focus-color`. In the [isolation demo](https://github.com/Henkisch/grounded-ui/tree/mission/isolation), Divi (`:focus { outline: 0 }`) and Astra (`:focus { outline: none !important }`) removed it. Grounded UI never uses `!important`, so site CSS always wins; removing outlines is listed as the site's responsibility in the [text field](/components/text-field) contract.
+Every Grounded UI control has a 2px `:focus-visible` outline in base CSS, themeable with the `--gui-focus` role. In the [isolation demo](https://github.com/Henkisch/grounded-ui/tree/mission/isolation), Divi (`:focus { outline: 0 }`) and Astra (`:focus { outline: none !important }`) removed it. Grounded UI never uses `!important`, so site CSS always wins; removing outlines is listed as the site's responsibility in the [text field](/components/text-field) contract.

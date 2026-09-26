@@ -249,19 +249,19 @@
       "contract": [
         {
           "component": "dialog",
-          "element": "<dialog data-component=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         }
@@ -289,19 +289,19 @@
       "contract": [
         {
           "component": "dialog",
-          "element": "<dialog data-component=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         }
@@ -574,19 +574,19 @@
       "contract": [
         {
           "component": "dialog",
-          "element": "<dialog data-component=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         }
@@ -874,19 +874,19 @@
       "contract": [
         {
           "component": "dialog",
-          "element": "<dialog data-component=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         }
@@ -1103,19 +1103,19 @@
       "contract": [
         {
           "component": "dialog",
-          "element": "<dialog data-component=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         }
@@ -1328,19 +1328,19 @@
       "contract": [
         {
           "component": "dialog",
-          "element": "<dialog data-component=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         }
@@ -1540,19 +1540,19 @@
       "contract": [
         {
           "component": "dialog",
-          "element": "<dialog data-component=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         }
@@ -1809,19 +1809,19 @@
       "contract": [
         {
           "component": "dialog",
-          "element": "<dialog data-component=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         }
@@ -1948,19 +1948,19 @@
       "contract": [
         {
           "component": "dialog",
-          "element": "<dialog data-component=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         }
@@ -2196,19 +2196,19 @@
       "contract": [
         {
           "component": "dialog",
-          "element": "<dialog data-component=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         },
         {
           "component": "text-field",
-          "element": "<div data-component=\"text-field\">",
+          "element": "<div data-gui=\"text-field\">",
           "failed": [],
           "axe": []
         }

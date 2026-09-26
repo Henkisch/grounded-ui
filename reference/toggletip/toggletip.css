@@ -5,26 +5,26 @@
  * For a finished look and placement next to the button, add toggletip.styled.css.
  */
 /* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
-@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
+@layer gui.core, gui.components, gui.styled, gui.warnings;
 
-@layer grounded.components.toggletip {
-  @scope ([data-component="toggletip"]) to ([data-component]) {
+@layer gui.components.toggletip {
+  @scope ([data-gui="toggletip"]) to ([data-gui]) {
     /* WCAG 2.5.8: at least 24 CSS px at 16px text, even for an "i" in running text. */
-    :where([data-part="trigger"], [data-part="close"]) {
-      min-inline-size: var(--grounded-target-size, 1.5em);
-      min-block-size: var(--grounded-target-size, 1.5em);
+    :where([data-gui-part="trigger"], [data-gui-part="close"]) {
+      min-inline-size: var(--gui-toggletip-target-size, 1.5em);
+      min-block-size: var(--gui-toggletip-target-size, 1.5em);
       font: inherit;
     }
 
     /* WCAG 2.4.7: at least 2 CSS px, never removed. */
-    :where([data-part="trigger"], [data-part="close"]):focus-visible {
-      outline: 2px solid var(--grounded-focus-color, currentColor);
+    :where([data-gui-part="trigger"], [data-gui-part="close"]):focus-visible {
+      outline: 2px solid var(--gui-toggletip-focus, var(--gui-focus, currentColor));
       outline-offset: 2px;
     }
 
     /* A hint, not a page: keep lines readable and the box inside a phone screen. */
-    :where([data-part="content"]) {
-      max-inline-size: min(100% - 2em, var(--grounded-toggletip-width, 20em));
+    :where([data-gui-part="content"]) {
+      max-inline-size: min(100% - 2em, var(--gui-toggletip-width, 20em));
     }
   }
 }

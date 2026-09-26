@@ -9,18 +9,18 @@ Back to the basics: accessible, fast and compatible UI components that still loo
 ## Contracts
 
 - Every rule has `level` (`normative`: a standard requires it; `recommended`: our judgement, open to review), `source` (a link) and `rationale`.
-- Test selectors use part tokens (`{label}`, `{control}`, …), never Grounded UI's `data-part` hooks, so a binding can map parts to any implementation's markup. `:scope` is the component root; `{id}` is the root's id. `css.violation` (warnings) uses Grounded UI's hooks.
-- Every rule needs `fixtures/broken/<RULE>.html` failing exactly that rule; declare unavoidable co-failures with `also: <RULE>` in its leading comment. `pnpm conformance` enforces this in three engines.
-- Slug is identical in folder names, `component:` and `data-component`. Roots carry `data-component` only; parts carry `data-part`.
+- Test selectors use part tokens (`{label}`, `{control}`, …), never Grounded UI's `data-gui-part` hooks, so a binding can map parts to any implementation's markup. `:scope` is the component root; `{id}` is the root's id. `css.violation` (warnings) uses Grounded UI's hooks.
+- Every rule needs `markup/broken/<RULE>.html` failing exactly that rule; declare unavoidable co-failures with `also: <RULE>` in its leading comment. `pnpm conformance` enforces this in three engines.
+- Slug is identical in folder names, `component:` and `data-gui`. Roots carry `data-gui` only; parts carry `data-gui-part`.
 - Standards facts come from data packages, never from memory: `web-features` (contract `requires` takes feature ids), `@webref/elements`, `aria-query`, `html-validate`, the Baseline stylelint plugin.
 
 ## Reference CSS
 
 - Everything in the repo is English. Size in `em` and `lh` (rem breaks on themes that set `html { font-size: 62.5% }`).
-- Two files per component: `<slug>.css` (base: only what the contract and accessibility need, layer `grounded.components.<slug>`) and `<slug>.styled.css` (the look, layer `grounded.styled.<slug>`). A rule goes in base only if removing it would break the contract or accessibility.
-- Every file repeats `@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;`; the validator enforces it.
-- Donut scope: `@scope ([data-component="<slug>"]) to ([data-component])`, so a component never styles a nested one.
-- Defaults live only in the `var(--grounded-*, fallback)` fallbacks. Never set tokens on `[data-component]` in Grounded UI CSS: it would block themes set on an ancestor.
+- Two files per component: `<slug>.css` (base: only what the contract and accessibility need, layer `gui.components.<slug>`) and `<slug>.styled.css` (the look, layer `gui.styled.<slug>`). A rule goes in base only if removing it would break the contract or accessibility.
+- Every file repeats `@layer gui.core, gui.components, gui.styled, gui.warnings;`; the validator enforces it.
+- Donut scope: `@scope ([data-gui="<slug>"]) to ([data-gui])`, so a component never styles a nested one.
+- Tokens chain component → role → default: `var(--gui-<slug>-<prop>, var(--gui-<role>, default))`; roles are `--gui-border`, `--gui-focus`, `--gui-danger`, `--gui-radius`, other props have no role. Defaults live only in the last fallback, never set by Grounded UI (not in core either). Never set tokens on `[data-gui]` or `:root` in Grounded UI CSS: it would block themes set on an ancestor.
 - `pnpm check` must pass before committing.
 
 ## Docs (Blume 2)

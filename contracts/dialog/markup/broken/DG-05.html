@@ -1,0 +1,6 @@
+<!-- Breaks DG-05: no aria-labelledby, so the dialog has no accessible name. also: DG-06 -->
+<button type="button" commandfor="d" command="show-modal">Open</button>
+<dialog data-gui="dialog" id="d">
+  <h2 data-gui-part="title" id="d-title">Settings</h2>
+  <div data-gui-part="actions"><button type="button" commandfor="d" command="close">Close</button></div>
+</dialog>

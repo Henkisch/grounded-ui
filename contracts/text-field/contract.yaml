@@ -80,8 +80,8 @@ rules:
     since: 0.1.0
     test: { kind: count, selector: '{control}', equals: 1 }
     css:
-      violation: '[data-component="text-field"]:not(:has([data-part="control"]))'
-      message: "TF-02: the field has no [data-part=control]."
+      violation: '[data-gui="text-field"]:not(:has([data-gui-part="control"]))'
+      message: "TF-02: the field has no [data-gui-part=control]."
     editor: { level: warn }
 
   - id: TF-03
@@ -93,7 +93,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{control}:not(input, textarea)' }
     css:
-      violation: '[data-component="text-field"]:has([data-part="control"]:not(input, textarea))'
+      violation: '[data-gui="text-field"]:has([data-gui-part="control"]:not(input, textarea))'
       message: "TF-03: the control must be an <input> or <textarea>."
 
   - id: TF-04
@@ -105,8 +105,8 @@ rules:
     since: 0.1.0
     test: { kind: count, selector: '{label}', equals: 1 }
     css:
-      violation: '[data-component="text-field"]:not(:has([data-part="label"]))'
-      message: "TF-04: the field has no [data-part=label]."
+      violation: '[data-gui="text-field"]:not(:has([data-gui-part="label"]))'
+      message: "TF-04: the field has no [data-gui-part=label]."
     editor: { level: refuse }
 
   - id: TF-05
@@ -118,7 +118,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{label}:not(label)' }
     css:
-      violation: '[data-component="text-field"]:has([data-part="label"]:not(label))'
+      violation: '[data-gui="text-field"]:has([data-gui-part="label"]:not(label))'
       message: "TF-05: the label must be a <label>."
 
   - id: TF-06
@@ -131,7 +131,7 @@ rules:
     test: { kind: nonEmptyText, selector: '{label}' }
     css:
       coverage: partial
-      violation: '[data-component="text-field"] [data-part="label"]:empty'
+      violation: '[data-gui="text-field"] [data-gui-part="label"]:empty'
       pseudo: before
       message: "TF-06: the label is empty."
     editor: { level: refuse }
@@ -159,7 +159,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{control}:not([name])' }
     css:
-      violation: '[data-component="text-field"]:has([data-part="control"]:not([name]))'
+      violation: '[data-gui="text-field"]:has([data-gui-part="control"]:not([name]))'
       message: "TF-08: the control has no name attribute."
     editor: { level: refuse }
 
@@ -185,8 +185,8 @@ rules:
     since: 0.1.0
     test: { kind: invalidHasError, control: '{control}', error: '{error}' }
     css:
-      violation: '[data-component="text-field"]:has([aria-invalid="true"]):not(:has([data-part="error"]))'
-      message: "TF-10: aria-invalid=true but no [data-part=error]."
+      violation: '[data-gui="text-field"]:has([aria-invalid="true"]):not(:has([data-gui-part="error"]))'
+      message: "TF-10: aria-invalid=true but no [data-gui-part=error]."
     editor: { level: refuse }
 
   - id: TF-11
@@ -212,7 +212,7 @@ rules:
     test: { kind: nonEmptyText, selector: '{error}' }
     css:
       coverage: partial
-      violation: '[data-component="text-field"] [data-part="error"]:empty'
+      violation: '[data-gui="text-field"] [data-gui-part="error"]:empty'
       pseudo: before
       message: "TF-12: the error message is empty."
     editor: { level: warn }
@@ -237,7 +237,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{control}[tabindex]' }
     css:
-      violation: '[data-component="text-field"]:has([data-part="control"][tabindex])'
+      violation: '[data-gui="text-field"]:has([data-gui-part="control"][tabindex])'
       message: "TF-14: the control must not have a tabindex."
 
   - id: TF-15
@@ -249,7 +249,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: ':scope:not(:has({label})):has({control}[placeholder])' }
     css:
-      violation: '[data-component="text-field"]:not(:has([data-part="label"])):has([placeholder])'
+      violation: '[data-gui="text-field"]:not(:has([data-gui-part="label"])):has([placeholder])'
       message: "TF-15: a placeholder does not replace a label."
     editor: { level: warn }
 
@@ -262,7 +262,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: ':scope:has({label}):has({control}[aria-label])' }
     css:
-      violation: '[data-component="text-field"]:has([data-part="label"]):has([data-part="control"][aria-label])'
+      violation: '[data-gui="text-field"]:has([data-gui-part="label"]):has([data-gui-part="control"][aria-label])'
       message: "TF-16: the control has both a <label> and an aria-label."
 
   - id: TF-17
@@ -352,8 +352,8 @@ editor:
 
 # The component's API: the attributes a user writes. Rendered as tables in the docs.
 attributes:
-  - { on: root, name: data-component, type: '"text-field"', required: true, description: Marks the element as a Grounded UI text field. }
-  - { on: root, name: data-variant, type: '"multiline"', description: Multi-line input; use a textarea as the control. }
+  - { on: root, name: data-gui, type: '"text-field"', required: true, description: Marks the element as a Grounded UI text field. }
+  - { on: root, name: data-gui-variant, type: '"multiline"', description: Multi-line input; use a textarea as the control. }
   - { on: label, name: for, type: id, required: true, description: The control's id. }
   - { on: control, name: id, type: string, required: true, description: Target for the label's for. }
   - { on: control, name: name, type: string, required: true, description: The form field name sent on submit. }
@@ -368,17 +368,17 @@ attributes:
   - { on: error, name: id, type: string, description: Referenced first in the control's aria-describedby. }
 
 customProperties:
-  --grounded-gap: Space between parts.
-  --grounded-label-color: Label text colour.
-  --grounded-label-weight: Label font weight.
-  --grounded-muted-color: Description, placeholder and disabled text colour.
-  --grounded-control-bg: Control background.
-  --grounded-border-color: Control border colour (keep it at least 3:1 against the background).
-  --grounded-border-hover-color: Control border colour on hover.
-  --grounded-control-muted-bg: Background of read-only and disabled controls.
-  --grounded-radius: Control corner radius.
-  --grounded-touch-target: Minimum control height.
-  --grounded-focus-color: Focus ring colour.
-  --grounded-error-color: Error text and border colour.
-  --grounded-duration: Hover transition duration.
-  --grounded-easing: Transition easing.
+  --gui-text-field-gap: Space between parts.
+  --gui-text-field-label: Label text colour.
+  --gui-text-field-label-weight: Label font weight.
+  --gui-text-field-muted: Description, placeholder and disabled text colour.
+  --gui-text-field-control-bg: Control background.
+  --gui-text-field-border: Control border colour (keep it at least 3:1 against the background).
+  --gui-text-field-border-hover: Control border colour on hover.
+  --gui-text-field-control-muted-bg: Background of read-only and disabled controls.
+  --gui-text-field-radius: Control corner radius.
+  --gui-text-field-touch-target: Minimum control height.
+  --gui-text-field-focus: Focus ring colour.
+  --gui-text-field-danger: Error text and border colour.
+  --gui-text-field-duration: Hover transition duration.
+  --gui-text-field-easing: Transition easing.

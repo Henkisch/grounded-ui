@@ -62,6 +62,6 @@ Do Grounded UI's text field and dialog work unchanged when pasted into real, hea
 
 - One page per site, one browser (Chromium), desktop width.
 - Olivero runs on a local Drupal install, since no public Olivero site was found.
-- The pasted markup is the reference markup, in English, with the default styled look. A site that sets `--grounded-*` tokens would look closer to itself.
+- The pasted markup is the reference markup, in English, with the default styled look. A site that sets `--gui-*` tokens would look closer to itself.
 
 `probe.mjs` checks candidate sites (CMS hints, bot walls). `check-focus.mjs` takes the focus screenshots.

@@ -8,89 +8,89 @@
  * light or dark colour scheme with no token set. Pure appearance: remove this file and the contract still holds.
  */
 /* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
-@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
+@layer gui.core, gui.components, gui.styled, gui.warnings;
 
-@layer grounded.styled.text-field {
-  @scope ([data-component="text-field"]) to ([data-component]) {
-    :where([data-part="label"]) {
-      font-weight: var(--grounded-label-weight, 600);
-      color: var(--grounded-label-color, inherit);
+@layer gui.styled.text-field {
+  @scope ([data-gui="text-field"]) to ([data-gui]) {
+    :where([data-gui-part="label"]) {
+      font-weight: var(--gui-text-field-label-weight, 600);
+      color: var(--gui-text-field-label, inherit);
     }
 
     /* Description reads as part of the label group: smaller, pulled up towards it. */
-    :where([data-part="description"]) {
-      margin-block-start: calc(var(--grounded-gap, 0.375em) * -0.5);
+    :where([data-gui-part="description"]) {
+      margin-block-start: calc(var(--gui-text-field-gap, 0.375em) * -0.5);
       font-size: 0.875em;
-      color: var(--grounded-muted-color, color-mix(in oklab, CanvasText 55%, Canvas));
+      color: var(--gui-text-field-muted, color-mix(in oklab, CanvasText 55%, Canvas));
     }
 
-    :where([data-part="required-indicator"]) {
-      color: var(--grounded-muted-color, color-mix(in oklab, CanvasText 55%, Canvas));
+    :where([data-gui-part="required-indicator"]) {
+      color: var(--gui-text-field-muted, color-mix(in oklab, CanvasText 55%, Canvas));
     }
 
     /* One border width in every state: states change colour, never geometry. */
-    :where([data-part="control"]) {
+    :where([data-gui-part="control"]) {
       padding-block: 0.5em;
       padding-inline: 0.75em;
-      background: var(--grounded-control-bg, Canvas);
+      background: var(--gui-text-field-control-bg, Canvas);
       border-width: 1px;
       border-style: solid;
-      border-color: var(--grounded-border-color, color-mix(in oklab, CanvasText 40%, Canvas));
-      border-radius: var(--grounded-radius, 0.375em);
+      border-color: var(--gui-text-field-border, var(--gui-border, color-mix(in oklab, CanvasText 40%, Canvas)));
+      border-radius: var(--gui-text-field-radius, var(--gui-radius, 0.375em));
       transition-property: background-color, border-color;
-      transition-duration: var(--grounded-duration, 120ms);
-      transition-timing-function: var(--grounded-easing, cubic-bezier(0.2, 0, 0, 1));
+      transition-duration: var(--gui-text-field-duration, 120ms);
+      transition-timing-function: var(--gui-text-field-easing, cubic-bezier(0.2, 0, 0, 1));
     }
 
-    :where([data-part="control"])::placeholder {
-      color: var(--grounded-muted-color, color-mix(in oklab, CanvasText 55%, Canvas));
+    :where([data-gui-part="control"])::placeholder {
+      color: var(--gui-text-field-muted, color-mix(in oklab, CanvasText 55%, Canvas));
       opacity: 1;
     }
 
     @media (hover: hover) {
-      :where([data-part="control"]):hover:not(:disabled, :read-only, [aria-invalid="true"]) {
-        border-color: var(--grounded-border-hover-color, color-mix(in oklab, CanvasText 65%, Canvas));
+      :where([data-gui-part="control"]):hover:not(:disabled, :read-only, [aria-invalid="true"]) {
+        border-color: var(--gui-text-field-border-hover, color-mix(in oklab, CanvasText 65%, Canvas));
       }
     }
 
     /* Instant, never animated; the site's accent can take over through the token. */
-    :where([data-part="control"]):focus-visible {
-      outline: 2px solid var(--grounded-focus-color, CanvasText);
+    :where([data-gui-part="control"]):focus-visible {
+      outline: 2px solid var(--gui-text-field-focus, var(--gui-focus, CanvasText));
       outline-offset: 2px;
       transition-duration: 0s;
     }
 
-    :where([data-part="control"]):read-only:not(:disabled) {
-      background: var(--grounded-control-muted-bg, color-mix(in oklab, CanvasText 4%, Canvas));
+    :where([data-gui-part="control"]):read-only:not(:disabled) {
+      background: var(--gui-text-field-control-muted-bg, color-mix(in oklab, CanvasText 4%, Canvas));
     }
 
-    :where([data-part="control"]):disabled {
+    :where([data-gui-part="control"]):disabled {
       cursor: not-allowed;
-      color: var(--grounded-muted-color, color-mix(in oklab, CanvasText 55%, Canvas));
-      background: var(--grounded-control-muted-bg, color-mix(in oklab, CanvasText 4%, Canvas));
+      color: var(--gui-text-field-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+      background: var(--gui-text-field-control-muted-bg, color-mix(in oklab, CanvasText 4%, Canvas));
       border-style: dashed;
     }
 
     /* Base draws a 2px border for the non-colour error cue; here the second pixel is an inset shadow,
        so the field keeps its size and the cue stays. */
-    :where([data-part="control"][aria-invalid="true"]) {
+    :where([data-gui-part="control"][aria-invalid="true"]) {
       border-width: 1px;
-      border-color: var(--grounded-error-color, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText));
-      box-shadow: inset 0 0 0 0.0625em var(--grounded-error-color, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText));
+      border-color: var(--gui-text-field-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+      box-shadow: inset 0 0 0 0.0625em var(--gui-text-field-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
     }
 
-    :where([data-part="error"]) {
+    :where([data-gui-part="error"]) {
       font-size: 0.875em;
       font-weight: 500;
-      color: var(--grounded-error-color, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText));
+      color: var(--gui-text-field-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
     }
 
-    :where([data-variant="multiline"] [data-part="control"]) {
+    :where([data-gui-variant="multiline"] [data-gui-part="control"]) {
       resize: vertical;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      :where([data-part="control"]) {
+      :where([data-gui-part="control"]) {
         transition-duration: 0s;
       }
     }

@@ -82,8 +82,8 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: ':scope:not(dialog)' }
     css:
-      violation: '[data-component="dialog"]:not(dialog)'
-      message: "DG-01: data-component=dialog must be a <dialog> element."
+      violation: '[data-gui="dialog"]:not(dialog)'
+      message: "DG-01: data-gui=dialog must be a <dialog> element."
     editor: { level: refuse }
 
   - id: DG-02
@@ -95,7 +95,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: ':scope:not([id])' }
     css:
-      violation: '[data-component="dialog"]:not([id])'
+      violation: '[data-gui="dialog"]:not([id])'
       message: "DG-02: the dialog has no id."
     editor: { level: refuse }
 
@@ -108,8 +108,8 @@ rules:
     since: 0.1.0
     test: { kind: count, selector: '{title}', equals: 1 }
     css:
-      violation: '[data-component="dialog"]:not(:has([data-part="title"]))'
-      message: "DG-03: the dialog has no [data-part=title]."
+      violation: '[data-gui="dialog"]:not(:has([data-gui-part="title"]))'
+      message: "DG-03: the dialog has no [data-gui-part=title]."
     editor: { level: refuse }
 
   - id: DG-04
@@ -122,7 +122,7 @@ rules:
     test: { kind: nonEmptyText, selector: '{title}' }
     css:
       coverage: partial
-      violation: '[data-component="dialog"] [data-part="title"]:empty'
+      violation: '[data-gui="dialog"] [data-gui-part="title"]:empty'
       pseudo: before
       message: "DG-04: the title is empty."
     editor: { level: refuse }
@@ -136,7 +136,7 @@ rules:
     since: 0.1.0
     test: { kind: name, selector: ':scope' }
     css:
-      violation: '[data-component="dialog"]:not([aria-labelledby])'
+      violation: '[data-gui="dialog"]:not([aria-labelledby])'
       message: "DG-05: the dialog has no aria-labelledby, so no accessible name."
 
   - id: DG-06
@@ -183,7 +183,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: ':scope:not(:has([command="close"], form[method="dialog"]))' }
     css:
-      violation: '[data-component="dialog"]:not(:has([command="close"], form[method="dialog"]))'
+      violation: '[data-gui="dialog"]:not(:has([command="close"], form[method="dialog"]))'
       message: "DG-09: the dialog has no close control."
     editor: { level: warn }
 
@@ -196,7 +196,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: ':scope[open]:not(:modal)' }
     css:
-      violation: '[data-component="dialog"][open]:not(:modal)'
+      violation: '[data-gui="dialog"][open]:not(:modal)'
       message: "DG-10: open without show-modal gives a non-modal dialog: page behind stays active."
     editor: { level: warn }
 
@@ -209,7 +209,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: ':scope:is(dialog)[role]:not([role="alertdialog"])' }
     css:
-      violation: '[data-component="dialog"]:is(dialog)[role]:not([role="alertdialog"])'
+      violation: '[data-gui="dialog"]:is(dialog)[role]:not([role="alertdialog"])'
       message: "DG-11: the dialog's role may only be alertdialog."
 
   - id: DG-12
@@ -221,7 +221,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: ':scope[tabindex]' }
     css:
-      violation: '[data-component="dialog"][tabindex]'
+      violation: '[data-gui="dialog"][tabindex]'
       message: "DG-12: the dialog must not have a tabindex."
 
   - id: DG-13
@@ -231,9 +231,9 @@ rules:
     source: https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/
     rationale: An alert interrupts on purpose; closing it on a stray click would skip the decision.
     since: 0.1.0
-    test: { kind: absent, selector: ':scope[data-variant="alert"]:is(:not([role="alertdialog"]), [closedby="any"])' }
+    test: { kind: absent, selector: ':scope[data-gui-variant="alert"]:is(:not([role="alertdialog"]), [closedby="any"])' }
     css:
-      violation: '[data-component="dialog"][data-variant="alert"]:is(:not([role="alertdialog"]), [closedby="any"])'
+      violation: '[data-gui="dialog"][data-gui-variant="alert"]:is(:not([role="alertdialog"]), [closedby="any"])'
       message: "DG-13: alert dialogs need role=alertdialog and must not close on outside click."
 
   - id: DG-14
@@ -276,7 +276,7 @@ wcag:
   - { criterion: "2.3.3", name: Animation from Interactions, level: AAA, how: "Open and close transitions are removed under prefers-reduced-motion" }
 
 siteResponsibilities:
-  - { criterion: "1.4.3", title: Text contrast, text: "The dialog uses the browser's Canvas and CanvasText unless the site sets --grounded-dialog-bg and --grounded-dialog-color." }
+  - { criterion: "1.4.3", title: Text contrast, text: "The dialog uses the browser's Canvas and CanvasText unless the site sets --gui-dialog-bg and --gui-dialog-color." }
   - { criterion: "2.4.7", title: Button focus styles, text: "Trigger and action buttons are the site's own buttons; their focus indicator is the site's responsibility." }
   - { criterion: "2.1.1", title: Let Escape through, text: "A site script that cancels every Escape keydown stops Esc from closing native dialogs. The close button still works." }
   - { criterion: "3.2.2", title: Unexpected dialogs, text: "Open dialogs from a user action only, never on page load." }
@@ -295,27 +295,27 @@ editor:
 
 # The component's API: the attributes a user writes. Rendered as tables in the docs.
 attributes:
-  - { on: root, name: data-component, type: '"dialog"', required: true, description: Marks the element as a Grounded UI dialog. }
+  - { on: root, name: data-gui, type: '"dialog"', required: true, description: Marks the element as a Grounded UI dialog. }
   - { on: root, name: id, type: string, required: true, description: Target for the trigger's commandfor. }
   - { on: root, name: aria-labelledby, type: id, required: true, description: The title's id; gives the dialog its accessible name. }
   - { on: root, name: aria-describedby, type: id, description: "The body's id, when it explains the dialog's purpose." }
   - { on: root, name: closedby, type: '"any" | "closerequest" | "none"', default: '"closerequest"', description: 'What closes the dialog. "any" adds click outside (light dismiss); never use it on alert.' }
   - { on: root, name: role, type: '"alertdialog"', description: Only for the alert variant. }
-  - { on: root, name: data-variant, type: '"alert"', description: Confirmation that interrupts the user. }
+  - { on: root, name: data-gui-variant, type: '"alert"', description: Confirmation that interrupts the user. }
   - { on: trigger, name: commandfor, type: id, required: true, description: The dialog's id. }
   - { on: trigger, name: command, type: '"show-modal"', required: true, description: Opens the dialog as a modal. }
   - { on: close, name: commandfor, type: id, required: true, description: The dialog's id. }
   - { on: close, name: command, type: '"close"', required: true, description: Closes the dialog. }
 
 customProperties:
-  --grounded-dialog-bg: Dialog background.
-  --grounded-dialog-color: Dialog text colour.
-  --grounded-dialog-border-color: Border colour.
-  --grounded-muted-color: Body text colour.
-  --grounded-radius-large: Corner radius.
-  --grounded-shadow: Elevation shadow.
-  --grounded-title-size: Title font size.
-  --grounded-title-weight: Title font weight.
-  --grounded-duration: Open transition duration.
-  --grounded-duration-exit: Close transition duration.
-  --grounded-easing: Open transition easing.
+  --gui-dialog-bg: Dialog background.
+  --gui-dialog-color: Dialog text colour.
+  --gui-dialog-border: Border colour.
+  --gui-dialog-muted: Body text colour.
+  --gui-dialog-radius: Corner radius.
+  --gui-dialog-shadow: Elevation shadow.
+  --gui-dialog-title-size: Title font size.
+  --gui-dialog-title-weight: Title font weight.
+  --gui-dialog-duration: Open transition duration.
+  --gui-dialog-duration-exit: Close transition duration.
+  --gui-dialog-easing: Open transition easing.

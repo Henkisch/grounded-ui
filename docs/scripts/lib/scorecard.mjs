@@ -33,7 +33,7 @@ export async function scorecards(repo, contracts) {
   const page = await (await browser.newContext()).newPage();
   const cards = {};
   for (const [slug, contract] of Object.entries(contracts)) {
-    const dir = join(repo, 'contracts', slug, 'fixtures', 'valid');
+    const dir = join(repo, 'contracts', slug, 'markup', 'valid');
     let checks = 0, passed = 0, axe = 0;
     const fixtures = readdirSync(dir).filter((f) => f.endsWith('.html'));
     for (const file of fixtures) {

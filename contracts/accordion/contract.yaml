@@ -78,7 +78,7 @@ rules:
     test: { kind: name, selector: '{summary}' }
     css:
       coverage: partial
-      violation: '[data-component="accordion"] [data-part="summary"]:empty'
+      violation: '[data-gui="accordion"] [data-gui-part="summary"]:empty'
       pseudo: before
       message: "AC-01: the summary is empty."
     editor: { level: refuse }
@@ -92,7 +92,7 @@ rules:
     since: 0.1.0
     test: { kind: role, selector: '{summary}', oneOf: [button] }
     css:
-      violation: '[data-component="accordion"] [data-part="summary"][role]'
+      violation: '[data-gui="accordion"] [data-gui-part="summary"][role]'
       message: "AC-02: the summary's role is overridden; leave it a button."
 
   - id: AC-03
@@ -104,7 +104,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{summary}:not(details > summary):not([aria-expanded])' }
     css:
-      violation: '[data-component="accordion"] [data-part="summary"]:not(summary):not([aria-expanded])'
+      violation: '[data-gui="accordion"] [data-gui-part="summary"]:not(summary):not([aria-expanded])'
       message: "AC-03: the summary doesn't expose whether it is open."
 
   - id: AC-04
@@ -116,7 +116,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{summary} :is(a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"]))' }
     css:
-      violation: '[data-component="accordion"] [data-part="summary"]:has(a[href], button, input, select, textarea)'
+      violation: '[data-gui="accordion"] [data-gui-part="summary"]:has(a[href], button, input, select, textarea)'
       message: "AC-04: the summary contains a link or control. Move it into the panel."
     editor: { level: refuse }
 
@@ -130,7 +130,7 @@ rules:
     test: { kind: nonEmptyText, selector: '{panel}' }
     css:
       coverage: partial
-      violation: '[data-component="accordion"] [data-part="panel"]:empty'
+      violation: '[data-gui="accordion"] [data-gui-part="panel"]:empty'
       pseudo: before
       message: "AC-05: the panel is empty."
     editor: { level: warn }
@@ -144,7 +144,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{item}:not(details)' }
     css:
-      violation: '[data-component="accordion"] [data-part="item"]:not(details)'
+      violation: '[data-gui="accordion"] [data-gui-part="item"]:not(details)'
       message: "AC-06: the item should be a <details> element."
 
   - id: AC-07
@@ -156,7 +156,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{summary}:not(summary)' }
     css:
-      violation: '[data-component="accordion"] [data-part="summary"]:not(summary)'
+      violation: '[data-gui="accordion"] [data-gui-part="summary"]:not(summary)'
       message: "AC-07: the summary should be a <summary> element."
 
   - id: AC-08
@@ -168,7 +168,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: ':scope:has({item}[name]):has({item}:not([name]))' }
     css:
-      violation: '[data-component="accordion"]:has([data-part="item"][name]):has([data-part="item"]:not([name]))'
+      violation: '[data-gui="accordion"]:has([data-gui-part="item"][name]):has([data-gui-part="item"]:not([name]))'
       message: "AC-08: only some items have a name; give all of them the same name, or none."
     editor: { level: warn }
 
@@ -181,7 +181,7 @@ rules:
     since: 0.1.0
     test: { kind: absent, selector: '{heading}:not({summary} *)' }
     css:
-      violation: '[data-component="accordion"] [data-part="heading"]:not([data-part="summary"] *)'
+      violation: '[data-gui="accordion"] [data-gui-part="heading"]:not([data-gui-part="summary"] *)'
       message: "AC-09: put the heading inside the summary."
 
 wcag:
@@ -210,20 +210,20 @@ editor:
 
 # The component's API: the attributes a user writes. Rendered as tables in the docs.
 attributes:
-  - { on: root, name: data-component, type: '"accordion"', required: true, description: Marks the element as a Grounded UI accordion. }
-  - { on: item, name: data-part, type: '"item"', required: true, description: Marks each details element as an item. }
+  - { on: root, name: data-gui, type: '"accordion"', required: true, description: Marks the element as a Grounded UI accordion. }
+  - { on: item, name: data-gui-part, type: '"item"', required: true, description: Marks each details element as an item. }
   - { on: item, name: name, type: string, description: "The same value on every item makes the accordion exclusive: one open at a time." }
   - { on: item, name: open, type: boolean, description: "Opens the item on load. In an exclusive accordion, only one item may have it." }
-  - { on: summary, name: data-part, type: '"summary"', required: true, description: Marks the summary. }
-  - { on: panel, name: data-part, type: '"panel"', required: true, description: Wraps the item's content after the summary. }
+  - { on: summary, name: data-gui-part, type: '"summary"', required: true, description: Marks the summary. }
+  - { on: panel, name: data-gui-part, type: '"panel"', required: true, description: Wraps the item's content after the summary. }
 
 customProperties:
-  --grounded-border-color: Separator between items.
-  --grounded-radius: Corner radius of the summary's hover and focus area.
-  --grounded-touch-target: Minimum summary height.
-  --grounded-focus-color: Focus ring colour.
-  --grounded-control-muted-bg: Summary background on hover.
-  --grounded-summary-weight: Summary font weight.
-  --grounded-muted-color: Panel text colour.
-  --grounded-duration: Open and close duration.
-  --grounded-easing: Open and close easing.
+  --gui-accordion-border: Separator between items.
+  --gui-accordion-radius: Corner radius of the summary's hover and focus area.
+  --gui-accordion-touch-target: Minimum summary height.
+  --gui-accordion-focus: Focus ring colour.
+  --gui-accordion-control-muted-bg: Summary background on hover.
+  --gui-accordion-summary-weight: Summary font weight.
+  --gui-accordion-muted: Panel text colour.
+  --gui-accordion-duration: Open and close duration.
+  --gui-accordion-easing: Open and close easing.

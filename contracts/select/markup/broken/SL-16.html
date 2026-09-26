@@ -1,0 +1,8 @@
+<!-- Breaks SL-16: aria-labelledby names the control "Home town", so the visible label "City" is not in its name. -->
+<div data-gui="select">
+  <label data-gui-part="label" for="city">City</label>
+  <span id="city-name" hidden>Home town</span>
+  <select data-gui-part="control" id="city" name="city" aria-labelledby="city-name">
+    <option value="malmo">Malmö</option>
+  </select>
+</div>

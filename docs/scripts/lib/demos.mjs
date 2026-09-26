@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { esc } from './mdx.mjs';
 
-export const usedComponents = (markup) => [...new Set([...markup.matchAll(/data-component="([a-z0-9-]+)"/g)].map((m) => m[1]))];
+export const usedComponents = (markup) => [...new Set([...markup.matchAll(/data-gui="([a-z0-9-]+)"/g)].map((m) => m[1]))];
 
 const cssFiles = (referenceDir, markup, styled) =>
   usedComponents(markup).flatMap((slug) =>

@@ -13,24 +13,24 @@ const repo = new URL('..', import.meta.url).pathname;
 const here = join(repo, 'isolation');
 const read = (p) => readFileSync(join(repo, p), 'utf8');
 const css = ['reference/core/core.css', 'reference/text-field/text-field.css', 'reference/text-field/text-field.styled.css', 'reference/dialog/dialog.css', 'reference/dialog/dialog.styled.css'].map(read).join('\n');
-const markup = ['contracts/text-field/fixtures/valid/invalid.html', 'contracts/text-field/fixtures/valid/with-description.html', 'contracts/dialog/fixtures/valid/basic.html'].map(read).join('\n');
+const markup = ['contracts/text-field/markup/valid/invalid.html', 'contracts/text-field/markup/valid/with-description.html', 'contracts/dialog/markup/valid/basic.html'].map(read).join('\n');
 const contracts = loadContracts();
 const { sites } = parse(readFileSync(join(here, 'sites.yaml'), 'utf8'));
 const only = process.argv.slice(2);
-// Only our pasted roots: some sites use data-component themselves.
-const bindings = Object.fromEntries(['text-field', 'dialog'].map((slug) => [slug, { ...defaultBinding(contracts[slug]), root: `#grounded-isolation [data-component="${slug}"]` }]));
+// Only our pasted roots: some sites use data-gui themselves.
+const bindings = Object.fromEntries(['text-field', 'dialog'].map((slug) => [slug, { ...defaultBinding(contracts[slug]), root: `#grounded-isolation [data-gui="${slug}"]` }]));
 
 // Parts whose computed style we compare, and the properties that make up the component's geometry.
 const PARTS = {
-  'text-field root': '#grounded-isolation [data-component="text-field"]',
-  label: '#grounded-isolation [data-part="label"]',
-  description: '#grounded-isolation [data-part="description"]',
-  control: '#grounded-isolation [data-part="control"]',
-  error: '#grounded-isolation [data-part="error"]',
-  'dialog root': '#grounded-isolation [data-component="dialog"]',
-  title: '#grounded-isolation [data-part="title"]',
-  body: '#grounded-isolation [data-part="body"]',
-  actions: '#grounded-isolation [data-part="actions"]',
+  'text-field root': '#grounded-isolation [data-gui="text-field"]',
+  label: '#grounded-isolation [data-gui-part="label"]',
+  description: '#grounded-isolation [data-gui-part="description"]',
+  control: '#grounded-isolation [data-gui-part="control"]',
+  error: '#grounded-isolation [data-gui-part="error"]',
+  'dialog root': '#grounded-isolation [data-gui="dialog"]',
+  title: '#grounded-isolation [data-gui-part="title"]',
+  body: '#grounded-isolation [data-gui-part="body"]',
+  actions: '#grounded-isolation [data-gui-part="actions"]',
 };
 const LENGTHS = ['margin-top', 'margin-bottom', 'margin-left', 'padding-top', 'padding-bottom', 'padding-left', 'padding-right', 'border-top-width', 'border-left-width', 'min-height', 'height', 'line-height', 'border-radius', 'letter-spacing'];
 const KEYWORDS = ['box-sizing', 'border-top-style', 'display', 'text-transform', 'appearance', 'width-fill'];
@@ -39,7 +39,7 @@ const COLOURS = ['color', 'background-color', 'border-top-color'];
 // Runs in the page: computed style of each part, lengths in em of the element's own font size.
 function measure({ parts, lengths, keywords, colours, open }) {
   const out = {};
-  const dialog = document.querySelector('#grounded-isolation [data-component="dialog"]');
+  const dialog = document.querySelector('#grounded-isolation [data-gui="dialog"]');
   if (open && dialog && !dialog.open) dialog.showModal();
   for (const [name, selector] of Object.entries(parts)) {
     const el = document.querySelector(selector);
@@ -48,7 +48,7 @@ function measure({ parts, lengths, keywords, colours, open }) {
     if (open && !el.closest('dialog')) continue;
     const cs = getComputedStyle(el);
     const fs = parseFloat(cs.fontSize);
-    const context = parseFloat(getComputedStyle(el.closest('[data-component]').parentElement).fontSize);
+    const context = parseFloat(getComputedStyle(el.closest('[data-gui]').parentElement).fontSize);
     const row = { 'font-size (em of context)': +(fs / context).toFixed(3) };
     for (const p of lengths) {
       const v = p === 'height' ? el.getBoundingClientRect().height : parseFloat(cs.getPropertyValue(p));
@@ -67,7 +67,7 @@ function measure({ parts, lengths, keywords, colours, open }) {
       row['focus indicator'] = outline ? 'outline ≥ 2px' : strongOther ? 'other (shadow, thick border or background)' : other ? 'weak (thin border change only)' : 'none';
       el.blur();
       // The error state must look different from a valid field (the fixture's first control is invalid, the second valid).
-      const valid = document.querySelectorAll('#grounded-isolation [data-part="control"]')[1];
+      const valid = document.querySelectorAll('#grounded-isolation [data-gui-part="control"]')[1];
       const v = getComputedStyle(valid);
       const differs = cs.borderTopColor !== v.borderTopColor || cs.borderTopWidth !== v.borderTopWidth || cs.boxShadow !== v.boxShadow || cs.outlineStyle !== v.outlineStyle;
       row['error cue'] = differs ? 'visible' : 'lost (looks like a valid field)';

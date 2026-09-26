@@ -9,31 +9,31 @@
  * Pure appearance: remove this file and the contract still holds.
  */
 /* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
-@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
+@layer gui.core, gui.components, gui.styled, gui.warnings;
 
-@layer grounded.styled.select {
-  @scope ([data-component="select"]) to ([data-component]) {
-    :where([data-part="label"]) {
-      font-weight: var(--grounded-label-weight, 600);
-      color: var(--grounded-label-color, inherit);
+@layer gui.styled.select {
+  @scope ([data-gui="select"]) to ([data-gui]) {
+    :where([data-gui-part="label"]) {
+      font-weight: var(--gui-select-label-weight, 600);
+      color: var(--gui-select-label, inherit);
     }
 
-    :where([data-part="description"]) {
-      margin-block-start: calc(var(--grounded-gap, 0.375em) * -0.5);
+    :where([data-gui-part="description"]) {
+      margin-block-start: calc(var(--gui-select-gap, 0.375em) * -0.5);
       font-size: 0.875em;
-      color: var(--grounded-muted-color, color-mix(in oklab, CanvasText 55%, Canvas));
+      color: var(--gui-select-muted, color-mix(in oklab, CanvasText 55%, Canvas));
     }
 
-    :where([data-part="required-indicator"]) {
-      color: var(--grounded-muted-color, color-mix(in oklab, CanvasText 55%, Canvas));
+    :where([data-gui-part="required-indicator"]) {
+      color: var(--gui-select-muted, color-mix(in oklab, CanvasText 55%, Canvas));
     }
 
     /* One border width in every state; the arrow is two gradients in the text colour, so it follows the scheme. */
-    :where([data-part="control"]) {
+    :where([data-gui-part="control"]) {
       appearance: none;
       padding-block: 0.5em;
       padding-inline: 0.75em 2.25em;
-      background-color: var(--grounded-control-bg, Canvas);
+      background-color: var(--gui-select-control-bg, Canvas);
       background-image:
         linear-gradient(45deg, transparent 50%, currentColor 50%),
         linear-gradient(135deg, currentColor 50%, transparent 50%);
@@ -42,83 +42,83 @@
       background-repeat: no-repeat;
       border-width: 1px;
       border-style: solid;
-      border-color: var(--grounded-border-color, color-mix(in oklab, CanvasText 40%, Canvas));
-      border-radius: var(--grounded-radius, 0.375em);
+      border-color: var(--gui-select-border, var(--gui-border, color-mix(in oklab, CanvasText 40%, Canvas)));
+      border-radius: var(--gui-select-radius, var(--gui-radius, 0.375em));
       transition-property: background-color, border-color;
-      transition-duration: var(--grounded-duration, 120ms);
-      transition-timing-function: var(--grounded-easing, cubic-bezier(0.2, 0, 0, 1));
+      transition-duration: var(--gui-select-duration, 120ms);
+      transition-timing-function: var(--gui-select-easing, cubic-bezier(0.2, 0, 0, 1));
     }
 
     @media (hover: hover) {
-      :where([data-part="control"]):hover:not(:disabled, [aria-invalid="true"]) {
-        border-color: var(--grounded-border-hover-color, color-mix(in oklab, CanvasText 65%, Canvas));
+      :where([data-gui-part="control"]):hover:not(:disabled, [aria-invalid="true"]) {
+        border-color: var(--gui-select-border-hover, color-mix(in oklab, CanvasText 65%, Canvas));
       }
     }
 
-    :where([data-part="control"]):focus-visible {
-      outline: 2px solid var(--grounded-focus-color, CanvasText);
+    :where([data-gui-part="control"]):focus-visible {
+      outline: 2px solid var(--gui-select-focus, var(--gui-focus, CanvasText));
       outline-offset: 2px;
       transition-duration: 0s;
     }
 
-    :where([data-part="control"]):disabled {
+    :where([data-gui-part="control"]):disabled {
       cursor: not-allowed;
-      color: var(--grounded-muted-color, color-mix(in oklab, CanvasText 55%, Canvas));
-      background-color: var(--grounded-control-muted-bg, color-mix(in oklab, CanvasText 4%, Canvas));
+      color: var(--gui-select-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+      background-color: var(--gui-select-control-muted-bg, color-mix(in oklab, CanvasText 4%, Canvas));
       border-style: dashed;
     }
 
     /* Base draws a 2px border for the non-colour error cue; here the second pixel is an inset shadow. */
-    :where([data-part="control"][aria-invalid="true"]) {
+    :where([data-gui-part="control"][aria-invalid="true"]) {
       border-width: 1px;
-      border-color: var(--grounded-error-color, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText));
-      box-shadow: inset 0 0 0 0.0625em var(--grounded-error-color, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText));
+      border-color: var(--gui-select-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+      box-shadow: inset 0 0 0 0.0625em var(--gui-select-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
     }
 
-    :where([data-part="error"]) {
+    :where([data-gui-part="error"]) {
       font-size: 0.875em;
       font-weight: 500;
-      color: var(--grounded-error-color, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText));
+      color: var(--gui-select-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
     }
 
     /* Customizable select: the drop-down list in the house style. Elsewhere the browser draws its own. */
     @supports (appearance: base-select) and selector(::picker(select)) and selector(::picker-icon) and selector(::checkmark) {
-      :where([data-part="control"]) {
+      :where([data-gui-part="control"]) {
         appearance: base-select;
         background-image: none;
       }
 
-      :where([data-part="control"])::picker-icon {
-        color: var(--grounded-muted-color, color-mix(in oklab, CanvasText 55%, Canvas));
-        transition: rotate var(--grounded-duration, 120ms) var(--grounded-easing, cubic-bezier(0.2, 0, 0, 1));
+      :where([data-gui-part="control"])::picker-icon {
+        color: var(--gui-select-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+        transition: rotate var(--gui-select-duration, 120ms) var(--gui-select-easing, cubic-bezier(0.2, 0, 0, 1));
       }
 
-      :where([data-part="control"]):open::picker-icon {
+      :where([data-gui-part="control"]):open::picker-icon {
         rotate: 180deg;
       }
 
       /* stylelint-disable-next-line grounded/type-only-in-where -- ::picker() takes the element name as its argument. */
-      :where([data-part="control"])::picker(select) {
+      :where([data-gui-part="control"])::picker(select) {
         appearance: base-select;
         margin-block: 0.25em;
         padding: 0.25em;
         color: inherit;
-        background: var(--grounded-control-bg, Canvas);
+        background: var(--gui-select-control-bg, Canvas);
         border-width: 1px;
         border-style: solid;
-        border-color: var(--grounded-border-color, color-mix(in oklab, CanvasText 40%, Canvas));
-        border-radius: var(--grounded-radius, 0.375em);
-        box-shadow: var(--grounded-shadow, 0 0.75em 1.5em -0.5em oklch(0% 0 0 / 0.25));
+        border-color: var(--gui-select-border, var(--gui-border, color-mix(in oklab, CanvasText 40%, Canvas)));
+        border-radius: var(--gui-select-radius, var(--gui-radius, 0.375em));
+        box-shadow: var(--gui-select-shadow, 0 0.75em 1.5em -0.5em oklch(0% 0 0 / 0.25));
         opacity: 0;
         translate: 0 -0.25em;
         transition-property: opacity, translate, overlay, display;
-        transition-duration: var(--grounded-duration, 120ms);
-        transition-timing-function: var(--grounded-easing, cubic-bezier(0.2, 0, 0, 1));
+        transition-duration: var(--gui-select-duration, 120ms);
+        transition-timing-function: var(--gui-select-easing, cubic-bezier(0.2, 0, 0, 1));
         transition-behavior: allow-discrete;
       }
 
       /* stylelint-disable-next-line grounded/type-only-in-where -- ::picker() takes the element name as its argument. */
-      :where([data-part="control"]):open::picker(select) {
+      :where([data-gui-part="control"]):open::picker(select) {
         opacity: 1;
         translate: 0 0;
 
@@ -128,37 +128,37 @@
         }
       }
 
-      :where([data-part="control"] option) {
-        min-block-size: var(--grounded-touch-target, 2.75em);
+      :where([data-gui-part="control"] option) {
+        min-block-size: var(--gui-select-touch-target, 2.75em);
         padding-block: 0.5em;
         padding-inline: 0.75em;
-        border-radius: calc(var(--grounded-radius, 0.375em) - 0.125em);
+        border-radius: calc(var(--gui-select-radius, var(--gui-radius, 0.375em)) - 0.125em);
       }
 
-      :where([data-part="control"] option):hover {
-        background: var(--grounded-control-muted-bg, color-mix(in oklab, CanvasText 8%, Canvas));
+      :where([data-gui-part="control"] option):hover {
+        background: var(--gui-select-control-muted-bg, color-mix(in oklab, CanvasText 8%, Canvas));
       }
 
-      :where([data-part="control"] option):focus-visible {
-        outline: 2px solid var(--grounded-focus-color, CanvasText);
+      :where([data-gui-part="control"] option):focus-visible {
+        outline: 2px solid var(--gui-select-focus, var(--gui-focus, CanvasText));
         outline-offset: -2px;
       }
 
-      :where([data-part="control"] option):checked {
+      :where([data-gui-part="control"] option):checked {
         font-weight: 600;
       }
 
-      :where([data-part="control"] option)::checkmark {
-        color: var(--grounded-muted-color, color-mix(in oklab, CanvasText 55%, Canvas));
+      :where([data-gui-part="control"] option)::checkmark {
+        color: var(--gui-select-muted, color-mix(in oklab, CanvasText 55%, Canvas));
       }
 
       @media (prefers-reduced-motion: reduce) {
-        :where([data-part="control"])::picker-icon {
+        :where([data-gui-part="control"])::picker-icon {
           transition-duration: 0s;
         }
 
         /* stylelint-disable-next-line grounded/type-only-in-where -- ::picker() takes the element name as its argument. */
-        :where([data-part="control"])::picker(select) {
+        :where([data-gui-part="control"])::picker(select) {
           translate: 0 0;
           transition-duration: 0s;
         }
@@ -166,7 +166,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      :where([data-part="control"]) {
+      :where([data-gui-part="control"]) {
         transition-duration: 0s;
       }
     }

@@ -273,12 +273,12 @@
     "customProperties": {
       "type": "object",
       "propertyNames": {
-        "pattern": "^--grounded-[a-z0-9-]+$"
+        "pattern": "^--gui-[a-z0-9-]+$"
       },
       "additionalProperties": {
         "type": "string"
       },
-      "$comment": "must equal the set of var(--grounded-*) used in the component CSS"
+      "$comment": "must equal the set of var(--gui-<slug>-*) component tokens used in the component CSS"
     },
     "knownDifferences": {
       "type": "array",

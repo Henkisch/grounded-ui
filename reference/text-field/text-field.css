@@ -4,41 +4,41 @@
  * or the site's. For a finished look, add text-field.styled.css.
  */
 /* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
-@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
+@layer gui.core, gui.components, gui.styled, gui.warnings;
 
-@layer grounded.components.text-field {
-  @scope ([data-component="text-field"]) to ([data-component]) {
+@layer gui.components.text-field {
+  @scope ([data-gui="text-field"]) to ([data-gui]) {
     :scope {
       display: grid;
-      gap: var(--grounded-gap, 0.375em);
+      gap: var(--gui-text-field-gap, 0.375em);
       justify-items: start;
     }
 
     /* Parts sit in the grid gap; user-agent margins on p/label would double it. */
-    :where([data-part]) {
+    :where([data-gui-part]) {
       margin: 0;
     }
 
-    :where([data-part="control"]) {
+    :where([data-gui-part="control"]) {
       inline-size: 100%;
-      min-block-size: var(--grounded-touch-target, 2.75em);
+      min-block-size: var(--gui-text-field-touch-target, 2.75em);
       font: inherit;
       color: inherit;
     }
 
     /* WCAG 2.4.7 / 1.4.11: at least 2 CSS px, never removed. */
-    :where([data-part="control"]):focus-visible {
-      outline: 2px solid var(--grounded-focus-color, currentColor);
+    :where([data-gui-part="control"]):focus-visible {
+      outline: 2px solid var(--gui-text-field-focus, var(--gui-focus, currentColor));
       outline-offset: 2px;
     }
 
     /* Error is shown by more than colour (WCAG 1.4.1). */
-    :where([data-part="control"][aria-invalid="true"]) {
+    :where([data-gui-part="control"][aria-invalid="true"]) {
       border-width: 2px;
       border-style: solid;
     }
 
-    :where([data-variant="multiline"] [data-part="control"]) {
+    :where([data-gui-variant="multiline"] [data-gui-part="control"]) {
       min-block-size: 4lh;
       field-sizing: content;
     }

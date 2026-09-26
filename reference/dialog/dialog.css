@@ -5,24 +5,24 @@
  * For a finished look, add dialog.styled.css.
  */
 /* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
-@layer grounded.core, grounded.components, grounded.styled, grounded.warnings;
+@layer gui.core, gui.components, gui.styled, gui.warnings;
 
-@layer grounded.components.dialog {
-  @scope ([data-component="dialog"]) to ([data-component]) {
+@layer gui.components.dialog {
+  @scope ([data-gui="dialog"]) to ([data-gui]) {
     :scope {
       inline-size: min(100% - 2em, 32em);
       max-block-size: min(100% - 2em, 40em);
     }
 
-    :where([data-part]) {
+    :where([data-gui-part]) {
       margin: 0;
     }
 
-    :where([data-part="body"]) {
+    :where([data-gui-part="body"]) {
       margin-block-start: 0.75em;
     }
 
-    :where([data-part="actions"]) {
+    :where([data-gui-part="actions"]) {
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
@@ -32,7 +32,7 @@
   }
 
   /* Scroll lock while a modal is open. Zero specificity; the site can override it. */
-  :where(html:has([data-component="dialog"]:modal)) {
+  :where(html:has([data-gui="dialog"]:modal)) {
     overflow: hidden;
   }
 }
