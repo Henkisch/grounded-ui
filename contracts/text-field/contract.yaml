@@ -3,7 +3,7 @@
 # Test selectors name parts ({label}, {control}, …), never Grounded UI's own hooks, so any implementation
 # can be tested through a binding that maps parts to its markup.
 component: text-field
-contractVersion: 0.3.1
+contractVersion: 0.3.2
 title: Text field
 summary: A free-text field with a label, an optional description and an error message.
 
@@ -177,13 +177,13 @@ rules:
     css: false
 
   - id: TF-10
-    description: If the control has aria-invalid="true", there is an error message.
+    description: If the control has aria-invalid="true", there is an error message in the field or referenced by the control.
     level: normative
     type: outcome
     source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
     rationale: WCAG 3.3.1 requires the error to be described in text, not only flagged.
     since: 0.1.0
-    test: { kind: absent, selector: ':scope:has({control}[aria-invalid="true"]):not(:has({error}))' }
+    test: { kind: invalidHasError, control: '{control}', error: '{error}' }
     css:
       violation: '[data-component="text-field"]:has([aria-invalid="true"]):not(:has([data-part="error"]))'
       message: "TF-10: aria-invalid=true but no [data-part=error]."

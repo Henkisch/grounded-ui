@@ -122,6 +122,12 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
         const exposed = words(`${accText(el)} ${accDescription(el)}`);
         return exposed.includes(expected) ? null : `the ${raw.text.replace(/[{}]/g, '')} text ${quote(expected)} is in neither the accessible name nor the description of ${describe(el)}`;
       },
+      invalidHasError({ control, error }) {
+        const invalid = within(control).filter((el) => el.getAttribute('aria-invalid') === 'true');
+        if (!invalid.length || within(error).length) return null;
+        const orphan = invalid.find((el) => ![...refsOf(el, 'aria-describedby'), ...refsOf(el, 'aria-errormessage')].some((ref) => ref.matches(error)));
+        return orphan ? `${describe(orphan)} is invalid but no error message is in the field or referenced by it` : null;
+      },
       role({ selector, oneOf }) {
         const [el] = pick(selector);
         if (!el) return null;

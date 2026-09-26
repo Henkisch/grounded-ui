@@ -1,7 +1,7 @@
 {
   "implementation": "Contact Form 7",
   "version": "6.1.7",
-  "contract": "0.3.1",
+  "contract": "0.3.2",
   "examples": [
     {
       "source": "contact-form-7",
@@ -9,7 +9,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Contact Form 7",
           "element": "<p>",
           "results": [
@@ -81,7 +81,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -178,7 +178,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Contact Form 7",
           "element": "<p>",
           "results": [
@@ -250,7 +250,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -347,7 +347,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Contact Form 7",
           "element": "<p>",
           "results": [
@@ -419,7 +419,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -516,7 +516,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Contact Form 7",
           "element": "<p>",
           "results": [
@@ -588,7 +588,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -691,7 +691,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Contact Form 7",
           "element": "<p>",
           "results": [
@@ -763,7 +763,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -860,7 +860,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Contact Form 7",
           "element": "<p>",
           "results": [
@@ -932,7 +932,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1029,7 +1029,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Contact Form 7",
           "element": "<p>",
           "results": [
@@ -1101,7 +1101,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1198,7 +1198,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Contact Form 7",
           "element": "<p>",
           "results": [
@@ -1270,7 +1270,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1373,7 +1373,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Contact Form 7",
           "element": "<p>",
           "results": [
@@ -1445,7 +1445,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1542,7 +1542,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Contact Form 7",
           "element": "<p>",
           "results": [
@@ -1614,7 +1614,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1711,7 +1711,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Contact Form 7",
           "element": "<p>",
           "results": [
@@ -1783,7 +1783,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1880,7 +1880,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Contact Form 7",
           "element": "<p>",
           "results": [
@@ -1952,7 +1952,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },

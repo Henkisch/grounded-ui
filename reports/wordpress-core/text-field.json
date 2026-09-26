@@ -1,7 +1,7 @@
 {
   "implementation": "WordPress core",
   "version": "7.1.2",
-  "contract": "0.3.1",
+  "contract": "0.3.2",
   "examples": [
     {
       "source": "wordpress-core",
@@ -9,7 +9,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-comment\">",
           "results": [
@@ -81,7 +81,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -178,7 +178,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-author\">",
           "results": [
@@ -250,7 +250,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -347,7 +347,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-email\">",
           "results": [
@@ -419,7 +419,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -516,7 +516,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-url\">",
           "results": [
@@ -588,7 +588,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -691,7 +691,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<form role=\"search\" method=\"get\" action=\"https://playground.wordpress.net/scope:clever-old-valley/\">",
           "results": [
@@ -763,7 +763,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -860,7 +860,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<form role=\"search\" method=\"get\" action=\"https://playground.wordpress.net/scope:clever-old-valley/\">",
           "results": [
@@ -932,7 +932,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1029,7 +1029,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<form role=\"search\" method=\"get\" action=\"https://playground.wordpress.net/scope:clever-old-valley/\">",
           "results": [
@@ -1101,7 +1101,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1204,7 +1204,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<p>",
           "results": [
@@ -1276,7 +1276,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1379,7 +1379,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<p>",
           "results": [
@@ -1451,7 +1451,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1548,7 +1548,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<div class=\"user-pass-wrap\">",
           "results": [
@@ -1620,7 +1620,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1723,7 +1723,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<p>",
           "results": [
@@ -1795,7 +1795,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1892,7 +1892,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<div class=\"user-pass-wrap\">",
           "results": [
@@ -1964,7 +1964,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2067,7 +2067,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-comment\">",
           "results": [
@@ -2139,7 +2139,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2236,7 +2236,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-author\">",
           "results": [
@@ -2308,7 +2308,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2405,7 +2405,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-email\">",
           "results": [
@@ -2477,7 +2477,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2574,7 +2574,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-url\">",
           "results": [
@@ -2646,7 +2646,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2750,7 +2750,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "WordPress core",
           "element": "<form role=\"search\" method=\"get\" action=\"https://wp-themes.com/twentytwentyfive/\">",
           "results": [
@@ -2822,7 +2822,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },

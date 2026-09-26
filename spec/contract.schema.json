@@ -531,6 +531,25 @@
             }
           },
           "$comment": "the element computed ARIA role is one of these (ARIA role names, checked against aria-query)"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "control",
+            "error"
+          ],
+          "properties": {
+            "kind": {
+              "const": "invalidHasError"
+            },
+            "control": {
+              "$ref": "#/$defs/selector"
+            },
+            "error": {
+              "$ref": "#/$defs/selector"
+            }
+          },
+          "$comment": "every control with aria-invalid=\"true\" has an error part inside the root, or references one (e.g. on a parent fieldset) through aria-describedby or aria-errormessage"
         }
       ],
       "properties": {
@@ -546,7 +565,8 @@
             "referencedBy",
             "name",
             "exposes",
-            "role"
+            "role",
+            "invalidHasError"
           ]
         }
       }
@@ -660,5 +680,5 @@
       }
     }
   },
-  "description": "Contract format for grounded-ui components. Test selectors use part tokens ({label}, {control}, …) that a binding maps to an implementation's markup; :scope is the component root."
+  "description": "Contract format for grounded-ui components. Test selectors use part tokens ({label}, {control}, \u2026) that a binding maps to an implementation's markup; :scope is the component root."
 }

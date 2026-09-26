@@ -1,0 +1,19 @@
+# What to test: the live form-template previews on gravityforms.com (real Gravity Forms markup, Orbital/Gravity theme).
+implementation: Gravity Forms
+package: gravityforms
+version: 3.1.2
+homepage: https://www.gravityforms.com/
+components:
+  text-field:
+    binding: text-field.binding.yaml
+    pages:
+      - url: https://www.gravityforms.com/form-templates/contact-form/
+      - url: https://www.gravityforms.com/form-templates/contact-form/
+        name: contact-form, submitted empty
+        click: '.gform_button'
+        wait: '.gfield_error'
+      - url: https://www.gravityforms.com/form-templates/advanced-contact-form/
+      - url: https://www.gravityforms.com/form-templates/request-a-quote/
+      - url: https://www.gravityforms.com/form-templates/support-request-form/
+      - url: https://www.gravityforms.com/form-templates/newsletter-signup-form/
+      - url: https://www.gravityforms.com/form-templates/employment-application-form/

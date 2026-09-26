@@ -1,7 +1,7 @@
 {
   "implementation": "GOV.UK Frontend",
   "version": "6.5.1",
-  "contract": "0.3.1",
+  "contract": "0.3.2",
   "examples": [
     {
       "source": "input",
@@ -9,7 +9,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -81,7 +81,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -184,7 +184,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -256,7 +256,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -359,7 +359,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
           "results": [
@@ -431,7 +431,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -534,7 +534,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
           "results": [
@@ -606,7 +606,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -709,7 +709,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -781,7 +781,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -884,7 +884,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -956,7 +956,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1059,7 +1059,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -1131,7 +1131,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1234,7 +1234,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -1306,7 +1306,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1409,7 +1409,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -1481,7 +1481,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1584,7 +1584,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -1656,7 +1656,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1759,7 +1759,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -1831,7 +1831,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1934,7 +1934,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -2006,7 +2006,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2109,7 +2109,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -2181,7 +2181,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2284,7 +2284,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -2356,7 +2356,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2459,7 +2459,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -2531,7 +2531,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2634,7 +2634,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
           "results": [
@@ -2706,7 +2706,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2809,7 +2809,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -2881,7 +2881,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2984,7 +2984,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -3056,7 +3056,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -3159,7 +3159,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -3231,7 +3231,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -3334,7 +3334,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -3406,7 +3406,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -3509,7 +3509,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
           "results": [
@@ -3581,7 +3581,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -3684,7 +3684,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -3756,7 +3756,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -3859,7 +3859,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -3931,7 +3931,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -4034,7 +4034,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "GOV.UK Frontend",
           "element": "<div class=\"govuk-form-group\">",
           "results": [
@@ -4106,7 +4106,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },

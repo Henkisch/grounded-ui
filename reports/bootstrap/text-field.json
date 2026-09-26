@@ -1,7 +1,7 @@
 {
   "implementation": "Bootstrap 5",
   "version": "5.3.8",
-  "contract": "0.3.1",
+  "contract": "0.3.2",
   "examples": [
     {
       "source": "docs",
@@ -10,7 +10,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"mb-3\">",
           "results": [
@@ -82,7 +82,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -179,7 +179,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"mb-3\">",
           "results": [
@@ -251,7 +251,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -348,7 +348,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"mb-3\">",
           "results": [
@@ -420,7 +420,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -524,7 +524,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"mb-3\">",
           "results": [
@@ -596,7 +596,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -693,7 +693,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"mb-3\">",
           "results": [
@@ -765,7 +765,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -862,7 +862,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -934,7 +934,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1031,7 +1031,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -1103,7 +1103,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1200,7 +1200,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-auto\">",
           "results": [
@@ -1272,7 +1272,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1369,7 +1369,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -1441,7 +1441,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1538,7 +1538,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -1610,7 +1610,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1707,7 +1707,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"mb-3 row\">",
           "results": [
@@ -1779,7 +1779,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -1876,7 +1876,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-auto\">",
           "results": [
@@ -1948,7 +1948,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2045,7 +2045,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -2117,7 +2117,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2221,7 +2221,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"form-floating mb-3\">",
           "results": [
@@ -2293,7 +2293,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2390,7 +2390,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"form-floating\">",
           "results": [
@@ -2462,7 +2462,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2559,7 +2559,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"form-floating\">",
           "results": [
@@ -2631,7 +2631,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2728,7 +2728,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"form-floating\">",
           "results": [
@@ -2800,7 +2800,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -2897,7 +2897,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"form-floating mb-3\">",
           "results": [
@@ -2969,7 +2969,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -3066,7 +3066,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"form-floating mb-3\">",
           "results": [
@@ -3138,7 +3138,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -3235,7 +3235,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"form-floating mb-3\">",
           "results": [
@@ -3307,7 +3307,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -3404,7 +3404,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"form-floating\">",
           "results": [
@@ -3476,7 +3476,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -3573,7 +3573,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"form-floating is-invalid\">",
           "results": [
@@ -3645,7 +3645,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -3742,7 +3742,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"form-floating\">",
           "results": [
@@ -3814,7 +3814,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -3918,7 +3918,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -3990,7 +3990,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -4087,7 +4087,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"mb-3\">",
           "results": [
@@ -4159,7 +4159,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -4256,7 +4256,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -4328,7 +4328,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -4425,7 +4425,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -4497,7 +4497,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -4594,7 +4594,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -4666,7 +4666,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -4763,7 +4763,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -4835,7 +4835,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -4932,7 +4932,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -5004,7 +5004,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -5101,7 +5101,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -5173,7 +5173,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -5270,7 +5270,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -5342,7 +5342,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -5439,7 +5439,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -5511,7 +5511,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -5608,7 +5608,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"bd-example m-0 border-0\">",
           "results": [
@@ -5680,7 +5680,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -5784,7 +5784,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"mb-3\">",
           "results": [
@@ -5856,7 +5856,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -5953,7 +5953,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"mb-3\">",
           "results": [
@@ -6025,7 +6025,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -6122,7 +6122,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col\">",
           "results": [
@@ -6194,7 +6194,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -6291,7 +6291,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col\">",
           "results": [
@@ -6363,7 +6363,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -6460,7 +6460,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col\">",
           "results": [
@@ -6532,7 +6532,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -6629,7 +6629,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col\">",
           "results": [
@@ -6701,7 +6701,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -6798,7 +6798,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-6\">",
           "results": [
@@ -6870,7 +6870,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -6967,7 +6967,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-6\">",
           "results": [
@@ -7039,7 +7039,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -7136,7 +7136,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-12\">",
           "results": [
@@ -7208,7 +7208,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -7305,7 +7305,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-12\">",
           "results": [
@@ -7377,7 +7377,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -7474,7 +7474,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-6\">",
           "results": [
@@ -7546,7 +7546,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -7643,7 +7643,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-2\">",
           "results": [
@@ -7715,7 +7715,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -7812,7 +7812,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"row mb-3\">",
           "results": [
@@ -7884,7 +7884,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -7981,7 +7981,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"row mb-3\">",
           "results": [
@@ -8053,7 +8053,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -8150,7 +8150,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"row mb-3\">",
           "results": [
@@ -8222,7 +8222,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -8319,7 +8319,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"row mb-3\">",
           "results": [
@@ -8391,7 +8391,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -8488,7 +8488,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"row\">",
           "results": [
@@ -8560,7 +8560,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -8657,7 +8657,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-sm-7\">",
           "results": [
@@ -8729,7 +8729,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -8826,7 +8826,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-sm\">",
           "results": [
@@ -8898,7 +8898,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -8995,7 +8995,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-sm\">",
           "results": [
@@ -9067,7 +9067,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -9164,7 +9164,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-auto\">",
           "results": [
@@ -9236,7 +9236,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -9333,7 +9333,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-auto\">",
           "results": [
@@ -9405,7 +9405,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -9502,7 +9502,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-sm-3\">",
           "results": [
@@ -9574,7 +9574,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -9671,7 +9671,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-sm-3\">",
           "results": [
@@ -9743,7 +9743,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -9840,7 +9840,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-12\">",
           "results": [
@@ -9912,7 +9912,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -10016,7 +10016,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -10088,7 +10088,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -10185,7 +10185,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -10257,7 +10257,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -10354,7 +10354,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -10426,7 +10426,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -10523,7 +10523,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-6\">",
           "results": [
@@ -10595,7 +10595,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -10692,7 +10692,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-3\">",
           "results": [
@@ -10764,7 +10764,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -10861,7 +10861,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -10933,7 +10933,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -11030,7 +11030,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -11102,7 +11102,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -11199,7 +11199,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -11271,7 +11271,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -11368,7 +11368,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-6\">",
           "results": [
@@ -11440,7 +11440,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -11537,7 +11537,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-3\">",
           "results": [
@@ -11609,7 +11609,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -11706,7 +11706,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -11778,7 +11778,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -11875,7 +11875,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -11947,7 +11947,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -12044,7 +12044,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -12116,7 +12116,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -12213,7 +12213,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-6\">",
           "results": [
@@ -12285,7 +12285,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -12382,7 +12382,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-3\">",
           "results": [
@@ -12454,7 +12454,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -12551,7 +12551,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"mb-3\">",
           "results": [
@@ -12623,7 +12623,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -12720,7 +12720,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4 position-relative\">",
           "results": [
@@ -12792,7 +12792,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -12889,7 +12889,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4 position-relative\">",
           "results": [
@@ -12961,7 +12961,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -13058,7 +13058,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4 position-relative\">",
           "results": [
@@ -13130,7 +13130,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -13227,7 +13227,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-6 position-relative\">",
           "results": [
@@ -13299,7 +13299,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -13396,7 +13396,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-3 position-relative\">",
           "results": [
@@ -13468,7 +13468,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -13572,7 +13572,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -13644,7 +13644,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -13741,7 +13741,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -13813,7 +13813,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -13910,7 +13910,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -13982,7 +13982,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -14079,7 +14079,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-6\">",
           "results": [
@@ -14151,7 +14151,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -14248,7 +14248,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-3\">",
           "results": [
@@ -14320,7 +14320,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -14417,7 +14417,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -14489,7 +14489,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -14586,7 +14586,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -14658,7 +14658,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -14755,7 +14755,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -14827,7 +14827,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -14924,7 +14924,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-6\">",
           "results": [
@@ -14996,7 +14996,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -15093,7 +15093,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-3\">",
           "results": [
@@ -15165,7 +15165,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -15262,7 +15262,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -15334,7 +15334,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -15431,7 +15431,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -15503,7 +15503,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -15600,7 +15600,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4\">",
           "results": [
@@ -15672,7 +15672,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -15769,7 +15769,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-6\">",
           "results": [
@@ -15841,7 +15841,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -15938,7 +15938,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-3\">",
           "results": [
@@ -16010,7 +16010,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -16107,7 +16107,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"mb-3\">",
           "results": [
@@ -16179,7 +16179,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -16276,7 +16276,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4 position-relative\">",
           "results": [
@@ -16348,7 +16348,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -16445,7 +16445,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4 position-relative\">",
           "results": [
@@ -16517,7 +16517,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -16614,7 +16614,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-4 position-relative\">",
           "results": [
@@ -16686,7 +16686,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -16783,7 +16783,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-6 position-relative\">",
           "results": [
@@ -16855,7 +16855,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },
@@ -16952,7 +16952,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.1",
+          "contractVersion": "0.3.2",
           "implementation": "Bootstrap 5",
           "element": "<div class=\"col-md-3 position-relative\">",
           "results": [
@@ -17024,7 +17024,7 @@
               "id": "TF-10",
               "level": "normative",
               "type": "outcome",
-              "description": "If the control has aria-invalid=\"true\", there is an error message.",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
               "pass": true,
               "detail": null
             },

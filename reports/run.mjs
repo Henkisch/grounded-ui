@@ -38,11 +38,11 @@ for (const [slug, spec] of Object.entries(config.components)) {
         .filter((f) => !f.hidden)
         .map((f) => ({ source: file.split('/').at(-2), name: f.name, html: f.html })),
     ),
-    ...(spec.pages ?? []).map((p) => ({ source: 'docs', name: p.name ?? p.url.split('/').at(-1), url: p.url, fill: p.fill, click: p.click })),
+    ...(spec.pages ?? []).map((p) => ({ source: 'docs', name: p.name ?? p.url.split('/').at(-1), url: p.url, fill: p.fill, click: p.click, wait: p.wait })),
   ];
 
   const rows = [];
-  for (const { html, url, fill, click, ...example } of examples) {
+  for (const { html, url, fill, click, wait, ...example } of examples) {
     if (url) {
       await page.goto(url, { waitUntil: 'networkidle' });
       if (fill) {
@@ -53,6 +53,11 @@ for (const [slug, spec] of Object.entries(config.components)) {
       if (click) {
         await page.locator(click).first().click();
         await page.waitForTimeout(600);
+      }
+      // `wait`: a selector that only exists once the page has settled (e.g. after an AJAX re-render).
+      if (wait) {
+        await page.locator(wait).first().waitFor();
+        await page.waitForTimeout(300);
       }
     } else {
       await page.setContent(`<!doctype html><html lang="en"><body>${html}</body></html>`);
