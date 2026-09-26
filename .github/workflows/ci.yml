@@ -47,6 +47,20 @@ jobs:
           header: size
           path: dist/size-report.md
 
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium firefox webkit
+      # Every valid fixture passes every rule with no axe violations; every broken fixture fails exactly its rule.
+      - run: pnpm conformance
+
   docs:
     runs-on: ubuntu-latest
     steps:
@@ -57,4 +71,6 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      # The docs build runs the contracts to generate each component's scorecard.
+      - run: pnpm exec playwright install --with-deps chromium firefox webkit
       - run: pnpm --filter docs build

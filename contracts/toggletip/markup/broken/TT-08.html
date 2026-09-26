@@ -1,0 +1,5 @@
+<!-- Breaks TT-08: a manual popover doesn't close on Esc or a click outside. -->
+<span data-gui="toggletip">
+  <button type="button" data-gui-part="trigger" commandfor="vat-tip" command="toggle-popover" aria-label="About VAT numbers"><span aria-hidden="true">i</span></button>
+  <span data-gui-part="content" id="vat-tip" popover="manual">Two-letter country code followed by the number.</span>
+</span>

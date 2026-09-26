@@ -1,0 +1,4207 @@
+{
+  "implementation": "GOV.UK Frontend",
+  "version": "6.5.1",
+  "contract": "0.3.2",
+  "examples": [
+    {
+      "source": "input",
+      "name": "default",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with hint text",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with error message",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with error and hint",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": false,
+              "detail": "aria-describedby=\"with-error-hint-hint with-error-hint-error\" does not start with the error id \"with-error-hint-error\""
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-2 class",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-3 class",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-4 class",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-5 class",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-10 class",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-20 class",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with width-30 class",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with label as page heading",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with prefix",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with suffix",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with prefix and suffix",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with prefix and suffix and error",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with prefix and suffix and width modifier",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "input",
+      "name": "with extra letter spacing",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "textarea",
+      "name": "default",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "textarea",
+      "name": "with hint",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "textarea",
+      "name": "with error message",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group govuk-form-group--error\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "textarea",
+      "name": "with default value",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "textarea",
+      "name": "with custom rows",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "textarea",
+      "name": "with label as page heading",
+      "report": [
+        {
+          "component": "text-field",
+          "contractVersion": "0.3.2",
+          "implementation": "GOV.UK Frontend",
+          "element": "<div class=\"govuk-form-group\">",
+          "results": [
+            {
+              "id": "TF-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control is an input or a textarea.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-04",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-05",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label is a label element.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-06",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The label has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The label's for matches the control's id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has a name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "If there is a description, its id is referenced in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-10",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If the control has aria-invalid=\"true\", there is an error message in the field or referenced by the control.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-11",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The error's id comes first in aria-describedby.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-12",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The error message has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-13",
+              "level": "normative",
+              "type": "outcome",
+              "description": "Ids inside the field are unique on the page.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-14",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-15",
+              "level": "normative",
+              "type": "outcome",
+              "description": "A placeholder is never the only label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-16",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    }
+  ]
+}

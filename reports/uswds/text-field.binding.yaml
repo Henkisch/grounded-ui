@@ -1,0 +1,13 @@
+# Maps the text-field contract's parts to USWDS form markup.
+# USWDS wraps a field in .usa-form-group (always in the error state, optionally otherwise). Unwrapped fields in
+# the package templates get a neutral div.report-field from build-fixtures.mjs, so each field has one root.
+component: text-field
+implementation: USWDS
+root: '.usa-form-group:has(.usa-input, .usa-textarea), .report-field'
+boundary: '.usa-form-group, .report-field'
+parts:
+  label: .usa-label
+  description: .usa-hint
+  control: '.usa-input, .usa-textarea'
+  error: .usa-error-message
+  required-indicator: '.usa-hint--required, abbr[title="required"]'

@@ -1,0 +1,113 @@
+// Runs Grounded UI contracts against an outside implementation's published examples and writes a report.
+// Usage: node reports/run.mjs <implementation-folder>   e.g. node reports/run.mjs govuk-frontend
+// Reads reports/<impl>/report.yaml; writes reports/<impl>/<component>.json and .md.
+// Examples come from `fixtures` (the package's own rendered-HTML fixtures) and/or `pages` (live docs pages,
+// optionally after filling a field with an invalid value (error state) or clicking an opener (dialogs).
+import { readFileSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { execFileSync } from 'node:child_process';
+import { join } from 'node:path';
+import { parse } from 'yaml';
+import { chromium } from '@playwright/test';
+import { checkPage, loadBinding, loadContracts } from '../conformance/src/index.mjs';
+
+const require = createRequire(import.meta.url);
+const impl = process.argv[2];
+if (!impl) throw new Error('usage: node reports/run.mjs <implementation-folder>');
+const dir = new URL(impl + '/', import.meta.url).pathname;
+const config = parse(readFileSync(join(dir, 'report.yaml'), 'utf8'));
+// The installed package's version, or the latest published one when only live pages are tested.
+// report.yaml may pin `version` (e.g. a WordPress plugin or a live site with no npm package).
+let version = config.version;
+if (!version) try {
+  version = JSON.parse(readFileSync(require.resolve(`${config.package}/package.json`), 'utf8')).version;
+} catch {
+  version = execFileSync('npm', ['view', config.package, 'version'], { encoding: 'utf8' }).trim();
+}
+const contracts = loadContracts();
+
+const browser = await chromium.launch();
+const page = await (await browser.newContext()).newPage();
+
+for (const [slug, spec] of Object.entries(config.components)) {
+  const contract = contracts[slug];
+  const binding = loadBinding(join(dir, spec.binding));
+  const examples = [
+    ...(spec.fixtures ?? []).flatMap((file) =>
+      JSON.parse(readFileSync(require.resolve(file), 'utf8')).fixtures
+        .filter((f) => !f.hidden)
+        .map((f) => ({ source: file.split('/').at(-2), name: f.name, html: f.html })),
+    ),
+    ...(spec.pages ?? []).map((p) => ({ source: 'docs', name: p.name ?? p.url.split('/').at(-1), url: p.url, fill: p.fill, click: p.click, wait: p.wait })),
+  ];
+
+  const rows = [];
+  for (const { html, url, fill, click, wait, ...example } of examples) {
+    if (url) {
+      await page.goto(url, { waitUntil: 'networkidle' });
+      if (fill) {
+        await page.locator(fill.selector).fill(fill.value);
+        await page.locator(fill.selector).blur();
+        await page.waitForTimeout(300);
+      }
+      if (click) {
+        await page.locator(click).first().click();
+        await page.waitForTimeout(600);
+      }
+      // `wait`: a selector that only exists once the page has settled (e.g. after an AJAX re-render).
+      if (wait) {
+        await page.locator(wait).first().waitFor();
+        await page.waitForTimeout(300);
+      }
+    } else {
+      await page.setContent(`<!doctype html><html lang="en"><body>${html}</body></html>`);
+    }
+    const report = await checkPage(page, { contracts: { [slug]: contract }, bindings: { [slug]: binding } });
+    rows.push({ ...example, url, report });
+  }
+
+  // Per rule: in how many examples it failed, and in how many of those axe reported nothing at all.
+  const byRule = contract.rules.map((rule) => {
+    const failing = rows.filter((row) => row.report.some((root) => root.results.some((r) => r.id === rule.id && !r.pass)));
+    const axeSilent = failing.filter((row) => row.report.every((root) => root.axeViolations.length === 0));
+    const detail = failing[0]?.report.flatMap((root) => root.results).find((r) => r.id === rule.id && !r.pass)?.detail;
+    return { id: rule.id, level: rule.level, type: rule.type, description: rule.description, failing: failing.map((r) => `${r.source}: ${r.name}`), axeSilent: axeSilent.length, detail };
+  });
+  const tested = rows.filter((row) => row.report.length).length;
+  const axeTotal = rows.reduce((n, row) => n + row.report.reduce((m, root) => m + root.axeViolations.length, 0), 0);
+
+  writeFileSync(join(dir, `${slug}.json`), JSON.stringify({ implementation: config.implementation, version, contract: contract.contractVersion, examples: rows }, null, 2) + '\n');
+
+  const tableRows = (type) => [
+    '| Rule | Level | Failing examples | Of those, axe silent | Example detail |',
+    '| --- | --- | ---: | ---: | --- |',
+    ...byRule.filter((r) => r.type === type).map((r) => `| ${r.id} ${r.description} | ${r.level} | ${r.failing.length} | ${r.failing.length ? r.axeSilent : '—'} | ${r.detail ? r.detail.replace(/\|/g, '\\|') : ''} |`),
+  ];
+  const outcomeFails = byRule.filter((r) => r.type === 'outcome' && r.failing.length);
+  const md = [
+    `# ${config.implementation} ${version} × Grounded UI ${slug} contract ${contract.contractVersion}`,
+    '',
+    `Generated by \`node reports/run.mjs ${impl}\`. ${tested} of ${examples.length} published examples contained a ${slug}; axe reported ${axeTotal} violation(s) across them. A live docs page can hold several instances; each is checked.`,
+    '',
+    `**Verdict: ${outcomeFails.length ? `${outcomeFails.length} outcome rule(s) fail` : 'every outcome rule passes'}${outcomeFails.length ? ` (${outcomeFails.filter((r) => r.axeSilent).length} where axe reported nothing)` : ''}.**`,
+    '',
+    '## Outcome rules',
+    '',
+    'What any implementation must achieve, judged on the rendered result: computed name, role, description and visible text. These are the verdict.',
+    '',
+    ...tableRows('outcome'),
+    '',
+    '## Technique rules',
+    '',
+    "How Grounded UI's reference markup does it. A failure here means the markup differs from our recommended technique, not that it is inaccessible.",
+    '',
+    ...tableRows('technique'),
+    '',
+    '## Failing examples',
+    '',
+    ...byRule.filter((r) => r.failing.length).flatMap((r) => [`### ${r.id}`, '', ...r.failing.map((f) => `- ${f}`), '']),
+  ].join('\n');
+  writeFileSync(join(dir, `${slug}.md`), md);
+  console.log(md);
+}
+await browser.close();

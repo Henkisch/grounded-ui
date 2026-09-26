@@ -1,0 +1,317 @@
+{
+  "implementation": "Elementor Pro",
+  "version": "3.21.2",
+  "contract": "0.3.0",
+  "examples": [
+    {
+      "source": "docs",
+      "name": "yoga-studio-flexbox, booking popup (form) opened",
+      "url": "https://library.elementor.com/yoga-studio-flexbox/",
+      "report": [
+        {
+          "component": "dialog",
+          "contractVersion": "0.3.0",
+          "implementation": "Elementor Pro",
+          "element": "<div class=\"dialog-widget dialog-lightbox-widget dialog-type-buttons dialog-type-lightbox elementor-popup-modal\" id=\"elementor-popup-modal-226\" aria-modal=\"true\">",
+          "results": [
+            {
+              "id": "DG-01",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The root is a <dialog> element.",
+              "pass": false,
+              "detail": "root matches :scope:not(dialog)"
+            },
+            {
+              "id": "DG-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog has an id, so triggers can point at it.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one title.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-04",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The title has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-05",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The dialog has a non-empty accessible name.",
+              "pass": false,
+              "detail": "<div class=\"dialog-widget dialog-lightbox-widget dialog-type-buttons dialog-type-lightbox elementor-popup-modal\" id=\"elementor-popup-modal-226\" aria-modal=\"true\"> has no accessible name"
+            },
+            {
+              "id": "DG-06",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The name comes from the title, via aria-labelledby pointing at its id.",
+              "pass": false,
+              "detail": "aria-labelledby=\"\" but id=\"\""
+            },
+            {
+              "id": "DG-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "A trigger on the page points at the dialog with commandfor and command=\"show-modal\".",
+              "pass": false,
+              "detail": "nothing on the page matches [command=\"show-modal\"][commandfor=\"elementor-popup-modal-226\"]"
+            },
+            {
+              "id": "DG-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The trigger is a <button>.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog contains a close control (command=\"close\" or a form with method=\"dialog\").",
+              "pass": false,
+              "detail": "root matches :scope:not(:has([command=\"close\"], form[method=\"dialog\"]))"
+            },
+            {
+              "id": "DG-10",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog is not rendered with a static open attribute; it opens as a modal via show-modal.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-11",
+              "level": "normative",
+              "type": "outcome",
+              "description": "On a native <dialog>, the only role override allowed is role=\"alertdialog\".",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-12",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog itself has no tabindex.",
+              "pass": false,
+              "detail": "root matches :scope[tabindex]"
+            },
+            {
+              "id": "DG-13",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The alert variant has role=\"alertdialog\" and no light dismiss.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-14",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The dialog has the role dialog or alertdialog.",
+              "pass": false,
+              "detail": "<div class=\"dialog-widget dialog-lightbox-widget dialog-type-buttons dialog-type-lightbox elementor-popup-modal\" id=\"elementor-popup-modal-226\" aria-modal=\"true\"> has role \"document\", expected dialog or alertdialog"
+            },
+            {
+              "id": "DG-15",
+              "level": "recommended",
+              "type": "outcome",
+              "description": "The dialog's accessible name contains its title text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-16",
+              "level": "recommended",
+              "type": "outcome",
+              "description": "The dialog contains a button.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": [
+            {
+              "id": "aria-allowed-attr",
+              "impact": "critical",
+              "help": "Elements must only use supported ARIA attributes"
+            },
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "help": "Elements must meet minimum color contrast ratio thresholds"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "docs",
+      "name": "personal-chef-flexbox, menu popup opened",
+      "url": "https://library.elementor.com/personal-chef-flexbox/",
+      "report": [
+        {
+          "component": "dialog",
+          "contractVersion": "0.3.0",
+          "implementation": "Elementor Pro",
+          "element": "<div class=\"dialog-widget dialog-lightbox-widget dialog-type-buttons dialog-type-lightbox elementor-popup-modal\" id=\"elementor-popup-modal-53\" aria-modal=\"true\">",
+          "results": [
+            {
+              "id": "DG-01",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The root is a <dialog> element.",
+              "pass": false,
+              "detail": "root matches :scope:not(dialog)"
+            },
+            {
+              "id": "DG-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog has an id, so triggers can point at it.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one title.",
+              "pass": false,
+              "detail": "expected 1, found 0"
+            },
+            {
+              "id": "DG-04",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The title has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-05",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The dialog has a non-empty accessible name.",
+              "pass": false,
+              "detail": "<div class=\"dialog-widget dialog-lightbox-widget dialog-type-buttons dialog-type-lightbox elementor-popup-modal\" id=\"elementor-popup-modal-53\" aria-modal=\"true\"> has no accessible name"
+            },
+            {
+              "id": "DG-06",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The name comes from the title, via aria-labelledby pointing at its id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "A trigger on the page points at the dialog with commandfor and command=\"show-modal\".",
+              "pass": false,
+              "detail": "nothing on the page matches [command=\"show-modal\"][commandfor=\"elementor-popup-modal-53\"]"
+            },
+            {
+              "id": "DG-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The trigger is a <button>.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog contains a close control (command=\"close\" or a form with method=\"dialog\").",
+              "pass": false,
+              "detail": "root matches :scope:not(:has([command=\"close\"], form[method=\"dialog\"]))"
+            },
+            {
+              "id": "DG-10",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog is not rendered with a static open attribute; it opens as a modal via show-modal.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-11",
+              "level": "normative",
+              "type": "outcome",
+              "description": "On a native <dialog>, the only role override allowed is role=\"alertdialog\".",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-12",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog itself has no tabindex.",
+              "pass": false,
+              "detail": "root matches :scope[tabindex]"
+            },
+            {
+              "id": "DG-13",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The alert variant has role=\"alertdialog\" and no light dismiss.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-14",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The dialog has the role dialog or alertdialog.",
+              "pass": false,
+              "detail": "<div class=\"dialog-widget dialog-lightbox-widget dialog-type-buttons dialog-type-lightbox elementor-popup-modal\" id=\"elementor-popup-modal-53\" aria-modal=\"true\"> has role \"document\", expected dialog or alertdialog"
+            },
+            {
+              "id": "DG-15",
+              "level": "recommended",
+              "type": "outcome",
+              "description": "The dialog's accessible name contains its title text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-16",
+              "level": "recommended",
+              "type": "outcome",
+              "description": "The dialog contains a button.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": [
+            {
+              "id": "aria-allowed-attr",
+              "impact": "critical",
+              "help": "Elements must only use supported ARIA attributes"
+            },
+            {
+              "id": "link-name",
+              "impact": "serious",
+              "help": "Links must have discernible text"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

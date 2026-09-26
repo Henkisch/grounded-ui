@@ -1,0 +1,30 @@
+/*
+ * toggletip base CSS: only what the contract and accessibility need.
+ * A native popover opened by an invoker-command button, zero JS. The browser draws and centres the popover;
+ * this file keeps the explanation readable in width, gives the trigger a 24px target and a focus ring.
+ * For a finished look and placement next to the button, add toggletip.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.toggletip {
+  @scope ([data-gui="toggletip"]) to ([data-gui]) {
+    /* WCAG 2.5.8: at least 24 CSS px at 16px text, even for an "i" in running text. */
+    :where([data-gui-part="trigger"], [data-gui-part="close"]) {
+      min-inline-size: var(--gui-toggletip-target-size, 1.5em);
+      min-block-size: var(--gui-toggletip-target-size, 1.5em);
+      font: inherit;
+    }
+
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :where([data-gui-part="trigger"], [data-gui-part="close"]):focus-visible {
+      outline: 2px solid var(--gui-toggletip-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+
+    /* A hint, not a page: keep lines readable and the box inside a phone screen. */
+    :where([data-gui-part="content"]) {
+      max-inline-size: min(100% - 2em, var(--gui-toggletip-width, 20em));
+    }
+  }
+}

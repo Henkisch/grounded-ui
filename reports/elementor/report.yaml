@@ -1,0 +1,25 @@
+# What to test: Elementor Pro's Form widget and Popups on Elementor's own kit-library preview sites
+# (library.elementor.com). Those sites run Elementor Pro 3.21.2, per their asset URLs.
+implementation: Elementor Pro
+package: elementor-pro
+version: 3.21.2
+homepage: https://elementor.com/
+components:
+  text-field:
+    binding: text-field.binding.yaml
+    pages:
+      - url: https://library.elementor.com/personal-chef-flexbox/contact/
+      - url: https://library.elementor.com/italian-cuisine-flexbox/contact/
+      - url: https://library.elementor.com/yoga-studio-flexbox/contact/
+      - url: https://library.elementor.com/yoga-studio-flexbox/
+        name: yoga-studio-flexbox, booking popup opened
+        click: 'a[href*="popup%3Aopen"]'
+  dialog:
+    binding: dialog.binding.yaml
+    pages:
+      - url: https://library.elementor.com/yoga-studio-flexbox/
+        name: yoga-studio-flexbox, booking popup (form) opened
+        click: 'a[href*="popup%3Aopen"]'
+      - url: https://library.elementor.com/personal-chef-flexbox/
+        name: personal-chef-flexbox, menu popup opened
+        click: 'a[href*="popup%3Aopen"]'

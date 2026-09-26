@@ -1,0 +1,377 @@
+# Contract: select
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({label}, {control}, …), never Grounded UI's own hooks, so any implementation
+# can be tested through a binding that maps parts to its markup.
+component: select
+contractVersion: 0.1.0
+title: Select
+summary: A single-choice drop-down with a label, an optional description and an error message, built on the native select element.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+# Support versions and Baseline status are read from the web-features package, never written by hand.
+requires:
+  - feature: select
+  - feature: scope
+  - feature: customizable-select
+    optional: true
+    fallback: The browser draws its own drop-down list; the field keeps the house-style border, arrow and focus ring.
+
+anatomy:
+  root:
+    label: Root
+    element: [div]
+    required: true
+  label:
+    label: Label
+    element: [label]
+    required: true
+  description:
+    label: Description
+    element: [p, div]
+  control:
+    label: Control
+    element: [select]
+    required: true
+  error:
+    label: Error message
+    element: [p, div]
+    requiredWhen: '[aria-invalid="true"]'
+  required-indicator:
+    label: Required indicator
+    element: [span]
+
+domOrder: [label, description, control, error]
+
+states:
+  - { name: required, label: Required, dom: required, hook: ":required" }
+  - { name: invalid, label: Invalid, dom: 'aria-invalid="true"', hook: '[aria-invalid="true"]' }
+  - { name: disabled, label: Disabled, dom: disabled, hook: ":disabled" }
+  - { name: open, label: Open, hook: ":open" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: Moves focus to and from the control }
+  - { key: Click on the label, behavior: Moves focus to the control }
+  - { key: Space / Enter / Alt + Down, behavior: Opens the list of options }
+  - { key: Up / Down, behavior: "Moves between options (on the closed control in most browsers, it changes the value directly)" }
+  - { key: Typing a letter, behavior: Jumps to the next option starting with that letter }
+  - { key: Esc, behavior: Closes the list without changing the value }
+
+# Each rule yields three outputs:
+#   test    → the conformance runner. Selectors use part tokens; `:scope` is the root.
+#             `absent` fails if the root matches the selector or contains a match.
+#   css     → a warning in the generated warnings file (Grounded UI hooks only), or false.
+#   editor  → refuse (refuse to render) or warn. Absent = no editor validation.
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: SL-01
+    description: There is exactly one control.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: One label describes one control; a second control in the field has no label of its own.
+    since: 0.1.0
+    test: { kind: count, selector: '{control}', equals: 1 }
+    css:
+      violation: '[data-gui="select"]:not(:has([data-gui-part="control"]))'
+      message: "SL-01: the field has no [data-gui-part=control]."
+    editor: { level: warn }
+
+  - id: SL-02
+    description: The control is a select element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#the-select-element
+    rationale: The native select brings its role, keyboard, form submission and the platform's own picker on phones for free.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:not(select)' }
+    css:
+      violation: '[data-gui="select"]:has([data-gui-part="control"]:not(select))'
+      message: "SL-02: the control must be a <select>."
+
+  - id: SL-03
+    description: The control is a single-choice drop-down (no multiple, no size above 1).
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
+    rationale: A multi-select list box is hard to use with a keyboard and on touch; a checkbox group does the job better.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:is([multiple], [size]:not([size="0"], [size="1"]))' }
+    css:
+      violation: '[data-gui="select"]:has([data-gui-part="control"]:is([multiple], [size]:not([size="0"], [size="1"])))'
+      message: "SL-03: use a checkbox group instead of a multi-select list."
+    editor: { level: warn }
+
+  - id: SL-04
+    description: There is exactly one label.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
+    rationale: WCAG requires a label, not exactly one; a single visible label keeps the name unambiguous. SL-15 checks the name itself.
+    since: 0.1.0
+    test: { kind: count, selector: '{label}', equals: 1 }
+    css:
+      violation: '[data-gui="select"]:not(:has([data-gui-part="label"]))'
+      message: "SL-04: the field has no [data-gui-part=label]."
+    editor: { level: refuse }
+
+  - id: SL-05
+    description: The label is a label element.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H44
+    rationale: A native label is clickable, gives the control its name and survives CSS and JS failures.
+    since: 0.1.0
+    test: { kind: absent, selector: '{label}:not(label)' }
+    css:
+      violation: '[data-gui="select"]:has([data-gui-part="label"]:not(label))'
+      message: "SL-05: the label must be a <label>."
+
+  - id: SL-06
+    description: The label has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
+    rationale: Sighted users need to see what the choice is about; an empty label leaves only the selected value.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{label}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="select"] [data-gui-part="label"]:empty'
+      pseudo: before
+      message: "SL-06: the label is empty."
+    editor: { level: refuse }
+
+  - id: SL-07
+    description: The label's for matches the control's id.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H44
+    rationale: for/id is the most robust way to associate the label; SL-15 and SL-16 check the resulting name for any technique.
+    since: 0.1.0
+    test:
+      kind: attrEquals
+      a: { selector: '{label}', attr: for }
+      b: { selector: '{control}', attr: id }
+    css: false
+    editor: { level: warn }
+
+  - id: SL-08
+    description: The control has a name.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#naming-form-controls:-the-name-attribute
+    rationale: Without a name the choice is never submitted, which fails silently for the user.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:not([name])' }
+    css:
+      violation: '[data-gui="select"]:has([data-gui-part="control"]:not([name]))'
+      message: "SL-08: the control has no name attribute."
+    editor: { level: refuse }
+
+  - id: SL-09
+    description: If there is a description, its id is referenced in aria-describedby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: aria-describedby is the reliable way to attach the description; SL-17 checks that it arrives, however it is attached.
+    since: 0.1.0
+    test:
+      kind: idrefIncludes
+      from: { selector: '{control}', attr: aria-describedby }
+      to: '{description}'
+    css: false
+
+  - id: SL-10
+    description: If the control has aria-invalid="true", there is an error message in the field or referenced by the control.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: WCAG 3.3.1 requires the error to be described in text, not only flagged.
+    since: 0.1.0
+    test: { kind: invalidHasError, control: '{control}', error: '{error}' }
+    css:
+      violation: '[data-gui="select"]:has([aria-invalid="true"]):not(:has([data-gui-part="error"]))'
+      message: "SL-10: aria-invalid=true but no [data-gui-part=error]."
+    editor: { level: refuse }
+
+  - id: SL-11
+    description: The error's id comes first in aria-describedby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/TR/wai-aria-1.2/#aria-describedby
+    rationale: Screen readers read describedby in id order; the error is the most urgent information.
+    since: 0.1.0
+    test:
+      kind: idrefFirst
+      from: { selector: '{control}', attr: aria-describedby }
+      to: '{error}'
+    css: false
+
+  - id: SL-12
+    description: The error message has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: An empty error part flags the field without saying what is wrong.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{error}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="select"] [data-gui-part="error"]:empty'
+      pseudo: before
+      message: "SL-12: the error message is empty."
+    editor: { level: warn }
+
+  - id: SL-13
+    description: Ids inside the field are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes for and aria-describedby point at the wrong element.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+    editor: { level: warn }
+
+  - id: SL-14
+    description: The control has no aria-label competing with the label.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: aria-label overrides the visible label as the name; the two drift apart as copy changes.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:has({label}):has({control}[aria-label])' }
+    css:
+      violation: '[data-gui="select"]:has([data-gui-part="label"]):has([data-gui-part="control"][aria-label])'
+      message: "SL-14: the control has both a <label> and an aria-label."
+
+  - id: SL-15
+    description: The control has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: Without a name, a screen reader announces only "combo box" and the selected value, not what is being chosen.
+    since: 0.1.0
+    test: { kind: name, selector: '{control}' }
+    css: false
+
+  - id: SL-16
+    description: The control's accessible name contains the visible label text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: Voice-control users say the label they see; if the name differs, they can't reach the field.
+    since: 0.1.0
+    test: { kind: name, selector: '{control}', includes: '{label}' }
+    css: false
+
+  - id: SL-17
+    description: If there is a description, its text reaches the control's accessible description or name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: Instructions shown next to the field must be available to screen-reader users when the field has focus.
+    since: 0.1.0
+    test: { kind: exposes, selector: '{control}', text: '{description}' }
+    css: false
+
+  - id: SL-18
+    description: If there is an error message, its text reaches the control's accessible description or name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: An error announced only visually leaves screen-reader users with an invalid field and no reason.
+    since: 0.1.0
+    test: { kind: exposes, selector: '{control}', text: '{error}' }
+    css: false
+
+  - id: SL-19
+    description: The control has the role combobox or listbox.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/TR/html-aam-1.0/#el-select-combobox
+    rationale: The role tells users they are choosing from a list; a select exposed as anything else is misannounced.
+    since: 0.1.0
+    test: { kind: role, selector: '{control}', oneOf: [combobox, listbox] }
+    css: false
+
+  - id: SL-20
+    description: Every option has visible text.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: An empty option is announced as "blank"; a prompt such as "Choose a municipality" says what the empty choice means.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{control} :is(option, [role="option"])' }
+    css: false
+    editor: { level: warn }
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "Label associated via for; description and error associated via aria-describedby; option groups via optgroup" }
+  - { criterion: "2.4.6", name: Headings and Labels, level: AA, how: "Label required and visible" }
+  - { criterion: "2.5.3", name: Label in Name, level: A, how: "The visible label text is the field's accessible name" }
+  - { criterion: "3.3.1", name: Error Identification, level: A, how: "aria-invalid plus an error message associated via aria-describedby" }
+  - { criterion: "3.3.2", name: Labels or Instructions, level: A, how: "Label required; description available when instructions are needed" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Native select: role combobox, value and options exposed by the browser" }
+  - { criterion: "2.1.1", name: Keyboard, level: A, how: "Native select: opens, moves between options and closes by keyboard" }
+  - { criterion: "1.4.11", name: Non-text Contrast, level: AA, how: "Field border, arrow and focus indicator at least 3:1" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: ":focus-visible with an outline, never removed" }
+  - { criterion: "2.3.3", name: Animation from Interactions, level: AAA, how: "The picker's open transition is removed under prefers-reduced-motion" }
+
+siteResponsibilities:
+  - { criterion: "1.4.3", title: Text contrast, text: "We inherit the site's colours. A 4.5:1 contrast between label text and background is the site's responsibility." }
+  - { criterion: "3.2.2", title: No change on select, text: "Don't submit the form or navigate when the value changes; let the user confirm with a button." }
+  - { criterion: "3.3.1", title: Error summary on submit, text: "Belongs to the form contract, not the field." }
+  - { criterion: "3.3.3", title: Understandable error messages, text: "We can require the message to exist, not that its content is good. Hence the editor guidance." }
+  - { criterion: "2.4.7", title: Don't remove the focus ring, text: "Grounded UI never uses !important, so a site rule like :focus { outline: 0 } removes the field's focus ring. Style focus, don't remove it." }
+  - { title: Long lists, text: "Past roughly 15 options, consider a text field with suggestions (datalist) or radio buttons for fewer than 5." }
+
+editor:
+  help:
+    label: 'Say what is being chosen. "Municipality" works better than "Choose".'
+    description: "Optional instruction, such as why the choice is needed. Announced together with the label."
+    option: 'Keep options short and distinct, and start them with the word people scan for. Put a prompt such as "Choose a municipality" first when there is no sensible default.'
+    error: 'Say how to fix the error: "Choose the municipality you live in", not "Invalid choice".'
+  softWarnings:
+    - { id: SL-W1, text: More than about 15 options }
+    - { id: SL-W2, text: "Fewer than 3 options, where radio buttons show every choice at once" }
+    - { id: SL-W3, text: 'Options that only differ at the end, such as "Region Stockholm north" and "Region Stockholm south"' }
+
+# The component's API: the attributes a user writes. Rendered as tables in the docs.
+attributes:
+  - { on: root, name: data-gui, type: '"select"', required: true, description: Marks the element as a Grounded UI select. }
+  - { on: label, name: for, type: id, required: true, description: The control's id. }
+  - { on: control, name: id, type: string, required: true, description: Target for the label's for. }
+  - { on: control, name: name, type: string, required: true, description: The form field name sent on submit. }
+  - { on: control, name: aria-describedby, type: id list, description: 'Error id first, then the description id.' }
+  - { on: control, name: aria-invalid, type: '"true"', description: Set by the server or script when the choice is invalid. Requires an error part. }
+  - { on: control, name: autocomplete, type: string, description: 'Input purpose, for example "country" (WCAG 1.3.5).' }
+  - { on: control, name: required, type: boolean, description: Marks the field as required; pair it with an empty first option. }
+  - { on: control, name: disabled, type: boolean, description: Removes the field from tab order. }
+  - { on: description, name: id, type: string, description: Referenced from the control's aria-describedby. }
+  - { on: error, name: id, type: string, description: Referenced first in the control's aria-describedby. }
+
+customProperties:
+  --gui-select-gap: Space between parts.
+  --gui-select-label: Label text colour.
+  --gui-select-label-weight: Label font weight.
+  --gui-select-muted: Description, arrow, group label and disabled text colour.
+  --gui-select-control-bg: Control and picker background.
+  --gui-select-border: Control border colour (keep it at least 3:1 against the background).
+  --gui-select-border-hover: Control border colour on hover.
+  --gui-select-control-muted-bg: Background of disabled controls, and of the highlighted option.
+  --gui-select-radius: Control and picker corner radius.
+  --gui-select-touch-target: Minimum control and option height.
+  --gui-select-focus: Focus ring colour.
+  --gui-select-danger: Error text and border colour.
+  --gui-select-shadow: Picker elevation shadow.
+  --gui-select-duration: Hover and picker transition duration.
+  --gui-select-easing: Transition easing.

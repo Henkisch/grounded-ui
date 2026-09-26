@@ -1,0 +1,11 @@
+# Maps the dialog contract's parts to Elementor Pro Popups (dialogs-manager: a div with aria-modal, opened by script).
+component: dialog
+implementation: Elementor Pro
+root: .elementor-popup-modal
+boundary: .elementor-popup-modal
+parts:
+  trigger: ':not(*)'
+  title: .elementor-heading-title
+  body: .dialog-message
+  actions: ':not(*)'
+  close: .dialog-close-button, a[href*="popup%3Aclose"]

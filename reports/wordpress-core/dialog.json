@@ -1,0 +1,469 @@
+{
+  "implementation": "WordPress core",
+  "version": "7.1.2",
+  "contract": "0.3.0",
+  "examples": [
+    {
+      "source": "wordpress-core",
+      "name": "Comment form (Twenty Twenty-Five, logged out)",
+      "report": []
+    },
+    {
+      "source": "wordpress-core",
+      "name": "Search block: visible label, hidden label, no button",
+      "report": []
+    },
+    {
+      "source": "wordpress-core",
+      "name": "Post password form",
+      "report": []
+    },
+    {
+      "source": "wordpress-core",
+      "name": "Log in (wp-login.php)",
+      "report": []
+    },
+    {
+      "source": "wordpress-core",
+      "name": "Log in, wrong password (server-rendered error)",
+      "report": []
+    },
+    {
+      "source": "wordpress-core",
+      "name": "Navigation block overlay menu, opened (390px wide)",
+      "report": [
+        {
+          "component": "dialog",
+          "contractVersion": "0.3.0",
+          "implementation": "WordPress core",
+          "element": "<div class=\"wp-block-navigation__responsive-dialog\" data-wp-bind--aria-modal=\"state.ariaModal\" data-wp-bind--aria-label=\"state.ariaLabel\">",
+          "results": [
+            {
+              "id": "DG-01",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The root is a <dialog> element.",
+              "pass": false,
+              "detail": "root matches :scope:not(dialog)"
+            },
+            {
+              "id": "DG-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog has an id, so triggers can point at it.",
+              "pass": false,
+              "detail": "root matches :scope:not([id])"
+            },
+            {
+              "id": "DG-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one title.",
+              "pass": false,
+              "detail": "expected 1, found 0"
+            },
+            {
+              "id": "DG-04",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The title has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-05",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The dialog has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-06",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The name comes from the title, via aria-labelledby pointing at its id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "A trigger on the page points at the dialog with commandfor and command=\"show-modal\".",
+              "pass": false,
+              "detail": "the root has no id to reference"
+            },
+            {
+              "id": "DG-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The trigger is a <button>.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog contains a close control (command=\"close\" or a form with method=\"dialog\").",
+              "pass": false,
+              "detail": "root matches :scope:not(:has([command=\"close\"], form[method=\"dialog\"]))"
+            },
+            {
+              "id": "DG-10",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog is not rendered with a static open attribute; it opens as a modal via show-modal.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-11",
+              "level": "normative",
+              "type": "outcome",
+              "description": "On a native <dialog>, the only role override allowed is role=\"alertdialog\".",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-12",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog itself has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-13",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The alert variant has role=\"alertdialog\" and no light dismiss.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-14",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The dialog has the role dialog or alertdialog.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-15",
+              "level": "recommended",
+              "type": "outcome",
+              "description": "The dialog's accessible name contains its title text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-16",
+              "level": "recommended",
+              "type": "outcome",
+              "description": "The dialog contains a button.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": [
+            {
+              "id": "list",
+              "impact": "serious",
+              "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "docs",
+      "name": "Twenty Twenty search modal, opened",
+      "url": "https://wp-themes.com/twentytwenty/?p=1",
+      "report": [
+        {
+          "component": "dialog",
+          "contractVersion": "0.3.0",
+          "implementation": "WordPress core",
+          "element": "<div class=\"search-modal cover-modal header-footer-group show-modal active\" data-modal-target-string=\".search-modal\" role=\"dialog\">",
+          "results": [
+            {
+              "id": "DG-01",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The root is a <dialog> element.",
+              "pass": false,
+              "detail": "root matches :scope:not(dialog)"
+            },
+            {
+              "id": "DG-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog has an id, so triggers can point at it.",
+              "pass": false,
+              "detail": "root matches :scope:not([id])"
+            },
+            {
+              "id": "DG-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one title.",
+              "pass": false,
+              "detail": "expected 1, found 0"
+            },
+            {
+              "id": "DG-04",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The title has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-05",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The dialog has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-06",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The name comes from the title, via aria-labelledby pointing at its id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "A trigger on the page points at the dialog with commandfor and command=\"show-modal\".",
+              "pass": false,
+              "detail": "the root has no id to reference"
+            },
+            {
+              "id": "DG-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The trigger is a <button>.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog contains a close control (command=\"close\" or a form with method=\"dialog\").",
+              "pass": false,
+              "detail": "root matches :scope:not(:has([command=\"close\"], form[method=\"dialog\"]))"
+            },
+            {
+              "id": "DG-10",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog is not rendered with a static open attribute; it opens as a modal via show-modal.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-11",
+              "level": "normative",
+              "type": "outcome",
+              "description": "On a native <dialog>, the only role override allowed is role=\"alertdialog\".",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-12",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog itself has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-13",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The alert variant has role=\"alertdialog\" and no light dismiss.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-14",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The dialog has the role dialog or alertdialog.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-15",
+              "level": "recommended",
+              "type": "outcome",
+              "description": "The dialog's accessible name contains its title text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-16",
+              "level": "recommended",
+              "type": "outcome",
+              "description": "The dialog contains a button.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    },
+    {
+      "source": "docs",
+      "name": "Twenty Twenty menu modal, opened",
+      "url": "https://wp-themes.com/twentytwenty/?p=1",
+      "report": [
+        {
+          "component": "dialog",
+          "contractVersion": "0.3.0",
+          "implementation": "WordPress core",
+          "element": "<div class=\"menu-modal cover-modal header-footer-group show-modal active\" data-modal-target-string=\".menu-modal\">",
+          "results": [
+            {
+              "id": "DG-01",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The root is a <dialog> element.",
+              "pass": false,
+              "detail": "root matches :scope:not(dialog)"
+            },
+            {
+              "id": "DG-02",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog has an id, so triggers can point at it.",
+              "pass": false,
+              "detail": "root matches :scope:not([id])"
+            },
+            {
+              "id": "DG-03",
+              "level": "recommended",
+              "type": "technique",
+              "description": "There is exactly one title.",
+              "pass": false,
+              "detail": "expected 1, found 0"
+            },
+            {
+              "id": "DG-04",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The title has non-empty text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-05",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The dialog has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-06",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The name comes from the title, via aria-labelledby pointing at its id.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-07",
+              "level": "recommended",
+              "type": "technique",
+              "description": "A trigger on the page points at the dialog with commandfor and command=\"show-modal\".",
+              "pass": false,
+              "detail": "the root has no id to reference"
+            },
+            {
+              "id": "DG-08",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The trigger is a <button>.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-09",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog contains a close control (command=\"close\" or a form with method=\"dialog\").",
+              "pass": false,
+              "detail": "root matches :scope:not(:has([command=\"close\"], form[method=\"dialog\"]))"
+            },
+            {
+              "id": "DG-10",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog is not rendered with a static open attribute; it opens as a modal via show-modal.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-11",
+              "level": "normative",
+              "type": "outcome",
+              "description": "On a native <dialog>, the only role override allowed is role=\"alertdialog\".",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-12",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The dialog itself has no tabindex.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-13",
+              "level": "recommended",
+              "type": "technique",
+              "description": "The alert variant has role=\"alertdialog\" and no light dismiss.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-14",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The dialog has the role dialog or alertdialog.",
+              "pass": false,
+              "detail": "<div class=\"menu-modal cover-modal header-footer-group show-modal active\" data-modal-target-string=\".menu-modal\"> has role \"none\", expected dialog or alertdialog"
+            },
+            {
+              "id": "DG-15",
+              "level": "recommended",
+              "type": "outcome",
+              "description": "The dialog's accessible name contains its title text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "DG-16",
+              "level": "recommended",
+              "type": "outcome",
+              "description": "The dialog contains a button.",
+              "pass": true,
+              "detail": null
+            }
+          ],
+          "axeViolations": []
+        }
+      ]
+    }
+  ]
+}

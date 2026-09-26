@@ -1,0 +1,117 @@
+/* Hallmark · component: accordion · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: closed · hover · focus · open (disabled, loading, error, success: not states of a details element)
+ * contrast: text on Canvas; the chevron is currentColor; separators are decorative
+ */
+/*
+ * accordion styled CSS: the Grounded house style on top of accordion.css.
+ * Hairline separators, a drawn chevron that turns on open, and a height animation where the browser
+ * supports animating to auto. Colours come from Canvas and CanvasText, so it follows the site's colour scheme.
+ * Pure appearance: remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.accordion {
+  @scope ([data-gui="accordion"]) to ([data-gui]) {
+    :where([data-gui-part="item"]) {
+      border-block-end-width: 1px;
+      border-block-end-style: solid;
+      border-block-end-color: var(--gui-accordion-border, var(--gui-border, color-mix(in oklab, CanvasText 18%, Canvas)));
+    }
+
+    :where([data-gui-part="item"]:first-of-type) {
+      border-block-start-width: 1px;
+      border-block-start-style: solid;
+      border-block-start-color: var(--gui-accordion-border, var(--gui-border, color-mix(in oklab, CanvasText 18%, Canvas)));
+    }
+
+    :where([data-gui-part="summary"]) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1em;
+      padding-block: 0.75em;
+      padding-inline: 0.5em;
+      font-weight: var(--gui-accordion-summary-weight, 600);
+      list-style: none;
+      border-radius: var(--gui-accordion-radius, var(--gui-radius, 0.375em));
+      transition-property: background-color;
+      transition-duration: var(--gui-accordion-duration, 200ms);
+      transition-timing-function: var(--gui-accordion-easing, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    /* Safari still draws its own marker unless this is hidden. */
+    :where([data-gui-part="summary"])::-webkit-details-marker {
+      display: none;
+    }
+
+    /* The chevron: two borders of a square, drawn in the text colour, turned on open. */
+    :where([data-gui-part="summary"])::after {
+      flex: none;
+      inline-size: 0.5em;
+      block-size: 0.5em;
+      margin-inline-end: 0.25em;
+      content: "";
+      border-block-end: 2px solid currentColor;
+      border-inline-end: 2px solid currentColor;
+      rotate: 45deg;
+      translate: 0 -0.125em;
+      transition-property: rotate, translate;
+      transition-duration: var(--gui-accordion-duration, 200ms);
+      transition-timing-function: var(--gui-accordion-easing, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    :where([data-gui-part="item"][open] > [data-gui-part="summary"])::after {
+      rotate: -135deg;
+      translate: 0 0.125em;
+    }
+
+    @media (hover: hover) {
+      :where([data-gui-part="summary"]):hover {
+        background: var(--gui-accordion-control-muted-bg, color-mix(in oklab, CanvasText 4%, Canvas));
+      }
+    }
+
+    :where([data-gui-part="panel"]) {
+      padding-block: 0 1em;
+      padding-inline: 0.5em;
+      color: var(--gui-accordion-muted, color-mix(in oklab, CanvasText 75%, Canvas));
+    }
+
+    :where([data-gui-part="panel"]) > :first-child {
+      margin-block-start: 0;
+    }
+
+    :where([data-gui-part="panel"]) > :last-child {
+      margin-block-end: 0;
+    }
+
+    /* Animate to and from auto height where the browser can; elsewhere items simply open. */
+    @supports (interpolate-size: allow-keywords) {
+      :scope {
+        interpolate-size: allow-keywords;
+      }
+
+      :where([data-gui-part="item"])::details-content {
+        block-size: 0;
+        overflow: clip;
+        transition-property: block-size, content-visibility;
+        transition-duration: var(--gui-accordion-duration, 200ms);
+        transition-timing-function: var(--gui-accordion-easing, cubic-bezier(0.2, 0, 0, 1));
+        transition-behavior: allow-discrete;
+      }
+
+      :where([data-gui-part="item"][open])::details-content {
+        block-size: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :where([data-gui-part="summary"]),
+      :where([data-gui-part="summary"])::after,
+      :where([data-gui-part="item"])::details-content {
+        transition-duration: 0s;
+      }
+    }
+  }
+}

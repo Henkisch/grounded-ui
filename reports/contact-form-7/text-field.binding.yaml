@@ -1,0 +1,11 @@
+# Maps the text-field contract's parts to Contact Form 7's default form: a <p> holding a <label> that wraps the
+# control and, after a failed submit, the validation tip.
+component: text-field
+implementation: Contact Form 7
+root: '.wpcf7-form p:has(.wpcf7-form-control-wrap)'
+parts:
+  label: label
+  description: ':not(*)'
+  control: '.wpcf7-form-control:is(input:not([type="submit"], [type="checkbox"], [type="radio"], [type="file"]), textarea)'
+  error: .wpcf7-not-valid-tip
+  required-indicator: ':not(*)'

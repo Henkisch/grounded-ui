@@ -1,0 +1,5 @@
+<!-- Breaks TF-05: the label part is a span, not a <label>; aria-labelledby still names the control. -->
+<div data-gui="text-field">
+  <span data-gui-part="label" id="city-label" for="city">City</span>
+  <input data-gui-part="control" type="text" id="city" name="city" aria-labelledby="city-label">
+</div>

@@ -1,0 +1,229 @@
+# Contract: accordion
+# A stack of disclosure items on native <details>/<summary>; with a shared name, only one item is open at a time.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({item}, {summary}, …); `:scope` is the root.
+component: accordion
+contractVersion: 0.1.0
+title: Accordion
+summary: Questions and sections that expand in place, built on the native details element. Zero JavaScript; with a shared name, opening one closes the others.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: details
+  - feature: details-name
+    optional: true
+    fallback: Items open and close independently instead of one at a time. Everything stays reachable.
+  - feature: details-content
+    optional: true
+    fallback: Items open without the height animation.
+  - feature: interpolate-size
+    optional: true
+    fallback: Items open without the height animation.
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [div]
+    required: true
+  item:
+    label: Item
+    element: [details]
+    required: true
+  summary:
+    label: Summary (the button)
+    element: [summary]
+    required: true
+  heading:
+    label: Heading inside the summary
+    element: [h2, h3, h4, h5, h6]
+  panel:
+    label: Panel
+    element: [div]
+    required: true
+
+domOrder: [item]
+
+variants:
+  - name: exclusive
+    description: Every item has the same name attribute, so opening one closes the others (an FAQ). Without it, items open independently.
+
+states:
+  - { name: open, label: Open, dom: open, hook: "[open]" }
+  - { name: closed, label: Closed, dom: no open attribute, hook: ":not([open])" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: Moves focus between the summaries and into open panels }
+  - { key: Enter / Space on a summary, behavior: "Opens or closes that item; in an exclusive accordion, opening one closes the open one" }
+  - { key: Find in page (Ctrl/Cmd + F), behavior: "Closed panels stay searchable; a match opens its item" }
+
+# Each rule yields three outputs: test (the conformance runner, part tokens, `:scope` is the root),
+# css (a warning in the generated warnings file, Grounded UI hooks only, or false), editor (refuse or warn).
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       state, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: AC-01
+    description: Every summary has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: The summary is a button; without a name, screen readers announce only "button, collapsed".
+    since: 0.1.0
+    test: { kind: name, selector: '{summary}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="accordion"] [data-gui-part="summary"]:empty'
+      pseudo: before
+      message: "AC-01: the summary is empty."
+    editor: { level: refuse }
+
+  - id: AC-02
+    description: Every summary has the role button.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/TR/html-aam-1.0/#el-summary
+    rationale: The button role tells users the heading-like text can be activated; a role override hides that it opens anything.
+    since: 0.1.0
+    test: { kind: role, selector: '{summary}', oneOf: [button] }
+    css:
+      violation: '[data-gui="accordion"] [data-gui-part="summary"][role]'
+      message: "AC-02: the summary's role is overridden; leave it a button."
+
+  - id: AC-03
+    description: Every summary exposes its expanded or collapsed state.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
+    rationale: Users need to hear whether a section is open; native summary exposes it, a scripted button needs aria-expanded.
+    since: 0.1.0
+    test: { kind: absent, selector: '{summary}:not(details > summary):not([aria-expanded])' }
+    css:
+      violation: '[data-gui="accordion"] [data-gui-part="summary"]:not(summary):not([aria-expanded])'
+      message: "AC-03: the summary doesn't expose whether it is open."
+
+  - id: AC-04
+    description: Summaries contain no links, buttons or form fields.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/TR/wai-aria-1.2/#button
+    rationale: Children of a button are presentational; a link inside the summary is unreachable or announced as part of the button.
+    since: 0.1.0
+    test: { kind: absent, selector: '{summary} :is(a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"]))' }
+    css:
+      violation: '[data-gui="accordion"] [data-gui-part="summary"]:has(a[href], button, input, select, textarea)'
+      message: "AC-04: the summary contains a link or control. Move it into the panel."
+    editor: { level: refuse }
+
+  - id: AC-05
+    description: Every panel has content.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: An item that opens onto nothing wastes a step and suggests the page is broken.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{panel}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="accordion"] [data-gui-part="panel"]:empty'
+      pseudo: before
+      message: "AC-05: the panel is empty."
+    editor: { level: warn }
+
+  - id: AC-06
+    description: Every item is a details element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-details-element
+    rationale: details gives the open state, keyboard support and find-in-page without JavaScript.
+    since: 0.1.0
+    test: { kind: absent, selector: '{item}:not(details)' }
+    css:
+      violation: '[data-gui="accordion"] [data-gui-part="item"]:not(details)'
+      message: "AC-06: the item should be a <details> element."
+
+  - id: AC-07
+    description: Every summary is a summary element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-summary-element
+    rationale: The native summary is the button, toggles its details and exposes the state for free.
+    since: 0.1.0
+    test: { kind: absent, selector: '{summary}:not(summary)' }
+    css:
+      violation: '[data-gui="accordion"] [data-gui-part="summary"]:not(summary)'
+      message: "AC-07: the summary should be a <summary> element."
+
+  - id: AC-08
+    description: Either every item has a name (exclusive) or none does.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/interactive-elements.html#attr-details-name
+    rationale: A mix makes some items close their siblings and others not, which users can't predict.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:has({item}[name]):has({item}:not([name]))' }
+    css:
+      violation: '[data-gui="accordion"]:has([data-gui-part="item"][name]):has([data-gui-part="item"]:not([name]))'
+      message: "AC-08: only some items have a name; give all of them the same name, or none."
+    editor: { level: warn }
+
+  - id: AC-09
+    description: A heading for an item sits inside its summary.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-summary-element
+    rationale: The heading and the button then share one text; a heading next to the summary repeats it or separates label from control.
+    since: 0.1.0
+    test: { kind: absent, selector: '{heading}:not({summary} *)' }
+    css:
+      violation: '[data-gui="accordion"] [data-gui-part="heading"]:not([data-gui-part="summary"] *)'
+      message: "AC-09: put the heading inside the summary."
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "Native details ties each summary to its panel; optional headings inside summaries keep the page outline" }
+  - { criterion: "2.1.1", name: Keyboard, level: A, how: "Summaries are native buttons: Tab to reach, Enter or Space to toggle" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "A 2px focus ring on the summary, never removed by Grounded UI's CSS" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "Summaries are at least 2.75em tall" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Summary has role button, a name from its text and an exposed expanded state" }
+  - { criterion: "2.3.3", name: Animation from Interactions, level: AAA, how: "The open and close animation is removed under prefers-reduced-motion" }
+
+siteResponsibilities:
+  - { criterion: "2.4.6", title: Heading levels, text: "If summaries contain headings, pick the level that fits the page outline; the contract can't know it." }
+  - { criterion: "2.4.7", title: Don't remove the focus ring, text: "Grounded UI never uses !important, so a site rule like :focus { outline: 0 } removes the summary's focus ring." }
+  - { criterion: "1.4.3", title: Text contrast, text: "Summary and panel text inherit the site's colours." }
+  - { title: Essential content, text: "Don't hide content everyone must read, such as prices or deadlines, in a closed item." }
+
+editor:
+  help:
+    summary: 'Write the question or section name users are looking for, for example "When is the recycling centre open?" Keep it to one line.'
+    panel: "Answer directly in the first sentence, then add detail. Links and lists belong here, not in the question."
+    item: "Group related questions in one accordion. Five to ten items is plenty; more is easier to scan as a page with headings."
+  softWarnings:
+    - { id: AC-W1, text: 'A summary that is only "Read more", "Details" or similar' }
+    - { id: AC-W2, text: More than 12 items in one accordion }
+    - { id: AC-W3, text: A panel with only one short sentence (could be visible text instead) }
+
+# The component's API: the attributes a user writes. Rendered as tables in the docs.
+attributes:
+  - { on: root, name: data-gui, type: '"accordion"', required: true, description: Marks the element as a Grounded UI accordion. }
+  - { on: item, name: data-gui-part, type: '"item"', required: true, description: Marks each details element as an item. }
+  - { on: item, name: name, type: string, description: "The same value on every item makes the accordion exclusive: one open at a time." }
+  - { on: item, name: open, type: boolean, description: "Opens the item on load. In an exclusive accordion, only one item may have it." }
+  - { on: summary, name: data-gui-part, type: '"summary"', required: true, description: Marks the summary. }
+  - { on: panel, name: data-gui-part, type: '"panel"', required: true, description: Wraps the item's content after the summary. }
+
+customProperties:
+  --gui-accordion-border: Separator between items.
+  --gui-accordion-radius: Corner radius of the summary's hover and focus area.
+  --gui-accordion-touch-target: Minimum summary height.
+  --gui-accordion-focus: Focus ring colour.
+  --gui-accordion-control-muted-bg: Summary background on hover.
+  --gui-accordion-summary-weight: Summary font weight.
+  --gui-accordion-muted: Panel text colour.
+  --gui-accordion-duration: Open and close duration.
+  --gui-accordion-easing: Open and close easing.

@@ -1,4 +1,4 @@
-// Size budgets for everything grund-ui ships.
+// Size budgets for everything grounded-ui ships.
 // Each file: lightningcss minify, brotli, compare against budgets.json
 // (per-component overrides from contract.yaml `budget:`). Writes dist/sizes.json.
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';
@@ -21,20 +21,21 @@ const minifyCss = (files) => {
 
 const entries = [];
 
-// Core = tokens + core, shipped as one link.
-const coreFiles = ['core/tokens.css', 'core/core.css'].map((f) => join(root, f));
+// Core: the one stylesheet every page links.
+const coreFiles = ['reference/core/core.css'].map((f) => join(root, f));
 entries.push({ name: 'core', kind: 'css', bytes: brotli(minifyCss(coreFiles)), limit: budgets.core.css });
 
-const componentsDir = join(root, 'components');
-for (const slug of readdirSync(componentsDir).sort()) {
+const componentsDir = join(root, 'reference');
+const contractsDir = join(root, 'contracts');
+for (const slug of readdirSync(componentsDir).filter((s) => s !== 'core').sort()) {
   const dir = join(componentsDir, slug);
-  const contractPath = join(dir, 'contract.yaml');
+  const contractPath = join(contractsDir, slug, 'contract.yaml');
   const override = existsSync(contractPath) ? parse(readFileSync(contractPath, 'utf8'))?.budget ?? {} : {};
 
   // Base and styled are linked separately, so each is measured alone; the budget covers both together.
   const cssLimit = override.css ?? budgets.component.css;
-  const basePath = join(dir, 'styles', `${slug}.css`);
-  const styledPath = join(dir, 'styles', `${slug}.styled.css`);
+  const basePath = join(dir, `${slug}.css`);
+  const styledPath = join(dir, `${slug}.styled.css`);
   const base = existsSync(basePath) ? brotli(minifyCss([basePath])) : 0;
   const styled = existsSync(styledPath) ? brotli(minifyCss([styledPath])) : 0;
   entries.push({ name: slug, kind: 'css base', bytes: base, limit: cssLimit });
@@ -42,7 +43,7 @@ for (const slug of readdirSync(componentsDir).sort()) {
   entries.push({ name: slug, kind: 'css total', bytes: base + styled, limit: cssLimit });
 
   // JS is optional; absent file = 0 bytes. Shipped as-is, no minifier in the chain.
-  const jsPath = join(dir, 'scripts', `${slug}.js`);
+  const jsPath = join(dir, `${slug}.js`);
   const jsBytes = existsSync(jsPath) ? brotli(readFileSync(jsPath)) : 0;
   entries.push({ name: slug, kind: 'js', bytes: jsBytes, limit: override.js ?? budgets.component.js });
 }

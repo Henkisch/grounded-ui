@@ -1,8 +1,8 @@
 import { defineConfig } from "blume";
 
 export default defineConfig({
-  title: "Grund UI",
-  description: "Native HTML components for existing CMS sites. One CSS link plus copied markup.",
+  title: "Grounded UI",
+  description: "Proof, not promises: accessible components you and your AI agent can verify.",
   content: {
     root: "content",
   },

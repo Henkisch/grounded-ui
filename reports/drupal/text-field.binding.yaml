@@ -1,0 +1,15 @@
+# Maps the text-field contract's parts to Drupal core form markup (form-element.html.twig) as rendered by
+# Olivero and Claro. Password fields are left out: they have no ARIA role, so they aren't text fields under
+# this contract (TF-21 expects textbox or searchbox).
+component: text-field
+implementation: Drupal core (Olivero, Claro)
+root: '.js-form-item:has(> input:is([type="text"], [type="email"], [type="search"], [type="url"], [type="tel"], [type="number"]), > div > textarea, > textarea)'
+boundary: .js-form-item
+parts:
+  label: .form-item__label
+  description: .form-item__description
+  control: 'input.form-element, textarea.form-element'
+  # Inline Form Errors markup: Claro uses __error-message, Olivero --error-message. Without the module there is none.
+  error: '.form-item__error-message, .form-item--error-message'
+  # Drupal marks required fields with a CSS ::after on the label, not an element.
+  required-indicator: ':not(*)'

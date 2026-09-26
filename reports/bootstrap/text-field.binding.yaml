@@ -1,0 +1,24 @@
+# Maps the text-field contract's parts to Bootstrap 5 form markup.
+# Bootstrap has no field wrapper class: a field is the div (.mb-3, .col-*, .form-floating, a horizontal .row)
+# that directly holds a .form-control, or an .input-group holding one. File, colour, range and plaintext
+# controls are not text fields and are left out.
+component: text-field
+implementation: Bootstrap 5
+root: >-
+  div:not(.input-group, label + div):has(> .form-control:not([type=file], [type=color], [type=range], .form-control-plaintext)),
+  div:not(label + div):has(> .input-group > .form-control:not([type=file], [type=color], [type=range], .form-control-plaintext)),
+  div.row:has(> label + div > .form-control:not([type=file], [type=color], [type=range], .form-control-plaintext))
+boundary: >-
+  div:not(.input-group, label + div):has(> .form-control:not([type=file], [type=color], [type=range], .form-control-plaintext)),
+  div:not(label + div):has(> .input-group > .form-control:not([type=file], [type=color], [type=range], .form-control-plaintext)),
+  div.row:has(> label + div > .form-control:not([type=file], [type=color], [type=range], .form-control-plaintext))
+parts:
+  label: 'label:not(.form-check-label)'
+  description: .form-text
+  control: '.form-control:not([type=file], [type=color], [type=range], .form-control-plaintext)'
+  # Feedback is in the DOM at all times; count it only when Bootstrap shows it.
+  error: >-
+    .is-invalid ~ .invalid-feedback, .is-invalid ~ .invalid-tooltip,
+    .was-validated :invalid ~ .invalid-feedback, .was-validated :invalid ~ .invalid-tooltip,
+    .input-group:has(> .is-invalid) ~ .invalid-feedback
+  required-indicator: ':not(*)'

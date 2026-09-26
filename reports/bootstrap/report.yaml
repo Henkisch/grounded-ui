@@ -1,0 +1,38 @@
+# What to test: Bootstrap's own live documentation examples, rendered by its docs site in Chromium.
+implementation: Bootstrap 5
+package: bootstrap
+homepage: https://getbootstrap.com/docs/5.3/
+components:
+  text-field:
+    binding: text-field.binding.yaml
+    pages:
+      - url: https://getbootstrap.com/docs/5.3/forms/overview/
+        name: overview
+      - url: https://getbootstrap.com/docs/5.3/forms/form-control/
+        name: form-control
+      - url: https://getbootstrap.com/docs/5.3/forms/floating-labels/
+        name: floating-labels
+      - url: https://getbootstrap.com/docs/5.3/forms/input-group/
+        name: input-group
+      - url: https://getbootstrap.com/docs/5.3/forms/layout/
+        name: layout
+      - url: https://getbootstrap.com/docs/5.3/forms/validation/
+        name: validation
+      - url: https://getbootstrap.com/docs/5.3/forms/validation/
+        name: validation, custom styles after submit
+        click: 'form.needs-validation button[type="submit"]'
+  dialog:
+    binding: dialog.binding.yaml
+    pages:
+      - url: https://getbootstrap.com/docs/5.3/components/modal/
+        name: live demo, opened
+        click: 'button[data-bs-target="#exampleModalLive"]'
+      - url: https://getbootstrap.com/docs/5.3/components/modal/
+        name: static backdrop, opened
+        click: 'button[data-bs-target="#staticBackdropLive"]'
+      - url: https://getbootstrap.com/docs/5.3/components/modal/
+        name: scrollable, opened
+        click: 'button[data-bs-target="#exampleModalScrollable"]'
+      - url: https://getbootstrap.com/docs/5.3/components/modal/
+        name: form in modal, opened
+        click: 'button[data-bs-target="#exampleModal"]'

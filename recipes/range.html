@@ -1,0 +1,71 @@
+<style>
+  .sliders { display: grid; gap: 1.25em; max-inline-size: 24em; }
+  .sliders label { display: grid; gap: 0.5em; font-weight: 600; }
+  .sliders .row { display: flex; align-items: center; gap: 1em; }
+
+  /* Reset, then draw track and thumb yourself. */
+  .sliders input[type="range"] {
+    appearance: none;
+    font-size: inherit;          /* controls default to about 13.3px, so em sizes would shrink */
+    flex: 1;
+    block-size: 1.5em;           /* the hit area, not the track */
+    margin: 0;
+    background: transparent;
+    accent-color: CanvasText;
+  }
+
+  /* Track: separate rules per engine. One unknown pseudo-element in a list drops the whole rule. */
+  .sliders input[type="range"]::-webkit-slider-runnable-track {
+    block-size: 0.375em;
+    border-radius: 1em;
+    background: color-mix(in oklab, CanvasText 30%, Canvas);
+  }
+  .sliders input[type="range"]::-moz-range-track {
+    block-size: 0.375em;
+    border-radius: 1em;
+    background: color-mix(in oklab, CanvasText 30%, Canvas);
+  }
+
+  /* Filled part: Firefox only. */
+  .sliders input[type="range"]::-moz-range-progress {
+    block-size: 0.375em;
+    border-radius: 1em;
+    background: CanvasText;
+  }
+
+  /* Thumb: 1.5em, at least 24 CSS px at 16px text. */
+  .sliders input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    inline-size: 1.5em;
+    block-size: 1.5em;
+    margin-block-start: -0.5625em; /* (track − thumb) / 2: Chromium and Safari don't centre it */
+    border-radius: 50%;
+    background: Canvas;
+    border: 2px solid CanvasText;
+  }
+  .sliders input[type="range"]::-moz-range-thumb {
+    box-sizing: border-box;
+    inline-size: 1.5em;
+    block-size: 1.5em;
+    border-radius: 50%;
+    background: Canvas;
+    border: 2px solid CanvasText;
+  }
+
+  /* Focus ring on the input, so it wraps the whole control. */
+  .sliders input[type="range"]:focus-visible { outline: 2px solid CanvasText; outline-offset: 4px; }
+
+  /* Vertical: writing-mode, no rotation hacks. */
+  .sliders input[type="range"].vertical { writing-mode: vertical-lr; direction: rtl; inline-size: 8em; flex: none; } /* inline-size is the length once vertical */
+</style>
+
+<div class="sliders">
+  <label for="volume">Volume</label>
+  <div class="row">
+    <input type="range" id="volume" name="volume" min="0" max="100" value="60">
+  </div>
+  <label for="brightness">Brightness (vertical)</label>
+  <div class="row">
+    <input type="range" id="brightness" name="brightness" class="vertical" min="0" max="10" value="7">
+  </div>
+</div>

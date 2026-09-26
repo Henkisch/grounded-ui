@@ -1,28 +1,36 @@
-# grund-ui
+# grounded-ui
 
-Native HTML components for existing CMS sites. One CSS link plus copied markup should work in an HTML block in any CMS, without a single change to the site's own CSS.
+**Back to the basics.** Accessible, fast and compatible UI components that still look and feel great — with the receipts to prove it.
+
+- **Contracts**: an open, machine-readable rulebook per component. Every rule cites the standard or reasoning behind it.
+- **Conformance runner**: tests rendered HTML from any library, theme or CMS against the contracts, next to axe.
+- **Reference implementation**: native HTML and a few hundred bytes of CSS per component, zero JavaScript, passing its own contracts.
 
 ## Structure
 
 | Path | Contents |
 | --- | --- |
-| `components/<slug>/contract.yaml` | The contract. The source everything else is derived from |
-| `components/<slug>/markup/` | Canonical HTML per state. `broken/` holds one rule violation per file |
-| `components/<slug>/styles/` | Reference CSS |
-| `components/<slug>/tests/` | Contract tests |
-| `core/` | Tokens and core CSS |
-| `schema/` | JSON Schema for contract files |
-| `generator/` | Contract in, template file out |
-| `docs/` | The Blume docs site |
+| `contracts/<slug>/contract.yaml` | The contract: anatomy, rules (with level, source, rationale), states, WCAG, editor texts |
+| `contracts/<slug>/markup/valid/` | HTML that must pass every rule. Also the copyable markup in the docs |
+| `contracts/<slug>/markup/broken/` | One file per rule, failing exactly that rule |
+| `conformance/` | The runner: Node API, CLI (`grounded-conformance`) and its self-tests |
+| `reference/` | The reference CSS: `core/`, then `<slug>.css` (base) and `<slug>.styled.css` (look) |
+| `spec/` | JSON Schema for the contract format |
+| `reports/<impl>/` | Contracts run against outside implementations: binding, generated results, human reading |
+| `examples/` | Composed page fragments using the reference components |
+| `docs/` | The Blume docs site, generated from all of the above |
 
 ## Commands
 
 ```sh
 pnpm install
-pnpm check               # validate + lint:css + check-deps + budget
-pnpm --filter docs dev   # docs, generated from the contracts
+pnpm check                          # contracts, lint, dependencies, budgets
+pnpm conformance                    # markup × runner in Chromium, Firefox and WebKit
+pnpm exec grounded-conformance <url>   # test any page
+pnpm report govuk-frontend          # rerun an outside-implementation report
+pnpm --filter docs dev              # docs, generated from the contracts
 ```
 
-Before the first publish: run `npm view grund-ui` to confirm the name is free.
+The previous component-library version is tagged `v0-baseline`.
 
 MIT © Henrik Larsson

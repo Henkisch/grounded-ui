@@ -1,0 +1,7 @@
+<!-- Breaks AC-07: an APG-style scripted button with aria-expanded instead of summary. Outcome rules pass. also: AC-06 -->
+<div data-gui="accordion">
+  <div data-gui-part="item">
+    <h3><button type="button" data-gui-part="summary" aria-expanded="true" aria-controls="hours">Opening hours</button></h3>
+    <div data-gui-part="panel" id="hours"><p>Monday to Friday 8–17.</p></div>
+  </div>
+</div>

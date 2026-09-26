@@ -1,0 +1,38 @@
+/*
+ * dialog base CSS: only what the contract needs.
+ * Native <dialog> in the top layer, opened and closed with invoker commands, zero JS.
+ * Sizing, parts layout and scroll lock; the browser draws the surface and backdrop.
+ * For a finished look, add dialog.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.dialog {
+  @scope ([data-gui="dialog"]) to ([data-gui]) {
+    :scope {
+      inline-size: min(100% - 2em, 32em);
+      max-block-size: min(100% - 2em, 40em);
+    }
+
+    :where([data-gui-part]) {
+      margin: 0;
+    }
+
+    :where([data-gui-part="body"]) {
+      margin-block-start: 0.75em;
+    }
+
+    :where([data-gui-part="actions"]) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.5em;
+      margin-block-start: 1.5em;
+    }
+  }
+
+  /* Scroll lock while a modal is open. Zero specificity; the site can override it. */
+  :where(html:has([data-gui="dialog"]:modal)) {
+    overflow: hidden;
+  }
+}

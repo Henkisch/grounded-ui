@@ -1,0 +1,6 @@
+<!-- Breaks TF-09: the description is repeated in aria-description instead of being referenced by id. Screen readers still get it. -->
+<div data-gui="text-field">
+  <label data-gui-part="label" for="vat">VAT number</label>
+  <p data-gui-part="description" id="vat-desc">Country code followed by the number.</p>
+  <input data-gui-part="control" type="text" id="vat" name="vat" aria-description="Country code followed by the number.">
+</div>

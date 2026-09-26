@@ -1,0 +1,11 @@
+# Maps the dialog contract's parts to FKUI's FModal / FConfirmModal markup (div role="dialog", opened by script).
+component: dialog
+implementation: Försäkringskassan FKUI
+root: '.modal__outer-container[role="dialog"], .modal__outer-container[role="alertdialog"]'
+boundary: .modal__outer-container
+parts:
+  trigger: ':not(*)'
+  title: .modal__title
+  body: .modal__content
+  actions: .modal__footer
+  close: .close-button, .modal__footer button

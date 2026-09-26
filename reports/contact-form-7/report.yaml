@@ -1,0 +1,12 @@
+# What to test: Contact Form 7's default "Contact form 1", rendered by a real WordPress 7.1.2 in WordPress
+# Playground and submitted through CF7's own REST validation (captured by ../wordpress-core/capture.mjs).
+# contactform7.com itself sits behind a Cloudflare bot challenge, so its live forms could not be tested.
+implementation: Contact Form 7
+package: contact-form-7
+version: 6.1.7
+homepage: https://contactform7.com/
+components:
+  text-field:
+    binding: text-field.binding.yaml
+    fixtures:
+      - ./contact-form-7/fixtures.json

@@ -1,0 +1,54 @@
+<style>
+  .faq { max-inline-size: 32em; interpolate-size: allow-keywords; }
+  .faq details { border-block-end: 1px solid color-mix(in oklab, CanvasText 20%, Canvas); }
+  .faq summary {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    min-block-size: 2.75em;
+    padding-block: 0.5em;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .faq summary::after {
+    content: "";
+    flex: none;
+    inline-size: 0.5em;
+    block-size: 0.5em;
+    margin-inline-end: 0.25em;
+    border-inline-end: 2px solid currentColor;
+    border-block-end: 2px solid currentColor;
+    rotate: 45deg;
+    transition: rotate 150ms ease-out;
+  }
+  .faq details[open] > summary::after { rotate: -135deg; }
+  .faq summary:focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
+  .faq p { margin: 0 0 1em; color: color-mix(in oklab, CanvasText 75%, Canvas); }
+  @supports (interpolate-size: allow-keywords) and selector(::details-content) {
+    .faq details::details-content {
+      block-size: 0;
+      overflow: clip;
+      transition: block-size 200ms ease-out, content-visibility 200ms allow-discrete;
+    }
+    .faq details[open]::details-content { block-size: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faq summary::after, .faq details::details-content { transition: none; }
+  }
+</style>
+<div class="faq">
+  <details name="faq" open>
+    <summary>When is the recycling centre open?</summary>
+    <p>Monday to Friday 10–19, weekends 9–15.</p>
+  </details>
+  <details name="faq">
+    <summary>Do I need to book a visit?</summary>
+    <p>No. Households can visit without booking.</p>
+  </details>
+  <details name="faq">
+    <summary>What can I leave for free?</summary>
+    <p>Sorted household waste, up to one trailer per visit.</p>
+  </details>
+</div>

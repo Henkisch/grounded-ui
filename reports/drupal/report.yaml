@@ -1,0 +1,55 @@
+# What to test: Drupal core 11.4.7 installed locally (standard profile, SQLite, `php -S`), so the markup is
+# exactly what core renders. Three sandboxes with the same content:
+#   :8899  core defaults: Olivero front end, Claro admin, no Inline Form Errors
+#   :8898  Inline Form Errors enabled, Claro admin
+#   :8897  Inline Form Errors enabled, Olivero as the admin theme (to see Olivero's error markup)
+# The admin pages are opened to anonymous users in the sandbox only, because the runner can't log in.
+# Error states: a front page path that passes HTML5 validation but fails Drupal's server-side check.
+implementation: Drupal core
+package: drupal/core
+version: 11.4.7
+homepage: https://www.drupal.org/project/drupal
+components:
+  text-field:
+    binding: text-field.binding.yaml
+    pages:
+      - url: http://127.0.0.1:8899/contact
+        name: Olivero contact form (+ header search)
+      - url: http://127.0.0.1:8899/user/login
+        name: Olivero user login
+      - url: http://127.0.0.1:8899/user/register
+        name: Olivero user register (descriptions)
+      - url: http://127.0.0.1:8899/admin/config/system/site-information
+        name: Claro site information
+      - url: http://127.0.0.1:8899/admin/config/people/accounts
+        name: Claro account settings
+      - url: http://127.0.0.1:8899/admin/config/system/site-information
+        name: Claro site information, error, core defaults (no Inline Form Errors)
+        fill: { selector: '#edit-site-frontpage', value: /nonexistent-page }
+        click: '#edit-submit'
+      - url: http://127.0.0.1:8898/admin/config/system/site-information
+        name: Claro site information, error, Inline Form Errors on
+        fill: { selector: '#edit-site-frontpage', value: /nonexistent-page }
+        click: '#edit-submit'
+      - url: http://127.0.0.1:8897/admin/config/system/site-information
+        name: Olivero site information, error, Inline Form Errors on
+        fill: { selector: '#edit-site-frontpage', value: /nonexistent-page }
+        click: '#edit-submit'
+      - url: http://127.0.0.1:8899/admin/structure/block
+        name: Claro Place block dialog (filter field)
+        click: 'a[data-dialog-type="modal"]'
+      - url: http://127.0.0.1:8899/admin/structure/views/view/frontpage
+        name: Claro Views UI dialog, view name and description
+        click: 'a[href*="nojs/edit-details"]'
+  dialog:
+    binding: dialog.binding.yaml
+    pages:
+      - url: http://127.0.0.1:8899/admin/structure/block
+        name: Place block, opened
+        click: 'a[data-dialog-type="modal"]'
+      - url: http://127.0.0.1:8899/admin/structure/views/view/frontpage
+        name: Views UI, view name and description, opened
+        click: 'a[href*="nojs/edit-details"]'
+      - url: http://127.0.0.1:8899/admin/structure/views/view/frontpage
+        name: Views UI, page title, opened
+        click: '#views-page-1-title'

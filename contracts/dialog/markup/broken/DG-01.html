@@ -1,0 +1,6 @@
+<!-- Breaks DG-01: a scripted div role="dialog" instead of the native element. -->
+<button type="button" commandfor="d" command="show-modal">Open</button>
+<div data-gui="dialog" id="d" role="dialog" aria-labelledby="d-title">
+  <h2 data-gui-part="title" id="d-title">Settings</h2>
+  <div data-gui-part="actions"><button type="button" commandfor="d" command="close">Close</button></div>
+</div>

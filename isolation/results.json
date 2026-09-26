@@ -1,0 +1,2374 @@
+{
+  "date": "2026-09-26",
+  "baseline": {
+    "text-field root": {
+      "font-size (em of context)": 1,
+      "margin-top": 0,
+      "margin-bottom": 0,
+      "margin-left": 0,
+      "padding-top": 0,
+      "padding-bottom": 0,
+      "padding-left": 0,
+      "padding-right": 0,
+      "border-top-width": 0,
+      "border-left-width": 0,
+      "min-height": 0,
+      "height": 7.211,
+      "line-height": "normal",
+      "border-radius": 0,
+      "letter-spacing": "normal",
+      "box-sizing": "border-box",
+      "border-top-style": "none",
+      "display": "grid",
+      "text-transform": "none",
+      "appearance": "none",
+      "width-fill": "fills",
+      "color": "rgb(0, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "border-top-color": "rgb(0, 0, 0)"
+    },
+    "label": {
+      "font-size (em of context)": 1,
+      "margin-top": 0,
+      "margin-bottom": 0,
+      "margin-left": 0,
+      "padding-top": 0,
+      "padding-bottom": 0,
+      "padding-left": 0,
+      "padding-right": 0,
+      "border-top-width": 0,
+      "border-left-width": 0,
+      "min-height": "auto",
+      "height": 1.125,
+      "line-height": "normal",
+      "border-radius": 0,
+      "letter-spacing": "normal",
+      "box-sizing": "border-box",
+      "border-top-style": "none",
+      "display": "block",
+      "text-transform": "none",
+      "appearance": "none",
+      "width-fill": "narrower",
+      "color": "rgb(0, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "border-top-color": "rgb(0, 0, 0)"
+    },
+    "description": {
+      "font-size (em of context)": 0.875,
+      "margin-top": -0.188,
+      "margin-bottom": 0,
+      "margin-left": 0,
+      "padding-top": 0,
+      "padding-bottom": 0,
+      "padding-left": 0,
+      "padding-right": 0,
+      "border-top-width": 0,
+      "border-left-width": 0,
+      "min-height": "auto",
+      "height": 1.214,
+      "line-height": "normal",
+      "border-radius": 0,
+      "letter-spacing": "normal",
+      "box-sizing": "border-box",
+      "border-top-style": "none",
+      "display": "block",
+      "text-transform": "none",
+      "appearance": "none",
+      "width-fill": "narrower",
+      "color": "oklab(0.449997 0.0000205055 0.00000903904)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "border-top-color": "oklab(0.449997 0.0000205055 0.00000903904)"
+    },
+    "control": {
+      "font-size (em of context)": 1,
+      "margin-top": 0,
+      "margin-bottom": 0,
+      "margin-left": 0,
+      "padding-top": 0.5,
+      "padding-bottom": 0.5,
+      "padding-left": 0.75,
+      "padding-right": 0.75,
+      "border-top-width": 0.063,
+      "border-left-width": 0.063,
+      "min-height": 2.75,
+      "height": 2.75,
+      "line-height": "normal",
+      "border-radius": 0.375,
+      "letter-spacing": "normal",
+      "box-sizing": "border-box",
+      "border-top-style": "solid",
+      "display": "block",
+      "text-transform": "none",
+      "appearance": "auto",
+      "width-fill": "fills",
+      "color": "rgb(0, 0, 0)",
+      "background-color": "rgb(255, 255, 255)",
+      "border-top-color": "oklab(0.48 0.147433 0.0885866)",
+      "focus indicator": "outline ≥ 2px",
+      "error cue": "visible"
+    },
+    "error": {
+      "font-size (em of context)": 0.875,
+      "margin-top": 0,
+      "margin-bottom": 0,
+      "margin-left": 0,
+      "padding-top": 0,
+      "padding-bottom": 0,
+      "padding-left": 0,
+      "padding-right": 0,
+      "border-top-width": 0,
+      "border-left-width": 0,
+      "min-height": "auto",
+      "height": 1.5,
+      "line-height": "normal",
+      "border-radius": 0,
+      "letter-spacing": "normal",
+      "box-sizing": "border-box",
+      "border-top-style": "none",
+      "display": "block",
+      "text-transform": "none",
+      "appearance": "none",
+      "width-fill": "narrower",
+      "color": "oklab(0.48 0.147433 0.0885866)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "border-top-color": "oklab(0.48 0.147433 0.0885866)"
+    },
+    "dialog root": {
+      "font-size (em of context)": 1,
+      "margin-top": 22.844,
+      "margin-bottom": 22.844,
+      "margin-left": 24,
+      "padding-top": 1.5,
+      "padding-bottom": 1.5,
+      "padding-left": 1.5,
+      "padding-right": 1.5,
+      "border-top-width": 0.063,
+      "border-left-width": 0.063,
+      "min-height": 0,
+      "height": 10.351,
+      "line-height": "normal",
+      "border-radius": 0.75,
+      "letter-spacing": "normal",
+      "width": 31.36,
+      "box-sizing": "border-box",
+      "border-top-style": "solid",
+      "display": "block",
+      "text-transform": "none",
+      "appearance": "none",
+      "color": "rgb(0, 0, 0)",
+      "background-color": "rgb(255, 255, 255)",
+      "border-top-color": "oklab(0.859995 0.0000391883 0.0000172746)",
+      "backdrop": "brightness(0.5) rgba(0, 0, 0, 0.1)",
+      "position": "fixed",
+      "centred": "yes"
+    },
+    "title": {
+      "font-size (em of context)": 1.25,
+      "margin-top": 0,
+      "margin-bottom": 0,
+      "margin-left": 0,
+      "padding-top": 0,
+      "padding-bottom": 0,
+      "padding-left": 0,
+      "padding-right": 0,
+      "border-top-width": 0,
+      "border-left-width": 0,
+      "min-height": 0,
+      "height": 1.274,
+      "line-height": 1.3,
+      "border-radius": 0,
+      "letter-spacing": "normal",
+      "box-sizing": "border-box",
+      "border-top-style": "none",
+      "display": "block",
+      "text-transform": "none",
+      "appearance": "none",
+      "width-fill": "narrower",
+      "color": "rgb(0, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "border-top-color": "rgb(0, 0, 0)"
+    },
+    "body": {
+      "font-size (em of context)": 1,
+      "margin-top": 0.75,
+      "margin-bottom": 0,
+      "margin-left": 0,
+      "padding-top": 0,
+      "padding-bottom": 0,
+      "padding-left": 0,
+      "padding-right": 0,
+      "border-top-width": 0,
+      "border-left-width": 0,
+      "min-height": 0,
+      "height": 2.205,
+      "line-height": "normal",
+      "border-radius": 0,
+      "letter-spacing": "normal",
+      "box-sizing": "border-box",
+      "border-top-style": "none",
+      "display": "block",
+      "text-transform": "none",
+      "appearance": "none",
+      "width-fill": "narrower",
+      "color": "oklab(0.299998 0.0000136703 0.00000602603)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "border-top-color": "oklab(0.299998 0.0000136703 0.00000602603)"
+    },
+    "actions": {
+      "font-size (em of context)": 1,
+      "margin-top": 1.5,
+      "margin-bottom": 0,
+      "margin-left": 0,
+      "padding-top": 0,
+      "padding-bottom": 0,
+      "padding-left": 0,
+      "padding-right": 0,
+      "border-top-width": 0,
+      "border-left-width": 0,
+      "min-height": 0,
+      "height": 1.286,
+      "line-height": "normal",
+      "border-radius": 0,
+      "letter-spacing": "normal",
+      "box-sizing": "border-box",
+      "border-top-style": "none",
+      "display": "flex",
+      "text-transform": "none",
+      "appearance": "none",
+      "width-fill": "narrower",
+      "color": "rgb(0, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "border-top-color": "rgb(0, 0, 0)"
+    }
+  },
+  "results": [
+    {
+      "id": "elementor",
+      "url": "https://elementor.com/",
+      "cms": "WordPress 7.0.6 + Elementor (the builder's own site)",
+      "contract": [
+        {
+          "component": "dialog",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        }
+      ],
+      "dialog": {
+        "clickBlockedBy": "locator.click: Timeout 4000ms exceeded.",
+        "modal": true,
+        "focusInside": true,
+        "screenshot": true,
+        "escapePreventedBySite": true,
+        "closedByEsc": false,
+        "focusReturned": false
+      },
+      "leaks": [],
+      "verdict": "broken",
+      "why": [
+        "dialog: {\"clickBlockedBy\":\"locator.click: Timeout 4000ms exceeded.\",\"modal\":true,\"focusInside\":true,\"screenshot\":true,\"escapePreventedBySite\":true,\"closedByEsc\":false,\"focusReturned\":false}"
+      ],
+      "causes": {}
+    },
+    {
+      "id": "divi",
+      "url": "https://www.elegantthemes.com/preview/Divi/",
+      "cms": "WordPress + Divi 4.27.9 (official demo)",
+      "contract": [
+        {
+          "component": "dialog",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        }
+      ],
+      "dialog": {
+        "modal": true,
+        "focusInside": true,
+        "screenshot": true,
+        "escapePreventedBySite": false,
+        "closedByEsc": true,
+        "focusReturned": true
+      },
+      "leaks": [
+        {
+          "part": "text-field root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.7,
+          "kind": "typography"
+        },
+        {
+          "part": "text-field root",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(102, 102, 102)",
+          "kind": "colour"
+        },
+        {
+          "part": "text-field root",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(102, 102, 102)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.7,
+          "kind": "typography"
+        },
+        {
+          "part": "label",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(102, 102, 102)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(102, 102, 102)",
+          "kind": "colour"
+        },
+        {
+          "part": "description",
+          "prop": "font-size (em of context)",
+          "base": 0.875,
+          "site": 1,
+          "kind": "typography"
+        },
+        {
+          "part": "description",
+          "prop": "margin-top",
+          "base": -0.188,
+          "site": 0,
+          "kind": "spacing"
+        },
+        {
+          "part": "description",
+          "prop": "padding-bottom",
+          "base": 0,
+          "site": 1,
+          "kind": "geometry"
+        },
+        {
+          "part": "description",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.7,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "padding-top",
+          "base": 0.5,
+          "site": 0.143,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "padding-bottom",
+          "base": 0.5,
+          "site": 0.143,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "padding-left",
+          "base": 0.75,
+          "site": 0.143,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "padding-right",
+          "base": 0.75,
+          "site": 0.143,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.7,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "appearance",
+          "base": "auto",
+          "site": "none",
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(78, 78, 78)",
+          "kind": "colour"
+        },
+        {
+          "part": "control",
+          "prop": "border-top-color",
+          "base": "oklab(0.48 0.147433 0.0885866)",
+          "site": "rgb(187, 187, 187)",
+          "kind": "colour"
+        },
+        {
+          "part": "control",
+          "prop": "focus indicator",
+          "base": "outline ≥ 2px",
+          "site": "none",
+          "kind": "geometry"
+        },
+        {
+          "part": "error",
+          "prop": "font-size (em of context)",
+          "base": 0.875,
+          "site": 1,
+          "kind": "typography"
+        },
+        {
+          "part": "error",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.7,
+          "kind": "typography"
+        },
+        {
+          "part": "dialog root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.7,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "font-size (em of context)",
+          "base": 1.25,
+          "site": 1.857,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "padding-bottom",
+          "base": 0,
+          "site": 0.385,
+          "kind": "geometry"
+        },
+        {
+          "part": "title",
+          "prop": "line-height",
+          "base": 1.3,
+          "site": 1,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(51, 51, 51)",
+          "kind": "colour"
+        },
+        {
+          "part": "title",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(51, 51, 51)",
+          "kind": "colour"
+        },
+        {
+          "part": "body",
+          "prop": "margin-top",
+          "base": 0.75,
+          "site": 0,
+          "kind": "spacing"
+        },
+        {
+          "part": "body",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.7,
+          "kind": "typography"
+        },
+        {
+          "part": "actions",
+          "prop": "margin-top",
+          "base": 1.5,
+          "site": 0,
+          "kind": "spacing"
+        },
+        {
+          "part": "actions",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.7,
+          "kind": "typography"
+        }
+      ],
+      "verdict": "broken",
+      "why": [
+        "control has no visible focus indicator (site CSS removes the outline)"
+      ],
+      "causes": {
+        "text-field root": [],
+        "label": [],
+        "description": [
+          "a, abbr, acronym, address, applet, b, big, blockquote, body, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, tt, u, ul, var { margin: 0; padding: 0; font-size: 100%; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; font-size: 100% }",
+          "p { padding-bottom: 1em; padding-bottom: 1em }"
+        ],
+        "control": [
+          "input { appearance: none }",
+          ":focus { outline: 0; outline-color: initial; outline-style: initial; outline-width: 0px }",
+          "input.text, input.title, input[type=\"email\"], input[type=\"password\"], input[type=\"tel\"], input[type=\"text\"], select, textarea { padding: 2px; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px }"
+        ],
+        "error": [
+          "a, abbr, acronym, address, applet, b, big, blockquote, body, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, tt, u, ul, var { font-size: 100%; font-size: 100% }"
+        ],
+        "dialog root": [],
+        "title": [
+          "a, abbr, acronym, address, applet, b, big, blockquote, body, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, tt, u, ul, var { padding: 0; font-size: 100%; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; font-size: 100% }",
+          "h1, h2, h3, h4, h5, h6 { padding-bottom: 10px; line-height: 1em; font-weight: 500; padding-bottom: 10px; line-height: 1em; font-weight: 500 }",
+          "h2 { font-size: 26px; font-size: 26px }"
+        ],
+        "body": [
+          "a, abbr, acronym, address, applet, b, big, blockquote, body, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, tt, u, ul, var { margin: 0; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px }"
+        ],
+        "actions": [
+          "a, abbr, acronym, address, applet, b, big, blockquote, body, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, tt, u, ul, var { margin: 0; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px }"
+        ]
+      }
+    },
+    {
+      "id": "astra",
+      "url": "https://wpastra.com/",
+      "cms": "WordPress + Astra + Elementor 4.3.1",
+      "consentDismissed": true,
+      "contract": [
+        {
+          "component": "dialog",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        }
+      ],
+      "dialog": {
+        "modal": true,
+        "focusInside": true,
+        "screenshot": true,
+        "escapePreventedBySite": false,
+        "closedByEsc": true,
+        "focusReturned": true
+      },
+      "leaks": [
+        {
+          "part": "text-field root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.8,
+          "kind": "typography"
+        },
+        {
+          "part": "text-field root",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(47, 63, 80)",
+          "kind": "colour"
+        },
+        {
+          "part": "text-field root",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(47, 63, 80)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.8,
+          "kind": "typography"
+        },
+        {
+          "part": "label",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(47, 63, 80)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(47, 63, 80)",
+          "kind": "colour"
+        },
+        {
+          "part": "description",
+          "prop": "font-size (em of context)",
+          "base": 0.875,
+          "site": 1,
+          "kind": "typography"
+        },
+        {
+          "part": "description",
+          "prop": "margin-top",
+          "base": -0.188,
+          "site": 0,
+          "kind": "spacing"
+        },
+        {
+          "part": "description",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 1.75,
+          "kind": "spacing"
+        },
+        {
+          "part": "description",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.8,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "padding-top",
+          "base": 0.5,
+          "site": 0.75,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "padding-bottom",
+          "base": 0.5,
+          "site": 0.75,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "height",
+          "base": 2.75,
+          "site": 3.417,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.8,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "border-radius",
+          "base": 0.375,
+          "site": 0.118,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "appearance",
+          "base": "auto",
+          "site": "none",
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(102, 102, 102)",
+          "kind": "colour"
+        },
+        {
+          "part": "control",
+          "prop": "background-color",
+          "base": "rgb(255, 255, 255)",
+          "site": "rgb(250, 250, 250)",
+          "kind": "colour"
+        },
+        {
+          "part": "control",
+          "prop": "border-top-color",
+          "base": "oklab(0.48 0.147433 0.0885866)",
+          "site": "rgb(221, 221, 221)",
+          "kind": "colour"
+        },
+        {
+          "part": "control",
+          "prop": "focus indicator",
+          "base": "outline ≥ 2px",
+          "site": "weak (thin border change only)",
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "error cue",
+          "base": "visible",
+          "site": "lost (looks like a valid field)",
+          "kind": "geometry"
+        },
+        {
+          "part": "error",
+          "prop": "font-size (em of context)",
+          "base": 0.875,
+          "site": 1,
+          "kind": "typography"
+        },
+        {
+          "part": "error",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 1.75,
+          "kind": "spacing"
+        },
+        {
+          "part": "error",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.8,
+          "kind": "typography"
+        },
+        {
+          "part": "dialog root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.8,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "font-size (em of context)",
+          "base": 1.25,
+          "site": 2.235,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(30, 41, 59)",
+          "kind": "colour"
+        },
+        {
+          "part": "title",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(30, 41, 59)",
+          "kind": "colour"
+        },
+        {
+          "part": "body",
+          "prop": "margin-top",
+          "base": 0.75,
+          "site": 0,
+          "kind": "spacing"
+        },
+        {
+          "part": "body",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 1.75,
+          "kind": "spacing"
+        },
+        {
+          "part": "body",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.8,
+          "kind": "typography"
+        },
+        {
+          "part": "actions",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.8,
+          "kind": "typography"
+        }
+      ],
+      "verdict": "degraded",
+      "why": [
+        "focus indicator only a thin border change",
+        "invalid field looks like a valid one (error border overridden)"
+      ],
+      "causes": {
+        "text-field root": [],
+        "label": [],
+        "description": [
+          "address, blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul { font-size: 100%; font-style: inherit; font-weight: inherit; margin: 0; font-size: 100%; font-style: inherit; font-weight: inherit; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px }",
+          "p { margin-bottom: 1.75em; margin-bottom: 1.75em }"
+        ],
+        "control": [
+          "button, input { line-height: normal; line-height: normal }",
+          "input, select { line-height: 1; line-height: 1 }",
+          "body, button, input, select, textarea, .ast-button, .ast-custom-button { line-height: var(--ast-body-line-height,1.8em); line-height: var(--ast-body-line-height,1.8em) }",
+          "input { outline: none; outline-color: initial; outline-style: none; outline-width: initial }",
+          ":focus { outline: none !important; outline-color: initial !important; outline-style: none !important; outline-width: initial !important }",
+          "input[type=\"email\"], input[type=\"password\"], input[type=\"search\"], input[type=\"tel\"], input[type=\"text\"], input[type=\"url\"], textarea { border: 1px solid var(--ast-border-color); border-radius: 2px; border-top-color: ; border-top-style: ; border-top-width: ; border-right-color: ; border-right-style: ; border-right-width: ; border-bottom-color: ; border-bottom-style: ; border-bottom-width: ; border-left-color: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; appearance: none }",
+          "input[type=\"email\"], input[type=\"number\"], input[type=\"password\"], input[type=\"reset\"], input[type=\"search\"], input[type=\"tel\"], input[type=\"text\"], input[type=\"url\"], select, textarea { padding: .75em; height: auto; border-width: 1px; border-style: solid; border-color: var(--ast-border-color); border-radius: 2px; padding-top: 0.75em; padding-right: 0.75em; padding-bottom: 0.75em; padding-left: 0.75em; height: auto; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: ; border-right-color: ; border-bottom-color: ; border-left-color: ; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px }",
+          "input[type=\"email\"]:focus, input[type=\"password\"]:focus, input[type=\"reset\"]:focus, input[type=\"search\"]:focus, input[type=\"tel\"]:focus, input[type=\"text\"]:focus, input[type=\"url\"]:focus, select:focus, textarea:focus { border-color: var(--ast-border-color); border-top-color: ; border-right-color: ; border-bottom-color: ; border-left-color:  }",
+          "input:focus, input[type=\"text\"]:focus, input[type=\"email\"]:focus, input[type=\"url\"]:focus, input[type=\"password\"]:focus, input[type=\"reset\"]:focus, input[type=\"search\"]:focus, textarea:focus { border-color: var(--ast-global-color-0); border-top-color: ; border-right-color: ; border-bottom-color: ; border-left-color:  }",
+          "input:focus, input[type=\"text\"]:focus, input[type=\"email\"]:focus, input[type=\"url\"]:focus, input[type=\"password\"]:focus, input[type=\"reset\"]:focus, input[type=\"search\"]:focus, input[type=\"number\"]:focus, textarea:focus, .wp-block-search__input:focus, [data-section=\"section-header-mobile-trigger\"] .ast-button-wrap .ast-mobile-menu-trigger-minimal:focus, .ast-mobile-popup-drawer.active .menu-toggle-close:focus, #ast-scroll-top:focus, #coupon_code:focus, #ast-coupon-code:focus { border-style: dotted; border-color: inherit; border-width: thin; border-top-style: dotted; border-right-style: dotted; border-bottom-style: dotted; border-left-style: dotted; border-top-color: inherit; border-right-color: inherit; border-bottom-color: inherit; border-left-color: inherit; border-top-width: thin; border-right-width: thin; border-bottom-width: thin; border-left-width: thin }"
+        ],
+        "error": [
+          "address, blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul { font-size: 100%; font-style: inherit; font-weight: inherit; margin: 0; font-size: 100%; font-style: inherit; font-weight: inherit; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px }",
+          "p { margin-bottom: 1.75em; margin-bottom: 1.75em }"
+        ],
+        "dialog root": [],
+        "title": [
+          "address, blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul { font-size: 100%; font-style: inherit; font-weight: inherit; font-size: 100%; font-style: inherit; font-weight: inherit }",
+          ".entry-content :where(h2), h2 { font-size: 1.7em; font-size: 1.7em }",
+          "h1, h2, h3, h4, h5, h6, .entry-content :where(h1, h2, h3, h4, h5, h6), .site-title, .site-title a { font-family: 'Figtree',sans-serif; font-weight: 700; font-family: Figtree, sans-serif; font-weight: 700 }",
+          "h2, .entry-content :where(h2) { font-size: 38px; font-size: 2.2352941176471rem; font-weight: 700; font-family: 'Figtree',sans-serif; font-size: 2.23529rem; font-weight: 700; font-family: Figtree, sans-serif }"
+        ],
+        "body": [
+          "address, blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul { margin: 0; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px }",
+          "p { margin-bottom: 1.75em; margin-bottom: 1.75em }"
+        ],
+        "actions": []
+      }
+    },
+    {
+      "id": "generatepress",
+      "url": "https://generatepress.com/",
+      "cms": "WordPress 7.1.2 + GeneratePress",
+      "contract": [
+        {
+          "component": "dialog",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        }
+      ],
+      "dialog": {
+        "clickBlockedBy": "locator.click: Timeout 4000ms exceeded.",
+        "modal": true,
+        "focusInside": true,
+        "screenshot": true,
+        "escapePreventedBySite": false,
+        "closedByEsc": true,
+        "focusReturned": true
+      },
+      "leaks": [
+        {
+          "part": "text-field root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.6,
+          "kind": "typography"
+        },
+        {
+          "part": "text-field root",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(34, 34, 34)",
+          "kind": "colour"
+        },
+        {
+          "part": "text-field root",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(34, 34, 34)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.6,
+          "kind": "typography"
+        },
+        {
+          "part": "label",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(34, 34, 34)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(34, 34, 34)",
+          "kind": "colour"
+        },
+        {
+          "part": "description",
+          "prop": "margin-top",
+          "base": -0.188,
+          "site": 0,
+          "kind": "spacing"
+        },
+        {
+          "part": "description",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 1.5,
+          "kind": "spacing"
+        },
+        {
+          "part": "description",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.6,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.5,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "border-radius",
+          "base": 0.375,
+          "site": 0,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(102, 102, 102)",
+          "kind": "colour"
+        },
+        {
+          "part": "control",
+          "prop": "background-color",
+          "base": "rgb(255, 255, 255)",
+          "site": "rgb(250, 250, 250)",
+          "kind": "colour"
+        },
+        {
+          "part": "control",
+          "prop": "border-top-color",
+          "base": "oklab(0.48 0.147433 0.0885866)",
+          "site": "rgb(204, 204, 204)",
+          "kind": "colour"
+        },
+        {
+          "part": "error",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 1.5,
+          "kind": "spacing"
+        },
+        {
+          "part": "error",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.6,
+          "kind": "typography"
+        },
+        {
+          "part": "dialog root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.6,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "font-size (em of context)",
+          "base": 1.25,
+          "site": 2.235,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.526,
+          "kind": "spacing"
+        },
+        {
+          "part": "body",
+          "prop": "margin-top",
+          "base": 0.75,
+          "site": 0,
+          "kind": "spacing"
+        },
+        {
+          "part": "body",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 1.5,
+          "kind": "spacing"
+        },
+        {
+          "part": "body",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.6,
+          "kind": "typography"
+        },
+        {
+          "part": "actions",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.6,
+          "kind": "typography"
+        }
+      ],
+      "verdict": "works",
+      "why": [],
+      "causes": {
+        "text-field root": [],
+        "label": [],
+        "description": [
+          "blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul { margin: 0; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px }",
+          "p { margin-bottom: 1.5em; margin-bottom: 1.5em }"
+        ],
+        "control": [
+          "body, button, input, select, textarea { line-height: 1.5; line-height: 1.5 }",
+          "input[type=\"email\"], input[type=\"number\"], input[type=\"password\"], input[type=\"search\"], input[type=\"tel\"], input[type=\"text\"], input[type=\"url\"], select, textarea { border: 1px solid; border-radius: 0; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: currentcolor; border-right-color: currentcolor; border-bottom-color: currentcolor; border-left-color: currentcolor; border-image-source: none; border-image-slice: 100%; border-image-width: 1; border-image-outset: 0; border-image-repeat: stretch; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px }",
+          "input[type=\"text\"], input[type=\"email\"], input[type=\"url\"], input[type=\"password\"], input[type=\"search\"], input[type=\"tel\"], input[type=\"number\"], textarea, select { border-color: #cccccc; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204) }",
+          "input[type=\"text\"]:focus, input[type=\"email\"]:focus, input[type=\"url\"]:focus, input[type=\"password\"]:focus, input[type=\"search\"]:focus, input[type=\"tel\"]:focus, input[type=\"number\"]:focus, textarea:focus, select:focus { border-color: #bfbfbf; border-top-color: rgb(191, 191, 191); border-right-color: rgb(191, 191, 191); border-bottom-color: rgb(191, 191, 191); border-left-color: rgb(191, 191, 191) }"
+        ],
+        "error": [
+          "blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul { margin: 0; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px }",
+          "p { margin-bottom: 1.5em; margin-bottom: 1.5em }"
+        ],
+        "dialog root": [],
+        "title": [
+          "blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul { margin: 0; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px }",
+          "h1, h2, h3, h4, h5, h6 { font-family: inherit; font-size: 100%; font-style: inherit; font-weight: inherit; font-family: inherit; font-size: 100%; font-style: inherit; font-weight: inherit }",
+          "h2 { font-size: 35px; margin-bottom: 20px; font-weight: 400; font-size: 35px; margin-bottom: 20px; font-weight: 400 }",
+          "h2 { font-weight: 600; font-size: 38px; font-weight: 600; font-size: 38px }"
+        ],
+        "body": [
+          "blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul { margin: 0; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px }",
+          "p { margin-bottom: 1.5em; margin-bottom: 1.5em }"
+        ],
+        "actions": []
+      }
+    },
+    {
+      "id": "bootstrap3",
+      "url": "https://getbootstrap.com/docs/3.4/examples/jumbotron/",
+      "cms": "Bootstrap 3.4 (official example, the base of many older themes)",
+      "contract": [
+        {
+          "component": "dialog",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        }
+      ],
+      "dialog": {
+        "modal": true,
+        "focusInside": true,
+        "screenshot": true,
+        "escapePreventedBySite": false,
+        "closedByEsc": true,
+        "focusReturned": true
+      },
+      "leaks": [
+        {
+          "part": "text-field root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.429,
+          "kind": "typography"
+        },
+        {
+          "part": "text-field root",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(51, 51, 51)",
+          "kind": "colour"
+        },
+        {
+          "part": "text-field root",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(51, 51, 51)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.357,
+          "kind": "spacing"
+        },
+        {
+          "part": "label",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.429,
+          "kind": "typography"
+        },
+        {
+          "part": "label",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(51, 51, 51)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(51, 51, 51)",
+          "kind": "colour"
+        },
+        {
+          "part": "description",
+          "prop": "margin-top",
+          "base": -0.188,
+          "site": 0,
+          "kind": "spacing"
+        },
+        {
+          "part": "description",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.816,
+          "kind": "spacing"
+        },
+        {
+          "part": "description",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.429,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.429,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(51, 51, 51)",
+          "kind": "colour"
+        },
+        {
+          "part": "error",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.816,
+          "kind": "spacing"
+        },
+        {
+          "part": "error",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.429,
+          "kind": "typography"
+        },
+        {
+          "part": "dialog root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.429,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "font-size (em of context)",
+          "base": 1.25,
+          "site": 2.143,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "margin-top",
+          "base": 0,
+          "site": 0.667,
+          "kind": "spacing"
+        },
+        {
+          "part": "title",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.333,
+          "kind": "spacing"
+        },
+        {
+          "part": "title",
+          "prop": "line-height",
+          "base": 1.3,
+          "site": 1.1,
+          "kind": "typography"
+        },
+        {
+          "part": "body",
+          "prop": "margin-top",
+          "base": 0.75,
+          "site": 0,
+          "kind": "spacing"
+        },
+        {
+          "part": "body",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.714,
+          "kind": "spacing"
+        },
+        {
+          "part": "body",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.429,
+          "kind": "typography"
+        },
+        {
+          "part": "actions",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.429,
+          "kind": "typography"
+        }
+      ],
+      "verdict": "works",
+      "why": [],
+      "causes": {
+        "text-field root": [],
+        "label": [
+          "label { margin-bottom: 5px; margin-bottom: 5px }"
+        ],
+        "description": [
+          "p { margin: 0 0 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px }"
+        ],
+        "control": [
+          "button, input, optgroup, select, textarea { line-height: inherit }",
+          "input { line-height: normal; line-height: normal }",
+          "button, input, select, textarea { line-height: inherit; line-height: inherit }"
+        ],
+        "error": [
+          "p { margin: 0 0 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px }"
+        ],
+        "dialog root": [],
+        "title": [
+          ".h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { font-family: inherit; font-weight: 500; line-height: 1.1; font-family: inherit; font-weight: 500; line-height: 1.1 }",
+          ".h1, .h2, .h3, h1, h2, h3 { margin-top: 20px; margin-bottom: 10px; margin-top: 20px; margin-bottom: 10px }",
+          ".h2, h2 { font-size: 30px; font-size: 30px }"
+        ],
+        "body": [
+          "p { margin: 0 0 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px }"
+        ],
+        "actions": []
+      }
+    },
+    {
+      "id": "twentytwentyfive",
+      "url": "https://wp-themes.com/twentytwentyfive/",
+      "cms": "WordPress 7.2-alpha, Twenty Twenty-Five (default block theme)",
+      "contract": [
+        {
+          "component": "dialog",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        }
+      ],
+      "dialog": {
+        "modal": true,
+        "focusInside": true,
+        "screenshot": true,
+        "escapePreventedBySite": false,
+        "closedByEsc": true,
+        "focusReturned": true
+      },
+      "leaks": [
+        {
+          "part": "text-field root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.4,
+          "kind": "typography"
+        },
+        {
+          "part": "text-field root",
+          "prop": "letter-spacing",
+          "base": "normal",
+          "site": -0.005,
+          "kind": "typography"
+        },
+        {
+          "part": "text-field root",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(17, 17, 17)",
+          "kind": "colour"
+        },
+        {
+          "part": "text-field root",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(17, 17, 17)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.4,
+          "kind": "typography"
+        },
+        {
+          "part": "label",
+          "prop": "letter-spacing",
+          "base": "normal",
+          "site": -0.005,
+          "kind": "typography"
+        },
+        {
+          "part": "label",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(17, 17, 17)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(17, 17, 17)",
+          "kind": "colour"
+        },
+        {
+          "part": "description",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.4,
+          "kind": "typography"
+        },
+        {
+          "part": "description",
+          "prop": "letter-spacing",
+          "base": "normal",
+          "site": -0.005,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.4,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(17, 17, 17)",
+          "kind": "colour"
+        },
+        {
+          "part": "error",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.4,
+          "kind": "typography"
+        },
+        {
+          "part": "error",
+          "prop": "letter-spacing",
+          "base": "normal",
+          "site": -0.005,
+          "kind": "typography"
+        },
+        {
+          "part": "dialog root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.4,
+          "kind": "typography"
+        },
+        {
+          "part": "dialog root",
+          "prop": "letter-spacing",
+          "base": "normal",
+          "site": -0.005,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "font-size (em of context)",
+          "base": 1.25,
+          "site": 1.459,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "line-height",
+          "base": 1.3,
+          "site": 1.125,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "letter-spacing",
+          "base": "normal",
+          "site": -0.003,
+          "kind": "typography"
+        },
+        {
+          "part": "body",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.4,
+          "kind": "typography"
+        },
+        {
+          "part": "body",
+          "prop": "letter-spacing",
+          "base": "normal",
+          "site": -0.005,
+          "kind": "typography"
+        },
+        {
+          "part": "actions",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.4,
+          "kind": "typography"
+        },
+        {
+          "part": "actions",
+          "prop": "letter-spacing",
+          "base": "normal",
+          "site": -0.005,
+          "kind": "typography"
+        }
+      ],
+      "verdict": "works",
+      "why": [],
+      "causes": {
+        "text-field root": [],
+        "label": [],
+        "description": [],
+        "control": [],
+        "error": [],
+        "dialog root": [],
+        "title": [
+          "h1, h2, h3, h4, h5, h6 { font-weight: 400; letter-spacing: -0.1px; line-height: 1.125; font-weight: 400; letter-spacing: -0.1px; line-height: 1.125 }",
+          "h2 { font-size: var(--wp--preset--font-size--x-large); font-size: var(--wp--preset--font-size--x-large) }"
+        ],
+        "body": [],
+        "actions": []
+      }
+    },
+    {
+      "id": "olivero",
+      "url": "http://127.0.0.1:8899/",
+      "cms": "Drupal 11.4.7, Olivero (local standard-profile install from reports/drupal/sandbox; no public Olivero site found)",
+      "contract": [
+        {
+          "component": "dialog",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        }
+      ],
+      "dialog": {
+        "modal": true,
+        "focusInside": true,
+        "screenshot": true,
+        "escapePreventedBySite": false,
+        "closedByEsc": true,
+        "focusReturned": true
+      },
+      "leaks": [
+        {
+          "part": "text-field root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.688,
+          "kind": "typography"
+        },
+        {
+          "part": "text-field root",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(43, 53, 59)",
+          "kind": "colour"
+        },
+        {
+          "part": "text-field root",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(43, 53, 59)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.688,
+          "kind": "typography"
+        },
+        {
+          "part": "label",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(43, 53, 59)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(43, 53, 59)",
+          "kind": "colour"
+        },
+        {
+          "part": "description",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.929,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "padding-top",
+          "base": 0.5,
+          "site": 0,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "padding-bottom",
+          "base": 0.5,
+          "site": 0,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "padding-left",
+          "base": 0.75,
+          "site": 1.125,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "padding-right",
+          "base": 0.75,
+          "site": 1.125,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "min-height",
+          "base": 2.75,
+          "site": 3.375,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "height",
+          "base": 2.75,
+          "site": 3.375,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.688,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "border-radius",
+          "base": 0.375,
+          "site": 0.188,
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "appearance",
+          "base": "auto",
+          "site": "none",
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "width-fill",
+          "base": "fills",
+          "site": "narrower",
+          "kind": "geometry"
+        },
+        {
+          "part": "control",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(11, 13, 15)",
+          "kind": "colour"
+        },
+        {
+          "part": "control",
+          "prop": "border-top-color",
+          "base": "oklab(0.48 0.147433 0.0885866)",
+          "site": "rgb(129, 150, 162)",
+          "kind": "colour"
+        },
+        {
+          "part": "error",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.929,
+          "kind": "typography"
+        },
+        {
+          "part": "dialog root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.688,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "font-size (em of context)",
+          "base": 1.25,
+          "site": 2.25,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "margin-top",
+          "base": 0,
+          "site": 1,
+          "kind": "spacing"
+        },
+        {
+          "part": "title",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 1,
+          "kind": "spacing"
+        },
+        {
+          "part": "title",
+          "prop": "line-height",
+          "base": 1.3,
+          "site": 1.5,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "letter-spacing",
+          "base": "normal",
+          "site": -0.01,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(11, 13, 15)",
+          "kind": "colour"
+        },
+        {
+          "part": "title",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(11, 13, 15)",
+          "kind": "colour"
+        },
+        {
+          "part": "body",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.688,
+          "kind": "typography"
+        },
+        {
+          "part": "actions",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.688,
+          "kind": "typography"
+        }
+      ],
+      "verdict": "works",
+      "why": [],
+      "causes": {
+        "text-field root": [],
+        "label": [],
+        "description": [],
+        "control": [
+          "[type=\"color\"], [type=\"date\"], [type=\"datetime-local\"], [type=\"email\"], [type=\"file\"], [type=\"month\"], [type=\"number\"], [type=\"password\"], [type=\"search\"], [type=\"tel\"], [type=\"text\"], [type=\"time\"], [type=\"url\"], [type=\"week\"], textarea { width: 100%; min-height: var(--sp3); padding: 0 var(--sp); border: 1px solid var(--color--gray-60); border-radius: var(--border-radius); appearance: none; width: 100%; min-height: var(--sp3); padding-top: ; padding-right: ; padding-bottom: ; padding-left: ; border-top-color: ; border-top-style: ; border-top-width: ; border-right-color: ; border-right-style: ; border-right-width: ; border-bottom-color: ; border-bottom-style: ; border-bottom-width: ; border-left-color: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-top-left-radius: ; border-top-right-radius: ; border-bottom-right-radius: ; border-bottom-left-radius: ; appearance: none }",
+          "[type=\"color\"], [type=\"date\"], [type=\"datetime-local\"], [type=\"email\"], [type=\"file\"], [type=\"month\"], [type=\"number\"], [type=\"password\"], [type=\"search\"], [type=\"tel\"], [type=\"text\"], [type=\"time\"], [type=\"url\"], [type=\"week\"], textarea { width: auto; width: auto }",
+          "&:focus { border: solid 2px var(--color--primary-50); border-top-color: ; border-top-style: ; border-top-width: ; border-right-color: ; border-right-style: ; border-right-width: ; border-bottom-color: ; border-bottom-style: ; border-bottom-width: ; border-left-color: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat:  }",
+          "&:focus { border-width: 1px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px }"
+        ],
+        "error": [],
+        "dialog root": [],
+        "title": [
+          "h2 { letter-spacing: -0.01em; font-size: 1.5rem; line-height: var(--sp2); letter-spacing: -0.01em; font-size: 1.5rem; line-height: var(--sp2) }",
+          "h2 { font-size: 2.25rem; line-height: var(--sp3); font-size: 2.25rem; line-height: var(--sp3) }",
+          "h1, h2, h3, h4, h5, h6 { margin-block: var(--sp); font-family: var(--font-sans); font-weight: bold; margin-block-start: ; margin-block-end: ; font-family: var(--font-sans); font-weight: bold }",
+          "h1, h2, h3, h4, h5, h6 { margin-block: var(--sp2); margin-block-start: ; margin-block-end:  }"
+        ],
+        "body": [],
+        "actions": []
+      }
+    },
+    {
+      "id": "lund",
+      "url": "https://www.lund.se/",
+      "cms": "Sitevision + Bootstrap (Lunds kommun)",
+      "consentDismissed": true,
+      "contract": [
+        {
+          "component": "dialog",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        }
+      ],
+      "dialog": {
+        "modal": true,
+        "focusInside": true,
+        "screenshot": true,
+        "escapePreventedBySite": false,
+        "closedByEsc": true,
+        "focusReturned": true
+      },
+      "leaks": [
+        {
+          "part": "text-field root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.3,
+          "kind": "typography"
+        },
+        {
+          "part": "text-field root",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(11, 58, 56)",
+          "kind": "colour"
+        },
+        {
+          "part": "text-field root",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(11, 58, 56)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.3,
+          "kind": "typography"
+        },
+        {
+          "part": "label",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(11, 58, 56)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(11, 58, 56)",
+          "kind": "colour"
+        },
+        {
+          "part": "description",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.3,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.3,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(11, 58, 56)",
+          "kind": "colour"
+        },
+        {
+          "part": "error",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.3,
+          "kind": "typography"
+        },
+        {
+          "part": "dialog root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.3,
+          "kind": "typography"
+        },
+        {
+          "part": "body",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.3,
+          "kind": "typography"
+        },
+        {
+          "part": "actions",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.3,
+          "kind": "typography"
+        }
+      ],
+      "verdict": "works",
+      "why": [],
+      "causes": {
+        "text-field root": [],
+        "label": [],
+        "description": [],
+        "control": [],
+        "error": [],
+        "dialog root": [],
+        "body": [],
+        "actions": []
+      }
+    },
+    {
+      "id": "uppsala",
+      "url": "https://www.uppsala.se/",
+      "cms": "EPiServer CMS + Bootstrap (Uppsala kommun)",
+      "consentDismissed": true,
+      "contract": [
+        {
+          "component": "dialog",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        }
+      ],
+      "dialog": {
+        "modal": true,
+        "focusInside": true,
+        "screenshot": true,
+        "escapePreventedBySite": false,
+        "closedByEsc": true,
+        "focusReturned": true
+      },
+      "leaks": [
+        {
+          "part": "text-field root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.333,
+          "kind": "typography"
+        },
+        {
+          "part": "text-field root",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(32, 46, 69)",
+          "kind": "colour"
+        },
+        {
+          "part": "text-field root",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(32, 46, 69)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.278,
+          "kind": "spacing"
+        },
+        {
+          "part": "label",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.333,
+          "kind": "typography"
+        },
+        {
+          "part": "label",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(32, 46, 69)",
+          "kind": "colour"
+        },
+        {
+          "part": "label",
+          "prop": "border-top-color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(32, 46, 69)",
+          "kind": "colour"
+        },
+        {
+          "part": "description",
+          "prop": "margin-top",
+          "base": -0.188,
+          "site": 0.78,
+          "kind": "spacing"
+        },
+        {
+          "part": "description",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.78,
+          "kind": "spacing"
+        },
+        {
+          "part": "description",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.524,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "font-size (em of context)",
+          "base": 1,
+          "site": 0.889,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.25,
+          "kind": "typography"
+        },
+        {
+          "part": "control",
+          "prop": "color",
+          "base": "rgb(0, 0, 0)",
+          "site": "rgb(32, 46, 69)",
+          "kind": "colour"
+        },
+        {
+          "part": "error",
+          "prop": "margin-top",
+          "base": 0,
+          "site": 0.78,
+          "kind": "spacing"
+        },
+        {
+          "part": "error",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.78,
+          "kind": "spacing"
+        },
+        {
+          "part": "error",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.524,
+          "kind": "typography"
+        },
+        {
+          "part": "dialog root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.333,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "font-size (em of context)",
+          "base": 1.25,
+          "site": 1.556,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "margin-top",
+          "base": 0,
+          "site": 1.07,
+          "kind": "spacing"
+        },
+        {
+          "part": "title",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.5,
+          "kind": "spacing"
+        },
+        {
+          "part": "title",
+          "prop": "line-height",
+          "base": 1.3,
+          "site": 1.143,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "letter-spacing",
+          "base": "normal",
+          "site": -0.014,
+          "kind": "typography"
+        },
+        {
+          "part": "body",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.78,
+          "kind": "spacing"
+        },
+        {
+          "part": "body",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.333,
+          "kind": "typography"
+        },
+        {
+          "part": "actions",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.333,
+          "kind": "typography"
+        }
+      ],
+      "verdict": "works",
+      "why": [],
+      "causes": {
+        "text-field root": [],
+        "label": [
+          "label { margin-bottom: 5px; margin-bottom: 5px }"
+        ],
+        "description": [
+          "p { margin: 0 0 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px }",
+          "p { margin-top: .78em; margin-bottom: .78em; margin-top: 0.78em; margin-bottom: 0.78em }"
+        ],
+        "control": [
+          "button, input, optgroup, select, textarea { font: inherit; font-style: inherit; font-variant-ligatures: inherit; font-variant-caps: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-language-override: inherit }",
+          "input { line-height: normal; line-height: normal }",
+          "button, input, select, textarea { font-family: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size: inherit; line-height: inherit }",
+          "input, select, textarea { font-size: 1rem; font-size: 1rem }",
+          "input, select, textarea { line-height: 1.25rem; line-height: 1.25rem }",
+          "input, select, textarea { font-family: \"Source Sans Pro\",sans-serif,arial; font-family: \"Source Sans Pro\", sans-serif, arial }"
+        ],
+        "error": [
+          "p { margin: 0 0 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px }",
+          "p { margin-top: .78em; margin-bottom: .78em; margin-top: 0.78em; margin-bottom: 0.78em }"
+        ],
+        "dialog root": [],
+        "title": [
+          ".h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { font-family: inherit; font-weight: 500; line-height: 1.1; font-family: inherit; font-weight: 500; line-height: 1.1 }",
+          ".h1, .h2, .h3, h1, h2, h3 { margin-top: 20px; margin-bottom: 10px; margin-top: 20px; margin-bottom: 10px }",
+          ".h2, h2 { font-size: 30px; font-size: 30px }",
+          "h2 { font-size: 1.75rem; font-size: 1.75rem }",
+          "h2 { line-height: 2rem; line-height: 2rem }",
+          "h2 { font-weight: 700; font-weight: 700 }"
+        ],
+        "body": [
+          "p { margin: 0 0 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px }",
+          "p { margin-top: .78em; margin-bottom: .78em; margin-top: 0.78em; margin-bottom: 0.78em }"
+        ],
+        "actions": []
+      }
+    },
+    {
+      "id": "krisinformation",
+      "url": "https://www.krisinformation.se/",
+      "cms": "Custom .NET CMS (Krisinformation.se, MSB)",
+      "contract": [
+        {
+          "component": "dialog",
+          "element": "<dialog data-gui=\"dialog\" id=\"newsletter\" aria-labelledby=\"newsletter-title\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        },
+        {
+          "component": "text-field",
+          "element": "<div data-gui=\"text-field\">",
+          "failed": [],
+          "axe": []
+        }
+      ],
+      "dialog": {
+        "modal": true,
+        "focusInside": true,
+        "screenshot": true,
+        "escapePreventedBySite": false,
+        "closedByEsc": true,
+        "focusReturned": true
+      },
+      "leaks": [
+        {
+          "part": "text-field root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.375,
+          "kind": "typography"
+        },
+        {
+          "part": "label",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.375,
+          "kind": "typography"
+        },
+        {
+          "part": "description",
+          "prop": "font-size (em of context)",
+          "base": 0.875,
+          "site": 1.25,
+          "kind": "typography"
+        },
+        {
+          "part": "description",
+          "prop": "margin-top",
+          "base": -0.188,
+          "site": 0,
+          "kind": "spacing"
+        },
+        {
+          "part": "description",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.625,
+          "kind": "spacing"
+        },
+        {
+          "part": "description",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.375,
+          "kind": "typography"
+        },
+        {
+          "part": "error",
+          "prop": "font-size (em of context)",
+          "base": 0.875,
+          "site": 1.25,
+          "kind": "typography"
+        },
+        {
+          "part": "error",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.625,
+          "kind": "spacing"
+        },
+        {
+          "part": "error",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.375,
+          "kind": "typography"
+        },
+        {
+          "part": "dialog root",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.375,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "font-size (em of context)",
+          "base": 1.25,
+          "site": 2.5,
+          "kind": "typography"
+        },
+        {
+          "part": "title",
+          "prop": "padding-top",
+          "base": 0,
+          "site": 1,
+          "kind": "geometry"
+        },
+        {
+          "part": "title",
+          "prop": "letter-spacing",
+          "base": "normal",
+          "site": -0.02,
+          "kind": "typography"
+        },
+        {
+          "part": "body",
+          "prop": "font-size (em of context)",
+          "base": 1,
+          "site": 1.25,
+          "kind": "typography"
+        },
+        {
+          "part": "body",
+          "prop": "margin-top",
+          "base": 0.75,
+          "site": 0,
+          "kind": "spacing"
+        },
+        {
+          "part": "body",
+          "prop": "margin-bottom",
+          "base": 0,
+          "site": 0.625,
+          "kind": "spacing"
+        },
+        {
+          "part": "body",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.375,
+          "kind": "typography"
+        },
+        {
+          "part": "actions",
+          "prop": "line-height",
+          "base": "normal",
+          "site": 1.375,
+          "kind": "typography"
+        }
+      ],
+      "verdict": "works",
+      "why": [],
+      "causes": {
+        "text-field root": [],
+        "label": [],
+        "description": [
+          "p { font-family: \"FuturaPTWebBook\",Helvetica,Arial,sans-serif; font-size: 1.25rem; margin: 0 0 .625em; font-family: FuturaPTWebBook, Helvetica, Arial, sans-serif; font-size: 1.25rem; margin-top: 0px; margin-right: 0px; margin-bottom: 0.625em; margin-left: 0px }"
+        ],
+        "error": [
+          "p { font-family: \"FuturaPTWebBook\",Helvetica,Arial,sans-serif; font-size: 1.25rem; margin: 0 0 .625em; font-family: FuturaPTWebBook, Helvetica, Arial, sans-serif; font-size: 1.25rem; margin-top: 0px; margin-right: 0px; margin-bottom: 0.625em; margin-left: 0px }"
+        ],
+        "dialog root": [],
+        "title": [
+          "h2, .mediumHeader { font-family: \"FuturaPTWebHeavy\",Helvetica,Arial,sans-serif; font-weight: normal; font-size: 2.5rem; padding: 1em 0 0; letter-spacing: -.8px; font-family: FuturaPTWebHeavy, Helvetica, Arial, sans-serif; font-weight: normal; font-size: 2.5rem; padding-top: 1em; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; letter-spacing: -0.8px }"
+        ],
+        "body": [
+          "p { font-family: \"FuturaPTWebBook\",Helvetica,Arial,sans-serif; font-size: 1.25rem; margin: 0 0 .625em; font-family: FuturaPTWebBook, Helvetica, Arial, sans-serif; font-size: 1.25rem; margin-top: 0px; margin-right: 0px; margin-bottom: 0.625em; margin-left: 0px }"
+        ],
+        "actions": []
+      }
+    }
+  ]
+}

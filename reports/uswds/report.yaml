@@ -1,0 +1,23 @@
+# What to test: the example templates USWDS ships in @uswds/uswds (rendered by build-fixtures.mjs) for text
+# fields, and the live modal examples on designsystem.digital.gov, opened in Chromium.
+implementation: USWDS
+package: '@uswds/uswds'
+version: 3.14.0
+homepage: https://designsystem.digital.gov/
+components:
+  text-field:
+    binding: text-field.binding.yaml
+    fixtures:
+      - ./uswds/fixtures.json
+  dialog:
+    binding: dialog.binding.yaml
+    pages:
+      - url: https://designsystem.digital.gov/components/modal/
+        name: default modal, opened
+        click: 'a[aria-controls="example-modal-1"]'
+      - url: https://designsystem.digital.gov/components/modal/
+        name: large modal, opened
+        click: 'a[aria-controls="example-modal-2"]'
+      - url: https://designsystem.digital.gov/components/modal/
+        name: forced-action modal, opened
+        click: 'a[aria-controls="example-modal-3"]'
