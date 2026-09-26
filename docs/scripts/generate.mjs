@@ -31,6 +31,18 @@ for (const [order, [slug, contract]] of Object.entries(contracts).entries()) {
   writeFileSync(join(out.components, `${slug}.mdx`), componentPage({ repo, pub, slug, contract, order, card: cards[slug] }));
   console.log(`docs: ${slug} (${cards[slug].fixtures} examples, ${contract.rules.length} rules, all pass: ${cards[slug].allPass})`);
 }
+// Choosing a component: one card per contract, with its receipts, so the list itself answers "is it any good?".
+const kb = (bytes) => (bytes < 1024 ? `${bytes} B` : `${(bytes / 1024).toFixed(1)} kB`);
+writeFileSync(join(out.components, 'index.mdx'), [
+  ...frontmatter({ title: 'Components', description: 'Pick a component. Each one is native HTML plus a few hundred bytes of CSS, and passes its own contract.', sidebar: { order: 0, label: 'Overview' } }),
+  '<CardGroup cols={2}>',
+  ...Object.entries(contracts).map(([slug, c]) => {
+    const card = cards[slug];
+    return `  <Card title="${c.title}" href="/components/${slug}" cta="${card.allPass ? '✓' : '✗'} ${card.rules} rules · ${kb(card.cssBase + card.cssStyled)} CSS · ${card.js === 0 ? '0' : kb(card.js)} JS" arrow>\n    ${c.summary}\n  </Card>`;
+  }),
+  '</CardGroup>',
+  '',
+].join('\n'));
 writeFileSync(join(out.components, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Components", order: 3 });\n`);
 writeFileSync(join(out.generated, 'scorecard.mdx'), scorecardOverview(cards) + '\n');
 

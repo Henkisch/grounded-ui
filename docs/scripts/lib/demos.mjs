@@ -23,7 +23,9 @@ ${cssFiles(referenceDir, markup, styled).map(({ slug, file }) => `<link rel="sty
 <!-- The host site's own CSS. Nothing else is loaded. The component inherits the colour scheme. -->
 <style>
   :root { color-scheme: light dark; color: CanvasText; }
-  body { margin: 0.5rem; font: 1rem/1.5 system-ui, sans-serif; }
+  body { margin: 0.5rem; font: 1rem/1.5 system-ui, sans-serif; }${markup.includes('<dialog') ? `
+  /* A dialog demo is only its trigger until opened: centre it in the room kept for the modal. */
+  body { display: grid; place-items: center; min-block-size: calc(100dvb - 1rem); }` : ''}
 </style>
 </head>
 <body>

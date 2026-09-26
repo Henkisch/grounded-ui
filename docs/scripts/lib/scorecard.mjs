@@ -45,6 +45,7 @@ export async function scorecards(repo, contracts) {
       title: contract.title,
       rules: contract.rules.length,
       normative: contract.rules.filter((r) => r.level === 'normative').length,
+      outcome: contract.rules.filter((r) => r.type === 'outcome').length,
       fixtures: fixtures.length,
       allPass: checks > 0 && passed === checks,
       axe,
@@ -89,4 +90,16 @@ export function scorecardOverview(cards) {
       card.baseline.label,
     ]),
   );
+}
+
+/** One component's receipts as a row of badges, for the top of its page. */
+export function scorecardBadges(card) {
+  const badge = (ok, text, tooltip) => `<Badge variant="${ok ? 'success' : 'danger'}" tooltip="${tooltip}">${text}</Badge>`;
+  return [
+    badge(card.allPass, `${card.allPass ? '✓' : '✗'} ${card.rules} contract rules`, `Run on all ${card.fixtures} examples in the build`),
+    badge(card.axe === 0, card.axe === 0 ? '✓ axe: 0 violations' : `✗ axe: ${card.axe}`, 'axe-core on every example'),
+    `<Badge tooltip="Brotli-compressed; base is required, styled optional">${kb(card.cssBase)} + ${kb(card.cssStyled)} CSS</Badge>`,
+    `<Badge tooltip="JavaScript shipped">${card.js === 0 ? '0 B' : kb(card.js)} JS</Badge>`,
+    `<Badge tooltip="From the web-features data">Baseline: ${card.baseline.label}</Badge>`,
+  ].join(' ');
 }
