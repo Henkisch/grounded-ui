@@ -43,13 +43,13 @@ Do Grounded UI's text field and dialog work unchanged when pasted into real, hea
 - **Dialog:** it opens as a modal everywhere, including when opened with Enter on elementor.com and generatepress.com, where a sticky header covers the trigger.
 - **Screenshots:** `screenshots/<site>.png` shows the pasted area and `<site>-dialog.png` the open dialog. `divi-focus.png` and `astra-focus.png` show the field with keyboard focus.
 
-## What base CSS should defend against
+## What leaked, and who owns it
 
-Grounded UI's CSS sits in cascade layers, so any unlayered site rule wins by design. That is right for look and spacing, and wrong for the three accessibility cues below. Inside a layer, `!important` beats unlayered `!important`, so base CSS can protect exactly these cues and nothing else:
+**Decision (2026-09-26): no `!important` in Grounded UI's CSS.** Site CSS always wins, by design. A layered `!important` would protect the focus ring and the error cue, but it would take that control away from the site. So these leaks are site responsibilities, listed in the contracts, and the conformance runner is how a site finds them:
 
-1. **The focus ring.** Site rules seen: `:focus { outline: 0 }` (Divi) and `:focus { outline: none !important }` (Astra). Fix: in base, `:focus-visible { outline: 2px solid var(--grounded-focus-color, currentColor) !important; outline-offset: 2px !important; }` on the control. This would have turned Divi into works, and Astra's weak focus into a proper one.
-2. **The error cue.** Site rules like `input[type="email"] { border: 1px solid … }` override the invalid border's colour and width. Fix: draw the non-colour cue as an inset `box-shadow` with `!important` in base. Sites rarely set `box-shadow` on inputs, and this keeps the layout still. This would have fixed Astra's invalid field.
-3. **The touch target.** Every site kept 2.75em or more, but `min-block-size` should get the same protection if a theme sets `height` on inputs.
+1. **The focus ring.** Site rules seen: `:focus { outline: 0 }` (Divi) and `:focus { outline: none !important }` (Astra). A site that removes outlines globally removes Grounded UI's too.
+2. **The error cue.** Site rules like `input[type="email"] { border: 1px solid … }` (Astra) override the invalid border. The error message and `aria-invalid` still carry the error.
+3. **The touch target.** Every site kept 2.75em or more; a theme that sets `height` on inputs would override it.
 
 **Leave to the site** (intended, or not defensible in CSS):
 - Spacing from `p { margin }`, `label { margin-bottom }` and `h2 { margin }`.

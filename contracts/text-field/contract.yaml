@@ -334,6 +334,8 @@ siteResponsibilities:
   - { criterion: "3.3.3", title: Understandable error messages, text: "We can require the message to exist, not that its content is good. Hence the editor guidance." }
   - { criterion: "3.1.1", title: Page language, text: "lang on the html element is the site's concern." }
   - { criterion: "1.4.10", title: Zoom and reflow, text: "Depends on the page layout, not the field." }
+  - { criterion: "2.4.7", title: Don't remove the focus ring, text: "Grounded UI never uses !important, so a site rule like :focus { outline: 0 } removes the field's focus ring. Style focus, don't remove it." }
+  - { criterion: "1.4.1", title: Keep the error border, text: "Site rules that set border on inputs can hide the invalid border. The error message still carries the error, but keep the border visible." }
 
 editor:
   help:

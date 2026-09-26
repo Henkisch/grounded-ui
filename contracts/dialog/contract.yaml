@@ -278,6 +278,7 @@ wcag:
 siteResponsibilities:
   - { criterion: "1.4.3", title: Text contrast, text: "The dialog uses the browser's Canvas and CanvasText unless the site sets --grounded-dialog-bg and --grounded-dialog-color." }
   - { criterion: "2.4.7", title: Button focus styles, text: "Trigger and action buttons are the site's own buttons; their focus indicator is the site's responsibility." }
+  - { criterion: "2.1.1", title: Let Escape through, text: "A site script that cancels every Escape keydown stops Esc from closing native dialogs. The close button still works." }
   - { criterion: "3.2.2", title: Unexpected dialogs, text: "Open dialogs from a user action only, never on page load." }
   - { title: Older browsers, text: "Browsers without invoker commands ignore the trigger. Don't put content only inside a dialog if it must reach everyone." }
 
