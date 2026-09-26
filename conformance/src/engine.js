@@ -102,37 +102,37 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
           .find((el) => document.querySelectorAll(`[id="${CSS.escape(el.id)}"]`).length > 1);
         return dup ? `id "${dup.id}" is used more than once on the page` : null;
       },
+      // name, exposes and role check every element the selector matches and report the first that fails.
       name({ selector, includes }, raw) {
-        const [el] = pick(selector);
-        if (!el) return null;
-        const name = words(accText(el));
-        if (!includes) return name ? null : `${describe(el)} has no accessible name`;
-        if (!name) return null; // an empty name is the plain name rule's job
-        const [part] = within(includes);
+        const [part] = includes ? within(includes) : [];
         const expected = part ? words(visibleText(part)) : '';
-        if (!expected) return null; // a missing or empty part is another rule's job
-        return name.includes(expected) ? null : `accessible name ${quote(accText(el).trim())} does not contain the ${raw.includes.replace(/[{}]/g, '')} text ${quote(expected)}`;
+        for (const el of pick(selector)) {
+          const name = words(accText(el));
+          if (!includes) {
+            if (!name) return `${describe(el)} has no accessible name`;
+            continue;
+          }
+          if (!name || !expected) continue; // an empty name or a missing part is another rule's job
+          if (!name.includes(expected)) return `accessible name ${quote(accText(el).trim())} does not contain the ${raw.includes.replace(/[{}]/g, '')} text ${quote(expected)}`;
+        }
+        return null;
       },
       exposes({ selector, text }, raw) {
-        const [el] = pick(selector);
         const [part] = within(text);
-        if (!el || !part) return null;
-        const expected = words(visibleText(part));
+        const expected = part ? words(visibleText(part)) : '';
         if (!expected) return null;
-        const exposed = words(`${accText(el)} ${accDescription(el)}`);
-        return exposed.includes(expected) ? null : `the ${raw.text.replace(/[{}]/g, '')} text ${quote(expected)} is in neither the accessible name nor the description of ${describe(el)}`;
+        const el = pick(selector).find((control) => !words(`${accText(control)} ${accDescription(control)}`).includes(expected));
+        return el ? `the ${raw.text.replace(/[{}]/g, '')} text ${quote(expected)} is in neither the accessible name nor the description of ${describe(el)}` : null;
+      },
+      role({ selector, oneOf }) {
+        const el = pick(selector).find((candidate) => !oneOf.includes(ax.commons.aria.getRole(candidate) ?? 'none'));
+        return el ? `${describe(el)} has role "${ax.commons.aria.getRole(el) ?? 'none'}", expected ${oneOf.join(' or ')}` : null;
       },
       invalidHasError({ control, error }) {
         const invalid = within(control).filter((el) => el.getAttribute('aria-invalid') === 'true');
         if (!invalid.length || within(error).length) return null;
         const orphan = invalid.find((el) => ![...refsOf(el, 'aria-describedby'), ...refsOf(el, 'aria-errormessage')].some((ref) => ref.matches(error)));
         return orphan ? `${describe(orphan)} is invalid but no error message is in the field or referenced by it` : null;
-      },
-      role({ selector, oneOf }) {
-        const [el] = pick(selector);
-        if (!el) return null;
-        const role = ax.commons.aria.getRole(el) ?? 'none';
-        return oneOf.includes(role) ? null : `${describe(el)} has role "${role}", expected ${oneOf.join(' or ')}`;
       },
       referencedBy({ attr, where }) {
         if (!root.id) return 'the root has no id to reference';
