@@ -1,10 +1,30 @@
 // Runs in the page (passed to page.evaluate). Must be self-contained: no imports, no closures.
 // Input: one component's rules and its binding, with part tokens already expanded (except {id}).
 // Output: one result per root found on the page.
+// Computed names, roles and descriptions come from axe-core's accessibility engine (window.axe, injected first),
+// so outcome rules judge what assistive technology gets, whatever markup produced it.
 export function evaluateComponent({ rootSelector, boundary, rules, markerAttr }) {
   const roots = [...document.querySelectorAll(rootSelector)];
+  const ax = window.axe;
+  ax.setup(document);
+  // includeHidden: a closed dialog still has a name; hidden parts referenced by idrefs still count.
+  const accText = (el) => ax.commons.text.accessibleTextVirtual(ax.utils.getNodeFromTree(el), { includeHidden: true });
+  const accDescription = (el) => {
+    const refs = (el.getAttribute('aria-describedby') ?? '').split(/\s+/).filter(Boolean).map((ref) => document.getElementById(ref)).filter(Boolean);
+    if (refs.length) return refs.map((ref) => ax.commons.text.accessibleTextVirtual(ax.utils.getNodeFromTree(ref), { includeHidden: true, inLabelledByContext: true })).join(' ');
+    return el.getAttribute('aria-description') ?? '';
+  };
+  // Words only, so punctuation, symbols such as a required "*" and spacing don't decide a match.
+  const words = (text) => text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+  const quote = (text) => `"${text.length > 80 ? `${text.slice(0, 77)}…` : text}"`;
 
-  return roots.map((root, index) => {
+  try {
+    return roots.map((root, index) => evaluateRoot(root, index));
+  } finally {
+    ax.teardown();
+  }
+
+  function evaluateRoot(root, index) {
     root.setAttribute(markerAttr, String(index));
     const id = root.id ? CSS.escape(root.id) : '';
     const expand = (selector) => selector.replaceAll('{id}', id);
@@ -63,6 +83,32 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
           .find((el) => document.querySelectorAll(`[id="${CSS.escape(el.id)}"]`).length > 1);
         return dup ? `id "${dup.id}" is used more than once on the page` : null;
       },
+      name({ selector, includes }, raw) {
+        const [el] = pick(selector);
+        if (!el) return null;
+        const name = words(accText(el));
+        if (!includes) return name ? null : `${describe(el)} has no accessible name`;
+        if (!name) return null; // an empty name is the plain name rule's job
+        const [part] = within(includes);
+        const expected = part ? words(part.textContent) : '';
+        if (!expected) return null; // a missing or empty part is another rule's job
+        return name.includes(expected) ? null : `accessible name ${quote(accText(el).trim())} does not contain the ${raw.includes.replace(/[{}]/g, '')} text ${quote(expected)}`;
+      },
+      exposes({ selector, text }, raw) {
+        const [el] = pick(selector);
+        const [part] = within(text);
+        if (!el || !part) return null;
+        const expected = words(part.textContent);
+        if (!expected) return null;
+        const exposed = words(`${accText(el)} ${accDescription(el)}`);
+        return exposed.includes(expected) ? null : `the ${raw.text.replace(/[{}]/g, '')} text ${quote(expected)} is in neither the accessible name nor the description of ${describe(el)}`;
+      },
+      role({ selector, oneOf }) {
+        const [el] = pick(selector);
+        if (!el) return null;
+        const role = ax.commons.aria.getRole(el) ?? 'none';
+        return oneOf.includes(role) ? null : `${describe(el)} has role "${role}", expected ${oneOf.join(' or ')}`;
+      },
       referencedBy({ attr, where }) {
         if (!root.id) return 'the root has no id to reference';
         const selector = `${where ?? ''}[${attr}="${id}"]`;
@@ -77,9 +123,9 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
       } catch (error) {
         detail = `could not evaluate: ${error.message}`;
       }
-      return { id: rule.id, level: rule.level, description: rule.description, pass: detail === null, detail };
+      return { id: rule.id, level: rule.level, type: rule.type, description: rule.description, pass: detail === null, detail };
     });
 
     return { index, marker: `[${markerAttr}="${index}"]`, element: describe(root), results };
-  });
+  }
 }

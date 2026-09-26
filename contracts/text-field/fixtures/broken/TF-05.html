@@ -1,5 +1,5 @@
-<!-- Breaks TF-05: the label part is a span, not a <label>. -->
+<!-- Breaks TF-05: the label part is a span, not a <label>; aria-labelledby still names the control. -->
 <div data-component="text-field">
-  <span data-part="label" for="city">City</span>
-  <input data-part="control" type="text" id="city" name="city">
+  <span data-part="label" id="city-label" for="city">City</span>
+  <input data-part="control" type="text" id="city" name="city" aria-labelledby="city-label">
 </div>

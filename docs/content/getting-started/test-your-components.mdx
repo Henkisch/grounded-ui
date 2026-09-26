@@ -14,9 +14,10 @@ npx grounded-conformance https://your-site.example/contact
 Every component on the page is checked against its contract, and axe runs on the same element. The output lists each rule that fails, and whether axe caught the same component:
 
 ```text
-  text-field <div class="field"> — 13/15 rules pass, axe: 0 violation(s)
-    FAIL TF-07 (normative) The label's for matches the control's id.
-         for="town" but id="city"
+  text-field <div class="field"> — 9/10 outcome rules pass, axe: 0 violation(s)
+    FAIL TF-17 (normative) The control has a non-empty accessible name.
+         <input id="city" type="text"> has no accessible name
+    differs from Grounded UI's technique: TF-07 (recommendations, not failures)
 ```
 
 ## 2. Point it at your markup
@@ -43,6 +44,8 @@ Each component page lists its parts under **Test your implementation**.
 
 ## 3. Read the result
 
+- **Outcome** rules are the verdict. They judge what the browser computes from your markup (the accessible name, role and description) and what users see, so any technique that gets the result right passes.
+- **Technique** rules describe how Grounded UI's own markup does it, such as a native `<dialog>` or `aria-describedby`. They are always recommended, and a failure only means your markup differs. The CLI lists them on one line and doesn't count them.
 - **Normative** rules are required by a standard; the rule links to it. A failure is an accessibility bug.
 - **Recommended** rules are Grounded UI's judgement, with the reasoning linked. A failure is worth a look, not automatically a bug.
 - A failure where axe reported nothing is exactly what the contracts are for: component-level problems general tools can't know about.
@@ -59,6 +62,6 @@ import { checkPage, failures } from 'grounded-ui/conformance/src/index.mjs';
 
 test('forms meet the Grounded UI contracts', async ({ page }) => {
   await page.goto('/contact');
-  expect(failures(await checkPage(page))).toEqual([]);
+  expect(failures(await checkPage(page), { type: 'outcome' })).toEqual([]);
 });
 ```

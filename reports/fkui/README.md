@@ -7,7 +7,7 @@
 ### Text field
 
 - **axe reports nothing** on any example.
-- **The textarea's character counter is a second, empty `<label>`** with `aria-live`. Measured in Chromium: the field's accessible name is "Berätta om dig själv En inte allt för utförlig berättelse (max 100 tecken)", and near the limit it grows to "… Antal tecken kvar: 5". So the name changes while the user types, and every name also carries the description and format hint. axe doesn't flag it; TF-04 and TF-06 do. Not a clear WCAG failure, but an unusual use of `<label>` worth raising with FKUI.
+- **The textarea's character counter is a second, empty `<label>`** with `aria-live`. Measured in Chromium: the field's accessible name is "Berätta om dig själv En inte allt för utförlig berättelse (max 100 tecken)", and near the limit it grows to "… Antal tecken kvar: 5". So the name changes while the user types, and every name also carries the description and format hint. axe doesn't flag it; outcome rule TF-06 does (an empty label), and technique rule TF-04 notes the second label. Not a clear WCAG failure, but an unusual use of `<label>` worth raising with FKUI.
 - **No `name` on the controls** (TF-08): these are Vue demos bound in script, so not a real finding.
 
 ### Dialog (FModal, FConfirmModal)
@@ -25,4 +25,6 @@ FKUI builds things differently from Grounded UI's reference markup, and much of 
 - **A scripted `div role="dialog"`** instead of native `<dialog>`: DG-01, DG-02, DG-07, DG-09 and DG-12 fail because they describe Grounded UI's technique, not an accessibility requirement.
 - **Two rules overclaimed.** TF-04 marks "exactly one label" normative; WCAG requires a label, not exactly one. DG-11 flagged `role="dialog"` on a div as an override; fixed in dialog contract 0.2.1 to apply only to native `<dialog>`.
 
-So the contract mixes two kinds of rule: *outcomes* (the dialog has a name, the error is announced) and *techniques* (native dialog, `aria-describedby`). For testing other implementations, rules should check outcomes, using the browser's computed accessible name and description. Technique rules stay useful as recommendations for Grounded UI's own markup.
+So the contract mixed two kinds of rule: *outcomes* (the dialog has a name, the error is announced) and *techniques* (native dialog, `aria-describedby`). Since contract 0.3.0 every rule says which it is. Outcome rules judge the computed accessible name, role and description, so FKUI's label-wrapped description passes TF-19; they are the verdict. Technique rules are listed separately as recommendations for Grounded UI's own markup, and are always `recommended`.
+
+Verdict with contract 0.3.0: text field fails one outcome rule (TF-06, the empty counter label; axe silent), dialog fails one (DG-05, no accessible name; axe agrees).

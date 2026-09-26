@@ -49,15 +49,18 @@ if (values.json) {
     console.log(`\n${url}`);
     if (!report.length) console.log('  no components found');
     for (const root of report) {
-      const failed = root.results.filter((r) => !r.pass);
+      const outcomes = root.results.filter((r) => r.type === 'outcome');
+      const failed = outcomes.filter((r) => !r.pass);
+      const differs = root.results.filter((r) => r.type === 'technique' && !r.pass);
       const axeNote = root.axeViolations ? `, axe: ${root.axeViolations.length} violation(s)` : '';
-      console.log(`  ${root.component} ${root.element} — ${root.results.length - failed.length}/${root.results.length} rules pass${axeNote}`);
+      console.log(`  ${root.component} ${root.element} — ${outcomes.length - failed.length}/${outcomes.length} outcome rules pass${axeNote}`);
       for (const r of failed) console.log(`    FAIL ${r.id} (${r.level}) ${r.description}\n         ${r.detail}`);
+      if (differs.length) console.log(`    differs from Grounded UI's technique: ${differs.map((r) => r.id).join(', ')} (recommendations, not failures)`);
     }
   }
-  const failed = all.flatMap(({ report }) => failures(report));
+  const failed = all.flatMap(({ report }) => failures(report, { type: 'outcome' }));
   const missed = failed.filter((f) => f.axeFoundIssues === false).length;
   console.log(`\n${failed.length} failure(s)${failed.length ? `, ${missed} in components where axe reported nothing` : ''}`);
 }
 
-process.exit(all.some(({ report }) => failures(report).length) ? 1 : 0);
+process.exit(all.some(({ report }) => failures(report, { type: 'outcome' }).length) ? 1 : 0);

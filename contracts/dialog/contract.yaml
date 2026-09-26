@@ -3,7 +3,7 @@
 # The single source for the conformance tests, warning CSS, editor validation and the docs page.
 # Test selectors name parts ({title}, {close}, …); `:scope` is the root; {id} is the root's id.
 component: dialog
-contractVersion: 0.2.1
+contractVersion: 0.3.0
 title: Dialog
 summary: A modal dialog that opens and closes without JavaScript, using the native dialog element and invoker commands.
 
@@ -69,10 +69,14 @@ keyboard:
   - { key: Close, behavior: Focus returns to the trigger }
 
 # level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
 rules:
   - id: DG-01
     description: The root is a <dialog> element.
     level: recommended
+    type: technique
     source: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element
     rationale: The native element gives the modal behaviour (inert page, top layer, Esc) without JavaScript.
     since: 0.1.0
@@ -85,6 +89,7 @@ rules:
   - id: DG-02
     description: The dialog has an id, so triggers can point at it.
     level: recommended
+    type: technique
     source: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-commandfor
     rationale: Invoker commands reference the dialog by id; without one, nothing can open it.
     since: 0.1.0
@@ -97,6 +102,7 @@ rules:
   - id: DG-03
     description: There is exactly one title.
     level: recommended
+    type: technique
     source: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
     rationale: A single visible title names the dialog for everyone.
     since: 0.1.0
@@ -109,6 +115,7 @@ rules:
   - id: DG-04
     description: The title has non-empty text.
     level: normative
+    type: outcome
     source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
     rationale: An empty title leaves the dialog without an accessible name.
     since: 0.1.0
@@ -121,21 +128,23 @@ rules:
     editor: { level: refuse }
 
   - id: DG-05
-    description: The dialog has an accessible name via aria-labelledby.
+    description: The dialog has a non-empty accessible name.
     level: normative
-    source: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
     rationale: The dialog role requires an accessible name; screen readers announce it when focus moves in.
     since: 0.1.0
-    test: { kind: absent, selector: ':scope:not([aria-labelledby])' }
+    test: { kind: name, selector: ':scope' }
     css:
       violation: '[data-component="dialog"]:not([aria-labelledby])'
-      message: "DG-05: the dialog has no aria-labelledby."
+      message: "DG-05: the dialog has no aria-labelledby, so no accessible name."
 
   - id: DG-06
-    description: aria-labelledby points at the title's id.
+    description: The name comes from the title, via aria-labelledby pointing at its id.
     level: recommended
+    type: technique
     source: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
-    rationale: Naming the dialog after its visible title keeps what users see and hear the same.
+    rationale: Naming the dialog after its visible title keeps what users see and hear the same; aria-labelledby does it without duplicating text.
     since: 0.1.0
     test:
       kind: attrEquals
@@ -147,6 +156,7 @@ rules:
   - id: DG-07
     description: A trigger on the page points at the dialog with commandfor and command="show-modal".
     level: recommended
+    type: technique
     source: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-command
     rationale: show-modal is what makes the page inert and moves focus in; a dialog nothing opens is dead content.
     since: 0.1.0
@@ -157,6 +167,7 @@ rules:
   - id: DG-08
     description: The trigger is a <button>.
     level: recommended
+    type: technique
     source: https://www.w3.org/WAI/WCAG22/Understanding/keyboard
     rationale: Invoker commands only work on buttons, and a button is keyboard operable by default.
     since: 0.1.0
@@ -166,6 +177,7 @@ rules:
   - id: DG-09
     description: The dialog contains a close control (command="close" or a form with method="dialog").
     level: recommended
+    type: technique
     source: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
     rationale: Esc isn't discoverable; touch and pointer users need a visible way out.
     since: 0.1.0
@@ -178,6 +190,7 @@ rules:
   - id: DG-10
     description: The dialog is not rendered with a static open attribute; it opens as a modal via show-modal.
     level: recommended
+    type: technique
     source: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element
     rationale: A statically open dialog is non-modal; the page behind stays reachable and focus doesn't move in.
     since: 0.1.0
@@ -190,6 +203,7 @@ rules:
   - id: DG-11
     description: On a native <dialog>, the only role override allowed is role="alertdialog".
     level: normative
+    type: outcome
     source: https://www.w3.org/TR/html-aria/#el-dialog
     rationale: ARIA in HTML allows only alertdialog on a dialog element; any other role breaks its semantics. (A div with role="dialog" is a different technique, not an override.)
     since: 0.1.0
@@ -201,6 +215,7 @@ rules:
   - id: DG-12
     description: The dialog itself has no tabindex.
     level: recommended
+    type: technique
     source: https://www.w3.org/WAI/WCAG22/Understanding/focus-order
     rationale: The browser manages focus when the dialog opens; a tabindex adds a stray focus stop.
     since: 0.1.0
@@ -212,6 +227,7 @@ rules:
   - id: DG-13
     description: The alert variant has role="alertdialog" and no light dismiss.
     level: recommended
+    type: technique
     source: https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/
     rationale: An alert interrupts on purpose; closing it on a stray click would skip the decision.
     since: 0.1.0
@@ -219,6 +235,36 @@ rules:
     css:
       violation: '[data-component="dialog"][data-variant="alert"]:is(:not([role="alertdialog"]), [closedby="any"])'
       message: "DG-13: alert dialogs need role=alertdialog and must not close on outside click."
+
+  - id: DG-14
+    description: The dialog has the role dialog or alertdialog.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: The role tells screen-reader users they are in a dialog, and lets them treat the page behind as out of reach.
+    since: 0.3.0
+    test: { kind: role, selector: ':scope', oneOf: [dialog, alertdialog] }
+    css: false
+
+  - id: DG-15
+    description: The dialog's accessible name contains its title text.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+    rationale: Users should hear the heading they see; a name unrelated to the title is confusing.
+    since: 0.3.0
+    test: { kind: name, selector: ':scope', includes: '{title}' }
+    css: false
+
+  - id: DG-16
+    description: The dialog contains a button.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+    rationale: Esc isn't discoverable; touch and pointer users need a visible control to act or leave.
+    since: 0.3.0
+    test: { kind: absent, selector: ':scope:not(:has(button, [role="button"], input[type="button"], input[type="submit"]))' }
+    css: false
 
 wcag:
   - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "Title associated via aria-labelledby, body via aria-describedby when it explains the purpose" }
@@ -263,6 +309,12 @@ attributes:
 customProperties:
   --grounded-dialog-bg: Dialog background.
   --grounded-dialog-color: Dialog text colour.
-  --grounded-border-color: Border colour.
+  --grounded-dialog-border-color: Border colour.
+  --grounded-muted-color: Body text colour.
   --grounded-radius-large: Corner radius.
-  --grounded-duration: Open and close transition duration.
+  --grounded-shadow: Elevation shadow.
+  --grounded-title-size: Title font size.
+  --grounded-title-weight: Title font weight.
+  --grounded-duration: Open transition duration.
+  --grounded-duration-exit: Close transition duration.
+  --grounded-easing: Open transition easing.

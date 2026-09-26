@@ -1,0 +1,6 @@
+<!-- Breaks TF-18: aria-labelledby names the control "Postal town", so the visible label "City" is not in its name. -->
+<div data-component="text-field">
+  <label data-part="label" for="city">City</label>
+  <span id="city-name" hidden>Postal town</span>
+  <input data-part="control" type="text" id="city" name="city" aria-labelledby="city-name">
+</div>

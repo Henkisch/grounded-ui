@@ -1,7 +1,6 @@
-<!-- Breaks DG-09: no close control inside the dialog. -->
+<!-- Breaks DG-16: no button at all, so pointer and touch users have no visible way to act or leave. also: DG-09 -->
 <button type="button" commandfor="d" command="show-modal">Open</button>
 <dialog data-component="dialog" id="d" aria-labelledby="d-title">
   <h2 data-part="title" id="d-title">Settings</h2>
   <p data-part="body">Press Esc to close.</p>
-  <div data-part="actions"><button type="button">Save</button></div>
 </dialog>

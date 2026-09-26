@@ -28,7 +28,7 @@ const htmlFiles = (dir) => (existsSync(dir) ? readdirSync(dir).filter((f) => f.e
 
 // Every selector string in a rule's test, for part-token checks.
 const testSelectors = (test) =>
-  [test.selector, test.where, test.to, test.a?.selector, test.b?.selector, test.from?.selector].filter(Boolean);
+  [test.selector, test.where, test.to, test.includes, test.text, test.a?.selector, test.b?.selector, test.from?.selector].filter(Boolean);
 
 // oneOf reports every branch it tried; for rule tests keep only the branch matching test.kind.
 const reportSchemaErrors = (file, contract) => {
@@ -88,6 +88,7 @@ for (const slug of slugs) {
         if (token !== 'id' && !parts.has(token)) fail(file, `${rule.id}: {${token}} is not a part in anatomy`);
       }
     }
+    for (const role of rule.test.oneOf ?? []) if (!roles.has(role)) fail(file, `${rule.id}: role "${role}" is not an ARIA role`);
     if (rule.css && !rule.css.violation.startsWith(`[data-component="${slug}"]`)) {
       fail(file, `${rule.id} css.violation must start with [data-component="${slug}"]`);
     }

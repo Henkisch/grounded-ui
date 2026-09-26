@@ -1,6 +1,6 @@
-<!-- Breaks DG-01: a scripted div role="dialog" instead of the native element. -->
+<!-- Breaks DG-15: aria-label names the dialog "Preferences" while its title says "Settings". also: DG-06 -->
 <button type="button" commandfor="d" command="show-modal">Open</button>
-<div data-component="dialog" id="d" role="dialog" aria-labelledby="d-title">
+<dialog data-component="dialog" id="d" aria-label="Preferences">
   <h2 data-part="title" id="d-title">Settings</h2>
   <div data-part="actions"><button type="button" commandfor="d" command="close">Close</button></div>
-</div>
+</dialog>

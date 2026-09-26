@@ -2,10 +2,10 @@
 
 `text-field.md` is generated; this note is the human reading of it. Run it again with `node reports/run.mjs govuk-frontend`.
 
-## Result (GOV.UK Frontend 6.5.1, text-field contract 0.2.0)
+## Result (GOV.UK Frontend 6.5.1, text-field contract 0.3.0)
 
-- **Every normative rule passes** in all 24 published input and textarea examples. axe reports nothing either.
-- **One recommended rule fails: TF-11** (the error's id comes first in `aria-describedby`), in 1 example. GOV.UK lists the hint first, then the error. That is a deliberate, researched design choice, not an oversight, so it's evidence that TF-11 is an opinion and needs outside review before it can be called a rule.
+- **Every outcome rule passes** in all 24 published input and textarea examples: each field has a name containing its label, hints and errors reach the accessible description, and the role is textbox. axe reports nothing either.
+- **One technique rule differs: TF-11** (the error's id comes first in `aria-describedby`), in 1 example. GOV.UK lists the hint first, then the error. That is a deliberate, researched design choice, not an oversight, so it's evidence that TF-11 is an opinion and needs outside review before it can be called a rule.
 
 ## What we learned about the contract
 

@@ -471,6 +471,66 @@
             }
           },
           "$comment": "the document contains an element (matching where) whose attr equals the root's id"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector"
+          ],
+          "properties": {
+            "kind": {
+              "const": "name"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            },
+            "includes": {
+              "$ref": "#/$defs/selector"
+            }
+          },
+          "$comment": "the element has a non-empty computed accessible name; with includes, the name contains the words of that part (skipped when the part is missing or the name is empty)"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector",
+            "text"
+          ],
+          "properties": {
+            "kind": {
+              "const": "exposes"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            },
+            "text": {
+              "$ref": "#/$defs/selector"
+            }
+          },
+          "$comment": "when the text part exists and has text, its words appear in the element computed accessible description or name"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector",
+            "oneOf"
+          ],
+          "properties": {
+            "kind": {
+              "const": "role"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            },
+            "oneOf": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "$comment": "the element computed ARIA role is one of these (ARIA role names, checked against aria-query)"
         }
       ],
       "properties": {
@@ -483,7 +543,10 @@
             "idrefIncludes",
             "idrefFirst",
             "uniqueIds",
-            "referencedBy"
+            "referencedBy",
+            "name",
+            "exposes",
+            "role"
           ]
         }
       }
@@ -531,6 +594,7 @@
         "id",
         "description",
         "level",
+        "type",
         "source",
         "rationale",
         "since",
@@ -576,6 +640,13 @@
             "recommended"
           ],
           "$comment": "normative: a standard requires it; recommended: our judgement, open to review"
+        },
+        "type": {
+          "enum": [
+            "outcome",
+            "technique"
+          ],
+          "$comment": "outcome: what any implementation must achieve, judged on the rendered result (computed name, role, description, visible text). technique: how Grounded UI reference markup achieves it; a recommendation, not a verdict on other implementations."
         },
         "source": {
           "type": "string",

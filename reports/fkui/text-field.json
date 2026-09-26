@@ -1,7 +1,7 @@
 {
   "implementation": "Försäkringskassan FKUI",
   "version": "6.59.0",
-  "contract": "0.2.0",
+  "contract": "0.3.0",
   "examples": [
     {
       "source": "docs",
@@ -10,13 +10,14 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -24,13 +25,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -38,6 +41,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -45,13 +49,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -59,6 +65,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"fkui-vue-element-0001\" type=\"text\" class=\"text-field__input\">"
@@ -66,6 +73,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -73,6 +81,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -80,6 +89,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -87,6 +97,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -94,6 +105,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -101,6 +113,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -108,6 +121,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -115,7 +129,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -124,13 +179,14 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -138,13 +194,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -152,6 +210,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -159,13 +218,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -173,6 +234,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"fkui-vue-element-0013\" type=\"text\" class=\"text-field__input\">"
@@ -180,6 +242,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -187,6 +250,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -194,6 +258,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -201,6 +266,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -208,6 +274,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -215,6 +282,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -222,6 +290,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -229,7 +298,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -245,13 +355,14 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -259,13 +370,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -273,6 +386,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -280,13 +394,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -294,6 +410,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"email\" type=\"email\" class=\"text-field__input\">"
@@ -301,6 +418,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -308,6 +426,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -315,6 +434,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -322,6 +442,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -329,6 +450,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -336,6 +458,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -343,6 +466,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -350,7 +474,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -359,13 +524,14 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -373,13 +539,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -387,6 +555,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -394,13 +563,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -408,6 +579,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"fkui-vue-element-0001\" type=\"email\" class=\"text-field__input\">"
@@ -415,6 +587,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -422,6 +595,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -429,6 +603,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -436,6 +611,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -443,6 +619,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -450,6 +627,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -457,6 +635,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -464,7 +643,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -473,13 +693,14 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -487,13 +708,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -501,6 +724,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -508,13 +732,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -522,6 +748,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"fkui-vue-element-0002\" type=\"email\" class=\"text-field__input\">"
@@ -529,6 +756,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -536,6 +764,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -543,6 +772,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -550,6 +780,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -557,6 +788,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -564,6 +796,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -571,6 +804,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -578,7 +812,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -587,13 +862,14 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -601,13 +877,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -615,6 +893,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -622,13 +901,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -636,6 +917,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"fkui-vue-element-0003\" type=\"tel\" class=\"text-field__input\">"
@@ -643,6 +925,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -650,6 +933,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -657,6 +941,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -664,6 +949,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -671,6 +957,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -678,6 +965,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -685,6 +973,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -692,7 +981,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -701,13 +1031,14 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -715,13 +1046,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -729,6 +1062,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -736,13 +1070,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -750,6 +1086,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"fkui-vue-element-0004\" type=\"tel\" class=\"text-field__input\">"
@@ -757,6 +1094,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -764,6 +1102,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -771,6 +1110,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -778,6 +1118,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -785,6 +1126,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -792,6 +1134,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -799,6 +1142,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -806,7 +1150,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -815,13 +1200,14 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -829,13 +1215,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -843,6 +1231,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -850,13 +1239,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -864,6 +1255,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"fkui-vue-element-0005\" type=\"tel\" class=\"text-field__input\">"
@@ -871,6 +1263,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -878,6 +1271,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -885,6 +1279,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -892,6 +1287,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -899,6 +1295,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -906,6 +1303,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -913,6 +1311,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -920,7 +1319,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -936,13 +1376,14 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"textarea-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -950,13 +1391,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": false,
               "detail": "expected 1, found 2"
@@ -964,6 +1407,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -971,13 +1415,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": false,
               "detail": "<label class=\"label\" for=\"fkui-vue-element-0001\" aria-live=\"polite\"> has no text"
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -985,6 +1431,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <textarea id=\"fkui-vue-element-0001\" class=\"textarea-field__textarea textarea-field__resize--none\" rows=\"4\">"
@@ -992,6 +1439,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": false,
               "detail": "aria-describedby does not reference the description (<span class=\"label__description\">)"
@@ -999,6 +1447,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -1006,6 +1455,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -1013,6 +1463,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -1020,6 +1471,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -1027,6 +1479,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -1034,6 +1487,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -1041,7 +1495,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -1057,13 +1552,14 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field text-field--error\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -1071,13 +1567,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -1085,6 +1583,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -1092,13 +1591,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -1106,6 +1607,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"email\" type=\"email\" class=\"text-field__input\">"
@@ -1113,6 +1615,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -1120,6 +1623,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -1127,6 +1631,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": false,
               "detail": "aria-describedby=\"\" does not start with the error id \"\""
@@ -1134,6 +1639,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -1141,6 +1647,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -1148,6 +1655,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -1155,6 +1663,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -1162,7 +1671,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -1171,13 +1721,14 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -1185,13 +1736,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -1199,6 +1752,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -1206,13 +1760,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -1220,6 +1776,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"fkui-vue-element-0001\" type=\"email\" class=\"text-field__input\">"
@@ -1227,6 +1784,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -1234,6 +1792,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -1241,6 +1800,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -1248,6 +1808,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -1255,6 +1816,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -1262,6 +1824,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -1269,6 +1832,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -1276,7 +1840,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -1285,13 +1890,14 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -1299,13 +1905,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -1313,6 +1921,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -1320,13 +1929,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -1334,6 +1945,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"fkui-vue-element-0002\" type=\"email\" class=\"text-field__input\">"
@@ -1341,6 +1953,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -1348,6 +1961,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -1355,6 +1969,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -1362,6 +1977,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -1369,6 +1985,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -1376,6 +1993,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -1383,6 +2001,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -1390,7 +2009,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -1399,13 +2059,14 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -1413,13 +2074,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -1427,6 +2090,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -1434,13 +2098,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -1448,6 +2114,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"fkui-vue-element-0003\" type=\"tel\" class=\"text-field__input\">"
@@ -1455,6 +2122,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -1462,6 +2130,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -1469,6 +2138,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -1476,6 +2146,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -1483,6 +2154,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -1490,6 +2162,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -1497,6 +2170,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -1504,7 +2178,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -1513,13 +2228,14 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -1527,13 +2243,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -1541,6 +2259,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -1548,13 +2267,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -1562,6 +2283,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"fkui-vue-element-0004\" type=\"tel\" class=\"text-field__input\">"
@@ -1569,6 +2291,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -1576,6 +2299,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -1583,6 +2307,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -1590,6 +2315,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -1597,6 +2323,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -1604,6 +2331,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -1611,6 +2339,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -1618,7 +2347,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }
@@ -1627,13 +2397,14 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.2.0",
+          "contractVersion": "0.3.0",
           "implementation": "Försäkringskassan FKUI",
           "element": "<div class=\"text-field\">",
           "results": [
             {
               "id": "TF-02",
               "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one control.",
               "pass": true,
               "detail": null
@@ -1641,13 +2412,15 @@
             {
               "id": "TF-03",
               "level": "recommended",
+              "type": "technique",
               "description": "The control is an input or a textarea.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-04",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "There is exactly one label.",
               "pass": true,
               "detail": null
@@ -1655,6 +2428,7 @@
             {
               "id": "TF-05",
               "level": "recommended",
+              "type": "technique",
               "description": "The label is a label element.",
               "pass": true,
               "detail": null
@@ -1662,13 +2436,15 @@
             {
               "id": "TF-06",
               "level": "normative",
+              "type": "outcome",
               "description": "The label has non-empty text.",
               "pass": true,
               "detail": null
             },
             {
               "id": "TF-07",
-              "level": "normative",
+              "level": "recommended",
+              "type": "technique",
               "description": "The label's for matches the control's id.",
               "pass": true,
               "detail": null
@@ -1676,6 +2452,7 @@
             {
               "id": "TF-08",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has a name.",
               "pass": false,
               "detail": "found <input id=\"fkui-vue-element-0005\" type=\"tel\" class=\"text-field__input\">"
@@ -1683,6 +2460,7 @@
             {
               "id": "TF-09",
               "level": "recommended",
+              "type": "technique",
               "description": "If there is a description, its id is referenced in aria-describedby.",
               "pass": true,
               "detail": null
@@ -1690,6 +2468,7 @@
             {
               "id": "TF-10",
               "level": "normative",
+              "type": "outcome",
               "description": "If the control has aria-invalid=\"true\", there is an error message.",
               "pass": true,
               "detail": null
@@ -1697,6 +2476,7 @@
             {
               "id": "TF-11",
               "level": "recommended",
+              "type": "technique",
               "description": "The error's id comes first in aria-describedby.",
               "pass": true,
               "detail": null
@@ -1704,6 +2484,7 @@
             {
               "id": "TF-12",
               "level": "normative",
+              "type": "outcome",
               "description": "The error message has non-empty text.",
               "pass": true,
               "detail": null
@@ -1711,6 +2492,7 @@
             {
               "id": "TF-13",
               "level": "normative",
+              "type": "outcome",
               "description": "Ids inside the field are unique on the page.",
               "pass": true,
               "detail": null
@@ -1718,6 +2500,7 @@
             {
               "id": "TF-14",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no tabindex.",
               "pass": true,
               "detail": null
@@ -1725,6 +2508,7 @@
             {
               "id": "TF-15",
               "level": "normative",
+              "type": "outcome",
               "description": "A placeholder is never the only label.",
               "pass": true,
               "detail": null
@@ -1732,7 +2516,48 @@
             {
               "id": "TF-16",
               "level": "recommended",
+              "type": "technique",
               "description": "The control has no aria-label competing with the label.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-17",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has a non-empty accessible name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-18",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control's accessible name contains the visible label text.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-19",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is a description, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-20",
+              "level": "normative",
+              "type": "outcome",
+              "description": "If there is an error message, its text reaches the control's accessible description or name.",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-21",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control has the role textbox or searchbox.",
               "pass": true,
               "detail": null
             }

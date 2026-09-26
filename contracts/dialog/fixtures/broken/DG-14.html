@@ -1,6 +1,6 @@
-<!-- Breaks DG-01: a scripted div role="dialog" instead of the native element. -->
+<!-- Breaks DG-14: a section is announced as a region, not a dialog. also: DG-01 -->
 <button type="button" commandfor="d" command="show-modal">Open</button>
-<div data-component="dialog" id="d" role="dialog" aria-labelledby="d-title">
+<section data-component="dialog" id="d" aria-labelledby="d-title">
   <h2 data-part="title" id="d-title">Settings</h2>
   <div data-part="actions"><button type="button" commandfor="d" command="close">Close</button></div>
-</div>
+</section>

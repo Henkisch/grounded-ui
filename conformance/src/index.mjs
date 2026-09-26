@@ -3,12 +3,14 @@
 // without one, Grounded UI's own hooks (data-component / data-part) are used.
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { createRequire } from 'node:module';
 import { parse } from 'yaml';
 import { AxeBuilder } from '@axe-core/playwright';
 import { evaluateComponent } from './engine.js';
 
 const repo = new URL('../..', import.meta.url).pathname;
 const MARKER = 'data-grounded-conformance-root';
+const axeSource = readFileSync(createRequire(import.meta.url).resolve('axe-core/axe.min.js'), 'utf8');
 
 /** All contracts in contracts/, keyed by slug. */
 export function loadContracts(dir = join(repo, 'contracts')) {
@@ -63,6 +65,8 @@ function expandTokens(value, parts, component) {
  */
 export async function checkPage(page, { contracts = loadContracts(), bindings = {}, components, axe = true } = {}) {
   const report = [];
+  // The engine computes accessible names and roles with axe-core's accessibility code.
+  if (!(await page.evaluate(() => Boolean(window.axe?.commons)))) await page.evaluate(axeSource); // like AxeBuilder: not blocked by a page CSP
   for (const [slug, contract] of Object.entries(contracts)) {
     if (components && !components.includes(slug)) continue;
     const binding = bindings[slug] ?? defaultBinding(contract);
@@ -85,11 +89,15 @@ export async function checkPage(page, { contracts = loadContracts(), bindings = 
   return report;
 }
 
-/** Failures in a report, each marked with whether axe reported anything for that root. */
-export function failures(report) {
+/**
+ * Failures in a report, each marked with whether axe reported anything for that root.
+ * @param options.type 'outcome' for the verdict on any implementation; 'technique' for where markup differs
+ *                     from Grounded UI's recommended technique; omit for both.
+ */
+export function failures(report, { type } = {}) {
   return report.flatMap((root) =>
     root.results
-      .filter((r) => !r.pass)
+      .filter((r) => !r.pass && (!type || r.type === type))
       .map((r) => ({ component: root.component, element: root.element, ...r, axeFoundIssues: root.axeViolations?.length > 0 })),
   );
 }
