@@ -1,0 +1,63 @@
+/* Hallmark · component: site-header · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · hover · focus · current (active, disabled, loading, error, success: not states of a header)
+ * contrast: links 62% CanvasText mix (≥ 4.5:1 in light and dark); the rule under the header is decorative
+ */
+/*
+ * site-header styled CSS: the Grounded house style on top of site-header.css.
+ * A quiet bar: the logo in the text colour, muted links that darken on hover, the current page underlined,
+ * and a hairline under the header. All colours come from Canvas and CanvasText.
+ * Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.site-header {
+  @scope ([data-gui="site-header"]) to ([data-gui]) {
+    :scope {
+      padding-block: 0.75em;
+      border-block-end-width: 1px;
+      border-block-end-style: solid;
+      border-block-end-color: var(--gui-site-header-border, color-mix(in oklab, CanvasText 16%, Canvas));
+    }
+
+    :scope[data-gui-variant="stacked"] {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    :where([data-gui-part="logo"]) {
+      font-weight: 700;
+      color: CanvasText;
+      text-decoration: none;
+    }
+
+    :where([data-gui-part="link"]) {
+      padding-block: 0.375em;
+      color: var(--gui-site-header-muted, color-mix(in oklab, CanvasText 62%, Canvas));
+      text-decoration-line: underline;
+      text-decoration-color: transparent;
+      text-decoration-thickness: 0.125em;
+      text-underline-offset: 0.35em;
+    }
+
+    :where([data-gui-part="logo"], [data-gui-part="link"]) {
+      border-radius: var(--gui-site-header-radius, var(--gui-radius, 0.25em));
+    }
+
+    @media (hover: hover) {
+      :where([data-gui-part="link"]):hover {
+        color: CanvasText;
+      }
+    }
+
+    :where([data-gui-part="link"][aria-current="page"]) {
+      color: CanvasText;
+      text-decoration-color: currentColor;
+    }
+
+    /* The base ring uses currentColor (the muted link colour); the text colour is clearer. */
+    :where([data-gui-part="logo"], [data-gui-part="link"]):focus-visible {
+      outline-color: var(--gui-site-header-focus, var(--gui-focus, CanvasText));
+    }
+  }
+}

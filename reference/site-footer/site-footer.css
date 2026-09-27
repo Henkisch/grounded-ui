@@ -1,0 +1,39 @@
+/*
+ * site-footer base CSS: only what the contract and accessibility need.
+ * Groups in a grid that stacks on narrow screens (WCAG 1.4.10), links of at least 24 CSS px (WCAG 2.5.8)
+ * and a focus ring that is never removed. For a finished look, add site-footer.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.site-footer {
+  @scope ([data-gui="site-footer"]) to ([data-gui]) {
+    :scope {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 12em), 1fr));
+      gap: var(--gui-site-footer-gap, 1.5em);
+    }
+
+    :where([data-gui-part="legal"]) {
+      grid-column: 1 / -1;
+    }
+
+    :where([data-gui-part="list"]) {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    :where([data-gui-part="link"]) {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: 1.5em;
+    }
+
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :where([data-gui-part="link"]):focus-visible {
+      outline: 2px solid var(--gui-site-footer-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+  }
+}

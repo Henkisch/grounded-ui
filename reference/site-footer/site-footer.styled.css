@@ -1,0 +1,68 @@
+/* Hallmark · component: site-footer · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · hover · focus (active, disabled, loading, error, success: not states of a footer)
+ * contrast: links and small print 68% CanvasText mix on a 4% tint (≥ 4.5:1 in light and dark); focus ring CanvasText
+ */
+/*
+ * site-footer styled CSS: the Grounded house style on top of site-footer.css.
+ * A tinted band with small uppercase group headings, muted links that darken and underline on hover, and
+ * small print under a hairline. All colours come from Canvas and CanvasText.
+ * Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.site-footer {
+  @scope ([data-gui="site-footer"]) to ([data-gui]) {
+    :scope {
+      padding-block: 2em;
+      padding-inline: 1.5em;
+      font-size: 0.9375em;
+      background: var(--gui-site-footer-bg, color-mix(in oklab, CanvasText 4%, Canvas));
+    }
+
+    :where([data-gui-part="heading"]) {
+      margin-block: 0 0.5em;
+      font-size: 0.8125em;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    :where([data-gui-part="contact"]) {
+      font-style: normal;
+    }
+
+    :where([data-gui-part="link"], [data-gui-part="legal"]) {
+      color: var(--gui-site-footer-muted, color-mix(in oklab, CanvasText 68%, Canvas));
+    }
+
+    :where([data-gui-part="link"]) {
+      padding-block: 0.25em;
+      text-decoration-line: underline;
+      text-decoration-color: transparent;
+      text-underline-offset: 0.25em;
+      border-radius: var(--gui-site-footer-radius, var(--gui-radius, 0.25em));
+    }
+
+    @media (hover: hover) {
+      :where([data-gui-part="link"]):hover {
+        color: CanvasText;
+        text-decoration-color: currentColor;
+      }
+    }
+
+    /* The base ring uses currentColor (the muted link colour); the text colour is clearer on the tint. */
+    :where([data-gui-part="link"]):focus-visible {
+      outline-color: var(--gui-site-footer-focus, var(--gui-focus, CanvasText));
+    }
+
+    :where([data-gui-part="legal"]) {
+      margin: 0;
+      padding-block-start: 1em;
+      font-size: 0.875em;
+      border-block-start-width: 1px;
+      border-block-start-style: solid;
+      border-block-start-color: color-mix(in oklab, CanvasText 14%, Canvas);
+    }
+  }
+}

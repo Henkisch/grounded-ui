@@ -1,0 +1,11 @@
+<!-- Breaks site-footer/groups-have-names: aria-labelledby points at an empty element, so the group has no name. -->
+<footer data-gui="site-footer">
+  <nav data-gui-part="group" aria-labelledby="f-empty">
+    <span id="f-empty"></span>
+    <h2 data-gui-part="heading">About the site</h2>
+    <ul data-gui-part="list">
+      <li><a data-gui-part="link" href="/accessibility">Accessibility statement</a></li>
+    </ul>
+  </nav>
+  <p data-gui-part="legal">© 2026 Lund municipality</p>
+</footer>
