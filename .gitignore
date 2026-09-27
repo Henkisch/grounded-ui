@@ -12,3 +12,4 @@ playwright-report/
 docs/content/_generated/
 docs/content/reports/
 docs/content/recipes/
+.vercel-deploy/
