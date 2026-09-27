@@ -24,10 +24,11 @@ ${cssFiles(referenceDir, markup, styled).map(({ slug, file }) => `<link rel="sty
 <style>
   :root { color-scheme: light dark; color: CanvasText; }
   body { margin: 0.5rem; font: 1rem/1.5 system-ui, sans-serif; }
-  /* Every example sits centred in the same-height box; a dialog demo is only its trigger until opened. */
-  body { display: grid; align-content: center; justify-items: start; min-block-size: calc(100dvb - 1rem); }
+  body { display: grid; justify-items: start; padding-block: 0.5rem; }
   /* Fields and groups take the full width; buttons and inline toggletips keep their own size. */
-  body > :not(button, span) { justify-self: stretch; }${markup.includes('<dialog') ? `
+  body > :not(button, span) { justify-self: stretch; }${opens(markup) ? `
+  /* Room to open: the example sits centred in the tall box; a dialog demo is only its trigger until opened. */
+  body { align-content: center; min-block-size: calc(100dvb - 2rem); }` : ''}${markup.includes('<dialog') ? `
   body { place-items: center; }` : ''}
 </style>
 </head>
@@ -43,10 +44,10 @@ export function writeDemo(referenceDir, path, title, markup) {
   writeFileSync(path.replace(/\.html$/, '.base.html'), shell(referenceDir, `${title} (base)`, markup, false));
 }
 
-// Every example box has the dialog's height, so switching tabs doesn't jump and pickers and popovers have room.
-// /demo-frame.js still grows a frame whose content is taller.
-const DEMO_HEIGHT = 380;
-export const demoHeight = () => ({ height: DEMO_HEIGHT, minHeight: DEMO_HEIGHT });
+// Components that open something (a modal, a popover, a picker, a disclosure) get a tall box with room to open
+// in; the rest fit their content. /demo-frame.js fits every frame to its content, never below the minimum.
+const opens = (markup) => /<dialog|\spopover[\s>=]|<select|<details|<datalist/.test(markup);
+export const demoHeight = (markup) => (opens(markup) ? { height: 380, minHeight: 380 } : { height: 120, minHeight: 0 });
 
 /** Styled · Base · HTML · CSS in one box (Blume's built-in Tabs), independent of other examples. */
 export function previewTabs(referenceDir, { src, title, markup }) {
