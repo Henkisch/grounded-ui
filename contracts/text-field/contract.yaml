@@ -71,7 +71,7 @@ keyboard:
 #       description, visible text); outside implementations are judged on these.
 #       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
 rules:
-  - id: TF-02
+  - id: text-field/one-control
     description: There is exactly one control.
     level: recommended
     type: technique
@@ -81,10 +81,10 @@ rules:
     test: { kind: count, selector: '{control}', equals: 1 }
     css:
       violation: '[data-gui="text-field"]:not(:has([data-gui-part="control"]))'
-      message: "TF-02: the field has no [data-gui-part=control]."
+      message: "text-field/one-control: the field has no [data-gui-part=control]."
     editor: { level: warn }
 
-  - id: TF-03
+  - id: text-field/control-element
     description: The control is an input or a textarea.
     level: recommended
     type: technique
@@ -94,22 +94,22 @@ rules:
     test: { kind: absent, selector: '{control}:not(input, textarea)' }
     css:
       violation: '[data-gui="text-field"]:has([data-gui-part="control"]:not(input, textarea))'
-      message: "TF-03: the control must be an <input> or <textarea>."
+      message: "text-field/control-element: the control must be an <input> or <textarea>."
 
-  - id: TF-04
+  - id: text-field/one-label
     description: There is exactly one label.
     level: recommended
     type: technique
     source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
-    rationale: WCAG requires a label, not exactly one; a single visible label keeps the accessible name unambiguous. TF-17 checks the name itself.
+    rationale: WCAG requires a label, not exactly one; a single visible label keeps the accessible name unambiguous. text-field/has-name checks the name itself.
     since: 0.1.0
     test: { kind: count, selector: '{label}', equals: 1 }
     css:
       violation: '[data-gui="text-field"]:not(:has([data-gui-part="label"]))'
-      message: "TF-04: the field has no [data-gui-part=label]."
+      message: "text-field/one-label: the field has no [data-gui-part=label]."
     editor: { level: refuse }
 
-  - id: TF-05
+  - id: text-field/label-element
     description: The label is a label element.
     level: recommended
     type: technique
@@ -119,9 +119,9 @@ rules:
     test: { kind: absent, selector: '{label}:not(label)' }
     css:
       violation: '[data-gui="text-field"]:has([data-gui-part="label"]:not(label))'
-      message: "TF-05: the label must be a <label>."
+      message: "text-field/label-element: the label must be a <label>."
 
-  - id: TF-06
+  - id: text-field/label-has-text
     description: The label has non-empty text.
     level: normative
     type: outcome
@@ -133,15 +133,15 @@ rules:
       coverage: partial
       violation: '[data-gui="text-field"] [data-gui-part="label"]:empty'
       pseudo: before
-      message: "TF-06: the label is empty."
+      message: "text-field/label-has-text: the label is empty."
     editor: { level: refuse }
 
-  - id: TF-07
+  - id: text-field/label-for-matches-id
     description: The label's for matches the control's id.
     level: recommended
     type: technique
     source: https://www.w3.org/WAI/WCAG22/Techniques/html/H44
-    rationale: for/id is the most robust way to associate the label (it survives wrapping changes); TF-17 and TF-18 check the resulting name for any technique.
+    rationale: for/id is the most robust way to associate the label (it survives wrapping changes); text-field/has-name and text-field/name-includes-label check the resulting name for any technique.
     since: 0.1.0
     test:
       kind: attrEquals
@@ -150,7 +150,7 @@ rules:
     css: false
     editor: { level: warn }
 
-  - id: TF-08
+  - id: text-field/has-form-name
     description: The control has a name.
     level: recommended
     type: technique
@@ -160,10 +160,10 @@ rules:
     test: { kind: absent, selector: '{control}:not([name])' }
     css:
       violation: '[data-gui="text-field"]:has([data-gui-part="control"]:not([name]))'
-      message: "TF-08: the control has no name attribute."
+      message: "text-field/has-form-name: the control has no name attribute."
     editor: { level: refuse }
 
-  - id: TF-09
+  - id: text-field/description-in-describedby
     description: If there is a description, its id is referenced in aria-describedby.
     level: recommended
     type: technique
@@ -176,7 +176,7 @@ rules:
       to: '{description}'
     css: false
 
-  - id: TF-10
+  - id: text-field/invalid-has-error
     description: If the control has aria-invalid="true", there is an error message in the field or referenced by the control.
     level: normative
     type: outcome
@@ -186,10 +186,10 @@ rules:
     test: { kind: invalidHasError, control: '{control}', error: '{error}' }
     css:
       violation: '[data-gui="text-field"]:has([aria-invalid="true"]):not(:has([data-gui-part="error"]))'
-      message: "TF-10: aria-invalid=true but no [data-gui-part=error]."
+      message: "text-field/invalid-has-error: aria-invalid=true but no [data-gui-part=error]."
     editor: { level: refuse }
 
-  - id: TF-11
+  - id: text-field/error-first-in-describedby
     description: The error's id comes first in aria-describedby.
     level: recommended
     type: technique
@@ -202,7 +202,7 @@ rules:
       to: '{error}'
     css: false
 
-  - id: TF-12
+  - id: text-field/error-has-text
     description: The error message has non-empty text.
     level: normative
     type: outcome
@@ -214,10 +214,10 @@ rules:
       coverage: partial
       violation: '[data-gui="text-field"] [data-gui-part="error"]:empty'
       pseudo: before
-      message: "TF-12: the error message is empty."
+      message: "text-field/error-has-text: the error message is empty."
     editor: { level: warn }
 
-  - id: TF-13
+  - id: text-field/unique-ids
     description: Ids inside the field are unique on the page.
     level: normative
     type: outcome
@@ -228,7 +228,7 @@ rules:
     css: false
     editor: { level: warn }
 
-  - id: TF-14
+  - id: text-field/no-tabindex
     description: The control has no tabindex.
     level: recommended
     type: technique
@@ -238,9 +238,9 @@ rules:
     test: { kind: absent, selector: '{control}[tabindex]' }
     css:
       violation: '[data-gui="text-field"]:has([data-gui-part="control"][tabindex])'
-      message: "TF-14: the control must not have a tabindex."
+      message: "text-field/no-tabindex: the control must not have a tabindex."
 
-  - id: TF-15
+  - id: text-field/placeholder-not-label
     description: A placeholder is never the only label.
     level: normative
     type: outcome
@@ -250,10 +250,10 @@ rules:
     test: { kind: absent, selector: ':scope:not(:has({label})):has({control}[placeholder])' }
     css:
       violation: '[data-gui="text-field"]:not(:has([data-gui-part="label"])):has([placeholder])'
-      message: "TF-15: a placeholder does not replace a label."
+      message: "text-field/placeholder-not-label: a placeholder does not replace a label."
     editor: { level: warn }
 
-  - id: TF-16
+  - id: text-field/no-competing-aria-label
     description: The control has no aria-label competing with the label.
     level: recommended
     type: technique
@@ -263,9 +263,9 @@ rules:
     test: { kind: absent, selector: ':scope:has({label}):has({control}[aria-label])' }
     css:
       violation: '[data-gui="text-field"]:has([data-gui-part="label"]):has([data-gui-part="control"][aria-label])'
-      message: "TF-16: the control has both a <label> and an aria-label."
+      message: "text-field/no-competing-aria-label: the control has both a <label> and an aria-label."
 
-  - id: TF-17
+  - id: text-field/has-name
     description: The control has a non-empty accessible name.
     level: normative
     type: outcome
@@ -275,7 +275,7 @@ rules:
     test: { kind: name, selector: '{control}' }
     css: false
 
-  - id: TF-18
+  - id: text-field/name-includes-label
     description: The control's accessible name contains the visible label text.
     level: normative
     type: outcome
@@ -285,7 +285,7 @@ rules:
     test: { kind: name, selector: '{control}', includes: '{label}' }
     css: false
 
-  - id: TF-19
+  - id: text-field/description-reaches-control
     description: If there is a description, its text reaches the control's accessible description or name.
     level: normative
     type: outcome
@@ -295,7 +295,7 @@ rules:
     test: { kind: exposes, selector: '{control}', text: '{description}' }
     css: false
 
-  - id: TF-20
+  - id: text-field/error-reaches-control
     description: If there is an error message, its text reaches the control's accessible description or name.
     level: normative
     type: outcome
@@ -305,7 +305,7 @@ rules:
     test: { kind: exposes, selector: '{control}', text: '{error}' }
     css: false
 
-  - id: TF-21
+  - id: text-field/role
     description: The control has the role textbox or searchbox (combobox when it has a suggestion list).
     level: normative
     type: outcome
@@ -315,7 +315,7 @@ rules:
     test: { kind: role, selector: '{control}:not([list])', oneOf: [textbox, searchbox] }
     css: false
 
-  - id: TF-22
+  - id: text-field/focus-ring-visible
     description: The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
     level: normative
     type: outcome

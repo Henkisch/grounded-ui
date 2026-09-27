@@ -5,11 +5,11 @@
 ## Result (GOV.UK Frontend 6.5.1, text-field contract 0.3.0)
 
 - **Every outcome rule passes** in all 24 published input and textarea examples: each field has a name containing its label, hints and errors reach the accessible description, and the role is textbox. axe reports nothing either.
-- **One technique rule differs: TF-11** (the error's id comes first in `aria-describedby`), in 1 example. GOV.UK lists the hint first, then the error. That is a deliberate, researched design choice, not an oversight, so it's evidence that TF-11 is an opinion and needs outside review before it can be called a rule.
+- **One technique rule differs: text-field/error-first-in-describedby** (the error's id comes first in `aria-describedby`), in 1 example. GOV.UK lists the hint first, then the error. That is a deliberate, researched design choice, not an oversight, so it's evidence that text-field/error-first-in-describedby is an opinion and needs outside review before it can be called a rule.
 
 ## What we learned about the contract
 
-- **The contract detects "invalid" only through `aria-invalid`.** GOV.UK marks errors with a class and an error message, and doesn't set `aria-invalid`, so TF-10 passes without being exercised. Open question: should the contract recognise an error part on its own as the invalid state, and should it recommend `aria-invalid` alongside?
+- **The contract detects "invalid" only through `aria-invalid`.** GOV.UK marks errors with a class and an error message, and doesn't set `aria-invalid`, so text-field/invalid-has-error passes without being exercised. Open question: should the contract recognise an error part on its own as the invalid state, and should it recommend `aria-invalid` alongside?
 - **The DOM order differs.** GOV.UK puts the error message before the input; Grounded UI puts it after. No rule covers order, and this shows why none should without evidence.
 - **The binding approach works.** Five selectors in `text-field.binding.yaml` were enough to test a library that has never heard of grounded.
 

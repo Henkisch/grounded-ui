@@ -1,0 +1,17 @@
+<!-- Breaks choice-group/control-name-includes-label: aria-labelledby names the last radio "Largest bin", not its visible label. -->
+<fieldset data-gui="choice-group">
+  <legend data-gui-part="legend">Bin size</legend>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="radio" id="bin-140" name="bin" value="140">
+    <label data-gui-part="label" for="bin-140">140 litres, every other week</label>
+  </div>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="radio" id="bin-190" name="bin" value="190" checked>
+    <label data-gui-part="label" for="bin-190">190 litres, every other week</label>
+  </div>
+  <div data-gui-part="option">
+    <span id="bin-370-name" hidden>Largest bin</span>
+    <input data-gui-part="control" type="radio" id="bin-370" name="bin" value="370" aria-labelledby="bin-370-name">
+    <label data-gui-part="label" for="bin-370">370 litres, every week</label>
+  </div>
+</fieldset>

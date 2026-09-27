@@ -73,7 +73,7 @@ keyboard:
 #       description, visible text); outside implementations are judged on these.
 #       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
 rules:
-  - id: DG-01
+  - id: dialog/dialog-element
     description: The root is a <dialog> element.
     level: recommended
     type: technique
@@ -83,10 +83,10 @@ rules:
     test: { kind: absent, selector: ':scope:not(dialog)' }
     css:
       violation: '[data-gui="dialog"]:not(dialog)'
-      message: "DG-01: data-gui=dialog must be a <dialog> element."
+      message: "dialog/dialog-element: data-gui=dialog must be a <dialog> element."
     editor: { level: refuse }
 
-  - id: DG-02
+  - id: dialog/has-id
     description: The dialog has an id, so triggers can point at it.
     level: recommended
     type: technique
@@ -96,10 +96,10 @@ rules:
     test: { kind: absent, selector: ':scope:not([id])' }
     css:
       violation: '[data-gui="dialog"]:not([id])'
-      message: "DG-02: the dialog has no id."
+      message: "dialog/has-id: the dialog has no id."
     editor: { level: refuse }
 
-  - id: DG-03
+  - id: dialog/one-title
     description: There is exactly one title.
     level: recommended
     type: technique
@@ -109,10 +109,10 @@ rules:
     test: { kind: count, selector: '{title}', equals: 1 }
     css:
       violation: '[data-gui="dialog"]:not(:has([data-gui-part="title"]))'
-      message: "DG-03: the dialog has no [data-gui-part=title]."
+      message: "dialog/one-title: the dialog has no [data-gui-part=title]."
     editor: { level: refuse }
 
-  - id: DG-04
+  - id: dialog/title-has-text
     description: The title has non-empty text.
     level: normative
     type: outcome
@@ -124,10 +124,10 @@ rules:
       coverage: partial
       violation: '[data-gui="dialog"] [data-gui-part="title"]:empty'
       pseudo: before
-      message: "DG-04: the title is empty."
+      message: "dialog/title-has-text: the title is empty."
     editor: { level: refuse }
 
-  - id: DG-05
+  - id: dialog/has-name
     description: The dialog has a non-empty accessible name.
     level: normative
     type: outcome
@@ -137,9 +137,9 @@ rules:
     test: { kind: name, selector: ':scope' }
     css:
       violation: '[data-gui="dialog"]:not([aria-labelledby])'
-      message: "DG-05: the dialog has no aria-labelledby, so no accessible name."
+      message: "dialog/has-name: the dialog has no aria-labelledby, so no accessible name."
 
-  - id: DG-06
+  - id: dialog/labelledby-title
     description: The name comes from the title, via aria-labelledby pointing at its id.
     level: recommended
     type: technique
@@ -153,7 +153,7 @@ rules:
     css: false
     editor: { level: warn }
 
-  - id: DG-07
+  - id: dialog/trigger-opens-modal
     description: A trigger on the page points at the dialog with commandfor and command="show-modal".
     level: recommended
     type: technique
@@ -164,7 +164,7 @@ rules:
     css: false
     editor: { level: warn }
 
-  - id: DG-08
+  - id: dialog/trigger-is-button
     description: The trigger is a <button>.
     level: recommended
     type: technique
@@ -174,7 +174,7 @@ rules:
     test: { kind: absent, scope: document, selector: '[commandfor="{id}"][command="show-modal"]:not(button)' }
     css: false
 
-  - id: DG-09
+  - id: dialog/has-close-control
     description: The dialog contains a close control (command="close" or a form with method="dialog").
     level: recommended
     type: technique
@@ -184,10 +184,10 @@ rules:
     test: { kind: absent, selector: ':scope:not(:has([command="close"], form[method="dialog"]))' }
     css:
       violation: '[data-gui="dialog"]:not(:has([command="close"], form[method="dialog"]))'
-      message: "DG-09: the dialog has no close control."
+      message: "dialog/has-close-control: the dialog has no close control."
     editor: { level: warn }
 
-  - id: DG-10
+  - id: dialog/not-statically-open
     description: The dialog is not rendered with a static open attribute; it opens as a modal via show-modal.
     level: recommended
     type: technique
@@ -197,10 +197,10 @@ rules:
     test: { kind: absent, selector: ':scope[open]:not(:modal)' }
     css:
       violation: '[data-gui="dialog"][open]:not(:modal)'
-      message: "DG-10: open without show-modal gives a non-modal dialog: page behind stays active."
+      message: "dialog/not-statically-open: open without show-modal gives a non-modal dialog: page behind stays active."
     editor: { level: warn }
 
-  - id: DG-11
+  - id: dialog/allowed-role-override
     description: On a native <dialog>, the only role override allowed is role="alertdialog".
     level: normative
     type: outcome
@@ -210,9 +210,9 @@ rules:
     test: { kind: absent, selector: ':scope:is(dialog)[role]:not([role="alertdialog"])' }
     css:
       violation: '[data-gui="dialog"]:is(dialog)[role]:not([role="alertdialog"])'
-      message: "DG-11: the dialog's role may only be alertdialog."
+      message: "dialog/allowed-role-override: the dialog's role may only be alertdialog."
 
-  - id: DG-12
+  - id: dialog/no-tabindex
     description: The dialog itself has no tabindex.
     level: recommended
     type: technique
@@ -222,9 +222,9 @@ rules:
     test: { kind: absent, selector: ':scope[tabindex]' }
     css:
       violation: '[data-gui="dialog"][tabindex]'
-      message: "DG-12: the dialog must not have a tabindex."
+      message: "dialog/no-tabindex: the dialog must not have a tabindex."
 
-  - id: DG-13
+  - id: dialog/alert-variant
     description: The alert variant has role="alertdialog" and no light dismiss.
     level: recommended
     type: technique
@@ -234,9 +234,9 @@ rules:
     test: { kind: absent, selector: ':scope[data-gui-variant="alert"]:is(:not([role="alertdialog"]), [closedby="any"])' }
     css:
       violation: '[data-gui="dialog"][data-gui-variant="alert"]:is(:not([role="alertdialog"]), [closedby="any"])'
-      message: "DG-13: alert dialogs need role=alertdialog and must not close on outside click."
+      message: "dialog/alert-variant: alert dialogs need role=alertdialog and must not close on outside click."
 
-  - id: DG-14
+  - id: dialog/role
     description: The dialog has the role dialog or alertdialog.
     level: normative
     type: outcome
@@ -246,7 +246,7 @@ rules:
     test: { kind: role, selector: ':scope', oneOf: [dialog, alertdialog] }
     css: false
 
-  - id: DG-15
+  - id: dialog/name-includes-title
     description: The dialog's accessible name contains its title text.
     level: recommended
     type: outcome
@@ -256,7 +256,7 @@ rules:
     test: { kind: name, selector: ':scope', includes: '{title}' }
     css: false
 
-  - id: DG-16
+  - id: dialog/contains-button
     description: The dialog contains a button.
     level: recommended
     type: outcome

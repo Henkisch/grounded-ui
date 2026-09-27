@@ -10,12 +10,12 @@ What any implementation must achieve, judged on the rendered result: computed na
 
 | Rule | Level | Failing examples | Of those, axe silent | Example detail |
 | --- | --- | ---: | ---: | --- |
-| DG-04 The title has non-empty text. | normative | 0 | — |  |
-| DG-05 The dialog has a non-empty accessible name. | normative | 2 | 0 | <div class="dialog-widget dialog-lightbox-widget dialog-type-buttons dialog-type-lightbox elementor-popup-modal" id="elementor-popup-modal-226" aria-modal="true"> has no accessible name |
-| DG-11 On a native <dialog>, the only role override allowed is role="alertdialog". | normative | 0 | — |  |
-| DG-14 The dialog has the role dialog or alertdialog. | normative | 2 | 0 | <div class="dialog-widget dialog-lightbox-widget dialog-type-buttons dialog-type-lightbox elementor-popup-modal" id="elementor-popup-modal-226" aria-modal="true"> has role "document", expected dialog or alertdialog |
-| DG-15 The dialog's accessible name contains its title text. | recommended | 0 | — |  |
-| DG-16 The dialog contains a button. | recommended | 0 | — |  |
+| dialog/title-has-text The title has non-empty text. | normative | 0 | — |  |
+| dialog/has-name The dialog has a non-empty accessible name. | normative | 2 | 0 | <div class="dialog-widget dialog-lightbox-widget dialog-type-buttons dialog-type-lightbox elementor-popup-modal" id="elementor-popup-modal-226" aria-modal="true"> has no accessible name |
+| dialog/allowed-role-override On a native <dialog>, the only role override allowed is role="alertdialog". | normative | 0 | — |  |
+| dialog/role The dialog has the role dialog or alertdialog. | normative | 2 | 0 | <div class="dialog-widget dialog-lightbox-widget dialog-type-buttons dialog-type-lightbox elementor-popup-modal" id="elementor-popup-modal-226" aria-modal="true"> has role "document", expected dialog or alertdialog |
+| dialog/name-includes-title The dialog's accessible name contains its title text. | recommended | 0 | — |  |
+| dialog/contains-button The dialog contains a button. | recommended | 0 | — |  |
 
 ## Technique rules
 
@@ -23,53 +23,53 @@ How Grounded UI's reference markup does it. A failure here means the markup diff
 
 | Rule | Level | Failing examples | Of those, axe silent | Example detail |
 | --- | --- | ---: | ---: | --- |
-| DG-01 The root is a <dialog> element. | recommended | 2 | 0 | root matches :scope:not(dialog) |
-| DG-02 The dialog has an id, so triggers can point at it. | recommended | 0 | — |  |
-| DG-03 There is exactly one title. | recommended | 1 | 0 | expected 1, found 0 |
-| DG-06 The name comes from the title, via aria-labelledby pointing at its id. | recommended | 1 | 0 | aria-labelledby="" but id="" |
-| DG-07 A trigger on the page points at the dialog with commandfor and command="show-modal". | recommended | 2 | 0 | nothing on the page matches [command="show-modal"][commandfor="elementor-popup-modal-226"] |
-| DG-08 The trigger is a <button>. | recommended | 0 | — |  |
-| DG-09 The dialog contains a close control (command="close" or a form with method="dialog"). | recommended | 2 | 0 | root matches :scope:not(:has([command="close"], form[method="dialog"])) |
-| DG-10 The dialog is not rendered with a static open attribute; it opens as a modal via show-modal. | recommended | 0 | — |  |
-| DG-12 The dialog itself has no tabindex. | recommended | 2 | 0 | root matches :scope[tabindex] |
-| DG-13 The alert variant has role="alertdialog" and no light dismiss. | recommended | 0 | — |  |
+| dialog/dialog-element The root is a <dialog> element. | recommended | 2 | 0 | root matches :scope:not(dialog) |
+| dialog/has-id The dialog has an id, so triggers can point at it. | recommended | 0 | — |  |
+| dialog/one-title There is exactly one title. | recommended | 1 | 0 | expected 1, found 0 |
+| dialog/labelledby-title The name comes from the title, via aria-labelledby pointing at its id. | recommended | 1 | 0 | aria-labelledby="" but id="" |
+| dialog/trigger-opens-modal A trigger on the page points at the dialog with commandfor and command="show-modal". | recommended | 2 | 0 | nothing on the page matches [command="show-modal"][commandfor="elementor-popup-modal-226"] |
+| dialog/trigger-is-button The trigger is a <button>. | recommended | 0 | — |  |
+| dialog/has-close-control The dialog contains a close control (command="close" or a form with method="dialog"). | recommended | 2 | 0 | root matches :scope:not(:has([command="close"], form[method="dialog"])) |
+| dialog/not-statically-open The dialog is not rendered with a static open attribute; it opens as a modal via show-modal. | recommended | 0 | — |  |
+| dialog/no-tabindex The dialog itself has no tabindex. | recommended | 2 | 0 | root matches :scope[tabindex] |
+| dialog/alert-variant The alert variant has role="alertdialog" and no light dismiss. | recommended | 0 | — |  |
 
 ## Failing examples
 
-### DG-01
+### dialog/dialog-element
 
 - docs: yoga-studio-flexbox, booking popup (form) opened
 - docs: personal-chef-flexbox, menu popup opened
 
-### DG-03
+### dialog/one-title
 
 - docs: personal-chef-flexbox, menu popup opened
 
-### DG-05
+### dialog/has-name
 
 - docs: yoga-studio-flexbox, booking popup (form) opened
 - docs: personal-chef-flexbox, menu popup opened
 
-### DG-06
+### dialog/labelledby-title
 
 - docs: yoga-studio-flexbox, booking popup (form) opened
 
-### DG-07
-
-- docs: yoga-studio-flexbox, booking popup (form) opened
-- docs: personal-chef-flexbox, menu popup opened
-
-### DG-09
+### dialog/trigger-opens-modal
 
 - docs: yoga-studio-flexbox, booking popup (form) opened
 - docs: personal-chef-flexbox, menu popup opened
 
-### DG-12
+### dialog/has-close-control
 
 - docs: yoga-studio-flexbox, booking popup (form) opened
 - docs: personal-chef-flexbox, menu popup opened
 
-### DG-14
+### dialog/no-tabindex
+
+- docs: yoga-studio-flexbox, booking popup (form) opened
+- docs: personal-chef-flexbox, menu popup opened
+
+### dialog/role
 
 - docs: yoga-studio-flexbox, booking popup (form) opened
 - docs: personal-chef-flexbox, menu popup opened

@@ -78,6 +78,7 @@ for (const slug of slugs) {
   const ids = new Set();
   for (const rule of contract.rules) {
     if (ids.has(rule.id)) fail(file, `duplicate rule id ${rule.id}`);
+    if (!rule.id.startsWith(`${slug}/`)) fail(file, `${rule.id} must start with ${slug}/`);
     ids.add(rule.id);
     const [x, y] = [rule.since, contract.contractVersion].map((v) => v.split('.').map(Number));
     if (x[0] > y[0] || (x[0] === y[0] && (x[1] > y[1] || (x[1] === y[1] && x[2] > y[2])))) {
@@ -92,12 +93,13 @@ for (const slug of slugs) {
     if (rule.css && !rule.css.violation.startsWith(`[data-gui="${slug}"]`)) {
       fail(file, `${rule.id} css.violation must start with [data-gui="${slug}"]`);
     }
-    if (!existsSync(join(contractsDir, slug, 'markup', 'broken', `${rule.id}.html`))) {
-      fail(file, `${rule.id} has no markup/broken/${rule.id}.html`);
+    const short = rule.id.slice(slug.length + 1);
+    if (!existsSync(join(contractsDir, slug, 'markup', 'broken', `${short}.html`))) {
+      fail(file, `${rule.id} has no markup/broken/${short}.html`);
     }
   }
   for (const broken of htmlFiles(join(contractsDir, slug, 'markup', 'broken'))) {
-    if (!ids.has(broken.replace(/\.html$/, ''))) fail(file, `markup/broken/${broken} matches no rule`);
+    if (!ids.has(`${slug}/${broken.replace(/\.html$/, '')}`)) fail(file, `markup/broken/${broken} matches no rule`);
   }
 
   for (const part of contract.domOrder ?? []) if (!parts.has(part)) fail(file, `domOrder "${part}" is not in anatomy`);

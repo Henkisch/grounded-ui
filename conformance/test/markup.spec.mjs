@@ -1,6 +1,7 @@
 // Proves the contracts and the runner agree:
 //   every markup/valid/*.html passes every rule, with no axe violations;
-//   every markup/broken/<RULE>.html fails that rule, and only the rules it declares with "also:".
+//   every markup/broken/<rule-name>.html fails <component>/<rule-name>, and only the rules it declares with "also:"
+//   (full ids or short names of the same component).
 import { test, expect } from '@playwright/test';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -32,8 +33,8 @@ for (const slug of Object.keys(contracts)) {
 
   test.describe(`${slug}: broken markup`, () => {
     for (const [file, source] of html(slug, 'broken')) {
-      const rule = file.replace(/\.html$/, '');
-      const also = source.match(/also:\s*([A-Z0-9-,\s]+?)\s*-->/)?.[1].split(/[\s,]+/).filter(Boolean) ?? [];
+      const rule = `${slug}/${file.replace(/\.html$/, '')}`;
+      const also = (source.match(/also:\s*([a-z0-9/,\s-]+?)\s*-->/i)?.[1].split(/[\s,]+/).filter(Boolean) ?? []).map((id) => (id.includes('/') ? id : `${slug}/${id}`));
       test(`${rule} fails${also.length ? ` (also ${also.join(', ')})` : ''}`, async ({ page }) => {
         await page.setContent(withReferenceCss(source));
         const report = await checkPage(page, { contracts: only, axe: false });

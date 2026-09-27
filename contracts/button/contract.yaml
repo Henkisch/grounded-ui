@@ -51,7 +51,7 @@ keyboard:
 #       description, visible text); outside implementations are judged on these.
 #       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
 rules:
-  - id: BT-01
+  - id: button/role
     description: The button has the role button.
     level: normative
     type: outcome
@@ -61,7 +61,7 @@ rules:
     test: { kind: role, selector: ':scope', oneOf: [button] }
     css: false
 
-  - id: BT-02
+  - id: button/has-name
     description: The button has a non-empty accessible name.
     level: normative
     type: outcome
@@ -72,7 +72,7 @@ rules:
     css: false
     editor: { level: refuse }
 
-  - id: BT-03
+  - id: button/name-includes-label
     description: The button's accessible name contains its visible label text.
     level: normative
     type: outcome
@@ -82,7 +82,7 @@ rules:
     test: { kind: name, selector: ':scope', includes: '{label}' }
     css: false
 
-  - id: BT-04
+  - id: button/target-size
     description: The button is at least 24 by 24 CSS pixels.
     level: normative
     type: outcome
@@ -92,7 +92,7 @@ rules:
     test: { kind: targetSize, selector: ':scope', min: 24 }
     css: false
 
-  - id: BT-05
+  - id: button/valid-pressed-state
     description: If the button is a toggle, aria-pressed is true, false or mixed.
     level: normative
     type: outcome
@@ -102,9 +102,9 @@ rules:
     test: { kind: absent, selector: ':scope[aria-pressed]:not([aria-pressed="true"], [aria-pressed="false"], [aria-pressed="mixed"])' }
     css:
       violation: '[data-gui="button"][aria-pressed]:not([aria-pressed="true"], [aria-pressed="false"], [aria-pressed="mixed"])'
-      message: "BT-05: aria-pressed must be true, false or mixed."
+      message: "button/valid-pressed-state: aria-pressed must be true, false or mixed."
 
-  - id: BT-06
+  - id: button/no-interactive-content
     description: The button contains no links, buttons or form fields.
     level: normative
     type: outcome
@@ -114,9 +114,9 @@ rules:
     test: { kind: absent, selector: ':scope :is(a[href], button, input, select, textarea, [tabindex])' }
     css:
       violation: '[data-gui="button"]:has(a[href], button, input, select, textarea, [tabindex])'
-      message: "BT-06: a button must not contain interactive content."
+      message: "button/no-interactive-content: a button must not contain interactive content."
 
-  - id: BT-07
+  - id: button/button-element
     description: The root is a <button> element.
     level: recommended
     type: technique
@@ -126,10 +126,10 @@ rules:
     test: { kind: absent, selector: ':scope:not(button)' }
     css:
       violation: '[data-gui="button"]:not(button)'
-      message: "BT-07: data-gui=button must be a <button>."
+      message: "button/button-element: data-gui=button must be a <button>."
     editor: { level: refuse }
 
-  - id: BT-08
+  - id: button/explicit-type
     description: The button has an explicit type.
     level: recommended
     type: technique
@@ -139,10 +139,10 @@ rules:
     test: { kind: absent, selector: ':scope:not([type])' }
     css:
       violation: '[data-gui="button"]:not([type])'
-      message: "BT-08: set type=button, submit or reset."
+      message: "button/explicit-type: set type=button, submit or reset."
     editor: { level: warn }
 
-  - id: BT-09
+  - id: button/icon-hidden
     description: The icon is hidden from assistive technology.
     level: recommended
     type: technique
@@ -152,9 +152,9 @@ rules:
     test: { kind: absent, selector: '{icon}:not([aria-hidden="true"])' }
     css:
       violation: '[data-gui="button"] [data-gui-part="icon"]:not([aria-hidden="true"])'
-      message: "BT-09: add aria-hidden=true to the icon."
+      message: "button/icon-hidden: add aria-hidden=true to the icon."
 
-  - id: BT-10
+  - id: button/focus-ring-visible
     description: The button shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
     level: normative
     type: outcome

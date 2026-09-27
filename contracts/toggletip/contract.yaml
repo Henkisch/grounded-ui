@@ -60,7 +60,7 @@ keyboard:
 #       description, visible text); outside implementations are judged on these.
 #       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
 rules:
-  - id: TT-01
+  - id: toggletip/trigger-role
     description: The trigger has the role button.
     level: normative
     type: outcome
@@ -70,7 +70,7 @@ rules:
     test: { kind: role, selector: '{trigger}', oneOf: [button] }
     css: false
 
-  - id: TT-02
+  - id: toggletip/trigger-has-name
     description: The trigger has a non-empty accessible name.
     level: normative
     type: outcome
@@ -81,7 +81,7 @@ rules:
     css: false
     editor: { level: refuse }
 
-  - id: TT-03
+  - id: toggletip/trigger-name-is-specific
     description: The trigger's name says what it explains, not just "info", "help" or a symbol.
     level: recommended
     type: outcome
@@ -91,10 +91,10 @@ rules:
     test: { kind: absent, selector: '{trigger}:is([aria-label="i" i], [aria-label="?"], [aria-label="info" i], [aria-label="information" i], [aria-label="more info" i], [aria-label="help" i], [aria-label="more" i])' }
     css:
       violation: '[data-gui="toggletip"] [data-gui-part="trigger"]:is([aria-label="i" i], [aria-label="?"], [aria-label="info" i], [aria-label="help" i])'
-      message: "TT-03: name the topic, not just \"info\"."
+      message: "toggletip/trigger-name-is-specific: name the topic, not just \"info\"."
     editor: { level: warn }
 
-  - id: TT-04
+  - id: toggletip/explanation-has-text
     description: The explanation has non-empty text.
     level: recommended
     type: outcome
@@ -105,10 +105,10 @@ rules:
     css:
       coverage: partial
       violation: '[data-gui="toggletip"] [data-gui-part="content"]:empty'
-      message: "TT-04: the explanation is empty."
+      message: "toggletip/explanation-has-text: the explanation is empty."
     editor: { level: refuse }
 
-  - id: TT-05
+  - id: toggletip/explanation-follows-trigger
     description: The explanation comes directly after the trigger in the DOM.
     level: recommended
     type: outcome
@@ -118,9 +118,9 @@ rules:
     test: { kind: absent, selector: ':scope:not(:has({trigger} + {content}))' }
     css:
       violation: '[data-gui="toggletip"]:not(:has([data-gui-part="trigger"] + [data-gui-part="content"]))'
-      message: "TT-05: put the explanation directly after the trigger."
+      message: "toggletip/explanation-follows-trigger: put the explanation directly after the trigger."
 
-  - id: TT-06
+  - id: toggletip/close-has-name
     description: A close control, if there is one, has an accessible name.
     level: normative
     type: outcome
@@ -130,7 +130,7 @@ rules:
     test: { kind: name, selector: '{close}' }
     css: false
 
-  - id: TT-07
+  - id: toggletip/trigger-is-button
     description: The trigger is a <button type="button">.
     level: recommended
     type: technique
@@ -140,9 +140,9 @@ rules:
     test: { kind: absent, selector: '{trigger}:not(button[type="button"])' }
     css:
       violation: '[data-gui="toggletip"] [data-gui-part="trigger"]:not([type="button"])'
-      message: "TT-07: the trigger needs type=\"button\"."
+      message: "toggletip/trigger-is-button: the trigger needs type=\"button\"."
 
-  - id: TT-08
+  - id: toggletip/auto-popover
     description: The explanation is an auto popover (popover or popover="auto").
     level: recommended
     type: technique
@@ -152,9 +152,9 @@ rules:
     test: { kind: absent, selector: '{content}:not([popover=""], [popover="auto"])' }
     css:
       violation: '[data-gui="toggletip"] [data-gui-part="content"]:not([popover=""], [popover="auto"])'
-      message: "TT-08: the explanation must be an auto popover."
+      message: "toggletip/auto-popover: the explanation must be an auto popover."
 
-  - id: TT-09
+  - id: toggletip/trigger-targets-explanation
     description: The trigger's commandfor points at the explanation.
     level: recommended
     type: technique
@@ -168,7 +168,7 @@ rules:
     css: false
     editor: { level: refuse }
 
-  - id: TT-10
+  - id: toggletip/toggle-command
     description: The trigger uses command="toggle-popover".
     level: recommended
     type: technique
@@ -178,9 +178,9 @@ rules:
     test: { kind: absent, selector: '{trigger}:not([command="toggle-popover"])' }
     css:
       violation: '[data-gui="toggletip"] [data-gui-part="trigger"]:not([command="toggle-popover"])'
-      message: "TT-10: use command=\"toggle-popover\"."
+      message: "toggletip/toggle-command: use command=\"toggle-popover\"."
 
-  - id: TT-11
+  - id: toggletip/unique-ids
     description: Ids inside the toggletip are unique on the page.
     level: normative
     type: outcome
@@ -191,7 +191,7 @@ rules:
     css: false
     editor: { level: warn }
 
-  - id: TT-12
+  - id: toggletip/focus-ring-visible
     description: The trigger and the close control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
     level: normative
     type: outcome

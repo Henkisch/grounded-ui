@@ -15,9 +15,9 @@ Every component on the page is checked against its contract, and axe runs on the
 
 ```text
   text-field <div class="field"> — 9/10 outcome rules pass, axe: 0 violation(s)
-    FAIL TF-17 (normative) The control has a non-empty accessible name.
+    FAIL text-field/has-name (normative) The control has a non-empty accessible name.
          <input id="city" type="text"> has no accessible name
-    differs from Grounded UI's technique: TF-07 (recommendations, not failures)
+    differs from Grounded UI's technique: text-field/label-for-matches-id (recommendations, not failures)
 ```
 
 ## 2. Point it at your markup
@@ -46,9 +46,7 @@ Each component page lists its parts under **Test your implementation**.
 
 ### Rule ids
 
-Every rule has an id: the component's prefix and a number, such as `TF-20` (text field, rule 20). Numbers never change or get reused, so a report, an issue or a commit can point at the exact rule.
-
-<include>/_generated/rule-ids.mdx</include>
+Every rule has an id made of the component and a short name, such as `text-field/error-reaches-control`. The name says what the rule checks, and it never changes once published, so a report, an issue or a commit can point at the exact rule.
 
 ### What a failure means
 

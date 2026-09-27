@@ -48,13 +48,6 @@ writeFileSync(join(out.components, 'index.mdx'), [
 ].join('\n'));
 writeFileSync(join(out.components, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Components", order: 3 });\n`);
 writeFileSync(join(out.generated, 'scorecard.mdx'), scorecardOverview(cards) + '\n');
-// Rule-id prefixes, for the testing guide: generated so a new component can't be missing from the list.
-writeFileSync(join(out.generated, 'rule-ids.mdx'), [
-  '| Prefix | Component | Rules |', '| --- | --- | --- |',
-  ...Object.entries(contracts).map(([slug, c]) => `| \`${c.rules[0].id.split('-')[0]}\` | [${c.title}](/components/${slug}) | ${c.rules.length} |`),
-  '',
-].join('\n'));
-
 // Examples: composed page fragments from examples/*.html; title and description from its two leading comments.
 const examplesDir = join(repo, 'examples');
 const exampleFiles = existsSync(examplesDir) ? readdirSync(examplesDir).filter((f) => f.endsWith('.html')).sort() : [];
@@ -87,7 +80,7 @@ for (const [order, impl] of impls.entries()) {
   const readme = read('README.md');
   const title = readme.match(/^# (.+?)(?: —.*)?$/m)?.[1] ?? impl;
   const tables = readdirSync(join(reportsDir, impl)).filter((f) => f.endsWith('.md') && f !== 'README.md').sort()
-    .map((f) => read(f).replace(/^# (.+)$/m, '## $1').replace(/^## (TF|DG)-/gm, '### $1-')
+    .map((f) => read(f).replace(/^# (.+)$/m, '## $1')
       // Table cells quote markup (<div class=…>, <dialog>): escape it so MDX reads text, not JSX.
       .replace(/^\|.*$/gm, (row) => row.replace(/[{}<>]/g, (c) => ({ '{': '&#123;', '}': '&#125;', '<': '&lt;', '>': '&gt;' })[c])));
   const body = readme.replace(/^# .+\n/, '').replace(/`([a-z-]+)\.md` is generated;/, 'The tables below are generated;');

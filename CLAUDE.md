@@ -10,7 +10,7 @@ Back to the basics: accessible, fast and compatible UI components that still loo
 
 - Every rule has `level` (`normative`: a standard requires it; `recommended`: our judgement, open to review), `source` (a link) and `rationale`.
 - Test selectors use part tokens (`{label}`, `{control}`, …), never Grounded UI's `data-gui-part` hooks, so a binding can map parts to any implementation's markup. `:scope` is the component root; `{id}` is the root's id. `css.violation` (warnings) uses Grounded UI's hooks.
-- Every rule needs `markup/broken/<RULE>.html` failing exactly that rule; declare unavoidable co-failures with `also: <RULE>` in its leading comment. `pnpm conformance` enforces this in three engines.
+- Rule ids are `<component>/<rule-name>` (e.g. `text-field/error-reaches-control`); names never change once published. Every rule needs `markup/broken/<rule-name>.html` failing exactly that rule; declare unavoidable co-failures with `also: <rule-name>` in its leading comment. `pnpm conformance` enforces this in three engines.
 - Slug is identical in folder names, `component:` and `data-gui`. Roots carry `data-gui` only; parts carry `data-gui-part`.
 - Standards facts come from data packages, never from memory: `web-features` (contract `requires` takes feature ids), `@webref/elements`, `aria-query`, `html-validate`, the Baseline stylelint plugin.
 

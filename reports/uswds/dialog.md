@@ -10,12 +10,12 @@ What any implementation must achieve, judged on the rendered result: computed na
 
 | Rule | Level | Failing examples | Of those, axe silent | Example detail |
 | --- | --- | ---: | ---: | --- |
-| DG-04 The title has non-empty text. | normative | 0 | — |  |
-| DG-05 The dialog has a non-empty accessible name. | normative | 0 | — |  |
-| DG-11 On a native <dialog>, the only role override allowed is role="alertdialog". | normative | 0 | — |  |
-| DG-14 The dialog has the role dialog or alertdialog. | normative | 0 | — |  |
-| DG-15 The dialog's accessible name contains its title text. | recommended | 0 | — |  |
-| DG-16 The dialog contains a button. | recommended | 0 | — |  |
+| dialog/title-has-text The title has non-empty text. | normative | 0 | — |  |
+| dialog/has-name The dialog has a non-empty accessible name. | normative | 0 | — |  |
+| dialog/allowed-role-override On a native <dialog>, the only role override allowed is role="alertdialog". | normative | 0 | — |  |
+| dialog/role The dialog has the role dialog or alertdialog. | normative | 0 | — |  |
+| dialog/name-includes-title The dialog's accessible name contains its title text. | recommended | 0 | — |  |
+| dialog/contains-button The dialog contains a button. | recommended | 0 | — |  |
 
 ## Technique rules
 
@@ -23,32 +23,32 @@ How Grounded UI's reference markup does it. A failure here means the markup diff
 
 | Rule | Level | Failing examples | Of those, axe silent | Example detail |
 | --- | --- | ---: | ---: | --- |
-| DG-01 The root is a <dialog> element. | recommended | 3 | 3 | root matches :scope:not(dialog) |
-| DG-02 The dialog has an id, so triggers can point at it. | recommended | 0 | — |  |
-| DG-03 There is exactly one title. | recommended | 0 | — |  |
-| DG-06 The name comes from the title, via aria-labelledby pointing at its id. | recommended | 0 | — |  |
-| DG-07 A trigger on the page points at the dialog with commandfor and command="show-modal". | recommended | 3 | 3 | nothing on the page matches [command="show-modal"][commandfor="example-modal-1"] |
-| DG-08 The trigger is a <button>. | recommended | 0 | — |  |
-| DG-09 The dialog contains a close control (command="close" or a form with method="dialog"). | recommended | 3 | 3 | root matches :scope:not(:has([command="close"], form[method="dialog"])) |
-| DG-10 The dialog is not rendered with a static open attribute; it opens as a modal via show-modal. | recommended | 0 | — |  |
-| DG-12 The dialog itself has no tabindex. | recommended | 0 | — |  |
-| DG-13 The alert variant has role="alertdialog" and no light dismiss. | recommended | 0 | — |  |
+| dialog/dialog-element The root is a <dialog> element. | recommended | 3 | 3 | root matches :scope:not(dialog) |
+| dialog/has-id The dialog has an id, so triggers can point at it. | recommended | 0 | — |  |
+| dialog/one-title There is exactly one title. | recommended | 0 | — |  |
+| dialog/labelledby-title The name comes from the title, via aria-labelledby pointing at its id. | recommended | 0 | — |  |
+| dialog/trigger-opens-modal A trigger on the page points at the dialog with commandfor and command="show-modal". | recommended | 3 | 3 | nothing on the page matches [command="show-modal"][commandfor="example-modal-1"] |
+| dialog/trigger-is-button The trigger is a <button>. | recommended | 0 | — |  |
+| dialog/has-close-control The dialog contains a close control (command="close" or a form with method="dialog"). | recommended | 3 | 3 | root matches :scope:not(:has([command="close"], form[method="dialog"])) |
+| dialog/not-statically-open The dialog is not rendered with a static open attribute; it opens as a modal via show-modal. | recommended | 0 | — |  |
+| dialog/no-tabindex The dialog itself has no tabindex. | recommended | 0 | — |  |
+| dialog/alert-variant The alert variant has role="alertdialog" and no light dismiss. | recommended | 0 | — |  |
 
 ## Failing examples
 
-### DG-01
+### dialog/dialog-element
 
 - docs: default modal, opened
 - docs: large modal, opened
 - docs: forced-action modal, opened
 
-### DG-07
+### dialog/trigger-opens-modal
 
 - docs: default modal, opened
 - docs: large modal, opened
 - docs: forced-action modal, opened
 
-### DG-09
+### dialog/has-close-control
 
 - docs: default modal, opened
 - docs: large modal, opened

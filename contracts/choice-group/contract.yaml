@@ -75,7 +75,7 @@ keyboard:
 #       description, visible text); outside implementations are judged on these.
 #       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
 rules:
-  - id: CG-01
+  - id: choice-group/group-role
     description: The group has the role group or radiogroup.
     level: normative
     type: outcome
@@ -85,7 +85,7 @@ rules:
     test: { kind: role, selector: ':scope', oneOf: [group, radiogroup] }
     css: false
 
-  - id: CG-02
+  - id: choice-group/group-has-name
     description: The group has a non-empty accessible name.
     level: normative
     type: outcome
@@ -96,7 +96,7 @@ rules:
     css: false
     editor: { level: refuse }
 
-  - id: CG-03
+  - id: choice-group/name-includes-legend
     description: The group's accessible name contains the legend text.
     level: recommended
     type: outcome
@@ -106,7 +106,7 @@ rules:
     test: { kind: name, selector: ':scope', includes: '{legend}' }
     css: false
 
-  - id: CG-04
+  - id: choice-group/legend-has-text
     description: The legend has non-empty text.
     level: normative
     type: outcome
@@ -118,10 +118,10 @@ rules:
       coverage: partial
       violation: '[data-gui="choice-group"] [data-gui-part="legend"]:empty'
       pseudo: before
-      message: "CG-04: the legend is empty."
+      message: "choice-group/legend-has-text: the legend is empty."
     editor: { level: refuse }
 
-  - id: CG-05
+  - id: choice-group/control-has-name
     description: Every control has a non-empty accessible name.
     level: normative
     type: outcome
@@ -132,7 +132,7 @@ rules:
     css: false
     editor: { level: refuse }
 
-  - id: CG-06
+  - id: choice-group/control-role
     description: Every control has the role checkbox, radio or switch.
     level: normative
     type: outcome
@@ -142,7 +142,7 @@ rules:
     test: { kind: role, selector: '{control}', oneOf: [checkbox, radio, switch] }
     css: false
 
-  - id: CG-07
+  - id: choice-group/description-reaches-group
     description: If there is a description, its text reaches the group's accessible description or name.
     level: normative
     type: outcome
@@ -152,7 +152,7 @@ rules:
     test: { kind: exposes, selector: ':scope', text: '{description}' }
     css: false
 
-  - id: CG-08
+  - id: choice-group/invalid-has-error
     description: If a control has aria-invalid="true", there is an error message in the group or referenced by the control.
     level: normative
     type: outcome
@@ -162,10 +162,10 @@ rules:
     test: { kind: invalidHasError, control: '{control}', error: '{error}' }
     css:
       violation: '[data-gui="choice-group"]:has([aria-invalid="true"]):not(:has([data-gui-part="error"]))'
-      message: "CG-08: aria-invalid=true but no [data-gui-part=error]."
+      message: "choice-group/invalid-has-error: aria-invalid=true but no [data-gui-part=error]."
     editor: { level: refuse }
 
-  - id: CG-09
+  - id: choice-group/error-reaches-group
     description: If there is an error message, its text reaches the group's accessible description or name.
     level: normative
     type: outcome
@@ -175,7 +175,7 @@ rules:
     test: { kind: exposes, selector: ':scope', text: '{error}' }
     css: false
 
-  - id: CG-10
+  - id: choice-group/error-has-text
     description: The error message has non-empty text.
     level: normative
     type: outcome
@@ -187,10 +187,10 @@ rules:
       coverage: partial
       violation: '[data-gui="choice-group"] [data-gui-part="error"]:empty'
       pseudo: before
-      message: "CG-10: the error message is empty."
+      message: "choice-group/error-has-text: the error message is empty."
     editor: { level: warn }
 
-  - id: CG-11
+  - id: choice-group/target-size
     description: Every control is at least 24 by 24 CSS pixels.
     level: normative
     type: outcome
@@ -200,7 +200,7 @@ rules:
     test: { kind: targetSize, selector: '{control}', min: 24 }
     css: false
 
-  - id: CG-12
+  - id: choice-group/focus-ring-visible
     description: Every control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
     level: normative
     type: outcome
@@ -210,7 +210,7 @@ rules:
     test: { kind: focusRing, selector: '{control}', min: 3 }
     css: false
 
-  - id: CG-13
+  - id: choice-group/unique-ids
     description: Ids inside the group are unique on the page.
     level: normative
     type: outcome
@@ -221,7 +221,7 @@ rules:
     css: false
     editor: { level: warn }
 
-  - id: CG-14
+  - id: choice-group/fieldset-element
     description: The root is a <fieldset> element.
     level: recommended
     type: technique
@@ -231,10 +231,10 @@ rules:
     test: { kind: absent, selector: ':scope:not(fieldset)' }
     css:
       violation: '[data-gui="choice-group"]:not(fieldset)'
-      message: "CG-14: data-gui=choice-group must be a <fieldset>."
+      message: "choice-group/fieldset-element: data-gui=choice-group must be a <fieldset>."
     editor: { level: refuse }
 
-  - id: CG-15
+  - id: choice-group/legend-element
     description: The legend part is a <legend> element.
     level: recommended
     type: technique
@@ -244,9 +244,9 @@ rules:
     test: { kind: absent, selector: '{legend}:not(legend)' }
     css:
       violation: '[data-gui="choice-group"] [data-gui-part="legend"]:not(legend)'
-      message: "CG-15: the legend part must be a <legend>."
+      message: "choice-group/legend-element: the legend part must be a <legend>."
 
-  - id: CG-16
+  - id: choice-group/one-legend
     description: There is exactly one legend.
     level: recommended
     type: technique
@@ -256,10 +256,10 @@ rules:
     test: { kind: count, selector: '{legend}', equals: 1 }
     css:
       violation: '[data-gui="choice-group"]:not(:has([data-gui-part="legend"]))'
-      message: "CG-16: the group has no [data-gui-part=legend]."
+      message: "choice-group/one-legend: the group has no [data-gui-part=legend]."
     editor: { level: refuse }
 
-  - id: CG-17
+  - id: choice-group/option-has-control
     description: Every option holds a control.
     level: recommended
     type: technique
@@ -269,9 +269,9 @@ rules:
     test: { kind: absent, selector: '{option}:not(:has({control}))' }
     css:
       violation: '[data-gui="choice-group"] [data-gui-part="option"]:not(:has([data-gui-part="control"]))'
-      message: "CG-17: an option has no [data-gui-part=control]."
+      message: "choice-group/option-has-control: an option has no [data-gui-part=control]."
 
-  - id: CG-18
+  - id: choice-group/label-tied-to-control
     description: Every label is tied to its control, with for or by wrapping it.
     level: recommended
     type: technique
@@ -281,10 +281,10 @@ rules:
     test: { kind: absent, selector: '{label}:not([for]):not(:has({control}))' }
     css:
       violation: '[data-gui="choice-group"] [data-gui-part="label"]:not([for]):not(:has([data-gui-part="control"]))'
-      message: "CG-18: the label has no for and doesn't wrap its control."
+      message: "choice-group/label-tied-to-control: the label has no for and doesn't wrap its control."
     editor: { level: warn }
 
-  - id: CG-19
+  - id: choice-group/native-input
     description: Every control is a native checkbox or radio input.
     level: recommended
     type: technique
@@ -294,9 +294,9 @@ rules:
     test: { kind: absent, selector: '{control}:not(input[type="checkbox"], input[type="radio"])' }
     css:
       violation: '[data-gui="choice-group"] [data-gui-part="control"]:not(input[type="checkbox"], input[type="radio"])'
-      message: "CG-19: the control must be an <input type=checkbox> or <input type=radio>."
+      message: "choice-group/native-input: the control must be an <input type=checkbox> or <input type=radio>."
 
-  - id: CG-20
+  - id: choice-group/radio-has-form-name
     description: Every radio has a name.
     level: recommended
     type: technique
@@ -306,10 +306,10 @@ rules:
     test: { kind: absent, selector: '{control}[type="radio"]:not([name])' }
     css:
       violation: '[data-gui="choice-group"] [data-gui-part="control"][type="radio"]:not([name])'
-      message: "CG-20: a radio has no name, so it isn't grouped."
+      message: "choice-group/radio-has-form-name: a radio has no name, so it isn't grouped."
     editor: { level: refuse }
 
-  - id: CG-21
+  - id: choice-group/description-in-describedby
     description: If there is a description, its id is referenced in the fieldset's aria-describedby.
     level: recommended
     type: technique
@@ -322,7 +322,7 @@ rules:
       to: '{description}'
     css: false
 
-  - id: CG-22
+  - id: choice-group/error-first-in-describedby
     description: The error's id comes first in the fieldset's aria-describedby.
     level: recommended
     type: technique
@@ -335,7 +335,7 @@ rules:
       to: '{error}'
     css: false
 
-  - id: CG-23
+  - id: choice-group/no-competing-aria-label
     description: No control has an aria-label competing with its visible label.
     level: recommended
     type: technique
@@ -345,9 +345,9 @@ rules:
     test: { kind: absent, selector: '{option}:has({label}) {control}[aria-label]' }
     css:
       violation: '[data-gui="choice-group"] [data-gui-part="option"]:has([data-gui-part="label"]) [data-gui-part="control"][aria-label]'
-      message: "CG-23: the control has both a label and an aria-label."
+      message: "choice-group/no-competing-aria-label: the control has both a label and an aria-label."
 
-  - id: CG-24
+  - id: choice-group/radios-share-name
     description: Radio buttons in one group share one name.
     level: normative
     type: outcome
@@ -357,7 +357,7 @@ rules:
     test: { kind: sameAttr, selector: '{control}[type="radio"]', attr: name }
     css: false
 
-  - id: CG-25
+  - id: choice-group/control-name-includes-label
     description: Every control's accessible name contains the visible text of its own label.
     level: normative
     type: outcome

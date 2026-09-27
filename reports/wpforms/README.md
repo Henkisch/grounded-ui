@@ -7,7 +7,7 @@
 - **Every outcome rule passes** in all 7 examples. axe reports nothing either.
 - **The error state is well built.** On blur, an invalid email gets `aria-invalid="true"`, an `<em role="alert">` error message, and `aria-describedby` pointing at it (plus `aria-errormessage` from the start). Measured: the field's accessible description is "Please enter a valid email address."
 - **Name fields are a `fieldset` with a `legend`** ("Name") and two sub-fields labelled "First" and "Last". Each sub-field was tested as its own text field and passes.
-- **One technique difference: TF-16**, in the 3 templates with a phone field. The smart phone field (intl-tel-input) sets `aria-label="Phone"` next to a `<label>Phone</label>`. The texts match, so it is harmless today; it only drifts if an editor renames the label.
+- **One technique difference: text-field/no-competing-aria-label**, in the 3 templates with a phone field. The smart phone field (intl-tel-input) sets `aria-label="Phone"` next to a `<label>Phone</label>`. The texts match, so it is harmless today; it only drifts if an editor renames the label.
 
 ## Test notes
 

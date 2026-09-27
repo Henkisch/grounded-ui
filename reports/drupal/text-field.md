@@ -10,16 +10,16 @@ What any implementation must achieve, judged on the rendered result: computed na
 
 | Rule | Level | Failing examples | Of those, axe silent | Example detail |
 | --- | --- | ---: | ---: | --- |
-| TF-06 The label has non-empty text. | normative | 0 | — |  |
-| TF-10 If the control has aria-invalid="true", there is an error message in the field or referenced by the control. | normative | 1 | 1 | <input data-drupal-selector="edit-site-frontpage" aria-describedby="edit-site-frontpage--description" type="text"> is invalid but no error message is in the field or referenced by it |
-| TF-12 The error message has non-empty text. | normative | 0 | — |  |
-| TF-13 Ids inside the field are unique on the page. | normative | 0 | — |  |
-| TF-15 A placeholder is never the only label. | normative | 0 | — |  |
-| TF-17 The control has a non-empty accessible name. | normative | 0 | — |  |
-| TF-18 The control's accessible name contains the visible label text. | normative | 0 | — |  |
-| TF-19 If there is a description, its text reaches the control's accessible description or name. | normative | 0 | — |  |
-| TF-20 If there is an error message, its text reaches the control's accessible description or name. | normative | 2 | 2 | the error text "either the path nonexistent page is invalid or you do not have access to it" is in neither the accessible name nor the description of <input data-drupal-selector="edit-site-frontpage" aria-describedby="edit-site-frontpage--description" type="text"> |
-| TF-21 The control has the role textbox or searchbox (combobox when it has a suggestion list). | normative | 0 | — |  |
+| text-field/label-has-text The label has non-empty text. | normative | 0 | — |  |
+| text-field/invalid-has-error If the control has aria-invalid="true", there is an error message in the field or referenced by the control. | normative | 1 | 1 | <input data-drupal-selector="edit-site-frontpage" aria-describedby="edit-site-frontpage--description" type="text"> is invalid but no error message is in the field or referenced by it |
+| text-field/error-has-text The error message has non-empty text. | normative | 0 | — |  |
+| text-field/unique-ids Ids inside the field are unique on the page. | normative | 0 | — |  |
+| text-field/placeholder-not-label A placeholder is never the only label. | normative | 0 | — |  |
+| text-field/has-name The control has a non-empty accessible name. | normative | 0 | — |  |
+| text-field/name-includes-label The control's accessible name contains the visible label text. | normative | 0 | — |  |
+| text-field/description-reaches-control If there is a description, its text reaches the control's accessible description or name. | normative | 0 | — |  |
+| text-field/error-reaches-control If there is an error message, its text reaches the control's accessible description or name. | normative | 2 | 2 | the error text "either the path nonexistent page is invalid or you do not have access to it" is in neither the accessible name nor the description of <input data-drupal-selector="edit-site-frontpage" aria-describedby="edit-site-frontpage--description" type="text"> |
+| text-field/role The control has the role textbox or searchbox (combobox when it has a suggestion list). | normative | 0 | — |  |
 
 ## Technique rules
 
@@ -27,37 +27,37 @@ How Grounded UI's reference markup does it. A failure here means the markup diff
 
 | Rule | Level | Failing examples | Of those, axe silent | Example detail |
 | --- | --- | ---: | ---: | --- |
-| TF-02 There is exactly one control. | recommended | 0 | — |  |
-| TF-03 The control is an input or a textarea. | recommended | 0 | — |  |
-| TF-04 There is exactly one label. | recommended | 0 | — |  |
-| TF-05 The label is a label element. | recommended | 0 | — |  |
-| TF-07 The label's for matches the control's id. | recommended | 1 | 0 | for="" but id="" |
-| TF-08 The control has a name. | recommended | 1 | 0 | found <input class="block-filter-text form-search form-element form-element--type-search form-element--api-search" data-element=".block-add-table" title="Enter a part of the block name to filter by."> |
-| TF-09 If there is a description, its id is referenced in aria-describedby. | recommended | 0 | — |  |
-| TF-11 The error's id comes first in aria-describedby. | recommended | 2 | 2 | aria-describedby="edit-site-frontpage--description" does not start with the error id "" |
-| TF-14 The control has no tabindex. | recommended | 0 | — |  |
-| TF-16 The control has no aria-label competing with the label. | recommended | 0 | — |  |
+| text-field/one-control There is exactly one control. | recommended | 0 | — |  |
+| text-field/control-element The control is an input or a textarea. | recommended | 0 | — |  |
+| text-field/one-label There is exactly one label. | recommended | 0 | — |  |
+| text-field/label-element The label is a label element. | recommended | 0 | — |  |
+| text-field/label-for-matches-id The label's for matches the control's id. | recommended | 1 | 0 | for="" but id="" |
+| text-field/has-form-name The control has a name. | recommended | 1 | 0 | found <input class="block-filter-text form-search form-element form-element--type-search form-element--api-search" data-element=".block-add-table" title="Enter a part of the block name to filter by."> |
+| text-field/description-in-describedby If there is a description, its id is referenced in aria-describedby. | recommended | 0 | — |  |
+| text-field/error-first-in-describedby The error's id comes first in aria-describedby. | recommended | 2 | 2 | aria-describedby="edit-site-frontpage--description" does not start with the error id "" |
+| text-field/no-tabindex The control has no tabindex. | recommended | 0 | — |  |
+| text-field/no-competing-aria-label The control has no aria-label competing with the label. | recommended | 0 | — |  |
 
 ## Failing examples
 
-### TF-07
+### text-field/label-for-matches-id
 
 - docs: Claro Place block dialog (filter field)
 
-### TF-08
+### text-field/has-form-name
 
 - docs: Claro Place block dialog (filter field)
 
-### TF-10
+### text-field/invalid-has-error
 
 - docs: Claro site information, error, core defaults (no Inline Form Errors)
 
-### TF-11
+### text-field/error-first-in-describedby
 
 - docs: Claro site information, error, Inline Form Errors on
 - docs: Olivero site information, error, Inline Form Errors on
 
-### TF-20
+### text-field/error-reaches-control
 
 - docs: Claro site information, error, Inline Form Errors on
 - docs: Olivero site information, error, Inline Form Errors on

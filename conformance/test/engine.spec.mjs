@@ -17,5 +17,5 @@ test('an aria-hidden error tip inside the label is not part of the name or the l
       <span class="tip" aria-hidden="true">Please fill out this field.</span></span></label></p>
     <ul hidden><li id="tip">Please fill out this field.</li></ul>`,
   { component: 'text-field', root: '.row', parts: { label: 'label', control: 'input', description: ':not(*)', error: '.tip', 'required-indicator': ':not(*)' } });
-  expect(result).toMatchObject({ 'TF-17': true, 'TF-18': true, 'TF-20': true });
+  expect(result).toMatchObject({ 'text-field/has-name': true, 'text-field/name-includes-label': true, 'text-field/error-reaches-control': true });
 });

@@ -10,17 +10,17 @@ What any implementation must achieve, judged on the rendered result: computed na
 
 | Rule | Level | Failing examples | Of those, axe silent | Example detail |
 | --- | --- | ---: | ---: | --- |
-| TF-06 The label has non-empty text. | normative | 0 | — |  |
-| TF-10 If the control has aria-invalid="true", there is an error message in the field or referenced by the control. | normative | 0 | — |  |
-| TF-12 The error message has non-empty text. | normative | 0 | — |  |
-| TF-13 Ids inside the field are unique on the page. | normative | 0 | — |  |
-| TF-15 A placeholder is never the only label. | normative | 0 | — |  |
-| TF-17 The control has a non-empty accessible name. | normative | 0 | — |  |
-| TF-18 The control's accessible name contains the visible label text. | normative | 0 | — |  |
-| TF-19 If there is a description, its text reaches the control's accessible description or name. | normative | 0 | — |  |
-| TF-20 If there is an error message, its text reaches the control's accessible description or name. | normative | 0 | — |  |
-| TF-21 The control has the role textbox or searchbox (combobox when it has a suggestion list). | normative | 0 | — |  |
-| TF-22 The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard. | normative | 1 | 0 | <input type="text" name="input_1.3" id="input_169_1_3"> shows no focus indicator |
+| text-field/label-has-text The label has non-empty text. | normative | 0 | — |  |
+| text-field/invalid-has-error If the control has aria-invalid="true", there is an error message in the field or referenced by the control. | normative | 0 | — |  |
+| text-field/error-has-text The error message has non-empty text. | normative | 0 | — |  |
+| text-field/unique-ids Ids inside the field are unique on the page. | normative | 0 | — |  |
+| text-field/placeholder-not-label A placeholder is never the only label. | normative | 0 | — |  |
+| text-field/has-name The control has a non-empty accessible name. | normative | 0 | — |  |
+| text-field/name-includes-label The control's accessible name contains the visible label text. | normative | 0 | — |  |
+| text-field/description-reaches-control If there is a description, its text reaches the control's accessible description or name. | normative | 0 | — |  |
+| text-field/error-reaches-control If there is an error message, its text reaches the control's accessible description or name. | normative | 0 | — |  |
+| text-field/role The control has the role textbox or searchbox (combobox when it has a suggestion list). | normative | 0 | — |  |
+| text-field/focus-ring-visible The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard. | normative | 1 | 0 | <input type="text" name="input_1.3" id="input_169_1_3"> shows no focus indicator |
 
 ## Technique rules
 
@@ -28,19 +28,19 @@ How Grounded UI's reference markup does it. A failure here means the markup diff
 
 | Rule | Level | Failing examples | Of those, axe silent | Example detail |
 | --- | --- | ---: | ---: | --- |
-| TF-02 There is exactly one control. | recommended | 0 | — |  |
-| TF-03 The control is an input or a textarea. | recommended | 0 | — |  |
-| TF-04 There is exactly one label. | recommended | 0 | — |  |
-| TF-05 The label is a label element. | recommended | 0 | — |  |
-| TF-07 The label's for matches the control's id. | recommended | 0 | — |  |
-| TF-08 The control has a name. | recommended | 0 | — |  |
-| TF-09 If there is a description, its id is referenced in aria-describedby. | recommended | 0 | — |  |
-| TF-11 The error's id comes first in aria-describedby. | recommended | 0 | — |  |
-| TF-14 The control has no tabindex. | recommended | 0 | — |  |
-| TF-16 The control has no aria-label competing with the label. | recommended | 0 | — |  |
+| text-field/one-control There is exactly one control. | recommended | 0 | — |  |
+| text-field/control-element The control is an input or a textarea. | recommended | 0 | — |  |
+| text-field/one-label There is exactly one label. | recommended | 0 | — |  |
+| text-field/label-element The label is a label element. | recommended | 0 | — |  |
+| text-field/label-for-matches-id The label's for matches the control's id. | recommended | 0 | — |  |
+| text-field/has-form-name The control has a name. | recommended | 0 | — |  |
+| text-field/description-in-describedby If there is a description, its id is referenced in aria-describedby. | recommended | 0 | — |  |
+| text-field/error-first-in-describedby The error's id comes first in aria-describedby. | recommended | 0 | — |  |
+| text-field/no-tabindex The control has no tabindex. | recommended | 0 | — |  |
+| text-field/no-competing-aria-label The control has no aria-label competing with the label. | recommended | 0 | — |  |
 
 ## Failing examples
 
-### TF-22
+### text-field/focus-ring-visible
 
 - docs: contact-form, submitted empty

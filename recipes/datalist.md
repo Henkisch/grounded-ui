@@ -43,4 +43,4 @@ Style the input like any text field. The suggestion list itself is drawn by the 
 
 ## In Grounded UI
 
-The [text field](/components/text-field) accepts a `list` attribute; its role rule (TF-21) skips fields with suggestions, since they are correctly comboboxes.
+The [text field](/components/text-field) accepts a `list` attribute; its role rule (text-field/role) skips fields with suggestions, since they are correctly comboboxes.

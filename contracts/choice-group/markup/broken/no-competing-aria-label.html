@@ -1,0 +1,12 @@
+<!-- Breaks choice-group/no-competing-aria-label: an aria-label repeats the visible label: harmless today, but the two drift apart. -->
+<fieldset data-gui="choice-group">
+  <legend data-gui-part="legend">How should we contact you?</legend>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="checkbox" id="o-1" name="c-1" aria-label="Email">
+    <label data-gui-part="label" for="o-1">Email</label>
+  </div>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="checkbox" id="o-2" name="c-2">
+    <label data-gui-part="label" for="o-2">Phone</label>
+  </div>
+</fieldset>

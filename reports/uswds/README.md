@@ -18,8 +18,8 @@
 
 ## Technique differences (not failures)
 
-- **No `name` on the prefix and suffix inputs** (TF-08): templates, not a real finding.
-- **Scripted `div role="dialog"`** opened by links with `role="button"`, instead of native `<dialog>` and invoker commands (DG-01, DG-07, DG-09).
+- **No `name` on the prefix and suffix inputs** (text-field/has-form-name): templates, not a real finding.
+- **Scripted `div role="dialog"`** opened by links with `role="button"`, instead of native `<dialog>` and invoker commands (dialog/dialog-element, dialog/trigger-opens-modal, dialog/has-close-control).
 
 ## What we learned about the contract
 

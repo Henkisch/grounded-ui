@@ -68,7 +68,7 @@ keyboard:
 #       state, visible text); outside implementations are judged on these.
 #       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
 rules:
-  - id: AC-01
+  - id: accordion/summary-has-name
     description: Every summary has a non-empty accessible name.
     level: normative
     type: outcome
@@ -80,10 +80,10 @@ rules:
       coverage: partial
       violation: '[data-gui="accordion"] [data-gui-part="summary"]:empty'
       pseudo: before
-      message: "AC-01: the summary is empty."
+      message: "accordion/summary-has-name: the summary is empty."
     editor: { level: refuse }
 
-  - id: AC-02
+  - id: accordion/summary-role
     description: Every summary has the role button.
     level: normative
     type: outcome
@@ -93,9 +93,9 @@ rules:
     test: { kind: role, selector: '{summary}', oneOf: [button] }
     css:
       violation: '[data-gui="accordion"] [data-gui-part="summary"][role]'
-      message: "AC-02: the summary's role is overridden; leave it a button."
+      message: "accordion/summary-role: the summary's role is overridden; leave it a button."
 
-  - id: AC-03
+  - id: accordion/summary-exposes-state
     description: Every summary exposes its expanded or collapsed state.
     level: normative
     type: outcome
@@ -105,9 +105,9 @@ rules:
     test: { kind: absent, selector: '{summary}:not(details > summary):not([aria-expanded])' }
     css:
       violation: '[data-gui="accordion"] [data-gui-part="summary"]:not(summary):not([aria-expanded])'
-      message: "AC-03: the summary doesn't expose whether it is open."
+      message: "accordion/summary-exposes-state: the summary doesn't expose whether it is open."
 
-  - id: AC-04
+  - id: accordion/no-interactive-in-summary
     description: Summaries contain no links, buttons or form fields.
     level: normative
     type: outcome
@@ -117,10 +117,10 @@ rules:
     test: { kind: absent, selector: '{summary} :is(a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"]))' }
     css:
       violation: '[data-gui="accordion"] [data-gui-part="summary"]:has(a[href], button, input, select, textarea)'
-      message: "AC-04: the summary contains a link or control. Move it into the panel."
+      message: "accordion/no-interactive-in-summary: the summary contains a link or control. Move it into the panel."
     editor: { level: refuse }
 
-  - id: AC-05
+  - id: accordion/panel-has-content
     description: Every panel has content.
     level: recommended
     type: outcome
@@ -132,10 +132,10 @@ rules:
       coverage: partial
       violation: '[data-gui="accordion"] [data-gui-part="panel"]:empty'
       pseudo: before
-      message: "AC-05: the panel is empty."
+      message: "accordion/panel-has-content: the panel is empty."
     editor: { level: warn }
 
-  - id: AC-06
+  - id: accordion/item-element
     description: Every item is a details element.
     level: recommended
     type: technique
@@ -145,9 +145,9 @@ rules:
     test: { kind: absent, selector: '{item}:not(details)' }
     css:
       violation: '[data-gui="accordion"] [data-gui-part="item"]:not(details)'
-      message: "AC-06: the item should be a <details> element."
+      message: "accordion/item-element: the item should be a <details> element."
 
-  - id: AC-07
+  - id: accordion/summary-element
     description: Every summary is a summary element.
     level: recommended
     type: technique
@@ -157,9 +157,9 @@ rules:
     test: { kind: absent, selector: '{summary}:not(summary)' }
     css:
       violation: '[data-gui="accordion"] [data-gui-part="summary"]:not(summary)'
-      message: "AC-07: the summary should be a <summary> element."
+      message: "accordion/summary-element: the summary should be a <summary> element."
 
-  - id: AC-08
+  - id: accordion/names-all-or-none
     description: Either every item has a name (exclusive) or none does.
     level: recommended
     type: technique
@@ -169,10 +169,10 @@ rules:
     test: { kind: absent, selector: ':scope:has({item}[name]):has({item}:not([name]))' }
     css:
       violation: '[data-gui="accordion"]:has([data-gui-part="item"][name]):has([data-gui-part="item"]:not([name]))'
-      message: "AC-08: only some items have a name; give all of them the same name, or none."
+      message: "accordion/names-all-or-none: only some items have a name; give all of them the same name, or none."
     editor: { level: warn }
 
-  - id: AC-09
+  - id: accordion/heading-in-summary
     description: A heading for an item sits inside its summary.
     level: recommended
     type: technique
@@ -182,9 +182,9 @@ rules:
     test: { kind: absent, selector: '{heading}:not({summary} *)' }
     css:
       violation: '[data-gui="accordion"] [data-gui-part="heading"]:not([data-gui-part="summary"] *)'
-      message: "AC-09: put the heading inside the summary."
+      message: "accordion/heading-in-summary: put the heading inside the summary."
 
-  - id: AC-10
+  - id: accordion/focus-ring-visible
     description: Every summary shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
     level: normative
     type: outcome

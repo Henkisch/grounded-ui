@@ -71,7 +71,7 @@ keyboard:
 #       description, visible text); outside implementations are judged on these.
 #       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
 rules:
-  - id: SL-01
+  - id: select/one-control
     description: There is exactly one control.
     level: recommended
     type: technique
@@ -81,10 +81,10 @@ rules:
     test: { kind: count, selector: '{control}', equals: 1 }
     css:
       violation: '[data-gui="select"]:not(:has([data-gui-part="control"]))'
-      message: "SL-01: the field has no [data-gui-part=control]."
+      message: "select/one-control: the field has no [data-gui-part=control]."
     editor: { level: warn }
 
-  - id: SL-02
+  - id: select/select-element
     description: The control is a select element.
     level: recommended
     type: technique
@@ -94,9 +94,9 @@ rules:
     test: { kind: absent, selector: '{control}:not(select)' }
     css:
       violation: '[data-gui="select"]:has([data-gui-part="control"]:not(select))'
-      message: "SL-02: the control must be a <select>."
+      message: "select/select-element: the control must be a <select>."
 
-  - id: SL-03
+  - id: select/single-choice
     description: The control is a single-choice drop-down (no multiple, no size above 1).
     level: recommended
     type: technique
@@ -106,23 +106,23 @@ rules:
     test: { kind: absent, selector: '{control}:is([multiple], [size]:not([size="0"], [size="1"]))' }
     css:
       violation: '[data-gui="select"]:has([data-gui-part="control"]:is([multiple], [size]:not([size="0"], [size="1"])))'
-      message: "SL-03: use a checkbox group instead of a multi-select list."
+      message: "select/single-choice: use a checkbox group instead of a multi-select list."
     editor: { level: warn }
 
-  - id: SL-04
+  - id: select/one-label
     description: There is exactly one label.
     level: recommended
     type: technique
     source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
-    rationale: WCAG requires a label, not exactly one; a single visible label keeps the name unambiguous. SL-15 checks the name itself.
+    rationale: WCAG requires a label, not exactly one; a single visible label keeps the name unambiguous. select/has-name checks the name itself.
     since: 0.1.0
     test: { kind: count, selector: '{label}', equals: 1 }
     css:
       violation: '[data-gui="select"]:not(:has([data-gui-part="label"]))'
-      message: "SL-04: the field has no [data-gui-part=label]."
+      message: "select/one-label: the field has no [data-gui-part=label]."
     editor: { level: refuse }
 
-  - id: SL-05
+  - id: select/label-element
     description: The label is a label element.
     level: recommended
     type: technique
@@ -132,9 +132,9 @@ rules:
     test: { kind: absent, selector: '{label}:not(label)' }
     css:
       violation: '[data-gui="select"]:has([data-gui-part="label"]:not(label))'
-      message: "SL-05: the label must be a <label>."
+      message: "select/label-element: the label must be a <label>."
 
-  - id: SL-06
+  - id: select/label-has-text
     description: The label has non-empty text.
     level: normative
     type: outcome
@@ -146,15 +146,15 @@ rules:
       coverage: partial
       violation: '[data-gui="select"] [data-gui-part="label"]:empty'
       pseudo: before
-      message: "SL-06: the label is empty."
+      message: "select/label-has-text: the label is empty."
     editor: { level: refuse }
 
-  - id: SL-07
+  - id: select/label-for-matches-id
     description: The label's for matches the control's id.
     level: recommended
     type: technique
     source: https://www.w3.org/WAI/WCAG22/Techniques/html/H44
-    rationale: for/id is the most robust way to associate the label; SL-15 and SL-16 check the resulting name for any technique.
+    rationale: for/id is the most robust way to associate the label; select/has-name and select/name-includes-label check the resulting name for any technique.
     since: 0.1.0
     test:
       kind: attrEquals
@@ -163,7 +163,7 @@ rules:
     css: false
     editor: { level: warn }
 
-  - id: SL-08
+  - id: select/has-form-name
     description: The control has a name.
     level: recommended
     type: technique
@@ -173,15 +173,15 @@ rules:
     test: { kind: absent, selector: '{control}:not([name])' }
     css:
       violation: '[data-gui="select"]:has([data-gui-part="control"]:not([name]))'
-      message: "SL-08: the control has no name attribute."
+      message: "select/has-form-name: the control has no name attribute."
     editor: { level: refuse }
 
-  - id: SL-09
+  - id: select/description-in-describedby
     description: If there is a description, its id is referenced in aria-describedby.
     level: recommended
     type: technique
     source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
-    rationale: aria-describedby is the reliable way to attach the description; SL-17 checks that it arrives, however it is attached.
+    rationale: aria-describedby is the reliable way to attach the description; select/description-reaches-control checks that it arrives, however it is attached.
     since: 0.1.0
     test:
       kind: idrefIncludes
@@ -189,7 +189,7 @@ rules:
       to: '{description}'
     css: false
 
-  - id: SL-10
+  - id: select/invalid-has-error
     description: If the control has aria-invalid="true", there is an error message in the field or referenced by the control.
     level: normative
     type: outcome
@@ -199,10 +199,10 @@ rules:
     test: { kind: invalidHasError, control: '{control}', error: '{error}' }
     css:
       violation: '[data-gui="select"]:has([aria-invalid="true"]):not(:has([data-gui-part="error"]))'
-      message: "SL-10: aria-invalid=true but no [data-gui-part=error]."
+      message: "select/invalid-has-error: aria-invalid=true but no [data-gui-part=error]."
     editor: { level: refuse }
 
-  - id: SL-11
+  - id: select/error-first-in-describedby
     description: The error's id comes first in aria-describedby.
     level: recommended
     type: technique
@@ -215,7 +215,7 @@ rules:
       to: '{error}'
     css: false
 
-  - id: SL-12
+  - id: select/error-has-text
     description: The error message has non-empty text.
     level: normative
     type: outcome
@@ -227,10 +227,10 @@ rules:
       coverage: partial
       violation: '[data-gui="select"] [data-gui-part="error"]:empty'
       pseudo: before
-      message: "SL-12: the error message is empty."
+      message: "select/error-has-text: the error message is empty."
     editor: { level: warn }
 
-  - id: SL-13
+  - id: select/unique-ids
     description: Ids inside the field are unique on the page.
     level: normative
     type: outcome
@@ -241,7 +241,7 @@ rules:
     css: false
     editor: { level: warn }
 
-  - id: SL-14
+  - id: select/no-competing-aria-label
     description: The control has no aria-label competing with the label.
     level: recommended
     type: technique
@@ -251,9 +251,9 @@ rules:
     test: { kind: absent, selector: ':scope:has({label}):has({control}[aria-label])' }
     css:
       violation: '[data-gui="select"]:has([data-gui-part="label"]):has([data-gui-part="control"][aria-label])'
-      message: "SL-14: the control has both a <label> and an aria-label."
+      message: "select/no-competing-aria-label: the control has both a <label> and an aria-label."
 
-  - id: SL-15
+  - id: select/has-name
     description: The control has a non-empty accessible name.
     level: normative
     type: outcome
@@ -263,7 +263,7 @@ rules:
     test: { kind: name, selector: '{control}' }
     css: false
 
-  - id: SL-16
+  - id: select/name-includes-label
     description: The control's accessible name contains the visible label text.
     level: normative
     type: outcome
@@ -273,7 +273,7 @@ rules:
     test: { kind: name, selector: '{control}', includes: '{label}' }
     css: false
 
-  - id: SL-17
+  - id: select/description-reaches-control
     description: If there is a description, its text reaches the control's accessible description or name.
     level: normative
     type: outcome
@@ -283,7 +283,7 @@ rules:
     test: { kind: exposes, selector: '{control}', text: '{description}' }
     css: false
 
-  - id: SL-18
+  - id: select/error-reaches-control
     description: If there is an error message, its text reaches the control's accessible description or name.
     level: normative
     type: outcome
@@ -293,7 +293,7 @@ rules:
     test: { kind: exposes, selector: '{control}', text: '{error}' }
     css: false
 
-  - id: SL-19
+  - id: select/role
     description: The control has the role combobox or listbox.
     level: normative
     type: outcome
@@ -303,7 +303,7 @@ rules:
     test: { kind: role, selector: '{control}', oneOf: [combobox, listbox] }
     css: false
 
-  - id: SL-20
+  - id: select/options-have-text
     description: Every option has visible text.
     level: recommended
     type: outcome
@@ -314,7 +314,7 @@ rules:
     css: false
     editor: { level: warn }
 
-  - id: SL-21
+  - id: select/focus-ring-visible
     description: The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
     level: normative
     type: outcome

@@ -14,9 +14,9 @@
 ## Test notes
 
 - **The error state is in the generated tables** ("contact-form, submitted empty"). `run.mjs` now takes a `wait:` selector, so the check runs after Gravity Forms' AJAX re-render. Every outcome and technique rule passes.
-- **It exposed one contract false positive: TF-10** on the sub-inputs of compound fields (First, Last). Gravity Forms places the error on the parent `fieldset`, outside each sub-input, although the error reaches each input's description. Fixed in text-field contract 0.3.2 (below).
+- **It exposed one contract false positive: text-field/invalid-has-error** on the sub-inputs of compound fields (First, Last). Gravity Forms places the error on the parent `fieldset`, outside each sub-input, although the error reaches each input's description. Fixed in text-field contract 0.3.2 (below).
 - The honeypot field (`.gfield--type-honeypot`, hidden with `display: none`) is excluded from the binding.
 
 ## What this means for the contract
 
-TF-10 was an outcome rule written as a structure check: an error part had to exist inside the root. Since contract 0.3.2 it also accepts an error part the invalid control references through `aria-describedby` or `aria-errormessage`, so a group-level error passes and a field that is only flagged still fails. Longer term, compound fields belong to a fieldset/group contract.
+text-field/invalid-has-error was an outcome rule written as a structure check: an error part had to exist inside the root. Since contract 0.3.2 it also accepts an error part the invalid control references through `aria-describedby` or `aria-errormessage`, so a group-level error passes and a field that is only flagged still fails. Longer term, compound fields belong to a fieldset/group contract.

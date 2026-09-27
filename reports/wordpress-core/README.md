@@ -15,9 +15,9 @@ Dialogs: the core Navigation block's overlay menu (opened at 390px), and the sea
 
 ### Dialog
 
-- **Twenty Twenty's menu modal has no dialog role or name** (DG-14, normative). When open it covers the page, moves focus in, keeps Tab inside and closes on Esc, so it behaves as a modal dialog. But it is a plain `div`: no `role="dialog"`, no `aria-modal`, no name. Measured in Chromium's accessibility tree: no dialog node. A screen reader user isn't told they're in a dialog. **axe reports nothing.** The same theme's search modal gets it right (`role="dialog" aria-modal="true" aria-label="Search"`), so the fix is to copy those three attributes. Real and fixable, in a theme that still ships with many WordPress sites.
+- **Twenty Twenty's menu modal has no dialog role or name** (dialog/role, normative). When open it covers the page, moves focus in, keeps Tab inside and closes on Esc, so it behaves as a modal dialog. But it is a plain `div`: no `role="dialog"`, no `aria-modal`, no name. Measured in Chromium's accessibility tree: no dialog node. A screen reader user isn't told they're in a dialog. **axe reports nothing.** The same theme's search modal gets it right (`role="dialog" aria-modal="true" aria-label="Search"`), so the fix is to copy those three attributes. Real and fixable, in a theme that still ships with many WordPress sites.
 - **The Navigation block overlay passes every outcome rule**: `role="dialog"`, `aria-modal`, name "Menu", a close button. axe flags one unrelated issue inside it (a Page List `ul` nested directly in the navigation `ul`).
-- Technique rules DG-01, DG-02, DG-03, DG-07 and DG-09 differ as expected: scripted `div role="dialog"`s without a visible title or invoker commands.
+- Technique rules dialog/dialog-element, dialog/has-id, dialog/one-title, dialog/trigger-opens-modal and dialog/has-close-control differ as expected: scripted `div role="dialog"`s without a visible title or invoker commands.
 
 ## What we learned about the contract
 

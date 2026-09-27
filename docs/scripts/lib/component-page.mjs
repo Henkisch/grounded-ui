@@ -180,7 +180,7 @@ export function componentPage({ repo, pub, slug, contract: c, order, card }) {
     ...section('What it guarantees', [
       `${outcome.length} **outcome rules**: what any implementation must achieve, judged on the rendered result (the accessible name, role and description the browser computes). Outside implementations are judged on these.`,
       '',
-      `Rule ids like ${code(c.rules[0].id)} are the component's prefix (${code(c.rules[0].id.split('-')[0])} = ${c.title.toLowerCase()}) and a number that never changes, so a report or an issue can point at the exact rule. [All prefixes](/getting-started/test-your-components#rule-ids).`,
+      `Each rule has an id like ${code(c.rules[0].id)}: the component and a short name that never changes, so a report or an issue can point at the exact rule.`,
       '',
       ...outcome.map((r) => `- ${levelBadge(r)} **${r.id}** [${cell(r.description)}](${r.source})`),
       '',
