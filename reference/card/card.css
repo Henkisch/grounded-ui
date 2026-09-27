@@ -1,0 +1,28 @@
+/*
+ * card base CSS: only what the contract and accessibility need.
+ * A link target of at least 24 CSS px (WCAG 2.5.8) and a focus ring that is never removed.
+ * The block link (whole card clickable) and the look live in card.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.card {
+  @scope ([data-gui="card"]) to ([data-gui]) {
+    :where([data-gui-part="link"]) {
+      display: inline-block;
+      min-block-size: 1.5em;
+    }
+
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :where([data-gui-part="link"]):focus-visible {
+      outline: 2px solid var(--gui-card-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+
+    :where([data-gui-part="media"]) {
+      display: block;
+      max-inline-size: 100%;
+      block-size: auto;
+    }
+  }
+}
