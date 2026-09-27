@@ -1,0 +1,204 @@
+# Contract: definition-list
+# Key–value details (opening hours, fees, contact facts) as a description list: terms and their descriptions.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({group}, {term}, {description}); `:scope` is the root.
+component: definition-list
+contractVersion: 0.1.0
+title: Definition list
+summary: Key–value details such as opening hours, fees or contact facts, as a native description list. Terms and descriptions stay paired for screen readers. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+  - feature: flexbox
+
+anatomy:
+  root:
+    label: Root
+    element: [dl]
+    required: true
+  group:
+    label: Term group
+    element: [div]
+  term:
+    label: Term
+    element: [dt]
+    required: true
+  description:
+    label: Description
+    element: [dd]
+    required: true
+
+domOrder: [term, description]
+
+variants:
+  - name: compact
+    description: Tighter rows and smaller text, for dense facts such as a contact card.
+
+states:
+  - { name: link-focus, label: Link in a description focused, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: "Moves to links in the descriptions; the list itself isn't focusable" }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: definition-list/term-role
+    description: Every term has the role term.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: The role tells screen-reader users which text is the key; styled paragraphs lose the pairing.
+    since: 0.1.0
+    test: { kind: role, selector: '{term}', oneOf: [term] }
+    css: false
+
+  - id: definition-list/description-role
+    description: Every description has the role definition.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: The role ties each value to its term for screen-reader users.
+    since: 0.1.0
+    test: { kind: role, selector: '{description}', oneOf: [definition] }
+    css: false
+
+  - id: definition-list/terms-have-text
+    description: Every term has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: A value with an empty key can't be understood out of its visual layout.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{term}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="definition-list"] dt:empty'
+      pseudo: before
+      message: "definition-list/terms-have-text: a term is empty."
+    editor: { level: refuse }
+
+  - id: definition-list/descriptions-have-text
+    description: Every description has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: An empty description leaves a key without a value; write "None" or leave the pair out.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{description}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="definition-list"] dd:empty'
+      pseudo: before
+      message: "definition-list/descriptions-have-text: a description is empty."
+    editor: { level: warn }
+
+  - id: definition-list/term-has-description
+    description: Every term is followed by at least one description.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-dl-element
+    rationale: A term with no description is a key without a value; the list's pairing breaks from there on.
+    since: 0.1.0
+    test: { kind: absent, selector: '{term}:not(:has(~ {description}))' }
+    css: false
+
+  - id: definition-list/valid-children
+    description: The list holds only terms, descriptions and groups of them.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-dl-element
+    rationale: Other elements inside a description list break the term–description structure that assistive technology reads.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope > :not(dt, dd, div, script, template), :scope > div > :not(dt, dd, script, template)' }
+    css: false
+
+  - id: definition-list/focus-ring-visible
+    description: Links in the descriptions show a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see which link they are on.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{description} a[href]', min: 3 }
+    css: false
+
+  - id: definition-list/dl-element
+    description: The root is a <dl> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-dl-element
+    rationale: dl gives terms and descriptions their roles natively, without ARIA.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(dl)' }
+    css:
+      violation: '[data-gui="definition-list"]:not(dl)'
+      message: "definition-list/dl-element: data-gui=definition-list must be a <dl>."
+    editor: { level: refuse }
+
+  - id: definition-list/term-element
+    description: Every term is a <dt> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-dt-element
+    rationale: dt is the term natively; a span with role term needs ARIA to say the same.
+    since: 0.1.0
+    test: { kind: absent, selector: '{term}:not(dt)' }
+    css: false
+
+  - id: definition-list/description-element
+    description: Every description is a <dd> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-dd-element
+    rationale: dd is the description natively; anything else needs ARIA to say the same.
+    since: 0.1.0
+    test: { kind: absent, selector: '{description}:not(dd)' }
+    css: false
+
+  - id: definition-list/grouped-pairs
+    description: Each term and its descriptions sit in their own <div> group.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-dl-element
+    rationale: A group per pair lets the styled layout keep each key beside its value and draw a rule between rows.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope > :is(dt, dd)' }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "dl, dt and dd keep each value tied to its key for assistive technology" }
+  - { criterion: "1.4.3", name: Contrast (Minimum), level: AA, how: "Muted terms at least 4.5:1 in light and dark" }
+  - { criterion: "1.4.10", name: Reflow, level: AA, how: "Key and value sit side by side when there is room and stack when there isn't, with no horizontal scrolling" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "Links get a 2px focus ring in base CSS" }
+
+siteResponsibilities:
+  - { title: Not a data table, text: "For values compared across rows and columns (fees per bin size and week), use a table instead." }
+  - { title: Keep values short, text: "A description list reads best with short values. Put longer explanations in paragraphs." }
+
+editor:
+  help:
+    term: 'The key, short and specific: "Opening hours", "Phone".'
+    description: 'The value: "Monday to Friday 8–17". Write "None" rather than leaving it empty.'
+  softWarnings:
+    - { id: DL-W1, text: A term that ends with a colon (the layout marks it already) }
+    - { id: DL-W2, text: A description longer than two sentences }
+
+attributes:
+  - { on: root, name: data-gui, type: '"definition-list"', required: true, description: Marks the element as a Grounded UI definition list. }
+  - { on: root, name: data-gui-variant, type: '"compact"', description: Tighter rows and smaller text. }
+
+customProperties:
+  --gui-definition-list-term: Term text colour.
+  --gui-definition-list-rule: Colour of the rule between rows.
+  --gui-definition-list-focus: Focus ring colour on links.

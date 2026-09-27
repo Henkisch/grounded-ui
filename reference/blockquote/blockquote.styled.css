@@ -1,0 +1,57 @@
+/* Hallmark · component: blockquote · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · link focus (hover, active, disabled, loading, error, success: not states of a quote)
+ * contrast: text CanvasText; attribution 62% CanvasText mix, at least 4.5:1 in light and dark
+ */
+/*
+ * blockquote styled CSS: the Grounded house style on top of blockquote.css.
+ * A start rule beside roman (never italic) quote text and a small muted attribution; the pull variant is
+ * larger text between two rules. Logical properties only, so it mirrors on right-to-left pages.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.blockquote {
+  @scope ([data-gui="blockquote"]) to ([data-gui]) {
+    :scope {
+      margin-block: 1.5em;
+      margin-inline: 0;
+      padding-inline-start: 1.25em;
+      border-inline-start-width: 0.1875em;
+      border-inline-start-style: solid;
+      border-inline-start-color: var(--gui-blockquote-rule, color-mix(in oklab, CanvasText 30%, Canvas));
+    }
+
+    :where([data-gui-part="quote"]) {
+      margin: 0;
+      font-size: 1.125em;
+      font-style: normal;
+      line-height: 1.5;
+    }
+
+    :where([data-gui-part="caption"]) {
+      margin-block-start: 0.75em;
+      font-size: 0.875em;
+      color: var(--gui-blockquote-caption, color-mix(in oklab, CanvasText 62%, Canvas));
+    }
+
+    :where([data-gui-part="source"]) {
+      font-style: normal;
+    }
+
+    :scope[data-gui-variant="pull"] {
+      padding-block: 1em;
+      padding-inline: 0;
+      border-inline-start: 0;
+      border-block-width: 1px;
+      border-block-style: solid;
+      border-block-color: var(--gui-blockquote-rule, color-mix(in oklab, CanvasText 30%, Canvas));
+    }
+
+    :scope[data-gui-variant="pull"] :where([data-gui-part="quote"]) {
+      font-size: 1.5em;
+      font-weight: 600;
+      line-height: 1.3;
+      text-wrap: balance;
+    }
+  }
+}
