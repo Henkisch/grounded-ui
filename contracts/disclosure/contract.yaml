@@ -1,0 +1,211 @@
+# Contract: disclosure
+# One show/hide section on native <details>/<summary>: "Show opening hours", "Why do we ask?".
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({summary}, {panel}); `:scope` is the root (the details element itself).
+component: disclosure
+contractVersion: 0.1.0
+title: Disclosure
+summary: A single section that shows or hides extra detail in place, built on the native details element. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: details
+  - feature: details-content
+    optional: true
+    fallback: The section opens without the height animation.
+  - feature: interpolate-size
+    optional: true
+    fallback: The section opens without the height animation.
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [details]
+    required: true
+  summary:
+    label: Summary (the button)
+    element: [summary]
+    required: true
+  panel:
+    label: Panel
+    element: [div]
+    required: true
+
+domOrder: [summary, panel]
+
+states:
+  - { name: open, label: Open, dom: open, hook: "[open]" }
+  - { name: closed, label: Closed, dom: no open attribute, hook: ":not([open])" }
+  - { name: focus, label: Summary focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: Moves focus to the summary and into the open panel }
+  - { key: Enter / Space on the summary, behavior: Opens or closes the section }
+  - { key: Find in page (Ctrl/Cmd + F), behavior: "Closed content stays searchable; a match opens the section" }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       state, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: disclosure/summary-has-name
+    description: The summary has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: The summary is a button; without a name, screen readers announce only "button, collapsed".
+    since: 0.1.0
+    test: { kind: name, selector: '{summary}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="disclosure"] [data-gui-part="summary"]:empty'
+      pseudo: before
+      message: "disclosure/summary-has-name: the summary is empty."
+    editor: { level: refuse }
+
+  - id: disclosure/summary-role
+    description: The summary has the role button.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/TR/html-aam-1.0/#el-summary
+    rationale: The button role tells users the text can be activated; a role override hides that it opens anything.
+    since: 0.1.0
+    test: { kind: role, selector: '{summary}', oneOf: [button] }
+    css:
+      violation: '[data-gui="disclosure"] [data-gui-part="summary"][role]'
+      message: "disclosure/summary-role: the summary's role is overridden; leave it a button."
+
+  - id: disclosure/summary-exposes-state
+    description: The summary exposes its expanded or collapsed state.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/
+    rationale: Users need to hear whether the section is open; native summary exposes it, a scripted button needs aria-expanded.
+    since: 0.1.0
+    test: { kind: absent, selector: '{summary}:not(details > summary):not([aria-expanded])' }
+    css:
+      violation: '[data-gui="disclosure"] [data-gui-part="summary"]:not(summary):not([aria-expanded])'
+      message: "disclosure/summary-exposes-state: the summary doesn't expose whether it is open."
+
+  - id: disclosure/no-interactive-in-summary
+    description: The summary contains no links, buttons or form fields.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/TR/wai-aria-1.2/#button
+    rationale: Children of a button are presentational; a link inside the summary is unreachable or read as part of the button.
+    since: 0.1.0
+    test: { kind: absent, selector: '{summary} :is(a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"]))' }
+    css: false
+    editor: { level: refuse }
+
+  - id: disclosure/panel-has-content
+    description: The panel has content.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: A section that opens onto nothing wastes a step and suggests the page is broken.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{panel}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="disclosure"] [data-gui-part="panel"]:empty'
+      pseudo: before
+      message: "disclosure/panel-has-content: the panel is empty."
+    editor: { level: warn }
+
+  - id: disclosure/target-size
+    description: The summary is at least 24 by 24 CSS pixels.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: A small text-sized toggle is hard to hit for people with tremors and on touch screens.
+    since: 0.1.0
+    test: { kind: targetSize, selector: '{summary}', min: 24 }
+    css: false
+
+  - id: disclosure/focus-ring-visible
+    description: The summary shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see where they are; a ring in the page's own colour (or none at all) hides it. WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{summary}', min: 3 }
+    css: false
+
+  - id: disclosure/details-element
+    description: The root is a <details> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-details-element
+    rationale: details gives the open state, keyboard support and find-in-page without JavaScript.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(details)' }
+    css:
+      violation: '[data-gui="disclosure"]:not(details)'
+      message: "disclosure/details-element: data-gui=disclosure should be a <details> element."
+
+  - id: disclosure/summary-element
+    description: The summary is a <summary> element, the first child of the details.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-summary-element
+    rationale: Only a first-child summary toggles its details and exposes the state for free.
+    since: 0.1.0
+    test: { kind: absent, selector: '{summary}:not(:scope > summary:first-child)' }
+    css:
+      violation: '[data-gui="disclosure"] [data-gui-part="summary"]:not(summary)'
+      message: "disclosure/summary-element: the summary should be a <summary> element."
+
+  - id: disclosure/one-summary
+    description: There is exactly one summary.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-details-element
+    rationale: A details element uses only its first summary; a second one is plain text that looks like a button.
+    since: 0.1.0
+    test: { kind: count, selector: '{summary}', equals: 1 }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "2.1.1", name: Keyboard, level: A, how: "The summary is a native button: Tab to reach, Enter or Space to toggle" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "A 2px focus ring on the summary, never removed by Grounded UI's CSS" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "The summary is at least 24px tall and wide" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Summary has role button, a name from its text and an exposed expanded state" }
+  - { criterion: "2.3.3", name: Animation from Interactions, level: AAA, how: "The open and close animation is removed under prefers-reduced-motion" }
+
+siteResponsibilities:
+  - { criterion: "2.4.7", title: Don't remove the focus ring, text: "Grounded UI never uses !important, so a site rule like :focus { outline: 0 } removes the summary's focus ring." }
+  - { criterion: "1.4.3", title: Text contrast, text: "Summary and panel text inherit the site's colours." }
+  - { title: Essential content, text: "Don't hide content everyone must read, such as prices or deadlines, in a closed section." }
+
+editor:
+  help:
+    summary: 'Say what is revealed: "Show opening hours", "Why do we ask for your phone number?", not "More" or "Read more".'
+    panel: "Put the extra detail here. Anything everyone needs belongs outside the disclosure."
+  softWarnings:
+    - { id: DS-W1, text: 'A summary that is only "More", "Read more", "Details" or similar' }
+    - { id: DS-W2, text: A panel longer than a few paragraphs (could be its own page or section) }
+
+# The component's API: the attributes a user writes. Rendered as tables in the docs.
+attributes:
+  - { on: root, name: data-gui, type: '"disclosure"', required: true, description: Marks the details element as a Grounded UI disclosure. }
+  - { on: root, name: open, type: boolean, description: Opens the section on load. }
+  - { on: summary, name: data-gui-part, type: '"summary"', required: true, description: Marks the summary; it must be the first child. }
+  - { on: panel, name: data-gui-part, type: '"panel"', required: true, description: Wraps the content after the summary. }
+
+customProperties:
+  --gui-disclosure-touch-target: Minimum summary height.
+  --gui-disclosure-focus: Focus ring colour.
+  --gui-disclosure-summary-weight: Summary font weight.
+  --gui-disclosure-muted: Panel text colour.
+  --gui-disclosure-duration: Open and close duration.
+  --gui-disclosure-easing: Open and close easing.

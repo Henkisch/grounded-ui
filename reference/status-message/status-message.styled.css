@@ -1,0 +1,60 @@
+/* Hallmark · component: status-message · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: waiting (empty) · shown · success · error (no interactive states: it's never focused)
+ * contrast: text is the page's text colour; the accent rule and icon are decorative, the text carries the meaning
+ */
+/*
+ * status-message styled CSS: the Grounded house style on top of status-message.css.
+ * A compact line with an accent rule on the start edge and an icon; nothing moves or flashes.
+ * Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.status-message {
+  @scope ([data-gui="status-message"]) to ([data-gui]) {
+    :scope {
+      display: flex;
+      gap: 0.5em;
+      align-items: center;
+      padding-block: 0.5em;
+      padding-inline: 0.75em;
+      border-inline-start-width: 0.25em;
+      border-inline-start-style: solid;
+      border-inline-start-color: var(--gui-status-message-border, color-mix(in oklab, CanvasText 40%, Canvas));
+      border-radius: var(--gui-status-message-radius, var(--gui-radius, 0.375em));
+      background: color-mix(in oklab, CanvasText 4%, Canvas);
+    }
+
+    /* Waiting for a message: no box, but still in the accessibility tree. */
+    :scope:empty {
+      padding: 0;
+      border: 0;
+    }
+
+    :scope[data-gui-variant="success"] {
+      border-inline-start-color: var(--gui-status-message-success, color-mix(in oklab, oklch(55% 0.15 150) 80%, CanvasText));
+    }
+
+    :scope[data-gui-variant="error"] {
+      border-inline-start-color: var(--gui-status-message-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    :scope[data-gui-variant="success"] :where([data-gui-part="icon"]) {
+      color: var(--gui-status-message-success, color-mix(in oklab, oklch(55% 0.15 150) 80%, CanvasText));
+    }
+
+    :scope[data-gui-variant="error"] :where([data-gui-part="icon"]) {
+      color: var(--gui-status-message-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    :where([data-gui-part="text"]) {
+      margin: 0;
+    }
+
+    @media (forced-colors: active) {
+      :scope {
+        border-inline-start-color: CanvasText;
+      }
+    }
+  }
+}
