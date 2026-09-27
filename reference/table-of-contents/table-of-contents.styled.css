@@ -1,0 +1,74 @@
+/* Hallmark · component: table-of-contents · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · hover · focus · current (active, disabled, loading, error, success: not states of a contents list)
+ * contrast: links 60% CanvasText mix (≥ 4.5:1 in light and dark); current section in the full text colour
+ */
+/*
+ * table-of-contents styled CSS: the Grounded house style on top of table-of-contents.css.
+ * A small title, a quiet rule along the start edge, muted links that underline on hover, and the current section
+ * in the text colour with a mark on the rule. All colours come from Canvas and CanvasText.
+ * Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.table-of-contents {
+  @scope ([data-gui="table-of-contents"]) to ([data-gui]) {
+    :scope {
+      font-size: 0.875em;
+      line-height: 1.4;
+    }
+
+    :where([data-gui-part="title"]) {
+      margin-block: 0 0.5em;
+      font-size: 1em;
+      font-weight: 600;
+    }
+
+    :scope > :where([data-gui-part="list"]) {
+      border-inline-start-width: 1px;
+      border-inline-start-style: solid;
+      border-inline-start-color: var(--gui-table-of-contents-border, color-mix(in oklab, CanvasText 18%, Canvas));
+    }
+
+    :where([data-gui-part="link"]) {
+      gap: var(--gui-table-of-contents-gap, 0.5em);
+      /* Sit the current-section mark on top of the list's rule. */
+      margin-inline-start: -0.0625em;
+      padding-block: 0.25em;
+      padding-inline: 0.75em 0.25em;
+      color: var(--gui-table-of-contents-muted, color-mix(in oklab, CanvasText 60%, Canvas));
+      text-decoration-line: underline;
+      text-decoration-color: transparent;
+      text-underline-offset: 0.2em;
+      border-inline-start: 2px solid transparent;
+      border-radius: 0 var(--gui-table-of-contents-radius, var(--gui-radius, 0.25em)) var(--gui-table-of-contents-radius, var(--gui-radius, 0.25em)) 0;
+      transition-property: color, text-decoration-color;
+      transition-duration: var(--gui-table-of-contents-duration, 120ms);
+    }
+
+    @media (hover: hover) {
+      :where([data-gui-part="link"]):hover {
+        color: CanvasText;
+        text-decoration-color: currentColor;
+      }
+    }
+
+    /* The base ring uses currentColor (the muted link colour); the text colour is clearer. */
+    :where([data-gui-part="link"]):focus-visible {
+      outline-color: var(--gui-table-of-contents-focus, var(--gui-focus, CanvasText));
+      transition-duration: 0s;
+    }
+
+    :where([data-gui-part="link"][aria-current="true"], [data-gui-part="link"][aria-current="location"]) {
+      font-weight: 600;
+      color: CanvasText;
+      border-inline-start-color: CanvasText;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :where([data-gui-part="link"]) {
+        transition-duration: 0s;
+      }
+    }
+  }
+}

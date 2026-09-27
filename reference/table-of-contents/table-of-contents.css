@@ -1,0 +1,33 @@
+/*
+ * table-of-contents base CSS: only what the contract and accessibility need.
+ * Lists without bullets, nested levels indented, links of at least 24 CSS px (WCAG 2.5.8) and a focus ring
+ * that is never removed. For a finished look, add table-of-contents.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.table-of-contents {
+  @scope ([data-gui="table-of-contents"]) to ([data-gui]) {
+    :where([data-gui-part="list"]) {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    :where([data-gui-part="item"] > [data-gui-part="list"]) {
+      padding-inline-start: var(--gui-table-of-contents-indent, 1em);
+    }
+
+    :where([data-gui-part="link"]) {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: 1.5em;
+    }
+
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :where([data-gui-part="link"]):focus-visible {
+      outline: 2px solid var(--gui-table-of-contents-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+  }
+}

@@ -1,0 +1,252 @@
+# Contract: table-of-contents
+# "On this page" links to the sections of a long page, in a named navigation landmark.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({title}, {list}, {item}, {link}); `:scope` is the root (the nav).
+component: table-of-contents
+contractVersion: 0.1.0
+title: Table of contents
+summary: '"On this page" links to the sections of a long page, in a named navigation landmark. Every link points at a heading that exists. Zero JavaScript.'
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: nav
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [nav]
+    required: true
+  title:
+    label: Title
+    element: [h2, h3]
+    required: true
+  list:
+    label: List
+    element: [ol, ul]
+    required: true
+  item:
+    label: Item
+    element: [li]
+    required: true
+  link:
+    label: Link
+    element: [a]
+    required: true
+
+domOrder: [title, list]
+
+states:
+  - { name: current, label: Current section, dom: 'aria-current="true"', hook: '[aria-current="true"]' }
+  - { name: hover, label: Hover, hook: ":hover" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: Moves between the links }
+  - { key: Enter, behavior: Moves to the section and scrolls it into view }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: table-of-contents/landmark-role
+    description: The table of contents is a navigation landmark.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: Screen-reader users jump between landmarks; as one, the list of sections is found without reading the page.
+    since: 0.1.0
+    test: { kind: role, selector: ':scope', oneOf: [navigation] }
+    css: false
+
+  - id: table-of-contents/has-name
+    description: The navigation landmark has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: Pages usually have several navigation landmarks; the name ("On this page") tells them apart.
+    since: 0.1.0
+    test: { kind: name, selector: ':scope' }
+    css: false
+    editor: { level: refuse }
+
+  - id: table-of-contents/name-includes-title
+    description: The landmark's accessible name contains the visible title text.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: Users should hear the heading they see; a landmark named something else is harder to find again.
+    since: 0.1.0
+    test: { kind: name, selector: ':scope', includes: '{title}' }
+    css: false
+
+  - id: table-of-contents/title-has-text
+    description: The title has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels
+    rationale: The title names the landmark and tells sighted users what the list is.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{title}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="table-of-contents"] [data-gui-part="title"]:empty'
+      pseudo: before
+      message: "table-of-contents/title-has-text: the title is empty."
+    editor: { level: refuse }
+
+  - id: table-of-contents/links-have-names
+    description: Every link has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: A link with no name is announced as just "link", so users can't tell which section it goes to.
+    since: 0.1.0
+    test: { kind: name, selector: '{link}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: table-of-contents/link-targets-exist
+    description: Every same-page link points at an element that exists on the page.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks
+    rationale: A link to a missing id goes nowhere; the section the user asked for is never reached.
+    since: 0.1.0
+    test: { kind: hrefTargetsExist, selector: '{link}' }
+    css: false
+    editor: { level: warn }
+
+  - id: table-of-contents/current-value
+    description: A link that marks the current section uses aria-current="true" or "location".
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/TR/wai-aria-1.2/#aria-current
+    rationale: The section being read isn't a separate page; "page" would tell screen-reader users the wrong thing.
+    since: 0.1.0
+    test: { kind: absent, selector: '{link}[aria-current]:not([aria-current="true"], [aria-current="location"], [aria-current="false"])' }
+    css:
+      violation: '[data-gui="table-of-contents"] [data-gui-part="link"][aria-current]:not([aria-current="true"], [aria-current="location"], [aria-current="false"])'
+      message: "table-of-contents/current-value: use aria-current=true for the current section."
+
+  - id: table-of-contents/target-size
+    description: Every link is at least 24 by 24 CSS pixels.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: Contents lists are dense; small targets are hard to hit on touch screens and with tremors. (WCAG allows smaller targets with enough spacing, hence recommended.)
+    since: 0.1.0
+    test: { kind: targetSize, selector: '{link}', min: 24 }
+    css: false
+
+  - id: table-of-contents/focus-ring-visible
+    description: Every link shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see which link they are on; WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{link}', min: 3 }
+    css: false
+
+  - id: table-of-contents/unique-ids
+    description: Ids inside the table of contents are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes aria-labelledby and in-page links point at the wrong element.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+
+  - id: table-of-contents/nav-element
+    description: The root is a <nav> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/sections.html#the-nav-element
+    rationale: The native element is a navigation landmark without ARIA.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(nav)' }
+    css:
+      violation: '[data-gui="table-of-contents"]:not(nav)'
+      message: "table-of-contents/nav-element: data-gui=table-of-contents must be a <nav>."
+    editor: { level: refuse }
+
+  - id: table-of-contents/labelled-by-title
+    description: The landmark is named by its title through aria-labelledby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: Pointing at the visible title keeps what users see and hear the same, with no text to keep in sync.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not([aria-labelledby])' }
+    css:
+      violation: '[data-gui="table-of-contents"]:not([aria-labelledby])'
+      message: "table-of-contents/labelled-by-title: add aria-labelledby pointing at the title's id."
+
+  - id: table-of-contents/same-page-links
+    description: Every link is a same-page link (href="#id").
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/browsing-the-web.html#scroll-to-fragid
+    rationale: A contents list moves within the page; a link to another page belongs in the site navigation.
+    since: 0.1.0
+    test: { kind: absent, selector: '{link}:not([href^="#"])' }
+    css:
+      violation: '[data-gui="table-of-contents"] [data-gui-part="link"]:not([href^="#"])'
+      message: "table-of-contents/same-page-links: link to a section on this page (href=\"#id\")."
+
+  - id: table-of-contents/nested-in-items
+    description: A nested list sits inside a list item, never directly inside another list.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-ol-element
+    rationale: Only li is allowed inside a list; a list placed directly in a list breaks how the levels are announced.
+    since: 0.1.0
+    test: { kind: absent, selector: '{list} > {list}' }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "Nested lists inside a named navigation landmark mirror the page's heading levels" }
+  - { criterion: "2.4.1", name: Bypass Blocks, level: A, how: "Same-page links go straight to each section" }
+  - { criterion: "2.4.4", name: Link Purpose (In Context), level: A, how: "Every link has a name: the section heading it goes to" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring on every link, at least 3:1" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "Links are at least 24 CSS pixels tall" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Navigation role, a name from the title, aria-current for the current section" }
+
+siteResponsibilities:
+  - { criterion: "2.4.6", title: Match the headings, text: "Use the section headings' own words for the links, in the same order, so the list and the page agree." }
+  - { criterion: "2.4.3", title: Focus lands in the section, text: "The target heading (or its section) needs an id; give it tabindex=\"-1\" if browsers should move keyboard focus there too." }
+  - { criterion: "4.1.2", title: The current section, text: "Marking the section being read with aria-current=\"true\" needs a script (or the server); without it, leave aria-current out." }
+
+editor:
+  help:
+    title: 'Keep the title short and the same on every page: "On this page".'
+    link: "Use each section heading's own words, in the order they appear."
+  softWarnings:
+    - { id: TOC-W1, text: A contents list with fewer than three links }
+    - { id: TOC-W2, text: More than two levels of nesting }
+
+attributes:
+  - { on: root, name: data-gui, type: '"table-of-contents"', required: true, description: Marks the element as a Grounded UI table of contents. }
+  - { on: root, name: aria-labelledby, type: id, required: true, description: "The title's id; gives the landmark its name." }
+  - { on: title, name: id, type: string, required: true, description: Target for the root's aria-labelledby. }
+  - { on: link, name: href, type: '"#section-id"', required: true, description: The id of the section heading on this page. }
+  - { on: link, name: aria-current, type: '"true"', description: 'Marks the section being read, when a script or the server knows it.' }
+
+customProperties:
+  --gui-table-of-contents-gap: Space between links.
+  --gui-table-of-contents-indent: Indentation of nested levels.
+  --gui-table-of-contents-muted: Link colour.
+  --gui-table-of-contents-border: Colour of the rule along the list.
+  --gui-table-of-contents-focus: Focus ring colour.
+  --gui-table-of-contents-radius: Focus ring corner radius.
+  --gui-table-of-contents-duration: Hover transition duration.
