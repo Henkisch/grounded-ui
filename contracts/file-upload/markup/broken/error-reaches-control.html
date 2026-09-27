@@ -1,0 +1,6 @@
+<!-- Breaks file-upload/error-reaches-control: the error is shown but never reaches the control. also: error-first-in-describedby -->
+<div data-gui="file-upload">
+  <label data-gui-part="label" for="permit">Building permit</label>
+  <input data-gui-part="control" type="file" id="permit" name="permit" accept=".pdf" aria-invalid="true">
+  <p data-gui-part="error" id="permit-error">The file is 14 MB. Choose a PDF under 10 MB.</p>
+</div>

@@ -1,0 +1,6 @@
+<!-- Breaks file-upload/description-in-describedby: the description is repeated in aria-description instead of referenced. Screen readers still get it. -->
+<div data-gui="file-upload">
+  <label data-gui-part="label" for="photo">Photo</label>
+  <p data-gui-part="description" id="photo-desc">JPG or PNG, max 10 MB.</p>
+  <input data-gui-part="control" type="file" id="photo" name="photo" accept=".jpg,.png" aria-description="JPG or PNG, max 10 MB.">
+</div>

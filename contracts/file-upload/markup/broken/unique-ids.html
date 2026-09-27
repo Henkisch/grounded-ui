@@ -1,0 +1,7 @@
+<!-- Breaks file-upload/unique-ids: the description id is also used elsewhere on the page. -->
+<div data-gui="file-upload">
+  <label data-gui-part="label" for="photo">Photo</label>
+  <p data-gui-part="description" id="photo-desc">JPG or PNG, max 10 MB.</p>
+  <input data-gui-part="control" type="file" id="photo" name="photo" accept=".jpg,.png" aria-describedby="photo-desc">
+</div>
+<p id="photo-desc">JPG or PNG, max 10 MB.</p>

@@ -1,0 +1,7 @@
+<!-- Breaks file-upload/error-first-in-describedby: the description id comes before the error id. -->
+<div data-gui="file-upload">
+  <label data-gui-part="label" for="permit">Building permit</label>
+  <p data-gui-part="description" id="permit-desc">PDF, max 10 MB.</p>
+  <input data-gui-part="control" type="file" id="permit" name="permit" accept=".pdf" aria-invalid="true" aria-describedby="permit-desc permit-error">
+  <p data-gui-part="error" id="permit-error">The file is 14 MB. Choose a PDF under 10 MB.</p>
+</div>

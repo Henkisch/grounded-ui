@@ -1,0 +1,6 @@
+<!-- Breaks switch/description-in-describedby: the description is repeated in aria-description instead of referenced by id. Screen readers still get it. -->
+<div data-gui="switch">
+  <label data-gui-part="label" for="weekly-digest">Weekly digest</label>
+  <input data-gui-part="control" type="checkbox" role="switch" switch id="weekly-digest" name="weekly-digest" aria-description="One email every Monday with news from your area.">
+  <p data-gui-part="description" id="weekly-digest-desc">One email every Monday with news from your area.</p>
+</div>

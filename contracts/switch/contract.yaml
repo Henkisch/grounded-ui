@@ -1,0 +1,277 @@
+# Contract: switch
+# An on/off setting that takes effect immediately, built on a native checkbox.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({label}, {control}, {description}); `:scope` is the root.
+component: switch
+contractVersion: 0.1.0
+title: Switch
+summary: An on/off setting that takes effect immediately, built on a native checkbox with the switch role. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: input-checkbox
+  - feature: appearance
+  - feature: scope
+  - feature: switch-control
+    optional: true
+    fallback: Browsers without the native switch ignore the switch attribute; role="switch" and the styled track give every browser the same switch.
+
+anatomy:
+  root:
+    label: Root
+    element: [div]
+    required: true
+  label:
+    label: Label
+    element: [label]
+    required: true
+  control:
+    label: Control
+    element: [input]
+    required: true
+  description:
+    label: Description
+    element: [p, div]
+
+domOrder: [label, control, description]
+
+states:
+  - { name: off, label: "Off", dom: not checked, hook: ":not(:checked)" }
+  - { name: on, label: "On", dom: checked, hook: ":checked" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+  - { name: disabled, label: Disabled, dom: disabled, hook: ":disabled" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: Moves focus to and from the switch }
+  - { key: Space, behavior: "Turns the switch on or off (native checkbox behaviour; Enter does not toggle a checkbox)" }
+  - { key: Click on the label, behavior: Turns the switch on or off }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: switch/role
+    description: The control has the role switch.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
+    rationale: The role tells users it's an on/off setting that acts immediately, not a checkbox answered as part of a form.
+    since: 0.1.0
+    test: { kind: role, selector: '{control}', oneOf: [switch] }
+    css:
+      violation: '[data-gui="switch"] [data-gui-part="control"]:not([role="switch"])'
+      message: "switch/role: add role=switch to the control."
+
+  - id: switch/has-name
+    description: The control has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: An unnamed switch is announced as just "switch, off"; users can't tell what it controls.
+    since: 0.1.0
+    test: { kind: name, selector: '{control}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: switch/label-has-text
+    description: The label has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
+    rationale: The visible label is how sighted users know what the switch turns on.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{label}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="switch"] [data-gui-part="label"]:empty'
+      pseudo: before
+      message: "switch/label-has-text: the label is empty."
+    editor: { level: refuse }
+
+  - id: switch/name-includes-label
+    description: The control's accessible name contains the visible text of its label.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: Voice-control users say the label they see; a name that differs leaves them unable to flip the switch.
+    since: 0.1.0
+    test: { kind: labelInName, selector: '{control}' }
+    css: false
+
+  - id: switch/state-exposed
+    description: The on/off state is exposed, natively by a checkbox or with aria-checked true or false.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/TR/wai-aria-1.2/#switch
+    rationale: The switch role requires a state; without it users hear "switch" but never whether it's on.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:is(:not(input[type="checkbox"]):not([aria-checked="true"], [aria-checked="false"]), [aria-checked]:not([aria-checked="true"], [aria-checked="false"]))' }
+    css:
+      violation: '[data-gui="switch"] [data-gui-part="control"][aria-checked]:not([aria-checked="true"], [aria-checked="false"])'
+      message: "switch/state-exposed: aria-checked must be true or false."
+
+  - id: switch/description-reaches-control
+    description: If there is a description, its text reaches the control's accessible description or name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: A description saying what the switch changes must be available to screen-reader users when the switch has focus.
+    since: 0.1.0
+    test: { kind: exposes, selector: '{control}', text: '{description}' }
+    css: false
+
+  - id: switch/target-size
+    description: The control is at least 24 by 24 CSS pixels.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: Small targets are hard to hit for people with tremors and on touch screens.
+    since: 0.1.0
+    test: { kind: targetSize, selector: '{control}', min: 24 }
+    css: false
+
+  - id: switch/focus-ring-visible
+    description: The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see where they are; a ring in the same colour as the page (or none at all) hides it. WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{control}', min: 3 }
+    css: false
+
+  - id: switch/unique-ids
+    description: Ids inside the switch are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes for and aria-describedby point at the wrong element.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+    editor: { level: warn }
+
+  - id: switch/checkbox-input
+    description: The control is a native <input type="checkbox">.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
+    rationale: A native checkbox brings focus, Space to toggle, the checked state and a form value without script.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:not(input[type="checkbox"])' }
+    css:
+      violation: '[data-gui="switch"] [data-gui-part="control"]:not(input[type="checkbox"])'
+      message: "switch/checkbox-input: the control must be <input type=checkbox>."
+    editor: { level: refuse }
+
+  - id: switch/switch-attribute
+    description: The control carries the switch attribute, for the native switch where a browser has one.
+    level: recommended
+    type: technique
+    source: https://github.com/whatwg/html/pull/9546
+    rationale: Safari renders and announces a native switch for it; other browsers ignore it, and role="switch" covers them.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:not([switch])' }
+    css: false
+
+  - id: switch/one-control
+    description: There is exactly one control.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: One label names one switch; a second control in the same root has no label of its own.
+    since: 0.1.0
+    test: { kind: count, selector: '{control}', equals: 1 }
+    css: false
+
+  - id: switch/label-for-matches-id
+    description: The label's for matches the control's id.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H44
+    rationale: for/id ties the label to the switch, so clicking the label flips it and the name comes from the visible text.
+    since: 0.1.0
+    test:
+      kind: attrEquals
+      a: { selector: '{label}', attr: for }
+      b: { selector: '{control}', attr: id }
+    css: false
+    editor: { level: warn }
+
+  - id: switch/description-in-describedby
+    description: If there is a description, its id is referenced in the control's aria-describedby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA1
+    rationale: aria-describedby keeps the description in one place, visible and announced from the same text.
+    since: 0.1.0
+    test:
+      kind: idrefIncludes
+      from: { selector: '{control}', attr: aria-describedby }
+      to: '{description}'
+    css: false
+
+  - id: switch/no-competing-aria-label
+    description: The control has no aria-label competing with the visible label.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: aria-label overrides the label as the name; the two drift apart as soon as one is edited.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:has({label}):has({control}[aria-label])' }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Native checkbox with role=switch: name from the label, checked state as on/off" }
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "Label tied with for/id; description referenced by aria-describedby" }
+  - { criterion: "2.1.1", name: Keyboard, level: A, how: "Native checkbox: Tab to focus, Space to toggle" }
+  - { criterion: "2.5.3", name: Label in Name, level: A, how: "The accessible name contains the visible label" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "Track at least 24 by 24 CSS pixels; the label is clickable too" }
+  - { criterion: "1.4.11", name: Non-text Contrast, level: AA, how: "Track border, thumb and focus ring at least 3:1; on and off differ by thumb position, not colour alone" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring on the control, never removed" }
+
+siteResponsibilities:
+  - { criterion: "3.2.2", title: Only for immediate changes, text: "A switch acts when flipped. If the change waits for a Save button, use a checkbox instead." }
+  - { criterion: "4.1.3", title: Say what changed, text: "If flipping the switch changes something elsewhere on the page, announce it (a status message) or keep it visible next to the switch." }
+  - { criterion: "2.4.7", title: Don't remove the focus ring, text: "Grounded UI never uses !important, so a site rule like :focus { outline: 0 } removes the switch's focus ring." }
+  - { title: Server round trip, text: "Without JavaScript the change only takes effect when a form is submitted. Wire the switch to your own script or form if it must act immediately." }
+
+editor:
+  help:
+    label: 'Name what the switch turns on, never the state: "Email notifications", not "On".'
+    description: 'Optional. Say what happens when it is on: "We send at most one email a week."'
+  softWarnings:
+    - { id: SW-W1, text: 'A label that is only "On", "Off", "Enable" or "Toggle"' }
+    - { id: SW-W2, text: A switch inside a form that is only saved on submit (use a checkbox) }
+
+# The component's API: the attributes a user writes. Rendered as tables in the docs.
+attributes:
+  - { on: root, name: data-gui, type: '"switch"', required: true, description: Marks the element as a Grounded UI switch. }
+  - { on: control, name: type, type: '"checkbox"', required: true, description: The native checkbox the switch is built on. }
+  - { on: control, name: role, type: '"switch"', required: true, description: Announces it as a switch (on/off) in every browser. }
+  - { on: control, name: switch, type: boolean, description: "Asks for the native switch where it exists (Safari); ignored elsewhere." }
+  - { on: control, name: id, type: string, required: true, description: Target for the label's for. }
+  - { on: control, name: name, type: string, description: 'The form field name, when the switch is part of a form.' }
+  - { on: control, name: checked, type: boolean, description: On. }
+  - { on: control, name: aria-describedby, type: id, description: The description's id. }
+  - { on: control, name: disabled, type: boolean, description: Not operable and not focusable. Explain why nearby. }
+  - { on: label, name: for, type: id, required: true, description: The control's id. }
+  - { on: description, name: id, type: string, description: Referenced from the control's aria-describedby. }
+
+customProperties:
+  --gui-switch-gap: Space between the label and the switch.
+  --gui-switch-muted: Description and disabled text colour.
+  --gui-switch-track: Track background when off.
+  --gui-switch-border: Track border and thumb colour when off (keep it at least 3:1 against the background).
+  --gui-switch-on: Track colour when on.
+  --gui-switch-focus: Focus ring colour.
+  --gui-switch-duration: Thumb transition duration.
+  --gui-switch-easing: Thumb transition easing.
