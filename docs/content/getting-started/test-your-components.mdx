@@ -44,6 +44,14 @@ Each component page lists its parts under **Test your implementation**.
 
 ## 3. Read the result
 
+### Rule ids
+
+Every rule has an id: the component's prefix and a number, such as `TF-20` (text field, rule 20). Numbers never change or get reused, so a report, an issue or a commit can point at the exact rule.
+
+<include>/_generated/rule-ids.mdx</include>
+
+### What a failure means
+
 - **Outcome** rules are the verdict. They judge what the browser computes from your markup (the accessible name, role and description) and what users see, so any technique that gets the result right passes.
 - **Technique** rules describe how Grounded UI's own markup does it, such as a native `<dialog>` or `aria-describedby`. They are always recommended, and a failure only means your markup differs. The CLI lists them on one line and doesn't count them.
 - **Normative** rules are required by a standard; the rule links to it. A failure is an accessibility bug.
