@@ -1,7 +1,7 @@
 {
   "implementation": "Gravity Forms",
   "version": "3.1.2",
-  "contract": "0.3.2",
+  "contract": "0.4.0",
   "examples": [
     {
       "source": "docs",
@@ -10,7 +10,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_169_1_3_container\" class=\"name_first gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -173,13 +173,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_169_1_6_container\" class=\"name_last gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -342,13 +350,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_169_2_1_container\" class=\"ginput_left gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -511,13 +527,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_169_2_2_container\" class=\"ginput_right gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -680,13 +704,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<div id=\"field_169_3\" class=\"gfield gfield--type-textarea gfield_contains_required field_sublabel_above gfield--has-description field_description_above field_validation_below gfield_visibility_visible\">",
           "results": [
@@ -849,6 +881,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": [
@@ -868,7 +908,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_169_1_3_container\" class=\"name_first gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -1031,13 +1071,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": false,
+              "detail": "<input type=\"text\" name=\"input_1.3\" id=\"input_169_1_3\"> shows no focus indicator"
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_169_1_6_container\" class=\"name_last gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -1200,13 +1248,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": false,
+              "detail": "<input type=\"text\" name=\"input_1.6\" id=\"input_169_1_6\"> shows no focus indicator"
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_169_2_1_container\" class=\"ginput_left gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -1369,13 +1425,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": false,
+              "detail": "<input class=\"\" type=\"email\" name=\"input_2\"> shows no focus indicator"
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_169_2_2_container\" class=\"ginput_right gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -1538,13 +1602,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": false,
+              "detail": "<input class=\"\" type=\"email\" name=\"input_2_2\"> shows no focus indicator"
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<div id=\"field_169_3\" class=\"gfield gfield--type-textarea gfield_error gfield_contains_required field_sublabel_above gfield--has-description field_description_above field_validation_below gfield_visibility_visible\">",
           "results": [
@@ -1707,6 +1779,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": false,
+              "detail": "<textarea name=\"input_3\" id=\"input_169_3\" class=\"textarea medium\"> shows no focus indicator"
             }
           ],
           "axeViolations": [
@@ -1726,7 +1806,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_168_1_3_container\" class=\"name_first gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -1889,13 +1969,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_168_1_6_container\" class=\"name_last gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -2058,13 +2146,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_full address_line_1 ginput_address_line_1 gform-grid-col\" id=\"input_168_4_1_container\">",
           "results": [
@@ -2227,13 +2323,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_full address_line_2 ginput_address_line_2 gform-grid-col\" id=\"input_168_4_2_container\">",
           "results": [
@@ -2396,13 +2500,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_left address_city ginput_address_city gform-grid-col\" id=\"input_168_4_3_container\">",
           "results": [
@@ -2565,13 +2677,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_right address_zip ginput_address_zip gform-grid-col\" id=\"input_168_4_5_container\">",
           "results": [
@@ -2734,13 +2854,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_168_2_1_container\" class=\"ginput_left gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -2903,13 +3031,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_168_2_2_container\" class=\"ginput_right gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -3072,13 +3208,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<div id=\"field_168_5\" class=\"gfield gfield--type-phone gfield--input-type-phone gfield--phone-format-standard gfield_contains_required field_sublabel_above gfield--no-description field_description_below field_validation_below gfield_visibility_visible\" data-conditional-logic=\"hidden\">",
           "results": [
@@ -3241,13 +3385,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<div id=\"field_168_3\" class=\"gfield gfield--type-textarea gfield--input-type-textarea gfield_contains_required field_sublabel_above gfield--no-description field_description_below field_validation_below gfield_visibility_visible\">",
           "results": [
@@ -3410,6 +3562,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
@@ -3423,7 +3583,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_180_1_3_container\" class=\"name_first gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -3586,13 +3746,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_180_1_6_container\" class=\"name_last gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -3755,13 +3923,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_180_2_1_container\" class=\"ginput_left gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -3924,13 +4100,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_180_2_2_container\" class=\"ginput_right gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -4093,13 +4277,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_full address_line_1 ginput_address_line_1 gform-grid-col\" id=\"input_180_3_1_container\">",
           "results": [
@@ -4262,13 +4454,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_full address_line_2 ginput_address_line_2 gform-grid-col\" id=\"input_180_3_2_container\">",
           "results": [
@@ -4431,13 +4631,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_left address_city ginput_address_city gform-grid-col\" id=\"input_180_3_3_container\">",
           "results": [
@@ -4600,13 +4808,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_right address_state ginput_address_state gform-grid-col\" id=\"input_180_3_4_container\">",
           "results": [
@@ -4769,13 +4985,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_left address_zip ginput_address_zip gform-grid-col\" id=\"input_180_3_5_container\">",
           "results": [
@@ -4938,13 +5162,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<div id=\"field_180_6\" class=\"gfield gfield--type-textarea gfield--input-type-textarea field_sublabel_above gfield--no-description field_description_below field_validation_below gfield_visibility_visible\">",
           "results": [
@@ -5107,6 +5339,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
@@ -5120,7 +5360,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_243_1_3_container\" class=\"name_first gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -5283,13 +5523,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_243_1_6_container\" class=\"name_last gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -5452,13 +5700,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_243_3_1_container\" class=\"ginput_left gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -5621,13 +5877,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_243_3_2_container\" class=\"ginput_right gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -5790,13 +6054,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<div id=\"field_243_6\" class=\"gfield gfield--type-text gfield--width-full gfield_contains_required field_sublabel_above gfield--has-description field_description_above field_validation_below gfield_visibility_visible\">",
           "results": [
@@ -5959,6 +6231,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": [
@@ -5971,7 +6251,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<div id=\"field_243_7\" class=\"gfield gfield--type-textarea gfield--width-full gfield_contains_required field_sublabel_above gfield--has-description field_description_above field_validation_below gfield_visibility_visible\">",
           "results": [
@@ -6134,6 +6414,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": [
@@ -6153,7 +6441,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_179_2_3_container\" class=\"name_first gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -6316,13 +6604,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_179_2_6_container\" class=\"name_last gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -6485,13 +6781,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_179_1_1_container\" class=\"ginput_left gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -6654,13 +6958,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_179_1_2_container\" class=\"ginput_right gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -6823,6 +7135,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
@@ -6836,7 +7156,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_176_1_3_container\" class=\"name_first gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -6999,13 +7319,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_176_1_6_container\" class=\"name_last gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -7168,13 +7496,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_176_2_1_container\" class=\"ginput_left gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -7337,13 +7673,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span id=\"input_176_2_2_container\" class=\"ginput_right gform-grid-col gform-grid-col--size-auto\">",
           "results": [
@@ -7506,13 +7850,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_full address_line_1 ginput_address_line_1 gform-grid-col\" id=\"input_176_21_1_container\">",
           "results": [
@@ -7675,13 +8027,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_full address_line_2 ginput_address_line_2 gform-grid-col\" id=\"input_176_21_2_container\">",
           "results": [
@@ -7844,13 +8204,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_left address_city ginput_address_city gform-grid-col\" id=\"input_176_21_3_container\">",
           "results": [
@@ -8013,13 +8381,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_right address_state ginput_address_state gform-grid-col\" id=\"input_176_21_4_container\">",
           "results": [
@@ -8182,13 +8558,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<span class=\"ginput_left address_zip ginput_address_zip gform-grid-col\" id=\"input_176_21_5_container\">",
           "results": [
@@ -8351,13 +8735,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<div id=\"field_176_10\" class=\"gfield gfield--type-phone gfield--input-type-phone gfield--phone-format-standard field_sublabel_above gfield--no-description field_description_above field_validation_below gfield_visibility_visible\">",
           "results": [
@@ -8520,13 +8912,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "Gravity Forms",
           "element": "<div id=\"field_176_12\" class=\"gfield gfield--type-textarea gfield--input-type-textarea field_sublabel_above gfield--no-description field_description_above field_validation_below gfield_visibility_visible\">",
           "results": [
@@ -8687,6 +9087,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }

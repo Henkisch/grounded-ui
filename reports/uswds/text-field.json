@@ -1,7 +1,7 @@
 {
   "implementation": "USWDS",
   "version": "3.14.0",
-  "contract": "0.3.2",
+  "contract": "0.4.0",
   "examples": [
     {
       "source": "uswds",
@@ -9,7 +9,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"report-field\">",
           "results": [
@@ -172,13 +172,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"report-field\">",
           "results": [
@@ -341,13 +349,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"usa-form-group usa-form-group--error\">",
           "results": [
@@ -510,13 +526,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"report-field\">",
           "results": [
@@ -679,13 +703,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"report-field\">",
           "results": [
@@ -848,13 +880,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"report-field\">",
           "results": [
@@ -1017,13 +1057,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"report-field\">",
           "results": [
@@ -1186,13 +1234,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"report-field\">",
           "results": [
@@ -1355,13 +1411,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"report-field\">",
           "results": [
@@ -1522,6 +1586,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }
@@ -1536,7 +1608,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"usa-form-group\">",
           "results": [
@@ -1697,6 +1769,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }
@@ -1705,7 +1785,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"usa-form-group\">",
           "results": [
@@ -1866,6 +1946,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }
@@ -1880,7 +1968,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"report-field\">",
           "results": [
@@ -2043,13 +2131,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"report-field\">",
           "results": [
@@ -2212,6 +2308,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
@@ -2224,7 +2328,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"report-field\">",
           "results": [
@@ -2387,6 +2491,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
@@ -2399,7 +2511,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"usa-form-group usa-form-group--day\">",
           "results": [
@@ -2562,13 +2674,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "USWDS",
           "element": "<div class=\"usa-form-group usa-form-group--year\">",
           "results": [
@@ -2729,6 +2849,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }

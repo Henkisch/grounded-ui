@@ -1,7 +1,7 @@
 {
   "implementation": "WordPress core",
   "version": "7.1.2",
-  "contract": "0.3.2",
+  "contract": "0.4.0",
   "examples": [
     {
       "source": "wordpress-core",
@@ -9,7 +9,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-comment\">",
           "results": [
@@ -172,13 +172,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-author\">",
           "results": [
@@ -341,13 +349,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-email\">",
           "results": [
@@ -510,13 +526,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-url\">",
           "results": [
@@ -677,6 +701,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }
@@ -691,7 +723,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<form role=\"search\" method=\"get\" action=\"https://playground.wordpress.net/scope:clever-old-valley/\">",
           "results": [
@@ -852,6 +884,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }
@@ -860,7 +900,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<form role=\"search\" method=\"get\" action=\"https://playground.wordpress.net/scope:clever-old-valley/\">",
           "results": [
@@ -1021,6 +1061,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }
@@ -1029,7 +1077,7 @@
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<form role=\"search\" method=\"get\" action=\"https://playground.wordpress.net/scope:clever-old-valley/\">",
           "results": [
@@ -1190,6 +1238,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }
@@ -1204,7 +1260,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<p>",
           "results": [
@@ -1365,6 +1421,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }
@@ -1379,7 +1443,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<p>",
           "results": [
@@ -1542,13 +1606,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<div class=\"user-pass-wrap\">",
           "results": [
@@ -1709,6 +1781,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }
@@ -1723,7 +1803,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<p>",
           "results": [
@@ -1886,13 +1966,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<div class=\"user-pass-wrap\">",
           "results": [
@@ -2055,6 +2143,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
@@ -2067,7 +2163,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-comment\">",
           "results": [
@@ -2230,13 +2326,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-author\">",
           "results": [
@@ -2399,13 +2503,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-email\">",
           "results": [
@@ -2568,13 +2680,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<p class=\"comment-form-url\">",
           "results": [
@@ -2735,6 +2855,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }
@@ -2750,7 +2878,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WordPress core",
           "element": "<form role=\"search\" method=\"get\" action=\"https://wp-themes.com/twentytwentyfive/\">",
           "results": [
@@ -2911,6 +3039,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }

@@ -161,14 +161,24 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
           for (const el of pick(selector)) {
             if (!rendered(el) || el.disabled) continue;
             document.activeElement?.blur?.();
+            const look = (st) => [st.borderTopColor, st.borderTopWidth, st.backgroundColor].join('|');
+            const unfocused = look(getComputedStyle(el));
             el.focus({ focusVisible: true });
             if (document.activeElement !== el) continue;
             const s = getComputedStyle(el);
             const outline = s.outlineStyle !== 'none' && parseFloat(s.outlineWidth) > 0;
-            if (!outline && s.boxShadow === 'none') return `${describe(el)} shows no focus indicator`;
-            if (!outline) continue; // a box-shadow ring: present; its colour isn't measured
-            const ratio = contrast(rgba(s.outlineColor), backdrop(el));
-            if (ratio < min) return `${describe(el)} has a focus ring of ${ratio.toFixed(2)}:1 against its background, below ${min}:1`;
+            if (outline) {
+              const ratio = contrast(rgba(s.outlineColor), backdrop(el));
+              if (ratio < min) return `${describe(el)} has a focus ring of ${ratio.toFixed(2)}:1 against its background, below ${min}:1`;
+              continue;
+            }
+            if (s.boxShadow !== 'none') continue; // a box-shadow ring: present; its colour isn't measured
+            // No ring: a change of border or background on focus is an indicator; a changed border must itself be visible.
+            if (look(s) === unfocused) return `${describe(el)} shows no focus indicator`;
+            if (s.borderTopStyle !== 'none' && parseFloat(s.borderTopWidth) > 0) {
+              const ratio = contrast(rgba(s.borderTopColor), backdrop(el));
+              if (ratio < min) return `${describe(el)} marks focus only with a border of ${ratio.toFixed(2)}:1 against its background, below ${min}:1`;
+            }
           }
           return null;
         } finally {

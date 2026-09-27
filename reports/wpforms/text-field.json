@@ -1,7 +1,7 @@
 {
   "implementation": "WPForms",
   "version": "2.0.3",
-  "contract": "0.3.2",
+  "contract": "0.4.0",
   "examples": [
     {
       "source": "docs",
@@ -10,7 +10,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-first wpforms-one-half\">",
           "results": [
@@ -173,13 +173,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-one-half\">",
           "results": [
@@ -342,13 +350,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-245-field_1-container\" class=\"wpforms-field wpforms-field-email\" data-field-type=\"email\">",
           "results": [
@@ -511,13 +527,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-245-field_2-container\" class=\"wpforms-field wpforms-field-textarea\" data-field-type=\"textarea\">",
           "results": [
@@ -680,6 +704,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
@@ -693,7 +725,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-first wpforms-one-half\">",
           "results": [
@@ -856,13 +888,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-one-half\">",
           "results": [
@@ -1025,13 +1065,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-245-field_1-container\" class=\"wpforms-field wpforms-field-email wpforms-has-error\" data-field-type=\"email\">",
           "results": [
@@ -1194,13 +1242,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-245-field_2-container\" class=\"wpforms-field wpforms-field-textarea\" data-field-type=\"textarea\">",
           "results": [
@@ -1363,6 +1419,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
@@ -1376,7 +1440,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-first wpforms-one-half\">",
           "results": [
@@ -1539,13 +1603,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-one-half\">",
           "results": [
@@ -1708,13 +1780,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-21-field_1-container\" class=\"wpforms-field wpforms-field-text\" data-field-type=\"text\">",
           "results": [
@@ -1877,13 +1957,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-21-field_5-container\" class=\"wpforms-field wpforms-field-email\" data-field-type=\"email\">",
           "results": [
@@ -2046,13 +2134,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-21-field_6-container\" class=\"wpforms-field wpforms-field-phone\" data-field-type=\"phone\">",
           "results": [
@@ -2215,13 +2311,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-21-field_3-container\" class=\"wpforms-field wpforms-field-textarea\" data-field-type=\"textarea\">",
           "results": [
@@ -2384,6 +2488,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
@@ -2397,7 +2509,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-first wpforms-one-half\">",
           "results": [
@@ -2560,13 +2672,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-one-half\">",
           "results": [
@@ -2729,13 +2849,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-96-field_2-container\" class=\"wpforms-field wpforms-field-email\" data-field-type=\"email\">",
           "results": [
@@ -2898,6 +3026,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
@@ -2911,7 +3047,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-first wpforms-one-half\">",
           "results": [
@@ -3074,13 +3210,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-one-half\">",
           "results": [
@@ -3243,13 +3387,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-1167-field_1-container\" class=\"wpforms-field wpforms-field-email\" data-field-type=\"email\">",
           "results": [
@@ -3412,13 +3564,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-1167-field_3-container\" class=\"wpforms-field wpforms-field-phone\" data-field-type=\"phone\">",
           "results": [
@@ -3581,13 +3741,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-1167-field_6-container\" class=\"wpforms-field wpforms-field-textarea\" data-field-type=\"textarea\">",
           "results": [
@@ -3750,6 +3918,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
@@ -3763,7 +3939,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-first wpforms-one-half\">",
           "results": [
@@ -3926,13 +4102,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-one-half\">",
           "results": [
@@ -4095,13 +4279,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-159-field_2-container\" class=\"wpforms-field wpforms-field-email\" data-field-type=\"email\">",
           "results": [
@@ -4264,13 +4456,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-159-field_3-container\" class=\"wpforms-field wpforms-field-textarea\" data-field-type=\"textarea\">",
           "results": [
@@ -4433,13 +4633,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-159-field_5-container\" class=\"wpforms-field wpforms-field-text\" data-field-type=\"text\">",
           "results": [
@@ -4602,13 +4810,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-159-field_8-container\" class=\"wpforms-field wpforms-field-textarea\" data-field-type=\"textarea\">",
           "results": [
@@ -4771,6 +4987,14 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
@@ -4784,7 +5008,7 @@
       "report": [
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-first wpforms-one-half\">",
           "results": [
@@ -4947,13 +5171,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-one-half\">",
           "results": [
@@ -5116,13 +5348,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-27-field_1-container\" class=\"wpforms-field wpforms-field-email\" data-field-type=\"email\">",
           "results": [
@@ -5285,13 +5525,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-27-field_3-container\" class=\"wpforms-field wpforms-field-phone\" data-field-type=\"phone\">",
           "results": [
@@ -5454,13 +5702,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-one-half wpforms-first\">",
           "results": [
@@ -5623,13 +5879,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div class=\"wpforms-field-row-block wpforms-one-half wpforms-first\">",
           "results": [
@@ -5792,13 +6056,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-27-field_6-container\" class=\"wpforms-field wpforms-field-text wpforms-conditional-field wpforms-conditional-hide\" data-field-type=\"text\">",
           "results": [
@@ -5961,13 +6233,21 @@
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
               "pass": true,
               "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
+              "pass": true,
+              "detail": null
             }
           ],
           "axeViolations": []
         },
         {
           "component": "text-field",
-          "contractVersion": "0.3.2",
+          "contractVersion": "0.4.0",
           "implementation": "WPForms",
           "element": "<div id=\"wpforms-27-field_2-container\" class=\"wpforms-field wpforms-field-textarea\" data-field-type=\"textarea\">",
           "results": [
@@ -6128,6 +6408,14 @@
               "level": "normative",
               "type": "outcome",
               "description": "The control has the role textbox or searchbox (combobox when it has a suggestion list).",
+              "pass": true,
+              "detail": null
+            },
+            {
+              "id": "TF-22",
+              "level": "normative",
+              "type": "outcome",
+              "description": "The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.",
               "pass": true,
               "detail": null
             }
