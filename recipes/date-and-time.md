@@ -26,6 +26,8 @@ Native date and time inputs come with a keyboard-friendly picker for free. Styli
 - **`:placeholder-shown` never matches** an empty date, time or datetime-local input, in any of the three engines. `:invalid` does match an empty required one.
 - **The format shown** (`yyyy-mm-dd`, `mm/dd/yyyy`, …) is up to the browser; the HTML spec leaves the presentation to it, and CSS can't change it.
 
+- **WebKit never matches `:focus-visible` on a native date input,** even after a real Tab press, so a ring drawn only on `:focus-visible` never shows. Draw it on `:focus-within` of a wrapper (or `:focus` on the input) as well. Found building the date field.
+
 ## Accessibility traps
 
 - **Don't hide the picker icon** without another way in: some users rely on it. Typing into the segments always works.

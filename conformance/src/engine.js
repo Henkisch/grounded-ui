@@ -76,7 +76,14 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
     // Elements inside this root that belong to it, not to a nested component.
     const within = (selector) =>
       [...root.querySelectorAll(expand(selector))].filter((el) => !boundary || el.closest(boundary) === root);
-    const pick = (selector) => (selector === ':scope' ? [root] : within(selector));
+    // `:scope` is the root; `:scope` plus simple conditions (`:scope:is(fieldset)`) is the root when it matches.
+    const pick = (selector) => {
+      if (selector === ':scope') return [root];
+      if (/^:scope(?![\s>+~])/.test(selector) && !/[\s>+~]/.test(selector.replace(/\([^()]*\)/g, ''))) {
+        return root.matches(expand(selector).replace(/^:scope/, '*')) ? [root] : [];
+      }
+      return within(selector);
+    };
     const describe = (el) => {
       const tag = el.tagName.toLowerCase();
       const attrs = [...el.attributes].filter((a) => a.name !== markerAttr).slice(0, 3).map((a) => `${a.name}="${a.value}"`);

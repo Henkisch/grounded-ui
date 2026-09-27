@@ -1,0 +1,65 @@
+/*
+ * date-field base CSS: only what the contract and accessibility need.
+ * Parts stacked in a grid, the three fields side by side with their labels, controls at least 44px tall
+ * in the site's font, a focus ring that is never removed, and a non-colour error cue.
+ * For a finished look, add date-field.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.date-field {
+  @scope ([data-gui="date-field"]) to ([data-gui]) {
+    /* A fieldset's min-inline-size is min-content by default, which can make narrow pages scroll sideways. */
+    :scope {
+      display: grid;
+      gap: var(--gui-date-field-gap, 0.375em);
+      justify-items: start;
+      min-inline-size: 0;
+    }
+
+    /* Parts sit in the grid gap; user-agent margins on p/label would double it. */
+    :where([data-gui-part]) {
+      margin: 0;
+    }
+
+    /* A rendered legend sits in the fieldset's border, outside the grid, so it takes the gap as a margin. */
+    :where([data-gui-part="legend"]) {
+      min-block-size: 0;
+      margin-block-end: var(--gui-date-field-gap, 0.375em);
+      padding: 0;
+    }
+
+    :where([data-gui-part="items"]) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+
+    :where([data-gui-part="item"]) {
+      display: grid;
+      gap: var(--gui-date-field-gap, 0.375em);
+      justify-items: start;
+    }
+
+    :where([data-gui-part="control"]) {
+      min-block-size: var(--gui-date-field-touch-target, 2.75em);
+      font: inherit;
+      color: inherit;
+    }
+
+    /* WCAG 2.4.7 / 1.4.11: at least 2 CSS px, never removed. */
+    /* WebKit never matches :focus-visible on a native date input (focus sits in its inner segments),
+       so date inputs also show the ring on :focus-within. */
+    :where([data-gui-part="control"]):focus-visible,
+    :where([data-gui-part="control"][type="date"]):focus-within {
+      outline: 2px solid var(--gui-date-field-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+
+    /* Error is shown by more than colour (WCAG 1.4.1). */
+    :where([data-gui-part="control"][aria-invalid="true"]) {
+      border-width: 2px;
+      border-style: solid;
+    }
+  }
+}

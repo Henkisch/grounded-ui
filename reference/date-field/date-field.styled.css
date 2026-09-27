@@ -1,0 +1,108 @@
+/* Hallmark · component: date-field · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · hover · focus · disabled · error (loading, success, active: not states of a native date input)
+ * contrast: border ≥ 3:1, muted and error text ≥ 4.5:1 in light and dark (system-colour mixes, WCAG 1.4.11 / 1.4.3)
+ */
+/*
+ * date-field styled CSS: the Grounded house style on top of date-field.css, matching the text field.
+ * The three fields are sized to their content (2, 2 and 4 digits) and the native input gets one fixed height,
+ * so it looks the same in every engine. Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.date-field {
+  @scope ([data-gui="date-field"]) to ([data-gui]) {
+    :scope:where(fieldset) {
+      padding: 0;
+      border: 0;
+    }
+
+    :where([data-gui-part="legend"], [data-gui-part="label"]) {
+      font-weight: var(--gui-date-field-label-weight, 600);
+      color: var(--gui-date-field-label, inherit);
+    }
+
+    /* The three small labels read as part of their field, not as questions. */
+    :where([data-gui-part="item"] [data-gui-part="label"]) {
+      font-weight: 400;
+    }
+
+    /* Description reads as part of the label group: smaller, pulled up towards it. */
+    :where([data-gui-part="description"]) {
+      margin-block-start: calc(var(--gui-date-field-gap, 0.375em) * -0.5);
+      font-size: 0.875em;
+      color: var(--gui-date-field-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+    }
+
+    /* One border width in every state: states change colour, never geometry. */
+    :where([data-gui-part="control"]) {
+      padding-block: 0.5em;
+      padding-inline: 0.75em;
+      background: var(--gui-date-field-control-bg, Canvas);
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--gui-date-field-border, var(--gui-border, color-mix(in oklab, CanvasText 40%, Canvas)));
+      border-radius: var(--gui-date-field-radius, var(--gui-radius, 0.375em));
+      transition-property: background-color, border-color;
+      transition-duration: var(--gui-date-field-duration, 120ms);
+      transition-timing-function: var(--gui-date-field-easing, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    /* Native date inputs have a different intrinsic height in every engine; one fixed height evens them out. */
+    :where([data-gui-part="control"][type="date"]) {
+      block-size: var(--gui-date-field-touch-target, 2.75em);
+    }
+
+    /* Sized to the digits they hold, plus padding and border: 2 for day and month, 4 for year. */
+    :where([data-gui-part="control"][size="2"]) {
+      inline-size: calc(2ch + 1.5em + 0.125em);
+    }
+
+    :where([data-gui-part="control"][size="4"]) {
+      inline-size: calc(4ch + 1.5em + 0.125em);
+    }
+
+    @media (hover: hover) {
+      :where([data-gui-part="control"]):hover:not(:disabled, [aria-invalid="true"]) {
+        border-color: var(--gui-date-field-border-hover, color-mix(in oklab, CanvasText 65%, Canvas));
+      }
+    }
+
+    /* Instant, never animated; the site's accent can take over through the token. */
+    /* WebKit never matches :focus-visible on a native date input (focus sits in its inner segments),
+       so date inputs also show the ring on :focus-within. */
+    :where([data-gui-part="control"]):focus-visible,
+    :where([data-gui-part="control"][type="date"]):focus-within {
+      outline: 2px solid var(--gui-date-field-focus, var(--gui-focus, CanvasText));
+      outline-offset: 2px;
+      transition-duration: 0s;
+    }
+
+    :where([data-gui-part="control"]):disabled {
+      cursor: not-allowed;
+      color: var(--gui-date-field-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+      background: var(--gui-date-field-control-muted-bg, color-mix(in oklab, CanvasText 4%, Canvas));
+      border-style: dashed;
+    }
+
+    /* Base draws a 2px border for the non-colour error cue; here the second pixel is an inset shadow,
+       so the field keeps its size and the cue stays. */
+    :where([data-gui-part="control"][aria-invalid="true"]) {
+      border-width: 1px;
+      border-color: var(--gui-date-field-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+      box-shadow: inset 0 0 0 0.0625em var(--gui-date-field-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    :where([data-gui-part="error"]) {
+      font-size: 0.875em;
+      font-weight: 500;
+      color: var(--gui-date-field-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :where([data-gui-part="control"]) {
+        transition-duration: 0s;
+      }
+    }
+  }
+}
