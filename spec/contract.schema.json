@@ -594,6 +594,26 @@
             }
           },
           "$comment": "every rendered match is at least `min` CSS px wide and tall (WCAG 2.5.8 target size)"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector",
+            "min"
+          ],
+          "properties": {
+            "kind": {
+              "const": "focusRing"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            },
+            "min": {
+              "type": "number",
+              "minimum": 1
+            }
+          },
+          "$comment": "each focusable match, focused as by keyboard, draws a focus indicator; an outline ring contrasts at least `min`:1 with the background behind it"
         }
       ],
       "properties": {
@@ -611,7 +631,8 @@
             "exposes",
             "role",
             "invalidHasError",
-            "targetSize"
+            "targetSize",
+            "focusRing"
           ]
         }
       }

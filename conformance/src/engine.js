@@ -33,6 +33,31 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
     copy.querySelectorAll('[aria-hidden="true"], input, textarea, select').forEach((node) => node.remove());
     return copy.textContent;
   };
+  // Any CSS colour (rgb, oklch, color-mix, system colours) to [r, g, b, a] via a canvas, then WCAG contrast.
+  const paint = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+  const rgba = (color) => {
+    paint.clearRect(0, 0, 1, 1);
+    paint.fillStyle = '#000';
+    paint.fillStyle = color;
+    paint.fillRect(0, 0, 1, 1);
+    const [r, g, b, a] = paint.getImageData(0, 0, 1, 1).data;
+    return [r, g, b, a / 255];
+  };
+  const luminance = ([r, g, b]) => [r, g, b].map((c) => (c /= 255) <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4).reduce((sum, c, i) => sum + c * [0.2126, 0.7152, 0.0722][i], 0);
+  const contrast = (a, b) => { const [x, y] = [luminance(a), luminance(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+  // The first opaque background behind an element (the page's Canvas if none).
+  const backdrop = (el) => {
+    for (let node = el.parentElement; node; node = node.parentElement) {
+      const color = rgba(getComputedStyle(node).backgroundColor);
+      if (color[3] > 0.5) return color;
+    }
+    const probe = document.createElement('i');
+    probe.style.color = 'Canvas';
+    document.body.append(probe);
+    const canvas = rgba(getComputedStyle(probe).color);
+    probe.remove();
+    return canvas;
+  };
   // Words only, so punctuation, symbols such as a required "*" and spacing don't decide a match.
   const words = (text) => text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
   const quote = (text) => `"${text.length > 80 ? `${text.slice(0, 77)}…` : text}"`;
@@ -127,6 +152,29 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
       role({ selector, oneOf }) {
         const el = pick(selector).find((candidate) => !oneOf.includes(ax.commons.aria.getRole(candidate) ?? 'none'));
         return el ? `${describe(el)} has role "${ax.commons.aria.getRole(el) ?? 'none'}", expected ${oneOf.join(' or ')}` : null;
+      },
+      // WCAG 2.4.7 + 1.4.11: keyboard focus draws an indicator, and an outline ring contrasts `min`:1 with the
+      // background around it. Parts that can't take focus right now (disabled, inert) are skipped.
+      focusRing({ selector, min }) {
+        const before = document.activeElement;
+        try {
+          for (const el of pick(selector)) {
+            if (!rendered(el) || el.disabled) continue;
+            document.activeElement?.blur?.();
+            el.focus({ focusVisible: true });
+            if (document.activeElement !== el) continue;
+            const s = getComputedStyle(el);
+            const outline = s.outlineStyle !== 'none' && parseFloat(s.outlineWidth) > 0;
+            if (!outline && s.boxShadow === 'none') return `${describe(el)} shows no focus indicator`;
+            if (!outline) continue; // a box-shadow ring: present; its colour isn't measured
+            const ratio = contrast(rgba(s.outlineColor), backdrop(el));
+            if (ratio < min) return `${describe(el)} has a focus ring of ${ratio.toFixed(2)}:1 against its background, below ${min}:1`;
+          }
+          return null;
+        } finally {
+          document.activeElement?.blur?.();
+          before?.focus?.();
+        }
       },
       // WCAG 2.5.8: the rendered target is at least `min` CSS px in both directions. Unrendered elements are skipped.
       targetSize({ selector, min }) {

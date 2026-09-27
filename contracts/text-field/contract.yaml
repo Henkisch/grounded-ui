@@ -3,7 +3,7 @@
 # Test selectors name parts ({label}, {control}, …), never Grounded UI's own hooks, so any implementation
 # can be tested through a binding that maps parts to its markup.
 component: text-field
-contractVersion: 0.3.2
+contractVersion: 0.4.0
 title: Text field
 summary: A free-text field with a label, an optional description and an error message.
 
@@ -313,6 +313,16 @@ rules:
     rationale: The role tells users they can type here; a text field exposed as anything else is misannounced.
     since: 0.3.0
     test: { kind: role, selector: '{control}:not([list])', oneOf: [textbox, searchbox] }
+    css: false
+
+  - id: TF-22
+    description: The control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see where they are; a ring in the same colour as the page (or none at all) hides it. WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.4.0
+    test: { kind: focusRing, selector: '{control}', min: 3 }
     css: false
 
 wcag:

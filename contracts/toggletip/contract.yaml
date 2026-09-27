@@ -3,7 +3,7 @@
 # The single source for the conformance tests, warning CSS, editor validation and the docs page.
 # Test selectors name parts ({trigger}, {content}, …); `:scope` is the root; {id} is the root's id.
 component: toggletip
-contractVersion: 0.1.0
+contractVersion: 0.2.0
 title: Toggletip
 summary: A small button that shows a short explanation on click, using the native popover attribute and invoker commands. Zero JavaScript.
 
@@ -190,6 +190,16 @@ rules:
     test: { kind: uniqueIds }
     css: false
     editor: { level: warn }
+
+  - id: TT-12
+    description: The trigger and the close control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see where they are; a ring in the same colour as the page (or none at all) hides it. WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.2.0
+    test: { kind: focusRing, selector: '{trigger}, {close}', min: 3 }
+    css: false
 
 wcag:
   - { criterion: "1.3.2", name: Meaningful Sequence, level: A, how: "The explanation follows the trigger in the DOM, so it is read and tabbed to next" }

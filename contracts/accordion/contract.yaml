@@ -3,7 +3,7 @@
 # The single source for the conformance tests, warning CSS, editor validation and the docs page.
 # Test selectors name parts ({item}, {summary}, …); `:scope` is the root.
 component: accordion
-contractVersion: 0.1.0
+contractVersion: 0.2.0
 title: Accordion
 summary: Questions and sections that expand in place, built on the native details element. Zero JavaScript; with a shared name, opening one closes the others.
 
@@ -183,6 +183,16 @@ rules:
     css:
       violation: '[data-gui="accordion"] [data-gui-part="heading"]:not([data-gui-part="summary"] *)'
       message: "AC-09: put the heading inside the summary."
+
+  - id: AC-10
+    description: Every summary shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see where they are; a ring in the same colour as the page (or none at all) hides it. WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.2.0
+    test: { kind: focusRing, selector: '{summary}', min: 3 }
+    css: false
 
 wcag:
   - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "Native details ties each summary to its panel; optional headings inside summaries keep the page outline" }

@@ -3,7 +3,7 @@
 # The single source for the conformance tests, warning CSS, editor validation and the docs page.
 # Test selectors name parts ({label}, {icon}); `:scope` is the root (the button itself).
 component: button
-contractVersion: 0.1.0
+contractVersion: 0.2.0
 title: Button
 summary: A native button for actions, form submits and on/off toggles, with an optional icon. Zero JavaScript to be accessible.
 
@@ -153,6 +153,16 @@ rules:
     css:
       violation: '[data-gui="button"] [data-gui-part="icon"]:not([aria-hidden="true"])'
       message: "BT-09: add aria-hidden=true to the icon."
+
+  - id: BT-10
+    description: The button shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see where they are; a ring in the same colour as the page (or none at all) hides it. WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.2.0
+    test: { kind: focusRing, selector: ':scope', min: 3 }
+    css: false
 
 # Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
 knownDifferences: []

@@ -1,0 +1,6 @@
+<!-- Breaks TF-22: the site's theme removes focus outlines, so keyboard users can't see the field is focused. -->
+<style>:focus { outline: 0; }</style>
+<div data-gui="text-field">
+  <label data-gui-part="label" for="name">Name</label>
+  <input data-gui-part="control" type="text" id="name" name="name" autocomplete="name">
+</div>
