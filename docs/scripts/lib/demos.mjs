@@ -24,12 +24,11 @@ ${cssFiles(referenceDir, markup, styled).map(({ slug, file }) => `<link rel="sty
 <style>
   :root { color-scheme: light dark; color: CanvasText; }
   body { margin: 0.5rem; font: 1rem/1.5 system-ui, sans-serif; }
-  body { display: grid; justify-items: start; padding-block: 0.5rem; }
+  body { display: grid; gap: 1.25rem; align-content: start; justify-items: start; padding: 0.75rem 0.5rem; }
   /* Fields and groups take the full width; buttons and inline toggletips keep their own size. */
-  body > :not(button, span) { justify-self: stretch; }${opens(markup) ? `
-  /* Room to open: the example sits centred in the tall box; a dialog demo is only its trigger until opened. */
-  body { align-content: center; min-block-size: calc(100dvb - 2rem); }` : ''}${markup.includes('<dialog') ? `
-  body { place-items: center; }` : ''}
+  body > :not(button, span) { justify-self: stretch; }${markup.includes('<dialog') ? `
+  /* A dialog demo is only its trigger until opened: centre it in the room kept for the modal. */
+  body { place-content: center; place-items: center; min-block-size: calc(100dvb - 2.5rem); }` : ''}
 </style>
 </head>
 <body>
@@ -44,10 +43,13 @@ export function writeDemo(referenceDir, path, title, markup) {
   writeFileSync(path.replace(/\.html$/, '.base.html'), shell(referenceDir, `${title} (base)`, markup, false));
 }
 
-// Components that open something (a modal, a popover, a picker, a disclosure) get a tall box with room to open
-// in; the rest fit their content. /demo-frame.js fits every frame to its content, never below the minimum.
-const opens = (markup) => /<dialog|\spopover[\s>=]|<select|<details|<datalist/.test(markup);
-export const demoHeight = (markup) => (opens(markup) ? { height: 380, minHeight: 380 } : { height: 120, minHeight: 0 });
+// Three box sizes, so switching examples inside one component doesn't jump and things that open have room:
+//   tall   (380px) a modal, a picker or a disclosure; only a dialog demo is centred (it's just its trigger)
+//   medium (260px) a popover that opens below its trigger
+//   compact (200px) everything else
+// Content always starts at the top; /demo-frame.js grows a frame whose content is taller.
+const size = (markup) => (/<dialog|<select|<details|<datalist/.test(markup) ? 380 : /\spopover[\s>=]/.test(markup) ? 260 : 200);
+export const demoHeight = (markup) => ({ height: size(markup), minHeight: size(markup) });
 
 /** Styled · Base · HTML · CSS in one box (Blume's built-in Tabs), independent of other examples. */
 export function previewTabs(referenceDir, { src, title, markup }) {
