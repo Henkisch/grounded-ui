@@ -160,6 +160,35 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
         const el = pick(selector).find((candidate) => !oneOf.includes(ax.commons.aria.getRole(candidate) ?? 'none'));
         return el ? `${describe(el)} has role "${ax.commons.aria.getRole(el) ?? 'none'}", expected ${oneOf.join(' or ')}` : null;
       },
+      // The match is the first element in the page's Tab order (e.g. a skip link).
+      firstFocusable({ selector }) {
+        const [el] = pick(selector);
+        if (!el) return null;
+        const tabbable = [...document.querySelectorAll('a[href], button, input, select, textarea, summary, [tabindex]')]
+          .filter((node) => !node.disabled && node.tabIndex >= 0 && !node.closest('[inert], [hidden]') && node.type !== 'hidden');
+        // Other instances of the same component may come first (several skip links in a row).
+        const first = tabbable.sort((a, b) => (a.tabIndex || 1e9) - (b.tabIndex || 1e9)).find((node) => !roots.includes(node) || node === el);
+        return first === el ? null : `${describe(first)} comes before ${describe(el)} in the Tab order`;
+      },
+      // Focused by keyboard, the match is visible: a real box, not clipped away, not transparent.
+      visibleOnFocus({ selector }) {
+        const before = document.activeElement;
+        try {
+          for (const el of pick(selector)) {
+            document.activeElement?.blur?.();
+            el.focus({ focusVisible: true });
+            if (document.activeElement !== el) return `${describe(el)} can't take focus`;
+            const s = getComputedStyle(el);
+            const r = el.getBoundingClientRect();
+            const clipped = s.clipPath !== 'none' || (s.clip && s.clip !== 'auto');
+            if (r.width < 2 || r.height < 2 || clipped || parseFloat(s.opacity) < 0.1) return `${describe(el)} stays invisible when focused`;
+          }
+          return null;
+        } finally {
+          document.activeElement?.blur?.();
+          before?.focus?.();
+        }
+      },
       // Same-page links (href="#id") point at an element that exists.
       hrefTargetsExist({ selector }) {
         const dead = pick(selector).find((el) => {

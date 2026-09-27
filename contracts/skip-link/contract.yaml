@@ -3,7 +3,7 @@
 # The single source for the conformance tests, warning CSS, editor validation and the docs page.
 # `:scope` is the root: the link itself. Its target (the main content) is outside the component.
 component: skip-link
-contractVersion: 0.1.0
+contractVersion: 0.2.0
 title: Skip link
 summary: A link at the start of the page that lets keyboard users jump past the navigation to the main content. Hidden until it gets focus, zero JavaScript.
 
@@ -120,6 +120,26 @@ rules:
       violation: '[data-gui="skip-link"]:not(a[href^="#"])'
       message: 'skip-link/link-element: use <a href="#main">.'
     editor: { level: refuse }
+
+  - id: skip-link/first-focusable
+    description: The skip link is the first thing keyboard focus reaches on the page.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks
+    rationale: It exists to save keyboard users from tabbing through the header; after other links it saves nothing.
+    since: 0.2.0
+    test: { kind: firstFocusable, selector: ':scope' }
+    css: false
+
+  - id: skip-link/visible-on-focus
+    description: The skip link becomes visible when it receives keyboard focus.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: A focused link that stays invisible leaves sighted keyboard users with focus they can't see.
+    since: 0.2.0
+    test: { kind: visibleOnFocus, selector: ':scope' }
+    css: false
 
 # Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
 knownDifferences: []

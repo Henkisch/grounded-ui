@@ -707,6 +707,36 @@
             }
           },
           "$comment": "no match's accessible name is only one of the generic phrases"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector"
+          ],
+          "properties": {
+            "kind": {
+              "const": "firstFocusable"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            }
+          },
+          "$comment": "the match is the first element in the page's Tab order"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector"
+          ],
+          "properties": {
+            "kind": {
+              "const": "visibleOnFocus"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            }
+          },
+          "$comment": "each match, focused by keyboard, has a visible box: not clipped, not transparent, at least 2px"
         }
       ],
       "properties": {
@@ -730,7 +760,9 @@
             "labelInName",
             "hrefTargetsExist",
             "noLooseText",
-            "nameNotGeneric"
+            "nameNotGeneric",
+            "firstFocusable",
+            "visibleOnFocus"
           ]
         }
       }
