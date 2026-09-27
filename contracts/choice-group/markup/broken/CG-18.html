@@ -1,0 +1,12 @@
+<!-- Breaks CG-18: the label has no for and does not wrap the control; aria-labelledby still names it. -->
+<fieldset data-gui="choice-group">
+  <legend data-gui-part="legend">How should we contact you?</legend>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="checkbox" id="o-1" name="c-1" aria-labelledby="l-1">
+    <label data-gui-part="label" id="l-1">Email</label>
+  </div>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="checkbox" id="o-2" name="c-2">
+    <label data-gui-part="label" for="o-2">Phone</label>
+  </div>
+</fieldset>

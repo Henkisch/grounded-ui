@@ -1,0 +1,408 @@
+# Contract: choice-group
+# A group of checkboxes or radio buttons in a fieldset, named by its legend, with an optional description and error.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({legend}, {control}, …); `:scope` is the root; {id} is the root's id.
+component: choice-group
+contractVersion: 0.1.0
+title: Choice group
+summary: A group of checkboxes or radio buttons in a fieldset, named by its legend, with an optional description and error message.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+# Support versions and Baseline status are read from the web-features package, never written by hand.
+requires:
+  - feature: scope
+  - feature: appearance
+    optional: true
+    fallback: Browsers without appearance none show their native checkbox and radio, still sized and focusable.
+
+anatomy:
+  root:
+    label: Root
+    element: [fieldset]
+    required: true
+  legend:
+    label: Legend
+    element: [legend]
+    required: true
+  required-indicator:
+    label: Required indicator
+    element: [span]
+  description:
+    label: Description
+    element: [p, div]
+  error:
+    label: Error message
+    element: [p, div]
+    requiredWhen: '[aria-invalid="true"]'
+  option:
+    label: Option
+    element: [div]
+    required: true
+  control:
+    label: Control
+    element: [input]
+    required: true
+  label:
+    label: Option label
+    element: [label]
+    required: true
+
+domOrder: [legend, description, error, option]
+
+variants:
+  - name: inline
+    description: Options side by side, wrapping onto new lines. For short labels such as Yes / No.
+
+states:
+  - { name: checked, label: Checked, dom: checked, hook: ":checked" }
+  - { name: indeterminate, label: Mixed (checkbox), dom: "indeterminate, set by script", hook: ":indeterminate" }
+  - { name: invalid, label: Invalid, dom: 'aria-invalid="true"', hook: '[aria-invalid="true"]' }
+  - { name: disabled, label: Disabled, dom: disabled, hook: ":disabled" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: "Checkboxes: each is its own tab stop. Radios: the group is one tab stop, landing on the checked radio (or the first)" }
+  - { key: Space, behavior: Checks or unchecks a checkbox; checks the focused radio }
+  - { key: Arrow keys, behavior: Radios only; move to and check the next or previous radio in the group }
+  - { key: Click on a label, behavior: 'Checks the option, like clicking its control' }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: CG-01
+    description: The group has the role group or radiogroup.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: The role tells screen-reader users that the options belong together and that the group's name applies to all of them.
+    since: 0.1.0
+    test: { kind: role, selector: ':scope', oneOf: [group, radiogroup] }
+    css: false
+
+  - id: CG-02
+    description: The group has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
+    rationale: Without a group name, users hear "Yes" and "No" without the question they answer.
+    since: 0.1.0
+    test: { kind: name, selector: ':scope' }
+    css: false
+    editor: { level: refuse }
+
+  - id: CG-03
+    description: The group's accessible name contains the legend text.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: Users should hear the question they see; a name unrelated to the legend is confusing.
+    since: 0.1.0
+    test: { kind: name, selector: ':scope', includes: '{legend}' }
+    css: false
+
+  - id: CG-04
+    description: The legend has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
+    rationale: The legend is the visible question; an empty one leaves sighted users guessing too.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{legend}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="choice-group"] [data-gui-part="legend"]:empty'
+      pseudo: before
+      message: "CG-04: the legend is empty."
+    editor: { level: refuse }
+
+  - id: CG-05
+    description: Every control has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: A checkbox without a name is announced as just "checkbox, not checked".
+    since: 0.1.0
+    test: { kind: name, selector: '{control}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: CG-06
+    description: Every control has the role checkbox, radio or switch.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: The role tells users they can check it and how many they may choose.
+    since: 0.1.0
+    test: { kind: role, selector: '{control}', oneOf: [checkbox, radio, switch] }
+    css: false
+
+  - id: CG-07
+    description: If there is a description, its text reaches the group's accessible description or name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: Instructions shown under the legend must be available to screen-reader users when they enter the group.
+    since: 0.1.0
+    test: { kind: exposes, selector: ':scope', text: '{description}' }
+    css: false
+
+  - id: CG-08
+    description: If a control has aria-invalid="true", there is an error message in the group or referenced by the control.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: WCAG 3.3.1 requires the error to be described in text, not only flagged.
+    since: 0.1.0
+    test: { kind: invalidHasError, control: '{control}', error: '{error}' }
+    css:
+      violation: '[data-gui="choice-group"]:has([aria-invalid="true"]):not(:has([data-gui-part="error"]))'
+      message: "CG-08: aria-invalid=true but no [data-gui-part=error]."
+    editor: { level: refuse }
+
+  - id: CG-09
+    description: If there is an error message, its text reaches the group's accessible description or name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: An error shown only visually leaves screen-reader users with an invalid group and no reason.
+    since: 0.1.0
+    test: { kind: exposes, selector: ':scope', text: '{error}' }
+    css: false
+
+  - id: CG-10
+    description: The error message has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: An empty error part flags the group without saying what is wrong.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{error}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="choice-group"] [data-gui-part="error"]:empty'
+      pseudo: before
+      message: "CG-10: the error message is empty."
+    editor: { level: warn }
+
+  - id: CG-11
+    description: Every control is at least 24 by 24 CSS pixels.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: Native checkboxes are about 13 pixels, too small for people with tremors and on touch screens.
+    since: 0.1.0
+    test: { kind: targetSize, selector: '{control}', min: 24 }
+    css: false
+
+  - id: CG-12
+    description: Every control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see which option they are on; WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{control}', min: 3 }
+    css: false
+
+  - id: CG-13
+    description: Ids inside the group are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes for and aria-describedby point at the wrong element.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+    editor: { level: warn }
+
+  - id: CG-14
+    description: The root is a <fieldset> element.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H71
+    rationale: A native fieldset gives the group its role, takes its name from the legend and disables all options at once.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(fieldset)' }
+    css:
+      violation: '[data-gui="choice-group"]:not(fieldset)'
+      message: "CG-14: data-gui=choice-group must be a <fieldset>."
+    editor: { level: refuse }
+
+  - id: CG-15
+    description: The legend part is a <legend> element.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H71
+    rationale: Only a legend names its fieldset without extra ARIA.
+    since: 0.1.0
+    test: { kind: absent, selector: '{legend}:not(legend)' }
+    css:
+      violation: '[data-gui="choice-group"] [data-gui-part="legend"]:not(legend)'
+      message: "CG-15: the legend part must be a <legend>."
+
+  - id: CG-16
+    description: There is exactly one legend.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#the-fieldset-element
+    rationale: A fieldset's first legend names it; a second one is ignored by assistive technology.
+    since: 0.1.0
+    test: { kind: count, selector: '{legend}', equals: 1 }
+    css:
+      violation: '[data-gui="choice-group"]:not(:has([data-gui-part="legend"]))'
+      message: "CG-16: the group has no [data-gui-part=legend]."
+    editor: { level: refuse }
+
+  - id: CG-17
+    description: Every option holds a control.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
+    rationale: An option wrapper without a control is a label for nothing.
+    since: 0.1.0
+    test: { kind: absent, selector: '{option}:not(:has({control}))' }
+    css:
+      violation: '[data-gui="choice-group"] [data-gui-part="option"]:not(:has([data-gui-part="control"]))'
+      message: "CG-17: an option has no [data-gui-part=control]."
+
+  - id: CG-18
+    description: Every label is tied to its control, with for or by wrapping it.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H44
+    rationale: A tied label names the control and makes the whole text clickable, a bigger target.
+    since: 0.1.0
+    test: { kind: absent, selector: '{label}:not([for]):not(:has({control}))' }
+    css:
+      violation: '[data-gui="choice-group"] [data-gui-part="label"]:not([for]):not(:has([data-gui-part="control"]))'
+      message: "CG-18: the label has no for and doesn't wrap its control."
+    editor: { level: warn }
+
+  - id: CG-19
+    description: Every control is a native checkbox or radio input.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: Native inputs bring the role, the checked state, Space and arrow keys, and form submission for free.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:not(input[type="checkbox"], input[type="radio"])' }
+    css:
+      violation: '[data-gui="choice-group"] [data-gui-part="control"]:not(input[type="checkbox"], input[type="radio"])'
+      message: "CG-19: the control must be an <input type=checkbox> or <input type=radio>."
+
+  - id: CG-20
+    description: Every radio has a name.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/input.html#radio-button-group
+    rationale: The shared name makes radios one group, so only one can be checked and the arrow keys move between them.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}[type="radio"]:not([name])' }
+    css:
+      violation: '[data-gui="choice-group"] [data-gui-part="control"][type="radio"]:not([name])'
+      message: "CG-20: a radio has no name, so it isn't grouped."
+    editor: { level: refuse }
+
+  - id: CG-21
+    description: If there is a description, its id is referenced in the fieldset's aria-describedby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: aria-describedby on the fieldset reads the instruction once, when the user enters the group.
+    since: 0.1.0
+    test:
+      kind: idrefIncludes
+      from: { selector: ':scope', attr: aria-describedby }
+      to: '{description}'
+    css: false
+
+  - id: CG-22
+    description: The error's id comes first in the fieldset's aria-describedby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/TR/wai-aria-1.2/#aria-describedby
+    rationale: Screen readers read describedby in id order; the error is the most urgent information.
+    since: 0.1.0
+    test:
+      kind: idrefFirst
+      from: { selector: ':scope', attr: aria-describedby }
+      to: '{error}'
+    css: false
+
+  - id: CG-23
+    description: No control has an aria-label competing with its visible label.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: aria-label overrides the visible label as the name; when the texts drift apart, voice-control users can't pick the option.
+    since: 0.1.0
+    test: { kind: absent, selector: '{option}:has({label}) {control}[aria-label]' }
+    css:
+      violation: '[data-gui="choice-group"] [data-gui-part="option"]:has([data-gui-part="label"]) [data-gui-part="control"][aria-label]'
+      message: "CG-23: the control has both a label and an aria-label."
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "fieldset and legend group the options; each label tied to its control; description and error on the fieldset's aria-describedby" }
+  - { criterion: "3.3.2", name: Labels or Instructions, level: A, how: "The legend asks the question; every option has a visible label" }
+  - { criterion: "3.3.1", name: Error Identification, level: A, how: "An error message referenced by the group, with aria-invalid on the controls" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Native checkbox and radio inputs: role, name and checked state" }
+  - { criterion: "2.1.1", name: Keyboard, level: A, how: "Native inputs: Tab, Space and arrow keys" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "Controls at least 24 by 24 CSS pixels, labels clickable too" }
+  - { criterion: "1.4.11", name: Non-text Contrast, level: AA, how: "Box border, checked mark and focus ring at least 3:1" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring on the control, never removed" }
+
+siteResponsibilities:
+  - { criterion: "1.4.3", title: Text contrast, text: "Labels and the legend use the site's text colour; 4.5:1 against the background is the site's job." }
+  - { criterion: "3.3.1", title: Error summary on submit, text: "Belongs to the form, not the group." }
+  - { criterion: "2.4.7", title: Don't remove the focus ring, text: "Grounded UI never uses !important, so a site rule like :focus { outline: 0 } removes the controls' focus ring." }
+  - { title: Indeterminate checkboxes, text: "The mixed state can only be set from script (input.indeterminate = true); the page must also explain what it means." }
+
+editor:
+  help:
+    legend: 'Ask the question the options answer: "How should we contact you?" works better than "Contact".'
+    label: 'Keep option labels short and parallel. Screen readers read the legend first, so "Email" is enough, not "Contact me by email".'
+    description: "Optional instruction, such as how many to choose. Announced once, when the user enters the group."
+    error: 'Say what to do: "Choose at least one way to contact you" helps; "Required" does not.'
+  softWarnings:
+    - { id: CG-W1, text: A group with only one checkbox (use a single checkbox) }
+    - { id: CG-W2, text: A radio group without a checked or explained default }
+    - { id: CG-W3, text: More than about seven options (consider a select) }
+
+# The component's API: the attributes a user writes. Rendered as tables in the docs.
+attributes:
+  - { on: root, name: data-gui, type: '"choice-group"', required: true, description: Marks the fieldset as a Grounded UI choice group. }
+  - { on: root, name: data-gui-variant, type: '"inline"', description: 'Options side by side, wrapping onto new lines.' }
+  - { on: root, name: aria-describedby, type: id list, description: 'Error id first, then the description id.' }
+  - { on: root, name: disabled, type: boolean, description: Disables every option at once. }
+  - { on: control, name: type, type: '"checkbox" | "radio"', required: true, description: 'Checkboxes: choose any. Radios: choose one.' }
+  - { on: control, name: name, type: string, required: true, description: 'The form field name; all radios in a group share one.' }
+  - { on: control, name: id, type: string, required: true, description: Target for the label's for. }
+  - { on: control, name: value, type: string, description: The value sent when checked. }
+  - { on: control, name: aria-invalid, type: '"true"', description: Set on every control when the group is invalid. Requires an error part. }
+  - { on: control, name: required, type: boolean, description: 'Radios: one must be chosen. Not meaningful on a checkbox group.' }
+  - { on: label, name: for, type: id, required: true, description: The control's id. }
+  - { on: description, name: id, type: string, description: Referenced from the fieldset's aria-describedby. }
+  - { on: error, name: id, type: string, description: Referenced first in the fieldset's aria-describedby. }
+
+customProperties:
+  --gui-choice-group-gap: Space between options.
+  --gui-choice-group-legend-weight: Legend font weight.
+  --gui-choice-group-muted: Description and disabled text colour.
+  --gui-choice-group-control-bg: Unchecked box background.
+  --gui-choice-group-border: Box border colour (keep it at least 3:1 against the background).
+  --gui-choice-group-border-hover: Box border colour on hover.
+  --gui-choice-group-checked: Checked box fill.
+  --gui-choice-group-radius: Checkbox corner radius.
+  --gui-choice-group-focus: Focus ring colour.
+  --gui-choice-group-danger: Error text and invalid border colour.
+  --gui-choice-group-duration: Check transition duration.
+  --gui-choice-group-easing: Transition easing.

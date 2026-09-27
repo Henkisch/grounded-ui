@@ -50,7 +50,7 @@ Draw your own only when the design needs it. `appearance: none` removes the nati
 }
 .custom[type="radio"]::before { clip-path: circle(50%); }
 .custom:checked::before { scale: 1; }
-.custom:indeterminate::before { scale: 1; clip-path: inset(40% 0); } /* a bar */
+.custom[type="checkbox"]:indeterminate::before { scale: 1; clip-path: inset(40% 0); } /* a bar; checkbox only, see Quirks */
 
 .custom:focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
 .custom:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -66,6 +66,7 @@ Draw your own only when the design needs it. `appearance: none` removes the nati
 
 - **Form controls don't inherit font size.** An unstyled checkbox computes its own font size (13.33px in Chromium and Firefox, 11px in WebKit), so `1em` on it is not your text size. Set `font: inherit` first. Checked in all three engines.
 - **`::before` works on an `appearance: none` checkbox** in all three engines, so no extra `span` is needed. It does not work on a checkbox that still has its native appearance.
+- **Radios match `:indeterminate` too.** Per the HTML spec, every radio in a group matches `:indeterminate` while none of them is checked, so a mixed-state style on `:indeterminate` draws a bar in every empty radio group. Scope it to `[type="checkbox"]`. Found building the choice group.
 - **`indeterminate` is a property, not an attribute.** It can only be set from script (`input.indeterminate = true`) and shows as `:indeterminate`. Checked in all three engines.
 - **Forced colours overwrite backgrounds.** In Chromium's forced-colours emulation, a green custom box became white with a black border. A mark drawn only with `background` can disappear; use a system colour inside the forced-colours query.
 

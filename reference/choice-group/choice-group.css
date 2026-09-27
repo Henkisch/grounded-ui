@@ -1,0 +1,46 @@
+/*
+ * choice-group base CSS: only what the contract and accessibility need.
+ * Options stacked with their labels, controls at least 24 CSS px (WCAG 2.5.8) in the site's font,
+ * a focus ring that is never removed, and no fieldset overflow at narrow widths (WCAG 1.4.10).
+ * For a finished look, add choice-group.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.choice-group {
+  @scope ([data-gui="choice-group"]) to ([data-gui]) {
+    /* A fieldset's min-inline-size is min-content by default, so wide content makes the page scroll sideways. */
+    :scope {
+      min-inline-size: 0;
+    }
+
+    :where([data-gui-part="description"], [data-gui-part="error"]) {
+      margin: 0;
+    }
+
+    :where([data-gui-part="option"]) {
+      display: flex;
+      gap: 0.5em;
+      align-items: flex-start;
+    }
+
+    /* Form controls don't inherit the page font, so 1.5em would be about 20px, below the 24px target. */
+    :where([data-gui-part="control"]) {
+      flex: none;
+      inline-size: 1.5em;
+      block-size: 1.5em;
+      margin: 0;
+      font: inherit;
+    }
+
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :where([data-gui-part="control"]):focus-visible {
+      outline: 2px solid var(--gui-choice-group-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+
+    :where([data-gui-part="control"]):disabled {
+      cursor: not-allowed;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<!-- Breaks CG-15: the legend part is a paragraph named through aria-labelledby, not a <legend>. -->
+<fieldset data-gui="choice-group" aria-labelledby="g-legend">
+  <p data-gui-part="legend" id="g-legend">How should we contact you?</p>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="checkbox" id="o-1" name="c-1">
+    <label data-gui-part="label" for="o-1">Email</label>
+  </div>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="checkbox" id="o-2" name="c-2">
+    <label data-gui-part="label" for="o-2">Phone</label>
+  </div>
+</fieldset>
