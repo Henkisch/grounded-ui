@@ -1,0 +1,215 @@
+# Contract: notice
+# An inline callout in page content: information, a success, a warning or a danger. Not announced live.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({type}, {title}, {body}, {icon}); `:scope` is the root.
+component: notice
+contractVersion: 0.1.0
+title: Notice
+summary: An inline callout for information, success, warnings and danger. The type is always in the text, never in colour alone. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [div, aside, section]
+    required: true
+  icon:
+    label: Icon
+    element: [span, svg]
+  type:
+    label: Type label
+    element: [p, span, strong]
+    required: true
+  title:
+    label: Title
+    element: [h2, h3, h4, p]
+  body:
+    label: Body
+    element: [p, div]
+    required: true
+
+domOrder: [icon, type, title, body]
+
+variants:
+  - name: info
+    description: Neutral information. The default look.
+  - name: success
+    description: Something went well or is confirmed.
+  - name: warning
+    description: Something the reader should act on or be careful about.
+  - name: danger
+    description: Something serious, such as a risk or a loss.
+
+states:
+  - { name: link-focus, label: Link focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: "Moves between links inside the notice; the notice itself isn't focusable" }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: notice/states-type
+    description: The notice says its type in text, such as "Warning".
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/use-of-color
+    rationale: A red or yellow border alone doesn't tell colour-blind or screen-reader users that this is a warning.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(:has({type}))' }
+    css:
+      violation: '[data-gui="notice"]:not(:has([data-gui-part="type"]))'
+      message: "notice/states-type: add a type label, such as Warning."
+    editor: { level: refuse }
+
+  - id: notice/type-has-text
+    description: The type label has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/use-of-color
+    rationale: An empty type label leaves the type to colour alone.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{type}' }
+    css: false
+
+  - id: notice/has-body
+    description: The notice has a body.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: A notice with only a label says that something is wrong but not what.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(:has({body}))' }
+    css: false
+
+  - id: notice/body-has-text
+    description: The body has non-empty text.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: An empty body is a notice that says nothing.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{body}' }
+    css: false
+
+  - id: notice/title-has-text
+    description: If there is a title, it has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels
+    rationale: An empty heading is announced as a heading with nothing in it, and breaks the page outline.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{title}' }
+    css: false
+
+  - id: notice/not-live
+    description: The notice isn't a live region.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/status-messages
+    rationale: A notice that is part of the page would interrupt screen-reader users on every load; status messages that appear after an action are a different component.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:is([role="alert"], [role="status"], [aria-live="polite"], [aria-live="assertive"])' }
+    css: false
+
+  - id: notice/focus-ring-visible
+    description: Links in the notice show a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: The notice's tinted background can swallow a site's focus ring; keyboard users need to see where they are.
+    since: 0.1.0
+    test: { kind: focusRing, selector: 'a[href]', min: 3 }
+    css: false
+
+  - id: notice/unique-ids
+    description: Ids inside the notice are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A notice pasted twice with the same ids breaks every reference to them.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+
+  - id: notice/note-role
+    description: The root has role="note".
+    level: recommended
+    type: technique
+    source: https://www.w3.org/TR/wai-aria-1.2/#note
+    rationale: role note marks the notice as supporting content without making it a landmark or a live region.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not([role="note"])' }
+    css:
+      violation: '[data-gui="notice"]:not([role="note"])'
+      message: "notice/note-role: add role=note."
+
+  - id: notice/type-first
+    description: The type label comes first (after an optional icon).
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence
+    rationale: Read in order, the type tells the listener how to take what follows.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope > :first-child:not({type}, {icon})' }
+    css: false
+
+  - id: notice/icon-hidden
+    description: The icon is hidden from assistive technology.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA14
+    rationale: The type label already says it in words; an icon read aloud repeats it as noise.
+    since: 0.1.0
+    test: { kind: absent, selector: '{icon}:not([aria-hidden="true"])' }
+    css:
+      violation: '[data-gui="notice"] [data-gui-part="icon"]:not([aria-hidden="true"])'
+      message: "notice/icon-hidden: add aria-hidden=true to the icon."
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.4.1", name: Use of Color, level: A, how: "The type is a text label, and the coloured edge only repeats it" }
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "role note, an optional heading for the title" }
+  - { criterion: "1.4.3", name: Contrast (Minimum), level: AA, how: "Text in the full text colour on a light tint of the page colour" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "Links inside get a 2px focus ring in base CSS" }
+  - { criterion: "4.1.3", name: Status Messages, level: AA, how: "Not a live region: a notice is part of the page, not a message after an action" }
+
+siteResponsibilities:
+  - { criterion: "4.1.3", title: Messages after an action, text: "A message that appears after the user does something (saved, sent, failed) needs a status message or alert, not a notice." }
+  - { criterion: "2.4.6", title: Keep it short, text: "Say what happened or what to do in the first sentence; one notice per topic." }
+  - { criterion: "1.3.1", title: Heading level, text: "Pick the title's heading level to fit the page outline, or use a paragraph." }
+
+editor:
+  help:
+    type: 'Pick the type that matches the message; the word ("Warning", "Info") is shown to everyone.'
+    title: "A short summary of the message. Optional."
+    body: "Say what happened or what the reader should do, in one or two sentences."
+  softWarnings:
+    - { id: NT-W1, text: More than one notice of the same type in a row }
+    - { id: NT-W2, text: A danger notice with no action or next step in the body }
+
+attributes:
+  - { on: root, name: data-gui, type: '"notice"', required: true, description: Marks the element as a Grounded UI notice. }
+  - { on: root, name: role, type: '"note"', required: true, description: Supporting content that isn't a landmark or live region. }
+  - { on: root, name: data-gui-variant, type: '"info" | "success" | "warning" | "danger"', description: The type's colour. The type label says it in words. }
+  - { on: icon, name: aria-hidden, type: '"true"', required: true, description: Hides the decorative icon from assistive technology. }
+
+customProperties:
+  --gui-notice-bg: Background tint.
+  --gui-notice-radius: Corner radius.
+  --gui-notice-info: Edge colour for info.
+  --gui-notice-success: Edge colour for success.
+  --gui-notice-warning: Edge colour for warning.
+  --gui-notice-danger: Edge colour for danger.
+  --gui-notice-focus: Focus ring colour on links.

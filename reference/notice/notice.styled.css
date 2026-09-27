@@ -1,0 +1,68 @@
+/* Hallmark · component: notice · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · link focus (hover, active, disabled, loading, error, success: not states of a notice)
+ * contrast: all text in CanvasText on a 4% tint; the coloured edge is decorative (the type is in text)
+ */
+/*
+ * notice styled CSS: the Grounded house style on top of notice.css.
+ * A light tint of the page colour, a coloured start edge per type, and a small uppercase type label.
+ * Few, short selectors on purpose: a notice should cost nothing on the page.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.notice {
+  @scope ([data-gui="notice"]) to ([data-gui]) {
+    :scope {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      row-gap: 0.25em;
+      padding-block: 0.75em;
+      padding-inline: 1em;
+      background: var(--gui-notice-bg, color-mix(in oklab, CanvasText 5%, Canvas));
+      border-inline-start-width: 0.25em;
+      border-inline-start-style: solid;
+      border-inline-start-color: var(--gui-notice-info, color-mix(in oklab, CanvasText 55%, Canvas));
+      border-radius: var(--gui-notice-radius, var(--gui-radius, 0.375em));
+    }
+
+    :scope[data-gui-variant="success"] {
+      border-inline-start-color: var(--gui-notice-success, color-mix(in oklab, oklch(58% 0.14 150) 80%, CanvasText));
+    }
+
+    :scope[data-gui-variant="warning"] {
+      border-inline-start-color: var(--gui-notice-warning, color-mix(in oklab, oklch(75% 0.16 75) 80%, CanvasText));
+    }
+
+    :scope[data-gui-variant="danger"] {
+      border-inline-start-color: var(--gui-notice-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    /* Parts sit in the grid gap; user-agent margins on p/h2 would double it. */
+    /* Parts in the second column; an optional icon takes the first, beside the type label. */
+    :where([data-gui-part]) {
+      grid-column: 2;
+      margin: 0;
+    }
+
+    :where([data-gui-part="icon"]) {
+      grid-column: 1;
+      inline-size: 1em;
+      block-size: 1em;
+      margin-block-start: 0.125em;
+      margin-inline-end: 0.5em;
+    }
+
+    :where([data-gui-part="type"]) {
+      font-size: 0.8125em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    :where([data-gui-part="title"]) {
+      font-size: 1.0625em;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+  }
+}
