@@ -1,0 +1,10 @@
+<!-- Breaks unique-ids: the label's id is also used elsewhere on the page. -->
+<p id="trail">You are here:</p>
+<nav data-gui="breadcrumb" aria-labelledby="trail-label">
+  <span id="trail-label" hidden>Breadcrumb</span>
+  <span id="trail" hidden>Duplicate</span>
+  <ol data-gui-part="list">
+    <li data-gui-part="item"><a data-gui-part="link" href="/">Start</a></li>
+    <li data-gui-part="item"><span data-gui-part="current" aria-current="page">Bin collection</span></li>
+  </ol>
+</nav>

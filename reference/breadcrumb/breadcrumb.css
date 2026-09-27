@@ -1,0 +1,50 @@
+/*
+ * breadcrumb base CSS: only what the contract and accessibility need.
+ * One wrapping row, a chevron separator drawn in CSS (so it is never read aloud), links of at least
+ * 24 CSS px (WCAG 2.5.8) and a focus ring that is never removed. For a finished look, add breadcrumb.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.breadcrumb {
+  @scope ([data-gui="breadcrumb"]) to ([data-gui]) {
+    :where([data-gui-part="list"]) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0 var(--gui-breadcrumb-gap, 0.5em);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    :where([data-gui-part="item"]) {
+      display: flex;
+      align-items: center;
+      gap: var(--gui-breadcrumb-gap, 0.5em);
+    }
+
+    /* Generated content with no text: a chevron nobody hears. */
+    :where([data-gui-part="item"] + [data-gui-part="item"])::before {
+      content: "";
+      inline-size: 0.375em;
+      block-size: 0.375em;
+      border-block-start: 1px solid;
+      border-inline-end: 1px solid;
+      rotate: 45deg;
+      flex: none;
+    }
+
+    :where([data-gui-part="link"], [data-gui-part="current"]) {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: 1.5em;
+    }
+
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :where([data-gui-part="link"]):focus-visible {
+      outline: 2px solid var(--gui-breadcrumb-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+  }
+}
