@@ -23,7 +23,9 @@
     "lint:html": "html-validate \"contracts/*/markup/valid/*.html\" \"examples/*.html\" \"recipes/*.html\"",
     "conformance": "playwright test -c conformance/playwright.config.mjs",
     "report": "node reports/run.mjs",
-    "consistency": "node scripts/consistency.mjs"
+    "consistency": "node scripts/consistency.mjs",
+    "perf": "node scripts/perf.mjs",
+    "perf:check": "node scripts/perf.mjs --check"
   },
   "engines": {
     "node": ">=22.12"

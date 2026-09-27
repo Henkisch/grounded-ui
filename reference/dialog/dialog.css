@@ -1,7 +1,7 @@
 /*
  * dialog base CSS: only what the contract needs.
  * Native <dialog> in the top layer, opened and closed with invoker commands, zero JS.
- * Sizing, parts layout and scroll lock; the browser draws the surface and backdrop.
+ * Sizing and parts layout; the browser draws the surface and backdrop.
  * For a finished look, add dialog.styled.css.
  */
 /* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
@@ -31,8 +31,7 @@
     }
   }
 
-  /* Scroll lock while a modal is open. Zero specificity; the site can override it. */
-  :where(html:has([data-gui="dialog"]:modal)) {
-    overflow: hidden;
-  }
+  /* No scroll lock by default: html:has(…:modal) makes every DOM change on the page slower (measured in
+     scripts/perf.mjs), and scrolling the inert page behind a modal is native <dialog> behaviour. Sites that want
+     it add the one rule from the Performance page. */
 }

@@ -1,5 +1,14 @@
 {
   "$comment": "Bytes after lightningcss minify + brotli. Build fails if exceeded. Per-component overrides live in contract.yaml under budget:.",
-  "core": { "css": 3072 },
-  "component": { "css": 1536, "js": 1024 }
+  "core": {
+    "css": 3072
+  },
+  "component": {
+    "css": 1536,
+    "js": 1024
+  },
+  "perf": {
+    "$comment": "Report-only (timings vary by machine): node scripts/perf.mjs --check fails above this. First-render style + layout overhead of Grounded UI CSS versus no Grounded CSS, worst engine, per 1,000 component instances.",
+    "firstRenderOverheadMsPer1000": 200
+  }
 }
