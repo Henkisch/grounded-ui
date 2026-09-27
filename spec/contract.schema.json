@@ -574,6 +574,26 @@
             }
           },
           "$comment": "every control with aria-invalid=\"true\" has an error part inside the root, or references one (e.g. on a parent fieldset) through aria-describedby or aria-errormessage"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector",
+            "min"
+          ],
+          "properties": {
+            "kind": {
+              "const": "targetSize"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            },
+            "min": {
+              "type": "number",
+              "minimum": 1
+            }
+          },
+          "$comment": "every rendered match is at least `min` CSS px wide and tall (WCAG 2.5.8 target size)"
         }
       ],
       "properties": {
@@ -590,7 +610,8 @@
             "name",
             "exposes",
             "role",
-            "invalidHasError"
+            "invalidHasError",
+            "targetSize"
           ]
         }
       }

@@ -4,7 +4,7 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { checkPage, loadContracts } from '../src/index.mjs';
+import { checkPage, loadContracts, withReferenceCss } from '../src/index.mjs';
 
 const contractsDir = new URL('../../contracts', import.meta.url).pathname;
 const contracts = loadContracts(contractsDir);
@@ -19,7 +19,7 @@ for (const slug of Object.keys(contracts)) {
   test.describe(`${slug}: valid markup`, () => {
     for (const [file, source] of html(slug, 'valid')) {
       test(file, async ({ page }) => {
-        await page.setContent(source);
+        await page.setContent(withReferenceCss(source));
         const report = await checkPage(page, { contracts: only });
         expect(report.length, 'component found on the page').toBeGreaterThan(0);
         for (const root of report) {
@@ -35,7 +35,7 @@ for (const slug of Object.keys(contracts)) {
       const rule = file.replace(/\.html$/, '');
       const also = source.match(/also:\s*([A-Z0-9-,\s]+?)\s*-->/)?.[1].split(/[\s,]+/).filter(Boolean) ?? [];
       test(`${rule} fails${also.length ? ` (also ${also.join(', ')})` : ''}`, async ({ page }) => {
-        await page.setContent(source);
+        await page.setContent(withReferenceCss(source));
         const report = await checkPage(page, { contracts: only, axe: false });
         const failed = [...new Set(report.flatMap((root) => root.results.filter((r) => !r.pass).map((r) => r.id)))].sort();
         expect(failed).toEqual([rule, ...also].sort());

@@ -1,6 +1,6 @@
 ---
 name: grounded-ui
-description: Build or fix accessible UI components (text field, select, dialog, accordion, toggletip) as native HTML with zero JavaScript, and prove them accessible with Grounded UI's executable contracts. Use when asked to create, review or repair a form field, dropdown, modal, FAQ/accordion or info tooltip, or when asked whether a component is accessible.
+description: Build or fix accessible UI components (button, text field, select, dialog, accordion, toggletip) as native HTML with zero JavaScript, and prove them accessible with Grounded UI's executable contracts. Use when asked to create, review or repair a button, form field, dropdown, modal, FAQ/accordion or info tooltip, or when asked whether a component is accessible.
 ---
 
 # Grounded UI
@@ -9,7 +9,7 @@ Grounded UI gives each component an executable accessibility contract, a referen
 
 ## Workflow
 
-1. **Get the component.** Call the `get_component` tool with the slug (`text-field`, `select`, `dialog`, `accordion`, `toggletip`; `list_components` lists them). It returns the parts, the outcome rules, reference markup, the CSS and the theming tokens.
+1. **Get the component.** Call the `get_component` tool with the slug (`button`, `text-field`, `select`, `dialog`, `accordion`, `toggletip`; `list_components` lists them). It returns the parts, the outcome rules, reference markup, the CSS and the theming tokens.
 2. **Write the markup.** Start from the reference markup. Keep `data-gui="<slug>"` on the root and `data-gui-part` on each part. Make every id unique on the page and update the attributes that point at them (`for`, `aria-describedby`, `aria-labelledby`, `commandfor`).
 3. **Add the CSS.** Link or copy `core.css` once per page, then `<slug>.css` (required) and `<slug>.styled.css` (optional look). Theme with custom properties only: roles `--gui-border`, `--gui-focus`, `--gui-danger`, `--gui-radius`, or `--gui-<slug>-*` for one component. Never edit the files, never use `!important`.
 4. **Check it.** Call `check_html` with the markup (or `check_url` for a running page). Fix every `FAIL` and `AXE` line, then check again. Repeat until the first line reads `VERDICT: PASS`.

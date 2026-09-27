@@ -1,6 +1,6 @@
 <!-- title: Newsletter sign-up in a dialog -->
 <!-- description: A dialog containing a text field. Each component keeps its own styles because component CSS stops at nested components. -->
-<button type="button" commandfor="newsletter-signup" command="show-modal">Get the newsletter</button>
+<button data-gui="button" type="button" commandfor="newsletter-signup" command="show-modal">Get the newsletter</button>
 
 <dialog data-gui="dialog" id="newsletter-signup" aria-labelledby="newsletter-signup-title" aria-describedby="newsletter-signup-desc" closedby="any">
   <h2 data-gui-part="title" id="newsletter-signup-title">Get the newsletter</h2>
@@ -11,8 +11,8 @@
       <input data-gui-part="control" type="email" id="newsletter-signup-email" name="email" autocomplete="email">
     </div>
     <div data-gui-part="actions">
-      <button type="button" commandfor="newsletter-signup" command="close">Not now</button>
-      <button type="submit">Subscribe</button>
+      <button data-gui="button" type="button" commandfor="newsletter-signup" command="close" data-gui-variant="secondary">Not now</button>
+      <button data-gui="button" type="submit">Subscribe</button>
     </div>
   </form>
 </dialog>

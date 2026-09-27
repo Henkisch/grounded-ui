@@ -128,6 +128,16 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
         const el = pick(selector).find((candidate) => !oneOf.includes(ax.commons.aria.getRole(candidate) ?? 'none'));
         return el ? `${describe(el)} has role "${ax.commons.aria.getRole(el) ?? 'none'}", expected ${oneOf.join(' or ')}` : null;
       },
+      // WCAG 2.5.8: the rendered target is at least `min` CSS px in both directions. Unrendered elements are skipped.
+      targetSize({ selector, min }) {
+        const small = pick(selector).find((el) => {
+          const r = el.getBoundingClientRect();
+          return rendered(el) && r.width && (r.width < min - 0.5 || r.height < min - 0.5);
+        });
+        if (!small) return null;
+        const r = small.getBoundingClientRect();
+        return `${describe(small)} is ${Math.round(r.width)}×${Math.round(r.height)} px, below ${min}×${min}`;
+      },
       invalidHasError({ control, error }) {
         const invalid = within(control).filter((el) => el.getAttribute('aria-invalid') === 'true');
         if (!invalid.length || within(error).length) return null;

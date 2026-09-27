@@ -21,6 +21,20 @@ export function loadContracts(dir = join(repo, 'contracts')) {
   );
 }
 
+/**
+ * A page for Grounded UI markup with the reference CSS it would have on a real site: core, then base and styled
+ * for every component used. Rules that measure rendering (target size, visibility) need it.
+ */
+export function withReferenceCss(html) {
+  const ref = (...p) => join(repo, 'reference', ...p);
+  const used = [...new Set([...html.matchAll(/data-gui="([a-z0-9-]+)"/g)].map((m) => m[1]))];
+  const files = [ref('core', 'core.css'), ...used.flatMap((s) => [ref(s, `${s}.css`), ref(s, `${s}.styled.css`)])].filter(existsSync);
+  const css = files.map((f) => readFileSync(f, 'utf8')).join('\n');
+  return /<html[\s>]/i.test(html)
+    ? html.replace(/<\/head>/i, `<style>${css}</style></head>`)
+    : `<!doctype html><html lang="en"><head><meta charset="utf-8"><style>${css}</style></head><body>${html}</body></html>`;
+}
+
 /** Grounded UI's own markup: the root carries data-gui, parts carry data-gui-part. */
 export function defaultBinding(contract) {
   const parts = Object.keys(contract.anatomy).filter((key) => key !== 'root');

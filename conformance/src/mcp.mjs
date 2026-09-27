@@ -13,7 +13,7 @@ import { z } from 'zod';
 import { chromium } from '@playwright/test';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { checkPage, loadContracts } from './index.mjs';
+import { checkPage, loadContracts, withReferenceCss } from './index.mjs';
 
 const repo = new URL('../..', import.meta.url).pathname;
 const contracts = loadContracts();
@@ -27,13 +27,6 @@ let browser;
 const newPage = async () => {
   browser ??= await chromium.launch();
   return (await browser.newContext()).newPage();
-};
-
-// Grounded UI CSS for the components in the markup, so visibility and layout match a real page.
-const withCss = (html) => {
-  const used = [...new Set([...html.matchAll(/data-gui="([a-z0-9-]+)"/g)].map((m) => m[1]))].filter((s) => slugs.includes(s));
-  const css = [read('reference', 'core', 'core.css'), ...used.flatMap((s) => cssOf(s).map((f) => read('reference', s, f)))].join('\n');
-  return /<html[\s>]/i.test(html) ? html.replace(/<\/head>/i, `<style>${css}</style></head>`) : `<!doctype html><html lang="en"><head><meta charset="utf-8"><style>${css}</style></head><body>${html}</body></html>`;
 };
 
 function report(roots) {
@@ -126,7 +119,7 @@ server.registerTool('check_html', {
     component: z.enum(slugs).optional().describe('Limit to one component'),
     binding: z.string().optional().describe(bindingDescription),
   },
-}, async ({ html, component, binding }) => check((page) => page.setContent(withCss(html)), { component, binding }));
+}, async ({ html, component, binding }) => check((page) => page.setContent(withReferenceCss(html)), { component, binding }));
 
 server.registerTool('check_url', {
   title: 'Check a live page against the contracts',

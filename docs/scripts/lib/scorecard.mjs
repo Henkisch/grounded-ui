@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { chromium } from '@playwright/test';
 import { features } from 'web-features';
-import { checkPage } from '../../../conformance/src/index.mjs';
+import { checkPage, withReferenceCss } from '../../../conformance/src/index.mjs';
 import { table } from './mdx.mjs';
 
 const RANK = { false: 0, low: 1, high: 2 };
@@ -37,7 +37,7 @@ export async function scorecards(repo, contracts) {
     let checks = 0, passed = 0, axe = 0;
     const fixtures = readdirSync(dir).filter((f) => f.endsWith('.html'));
     for (const file of fixtures) {
-      await page.setContent(readFileSync(join(dir, file), 'utf8'));
+      await page.setContent(withReferenceCss(readFileSync(join(dir, file), 'utf8')));
       for (const root of await checkPage(page, { contracts: { [slug]: contract } })) {
         if (root.component !== slug) continue;
         checks += root.results.length;

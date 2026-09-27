@@ -60,9 +60,10 @@ async function render(engine, slug, markup) {
     .map((el) => {
       document.activeElement?.blur(); // a mouse-focused element keeps its no-ring state in Firefox
       el.focus({ focusVisible: true }); // as after Tab, in every engine
+      if (document.activeElement !== el) return null; // not focusable right now (e.g. inert behind an open modal)
       const s = getComputedStyle(el);
       return { element: el.dataset.guiPart ?? el.dataset.gui, ring: s.outlineStyle !== 'none' && parseFloat(s.outlineWidth) >= 2 };
-    }));
+    }).filter(Boolean));
   const shot = await tab.screenshot({ animations: 'disabled' });
   await context.close();
   return { boxes, focus, shot };
