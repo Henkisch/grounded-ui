@@ -1,0 +1,12 @@
+# Maps the dialog contract's parts to the USWDS modal. Its script moves .usa-modal into a
+# .usa-modal-wrapper that carries role="dialog", aria-modal and the labelling; only an open one is tested.
+component: dialog
+implementation: USWDS
+root: .usa-modal-wrapper.is-visible
+boundary: .usa-modal-wrapper
+parts:
+  trigger: ':not(*)'
+  title: .usa-modal__heading
+  body: '.usa-modal__main > .usa-prose'
+  actions: .usa-modal__footer
+  close: '[data-close-modal]'

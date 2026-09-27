@@ -1,7 +1,7 @@
-// Enforces the code rules (docs: Principles) on everything grund-ui ships.
+// Enforces the code rules (docs: Principles) on everything grounded-ui ships.
 // The generated warnings file is dev-only and deliberately uses fixed colours; it is not linted.
 export default {
-  plugins: ['stylelint-use-logical', 'stylelint-plugin-use-baseline', './scripts/stylelint-grund.mjs'],
+  plugins: ['stylelint-use-logical', 'stylelint-plugin-use-baseline', './scripts/stylelint-grounded.mjs'],
   rules: {
     // No colour values: currentColor, inherit or a custom property only.
     'color-no-hex': true,
@@ -20,11 +20,11 @@ export default {
     // Logical properties, no assumed writing direction.
     'csstools/use-logical': ['always', { except: ['float'] }],
 
-    // Styling hooks only on data-component / data-part / data-variant. Class attribute belongs to the site.
+    // Styling hooks only on data-gui / data-gui-part / data-gui-variant. Class attribute belongs to the site.
     'selector-max-class': 0,
     'selector-max-id': 0,
     // Element selectors only inside :where()/:is()/:not() so they carry zero specificity and never go global.
-    'grund/type-only-in-where': true,
+    'grounded/type-only-in-where': true,
     'declaration-no-important': true,
 
     // Platform drift: only CSS that is Baseline (newly available or better), per the web-features data.
@@ -39,4 +39,13 @@ export default {
       },
     ],
   },
+  overrides: [
+    {
+      // The styled look may use OKLCH for the one chromatic default (the error colour). Base stays colour-free.
+      files: ['reference/**/*.styled.css'],
+      rules: {
+        'function-disallowed-list': ['rgb', 'rgba', 'hsl', 'hsla', 'hwb', 'lab', 'lch', 'oklab', 'color'],
+      },
+    },
+  ],
 };

@@ -1,0 +1,225 @@
+# Contract: site-footer
+# The bottom of every page: named groups of links, contact details and small print, in the contentinfo landmark.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({group}, {heading}, {list}, {link}, {contact}, {legal}); `:scope` is the root (the footer).
+component: site-footer
+contractVersion: 0.1.0
+title: Site footer
+summary: The bottom of every page, with named groups of links, contact details in an address element and small print, in the page's contentinfo landmark. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: header-footer
+  - feature: nav
+  - feature: address
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [footer]
+    required: true
+  group:
+    label: Link group
+    element: [nav, section]
+  heading:
+    label: Group heading
+    element: [h2, h3]
+  list:
+    label: Link list
+    element: [ul, ol]
+  link:
+    label: Link
+    element: [a]
+  contact:
+    label: Contact details
+    element: [address]
+  legal:
+    label: Small print
+    element: [p, div]
+
+domOrder: [group, contact, legal]
+
+states:
+  - { name: hover, label: Hover, hook: ":hover" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: Moves through the footer's links in reading order }
+  - { key: Enter, behavior: Follows the focused link }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: site-footer/contentinfo-role
+    description: The footer is the page's contentinfo landmark.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: Screen-reader users jump to contentinfo for contact details and legal links; a footer inside main or an article isn't one.
+    since: 0.1.0
+    test: { kind: role, selector: ':scope', oneOf: [contentinfo] }
+    css: false
+
+  - id: site-footer/groups-have-names
+    description: Every link group has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: Footer groups are navigation landmarks; unnamed, they are all announced as "navigation" and can't be told apart.
+    since: 0.1.0
+    test: { kind: name, selector: '{group}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: site-footer/headings-have-text
+    description: Every group heading has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels
+    rationale: An empty heading is still announced and navigated to, but tells users nothing.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{heading}' }
+    css: false
+
+  - id: site-footer/links-have-names
+    description: Every link has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: Icon links (social media, for example) without a name are announced as just "link".
+    since: 0.1.0
+    test: { kind: name, selector: '{link}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: site-footer/link-names-not-generic
+    description: No link is named only "Read more", "Click here" or a similar phrase.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: Footers are scanned as a list of links; generic names can't be told apart out of context.
+    since: 0.1.0
+    test: { kind: nameNotGeneric, selector: '{link}', generic: [read more, click here, here, more, link, learn more] }
+    css: false
+
+  - id: site-footer/focus-ring-visible
+    description: Every link shows a focus ring with at least 3:1 contrast against the footer's background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Footers often use a tinted background; the ring must still stand out against it. WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{link}', min: 3 }
+    css: false
+
+  - id: site-footer/target-size
+    description: Every link is at least 24 by 24 CSS pixels.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: Footer links are small and stacked close together; small targets are hard to hit on touch screens. (WCAG allows smaller targets with enough spacing, hence recommended.)
+    since: 0.1.0
+    test: { kind: targetSize, selector: '{link}', min: 24 }
+    css: false
+
+  - id: site-footer/unique-ids
+    description: Ids inside the footer are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: Group names come from aria-labelledby; a duplicate heading id names the group after the wrong heading.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+
+  - id: site-footer/footer-element
+    description: The root is a <footer> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/sections.html#the-footer-element
+    rationale: A top-level footer is the contentinfo landmark without ARIA.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(footer)' }
+    css:
+      violation: '[data-gui="site-footer"]:not(footer)'
+      message: "site-footer/footer-element: data-gui=site-footer must be a <footer>."
+    editor: { level: refuse }
+
+  - id: site-footer/group-labelled-by-heading
+    description: Every link group is named by its visible heading, via aria-labelledby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: Naming the group after the heading people see keeps what they see and hear the same.
+    since: 0.1.0
+    test: { kind: absent, selector: '{group}:not([aria-labelledby])' }
+    css:
+      violation: '[data-gui="site-footer"] [data-gui-part="group"]:not([aria-labelledby])'
+      message: "site-footer/group-labelled-by-heading: point aria-labelledby at the group heading."
+
+  - id: site-footer/list-element
+    description: The links in a group are in a list.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/tutorials/menus/structure/
+    rationale: A list announces how many links a group has.
+    since: 0.1.0
+    test: { kind: absent, selector: '{list}:not(ul, ol)' }
+    css:
+      violation: '[data-gui="site-footer"] [data-gui-part="list"]:not(ul, ol)'
+      message: "site-footer/list-element: put the links in a <ul>."
+
+  - id: site-footer/address-element
+    description: Contact details are in an <address> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/sections.html#the-address-element
+    rationale: The address element marks the contact information for the page or organisation, for people and machines.
+    since: 0.1.0
+    test: { kind: absent, selector: '{contact}:not(address)' }
+    css:
+      violation: '[data-gui="site-footer"] [data-gui-part="contact"]:not(address)'
+      message: "site-footer/address-element: put contact details in an <address>."
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "Contentinfo landmark; named link groups with headings and lists; address for contact details" }
+  - { criterion: "2.4.4", name: Link Purpose (In Context), level: A, how: "Every link has a name, not a generic phrase" }
+  - { criterion: "2.4.6", name: Headings and Labels, level: AA, how: "Every group has a heading with text" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring on every link, at least 3:1 against the footer background" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "Links are at least 24 CSS pixels tall" }
+  - { criterion: "1.4.10", name: Reflow, level: AA, how: "Groups stack into one column on narrow screens" }
+
+siteResponsibilities:
+  - { criterion: "3.2.3", title: Same footer everywhere, text: "Keep the footer the same on every page, so people learn where things are." }
+  - { criterion: "3.2.6", title: Consistent help, text: "If the footer holds contact details or help links, keep them in the same place on every page (WCAG 3.2.6)." }
+  - { title: Accessibility statement, text: "Link the accessibility statement from the footer; public-sector sites are required to publish one." }
+
+editor:
+  help:
+    heading: 'Name each group after what it holds: "Services", "About the municipality", "Follow us".'
+    link: 'Name social links after the service: "Lund municipality on Facebook", not an icon alone.'
+  softWarnings:
+    - { id: SF-W1, text: A group with more than ten links }
+    - { id: SF-W2, text: No link to the accessibility statement }
+
+attributes:
+  - { on: root, name: data-gui, type: '"site-footer"', required: true, description: Marks the element as a Grounded UI site footer. }
+  - { on: group, name: aria-labelledby, type: id, required: true, description: The group heading's id; names the navigation landmark. }
+  - { on: heading, name: id, type: string, required: true, description: Target for the group's aria-labelledby. }
+
+customProperties:
+  --gui-site-footer-bg: Footer background.
+  --gui-site-footer-muted: Link and small-print colour.
+  --gui-site-footer-gap: Space between groups.
+  --gui-site-footer-focus: Focus ring colour.
+  --gui-site-footer-radius: Focus ring corner radius.

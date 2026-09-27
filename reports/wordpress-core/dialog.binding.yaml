@@ -1,0 +1,13 @@
+# Maps the dialog contract's parts to the dialogs a WordPress visitor meets: the core Navigation block's overlay
+# menu (div role="dialog", opened by the Interactivity API) and Twenty Twenty's search and menu modals
+# (div role="dialog" in a bundled default theme). Only open dialogs are roots.
+component: dialog
+implementation: WordPress core
+root: '.wp-block-navigation__responsive-dialog[role="dialog"], .cover-modal.active'
+boundary: '.wp-block-navigation__responsive-dialog, .cover-modal'
+parts:
+  trigger: ':not(*)'
+  title: ':not(*)'
+  body: '.wp-block-navigation__responsive-container-content, .modal-inner'
+  actions: ':not(*)'
+  close: '.wp-block-navigation__responsive-container-close, .close-search-toggle, .close-nav-toggle'

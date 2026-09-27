@@ -1,0 +1,15 @@
+# Maps the text-field contract's parts to Elementor Pro's Form widget.
+# The widget has no description or error-message part per field (errors are browser-native bubbles, or one
+# form-level message after a server round trip), so those parts match nothing.
+component: text-field
+implementation: Elementor Pro
+root: >-
+  .elementor-field-group:is(.elementor-field-type-text, .elementor-field-type-email, .elementor-field-type-textarea,
+  .elementor-field-type-tel, .elementor-field-type-url, .elementor-field-type-number, .elementor-field-type-date)
+boundary: .elementor-field-group
+parts:
+  label: .elementor-field-label
+  description: ':not(*)'
+  control: 'input:not([type="hidden"]), textarea'
+  error: ':not(*)'
+  required-indicator: ':not(*)'

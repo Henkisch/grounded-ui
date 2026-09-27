@@ -1,4 +1,5 @@
-// What grund-ui ships has zero dependencies: no runtime deps, no external @import.
+// The reference implementation ships with zero dependencies: no runtime deps, no external @import.
+// The conformance runner is a dev tool; its dependencies (Playwright, axe) are devDependencies.
 import { readFileSync, globSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -11,11 +12,11 @@ for (const field of ['dependencies', 'peerDependencies', 'optionalDependencies',
   if (deps.length) errors.push(`package.json ${field}: ${deps.join(', ')}`);
 }
 
-const shipped = globSync(['core/*.css', 'components/*/styles/*.css', 'components/*/scripts/*.js'], { cwd: root });
+const shipped = globSync(['reference/**/*.css', 'reference/**/*.js', 'conformance/src/*.js'], { cwd: root });
 for (const file of shipped) {
   const src = readFileSync(join(root, file), 'utf8');
   if (/@import\s/.test(src)) errors.push(`${file}: @import is not allowed in shipped CSS`);
-  if (/\bimport\s.*from\s|require\(/.test(src)) errors.push(`${file}: module imports are not allowed in shipped JS`);
+  if (file.startsWith('reference/') && /\bimport\s.*from\s|require\(/.test(src)) errors.push(`${file}: module imports are not allowed in reference JS`);
 }
 
 if (errors.length) {

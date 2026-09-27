@@ -1,0 +1,5 @@
+<!-- Breaks switch/label-for-matches-id: the label points at another id; aria-labelledby still names the switch. -->
+<div data-gui="switch">
+  <label data-gui-part="label" id="dark-mode-label" for="theme">Dark mode</label>
+  <input data-gui-part="control" type="checkbox" role="switch" switch id="dark-mode" name="dark-mode" aria-labelledby="dark-mode-label">
+</div>

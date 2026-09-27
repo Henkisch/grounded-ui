@@ -1,0 +1,28 @@
+<style>
+  .row { display: flex; flex-wrap: wrap; gap: 0.75em; align-items: center; }
+  .demo { display: grid; gap: 1em; }
+  .btn {
+    font: inherit; line-height: 1.2; min-block-size: 2.75em; padding: 0.5em 1em;
+    border: 1px solid transparent; border-radius: 0.375em;
+    background: CanvasText; color: Canvas; cursor: pointer;
+  }
+  .btn.secondary { background: Canvas; color: CanvasText; border-color: color-mix(in oklab, CanvasText 40%, Canvas); }
+  @media (hover: hover) {
+    .btn:hover { background: color-mix(in oklab, CanvasText 85%, Canvas); }
+    .btn.secondary:hover { background: color-mix(in oklab, CanvasText 6%, Canvas); }
+  }
+  .btn:active { translate: 0 1px; }
+  .btn:focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
+  .btn:disabled, .btn[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
+  .plain { font-size: 0.875em; color: color-mix(in oklab, CanvasText 60%, Canvas); margin: 0; }
+</style>
+<div class="demo">
+  <div class="row">
+    <button type="button" class="btn">Save draft</button>
+    <button type="button" class="btn secondary">Cancel</button>
+    <button type="button" class="btn" disabled>Publish</button>
+    <button type="button" class="btn" aria-disabled="true" aria-describedby="why">Send</button>
+  </div>
+  <p class="plain" id="why">Send is unavailable until the form has a recipient.</p>
+  <div class="row"><button type="button">Unstyled button, for comparison</button></div>
+</div>

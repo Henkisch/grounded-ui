@@ -1,14 +1,20 @@
 import { defineConfig } from "blume";
 
 export default defineConfig({
-  title: "Grund UI",
-  description: "Native HTML components for existing CMS sites. One CSS link plus copied markup.",
+  title: "Grounded UI",
+  description: "Proof, not promises: accessible components you and your AI agent can verify.",
   content: {
     root: "content",
+  },
+  // Publishes skills/grounded-ui for agent discovery (/.well-known/agent-skills/, listed in llms.txt).
+  agents: {
+    skills: "../skills",
   },
   navigation: {
     tabs: [
       { label: "Docs", path: "/" },
+      { label: "CSS recipes", path: "/recipes" },
+      { label: "Reports", path: "/reports" },
       { label: "Examples", path: "/examples" },
       { label: "Guides", path: "/guides" },
     ],

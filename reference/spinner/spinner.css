@@ -1,0 +1,32 @@
+/*
+ * spinner base CSS: only what the contract and accessibility need.
+ * The graphic sits beside the text; the quiet variant hides the text visually but keeps it for screen readers.
+ * For the ring and its animation, add spinner.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.spinner {
+  @scope ([data-gui="spinner"]) to ([data-gui]) {
+    :scope {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--gui-spinner-gap, 0.5em);
+    }
+
+    :where([data-gui-part="graphic"]) {
+      flex: none;
+    }
+
+    /* Visually hidden, still read: clipped rather than display:none, which would remove it from the tree. */
+    :scope[data-gui-variant="quiet"] > :where([data-gui-part="label"]) {
+      position: absolute;
+      inline-size: 0.0625em;
+      block-size: 0.0625em;
+      min-block-size: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+}

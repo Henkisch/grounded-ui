@@ -1,0 +1,13 @@
+<section data-gui="error-summary" aria-labelledby="problem-title">
+  <h2 data-gui-part="title" id="problem-title" tabindex="-1" autofocus>Your application was not sent</h2>
+  <p data-gui-part="body">Fix the answer below and send it again. Everything else you entered is saved.</p>
+  <ul data-gui-part="list">
+    <li><a data-gui-part="link" href="#case-number">Enter a case number in the format KS 2026/0412</a></li>
+  </ul>
+</section>
+
+<div data-gui="text-field">
+  <label data-gui-part="label" for="case-number">Case number</label>
+  <input data-gui-part="control" type="text" id="case-number" name="case-number" value="2026-412" aria-invalid="true" aria-describedby="case-number-error">
+  <p data-gui-part="error" id="case-number-error"><span aria-hidden="true">⚠</span> Enter a case number in the format KS 2026/0412</p>
+</div>

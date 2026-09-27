@@ -1,0 +1,10 @@
+<!-- Breaks nav-element: a div with role="navigation" instead of <nav>. It is a named landmark, so every outcome rule passes. -->
+<div data-gui="pagination" role="navigation" aria-label="Pagination">
+  <ul data-gui-part="list">
+    <li data-gui-part="item"><a data-gui-part="previous" href="?page=1">Previous page</a></li>
+    <li data-gui-part="item"><a data-gui-part="link" href="?page=1" aria-label="Page 1">1</a></li>
+    <li data-gui-part="item"><a data-gui-part="link" href="?page=2" aria-label="Page 2" aria-current="page">2</a></li>
+    <li data-gui-part="item"><a data-gui-part="link" href="?page=3" aria-label="Page 3">3</a></li>
+    <li data-gui-part="item"><a data-gui-part="next" href="?page=3">Next page</a></li>
+  </ul>
+</div>

@@ -1,0 +1,23 @@
+/*
+ * figure base CSS: only what the contract and accessibility need.
+ * The image scales with its column but keeps the aspect ratio its width and height attributes reserve,
+ * so nothing shifts while it loads; links in the caption get a focus ring. For a finished look, add figure.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.figure {
+  @scope ([data-gui="figure"]) to ([data-gui]) {
+    :where([data-gui-part="image"]) {
+      max-inline-size: 100%;
+      block-size: auto;
+      min-block-size: 0;
+    }
+
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :where(a):focus-visible {
+      outline: 2px solid var(--gui-figure-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+  }
+}

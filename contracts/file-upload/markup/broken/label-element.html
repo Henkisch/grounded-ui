@@ -1,0 +1,5 @@
+<!-- Breaks file-upload/label-element: the label part is a span; aria-labelledby still names the control. -->
+<div data-gui="file-upload">
+  <span data-gui-part="label" id="cv-label" for="cv">Your CV</span>
+  <input data-gui-part="control" type="file" id="cv" name="cv" accept=".pdf" aria-labelledby="cv-label">
+</div>

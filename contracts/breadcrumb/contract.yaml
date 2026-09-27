@@ -1,0 +1,237 @@
+# Contract: breadcrumb
+# A trail of links from the start page down to the current page, in a named navigation landmark.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({list}, {item}, {link}, {current}); `:scope` is the root (the nav).
+component: breadcrumb
+contractVersion: 0.2.0
+title: Breadcrumb
+summary: A trail of links from the start page to the current page, in a named navigation landmark. Separators are drawn in CSS, so screen readers don't read them. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: nav
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [nav]
+    required: true
+  list:
+    label: List
+    element: [ol]
+    required: true
+  item:
+    label: Item
+    element: [li]
+    required: true
+  link:
+    label: Link
+    element: [a]
+  current:
+    label: Current page (as text)
+    element: [span]
+
+domOrder: [list]
+
+states:
+  - { name: current, label: Current page, dom: 'aria-current="page"', hook: '[aria-current="page"]' }
+  - { name: hover, label: Hover, hook: ":hover" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: Moves between the links in the trail }
+  - { key: Enter, behavior: Follows the focused link }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: breadcrumb/landmark-role
+    description: The breadcrumb is a navigation landmark.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
+    rationale: Screen-reader users jump between landmarks; a trail that isn't one is only found by reading the whole page.
+    since: 0.1.0
+    test: { kind: role, selector: ':scope', oneOf: [navigation] }
+    css: false
+
+  - id: breadcrumb/has-name
+    description: The navigation landmark has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
+    rationale: Pages usually have several navigation landmarks; the name ("Breadcrumb") tells them apart.
+    since: 0.1.0
+    test: { kind: name, selector: ':scope' }
+    css: false
+    editor: { level: refuse }
+
+  - id: breadcrumb/one-current
+    description: Exactly one item marks the current page with aria-current="page".
+    level: normative
+    type: outcome
+    source: https://www.w3.org/TR/wai-aria-1.2/#aria-current
+    rationale: aria-current is what tells screen-reader users where they are in the trail; none, or several, leaves them guessing.
+    since: 0.1.0
+    test: { kind: count, selector: '[aria-current="page"]', equals: 1 }
+    css:
+      violation: '[data-gui="breadcrumb"]:not(:has([aria-current="page"]))'
+      message: "breadcrumb/one-current: no item has aria-current=page."
+    editor: { level: warn }
+
+  - id: breadcrumb/links-have-names
+    description: Every link has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: A link with no name is announced as just "link", so users can't tell where it goes.
+    since: 0.1.0
+    test: { kind: name, selector: '{link}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: breadcrumb/separators-hidden
+    description: Separators aren't elements that screen readers read out.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
+    rationale: A separator read aloud ("slash", "greater than") between every link is noise; draw it in CSS or hide it with aria-hidden.
+    since: 0.1.0
+    test: { kind: absent, selector: '{item} > :not({link}, {current}, [aria-hidden="true"])' }
+    css:
+      violation: '[data-gui="breadcrumb"] [data-gui-part="item"] > :not([data-gui-part="link"], [data-gui-part="current"], [aria-hidden="true"])'
+      message: "breadcrumb/separators-hidden: draw separators in CSS or add aria-hidden=true."
+
+  - id: breadcrumb/target-size
+    description: Every link is at least 24 by 24 CSS pixels.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: Breadcrumb links are short words packed close together; small targets are hard to hit on touch screens and with tremors. (WCAG allows smaller targets with enough spacing, hence recommended.)
+    since: 0.1.0
+    test: { kind: targetSize, selector: '{link}', min: 24 }
+    css: false
+
+  - id: breadcrumb/focus-ring-visible
+    description: Every link shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see which link they are on; WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{link}', min: 3 }
+    css: false
+
+  - id: breadcrumb/unique-ids
+    description: Ids inside the breadcrumb are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes aria-labelledby and in-page links point at the wrong element.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+
+  - id: breadcrumb/nav-element
+    description: The root is a <nav> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/sections.html#the-nav-element
+    rationale: The native element is a navigation landmark without ARIA.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(nav)' }
+    css:
+      violation: '[data-gui="breadcrumb"]:not(nav)'
+      message: "breadcrumb/nav-element: data-gui=breadcrumb must be a <nav>."
+    editor: { level: refuse }
+
+  - id: breadcrumb/ordered-list
+    description: The items are in one ordered list.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/examples/breadcrumb/
+    rationale: An ordered list announces how many levels the trail has and where each link sits in it.
+    since: 0.1.0
+    test: { kind: count, selector: 'ol{list}', equals: 1 }
+    css:
+      violation: '[data-gui="breadcrumb"]:not(:has(> ol[data-gui-part="list"]))'
+      message: "breadcrumb/ordered-list: put the items in one <ol data-gui-part=list>."
+
+  - id: breadcrumb/aria-label
+    description: The landmark is named with aria-label or aria-labelledby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: A nav has no name of its own; the label is how it gets one.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not([aria-label], [aria-labelledby])' }
+    css:
+      violation: '[data-gui="breadcrumb"]:not([aria-label], [aria-labelledby])'
+      message: "breadcrumb/aria-label: add aria-label=\"Breadcrumb\"."
+
+  - id: breadcrumb/current-last
+    description: The current page is the last item.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
+    rationale: A breadcrumb runs from the start page down to where the user is; the current page ends the trail.
+    since: 0.1.0
+    test: { kind: absent, selector: '{item}:not(:last-child) [aria-current="page"]' }
+    css:
+      violation: '[data-gui="breadcrumb"] [data-gui-part="item"]:not(:last-child) [aria-current="page"]'
+      message: "breadcrumb/current-last: the current page should be the last item."
+
+  - id: breadcrumb/no-separator-text
+    description: No separator characters are typed as text between the links.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
+    rationale: A "/" or "›" typed between links is read aloud between every item; draw separators in CSS instead.
+    since: 0.2.0
+    test: { kind: noLooseText, selector: '{list}, {item}', pattern: '[/>›»|\\\\]' }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "An ordered list inside a named navigation landmark" }
+  - { criterion: "2.4.4", name: Link Purpose (In Context), level: A, how: "Every link has a name: the page it goes to" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring on every link, at least 3:1" }
+  - { criterion: "2.4.8", name: Location, level: AAA, how: "The trail shows where the page sits in the site; aria-current marks the current page" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "Links are at least 24 CSS pixels tall" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Navigation role, a name, and aria-current for state" }
+
+siteResponsibilities:
+  - { criterion: "2.4.8", title: A true trail, text: "The links must follow the site's real structure, from the start page down, not the user's history." }
+  - { criterion: "3.2.3", title: Same place on every page, text: "Put the breadcrumb in the same place on every page, before the main heading." }
+  - { criterion: "2.4.1", title: Skip it, text: "A skip link that goes past the header should also go past the breadcrumb." }
+
+editor:
+  help:
+    link: 'Use each page''s short title: "Waste and recycling", not "Click here".'
+    current: "The last item is the page you're on. It isn't a link to itself."
+  softWarnings:
+    - { id: BC-W1, text: A trail of more than six levels }
+    - { id: BC-W2, text: A link text longer than about 40 characters }
+
+attributes:
+  - { on: root, name: data-gui, type: '"breadcrumb"', required: true, description: Marks the element as a Grounded UI breadcrumb. }
+  - { on: root, name: aria-label, type: string, required: true, description: 'Names the landmark, for example "Breadcrumb".' }
+  - { on: link, name: aria-current, type: '"page"', description: 'Only when the current page is shown as a link: marks it as the page you are on.' }
+  - { on: current, name: aria-current, type: '"page"', required: true, description: Marks the current page when it is shown as text. }
+
+customProperties:
+  --gui-breadcrumb-gap: Space between items and separators.
+  --gui-breadcrumb-muted: Link colour.
+  --gui-breadcrumb-focus: Focus ring colour.
+  --gui-breadcrumb-separator: Separator colour.
+  --gui-breadcrumb-radius: Focus ring corner radius.
+  --gui-breadcrumb-duration: Hover transition duration.

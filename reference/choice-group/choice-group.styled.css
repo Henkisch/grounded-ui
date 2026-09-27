@@ -1,0 +1,160 @@
+/* Hallmark · component: choice-group · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · hover · focus · checked · indeterminate · disabled · error (loading, success: not states of a native choice)
+ * contrast: box border ≥ 3:1, checked fill and mark from CanvasText/Canvas, error text ≥ 4.5:1 in light and dark
+ */
+/*
+ * choice-group styled CSS: the Grounded house style on top of choice-group.css.
+ * Custom boxes and dots drawn on the native inputs (appearance: none keeps every state and key), mixed from
+ * Canvas and CanvasText so they follow light and dark. Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.choice-group {
+  @scope ([data-gui="choice-group"]) to ([data-gui]) {
+    :scope {
+      display: grid;
+      gap: var(--gui-choice-group-gap, 0.625em);
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    /* min-block-size: Chromium computes auto on a legend, the others 0; same size, stated once. */
+    :where([data-gui-part="legend"]) {
+      min-block-size: 0;
+      margin-block-end: 0.25em;
+      padding: 0;
+      font-weight: var(--gui-choice-group-legend-weight, 600);
+    }
+
+    :where([data-gui-part="description"]) {
+      margin-block-start: -0.375em;
+      font-size: 0.875em;
+      color: var(--gui-choice-group-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+    }
+
+    :where([data-gui-part="required-indicator"]) {
+      color: var(--gui-choice-group-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+    }
+
+    :where([data-gui-part="error"]) {
+      font-size: 0.875em;
+      font-weight: 500;
+      color: var(--gui-choice-group-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    :scope[data-gui-variant="inline"] {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 8em), max-content));
+      column-gap: 1.5em;
+    }
+
+    :scope[data-gui-variant="inline"] > :where(:not([data-gui-part="option"])) {
+      grid-column: 1 / -1;
+    }
+
+    :where([data-gui-part="label"]) {
+      cursor: pointer;
+    }
+
+    /* The box: the native input without its native look, so role, state and keys stay. */
+    :where([data-gui-part="control"]) {
+      appearance: none;
+      display: inline-grid;
+      place-content: center;
+      color: var(--gui-choice-group-checked, CanvasText);
+      background: var(--gui-choice-group-control-bg, Canvas);
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--gui-choice-group-border, var(--gui-border, color-mix(in oklab, CanvasText 40%, Canvas)));
+      border-radius: var(--gui-choice-group-radius, var(--gui-radius, 0.375em));
+      cursor: pointer;
+      transition-property: background-color, border-color;
+      transition-duration: var(--gui-choice-group-duration, 120ms);
+      transition-timing-function: var(--gui-choice-group-easing, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    :where([data-gui-part="control"][type="radio"]) {
+      border-radius: 50%;
+    }
+
+    /* The mark, on the input itself: a tick, a dot, or a bar for indeterminate. */
+    :where([data-gui-part="control"])::before {
+      content: "";
+      inline-size: 0.875em;
+      block-size: 0.875em;
+      background: Canvas;
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+      scale: 0;
+      transition: scale var(--gui-choice-group-duration, 120ms) var(--gui-choice-group-easing, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    :where([data-gui-part="control"][type="radio"])::before {
+      inline-size: 0.625em;
+      block-size: 0.625em;
+      clip-path: circle(50%);
+    }
+
+    /* :indeterminate also matches every radio in a group with nothing checked (HTML spec), so mixed is checkbox-only. */
+    :where([data-gui-part="control"]):is(:checked, [type="checkbox"]:indeterminate) {
+      background: currentColor;
+      border-color: currentColor;
+    }
+
+    :where([data-gui-part="control"]):is(:checked, [type="checkbox"]:indeterminate)::before {
+      scale: 1;
+    }
+
+    :where([data-gui-part="control"][type="checkbox"]):indeterminate::before {
+      clip-path: inset(40% 0);
+    }
+
+    @media (hover: hover) {
+      :where([data-gui-part="control"]):hover:not(:checked, [type="checkbox"]:indeterminate, :disabled) {
+        border-color: var(--gui-choice-group-border-hover, color-mix(in oklab, CanvasText 65%, Canvas));
+      }
+    }
+
+    /* The base ring's currentColor is the checked fill; draw it in the text colour so it shows on every state. */
+    :where([data-gui-part="control"]):focus-visible {
+      outline-color: var(--gui-choice-group-focus, var(--gui-focus, CanvasText));
+    }
+
+    /* A second pixel of border as an inset shadow: the non-colour error cue, without changing the box's size. */
+    :where([data-gui-part="control"][aria-invalid="true"]):not(:checked, [type="checkbox"]:indeterminate) {
+      border-color: var(--gui-choice-group-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+      box-shadow: inset 0 0 0 0.0625em var(--gui-choice-group-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    :where([data-gui-part="option"]):has([data-gui-part="control"]:disabled) {
+      color: var(--gui-choice-group-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+    }
+
+    :where([data-gui-part="control"]):disabled {
+      opacity: 0.55;
+    }
+
+    :where([data-gui-part="option"]):has([data-gui-part="control"]:disabled) :where([data-gui-part="label"]) {
+      cursor: not-allowed;
+    }
+
+    /* Forced colours replace backgrounds: draw the checked box and mark with system colours. */
+    @media (forced-colors: active) {
+      :where([data-gui-part="control"]):is(:checked, [type="checkbox"]:indeterminate) {
+        background: Highlight;
+        border-color: Highlight;
+      }
+
+      :where([data-gui-part="control"])::before {
+        background: HighlightText;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :where([data-gui-part="control"]),
+      :where([data-gui-part="control"])::before {
+        transition-duration: 0s;
+      }
+    }
+  }
+}

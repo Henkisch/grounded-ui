@@ -1,0 +1,23 @@
+/*
+ * tag base CSS: only what the contract and accessibility need.
+ * A linked tag gets a 24px target (WCAG 2.5.8) and a focus ring that is never removed.
+ * For a finished look, add tag.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.tag {
+  @scope ([data-gui="tag"]) to ([data-gui]) {
+    :scope:where([href]) {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: 1.5em;
+    }
+
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :scope:focus-visible {
+      outline: 2px solid var(--gui-tag-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+  }
+}

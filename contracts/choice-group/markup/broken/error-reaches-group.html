@@ -1,0 +1,13 @@
+<!-- Breaks choice-group/error-reaches-group: the error is shown but never reaches the group. also: choice-group/error-first-in-describedby -->
+<fieldset data-gui="choice-group">
+  <legend data-gui-part="legend">How should we contact you?</legend>
+  <p data-gui-part="error" id="g-error">Choose at least one way to contact you</p>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="checkbox" id="o-1" name="c-1" aria-invalid="true">
+    <label data-gui-part="label" for="o-1">Email</label>
+  </div>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="checkbox" id="o-2" name="c-2" aria-invalid="true">
+    <label data-gui-part="label" for="o-2">Phone</label>
+  </div>
+</fieldset>

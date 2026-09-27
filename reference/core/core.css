@@ -1,0 +1,16 @@
+/*
+ * grounded-ui core.
+ * Explicit layer order: some platforms aggregate and reorder CSS files,
+ * so the order is declared up front. Unlayered site CSS always wins.
+ */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.core {
+  :where([data-gui]) {
+    box-sizing: border-box;
+  }
+
+  :where([data-gui] *, [data-gui] ::before, [data-gui] ::after) {
+    box-sizing: inherit;
+  }
+}

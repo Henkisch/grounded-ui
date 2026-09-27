@@ -1,0 +1,110 @@
+/* Hallmark · component: toggletip · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: closed · open · hover · focus (disabled, loading, error, success: not states of a toggletip)
+ * contrast: trigger border ≥ 3:1 (system-colour mix); text on Canvas/CanvasText
+ */
+/*
+ * toggletip styled CSS: the Grounded house style on top of toggletip.css.
+ * A round trigger, a small lifted surface placed next to the button where anchor positioning exists,
+ * and a short scale-and-fade. Colours come from Canvas and CanvasText, so it follows light and dark.
+ * Remove this file and the component still meets its contract.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.toggletip {
+  @scope ([data-gui="toggletip"]) to ([data-gui]) {
+    /* A pill: a circle for an icon ("i", "?"), a rounded tag for text ("Why this date?"). */
+    :where([data-gui-part="trigger"]) {
+      margin-inline: 0.125em;
+      padding-block: 0;
+      padding-inline: 0.4em;
+      vertical-align: middle;
+      font-weight: 600;
+      line-height: 1;
+      color: inherit;
+      cursor: pointer;
+      background: transparent;
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--gui-toggletip-border, var(--gui-border, color-mix(in oklab, CanvasText 40%, Canvas)));
+      border-radius: 999em;
+      transition-property: background-color, border-color;
+      transition-duration: var(--gui-toggletip-duration, 120ms);
+    }
+
+    @media (hover: hover) {
+      :where([data-gui-part="trigger"]):hover {
+        border-color: var(--gui-toggletip-border-hover, color-mix(in oklab, CanvasText 65%, Canvas));
+      }
+    }
+
+    /* While open, the trigger reads as pressed. */
+    :scope:has(:popover-open) :where([data-gui-part="trigger"]) {
+      background: color-mix(in oklab, CanvasText 8%, Canvas);
+      border-color: var(--gui-toggletip-border-hover, color-mix(in oklab, CanvasText 65%, Canvas));
+    }
+
+    :where([data-gui-part="content"]) {
+      padding-block: 0.75em;
+      padding-inline: 1em;
+      font-size: 0.875em;
+      line-height: 1.5;
+      color: var(--gui-toggletip-color, CanvasText);
+      background: var(--gui-toggletip-bg, Canvas);
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--gui-toggletip-content-border, color-mix(in oklab, CanvasText 14%, Canvas));
+      border-radius: var(--gui-toggletip-radius, var(--gui-radius, 0.5em));
+      box-shadow: var(--gui-toggletip-shadow, 0 0.75em 1.5em -0.5em oklch(0% 0 0 / 0.25));
+      opacity: 0;
+      scale: 0.96;
+      transition-property: opacity, scale, overlay, display;
+      transition-duration: var(--gui-toggletip-duration-exit, 100ms);
+      transition-timing-function: ease-in;
+      transition-behavior: allow-discrete;
+    }
+
+    :where([data-gui-part="content"]):popover-open {
+      opacity: 1;
+      scale: 1;
+      transition-duration: var(--gui-toggletip-duration, 160ms);
+      transition-timing-function: var(--gui-toggletip-easing, cubic-bezier(0.2, 0, 0, 1));
+
+      @starting-style {
+        opacity: 0;
+        scale: 0.96;
+      }
+    }
+
+    /* Explicit box: user-agent button padding differs per engine (Firefox 4px, others 6px). */
+    :where([data-gui-part="close"]) {
+      display: block;
+      margin-block-start: 0.5em;
+      margin-inline-start: auto;
+      padding-block: 0.125em;
+      padding-inline: 0.625em;
+    }
+
+    /* Next to the button, flipping when it would leave the viewport. Only where the popover's implicit
+       anchor (its invoker) is supported; elsewhere the browser's centred placement stays. */
+    @supports (position-anchor: auto) {
+      :where([data-gui-part="content"]) {
+        margin: 0;
+        margin-block-start: 0.5em;
+        inset: auto;
+        position-anchor: auto;
+        position-area: block-end span-inline-end;
+        position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+        transform-origin: top left;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :where([data-gui-part="trigger"]),
+      :where([data-gui-part="content"]) {
+        scale: 1;
+        transition-duration: 0s;
+      }
+    }
+  }
+}

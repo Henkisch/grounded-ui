@@ -1,0 +1,255 @@
+# Contract: site-header
+# The top of every page: a logo link home and the primary navigation, in the page's banner landmark.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({logo}, {nav}, {list}, {item}, {link}); `:scope` is the root (the header).
+component: site-header
+contractVersion: 0.1.0
+title: Site header
+summary: The top of every page, with a logo link home and the primary navigation in a named landmark. On narrow screens the links wrap onto more lines instead of hiding behind a menu button, so it needs zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: header-footer
+  - feature: nav
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [header]
+    required: true
+  logo:
+    label: Logo link
+    element: [a]
+    required: true
+  nav:
+    label: Primary navigation
+    element: [nav]
+    required: true
+  list:
+    label: Link list
+    element: [ul, ol]
+    required: true
+  item:
+    label: Item
+    element: [li]
+    required: true
+  link:
+    label: Link
+    element: [a]
+    required: true
+
+domOrder: [logo, nav]
+
+variants:
+  - name: stacked
+    description: Logo above the navigation, for long link lists.
+
+states:
+  - { name: current, label: Current page, dom: 'aria-current="page"', hook: '[aria-current="page"]' }
+  - { name: hover, label: Hover, hook: ":hover" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: "Moves through the logo link and the navigation links, in reading order" }
+  - { key: Enter, behavior: Follows the focused link }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: site-header/banner-role
+    description: The header is the page's banner landmark.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: Screen-reader users jump to the banner to reach the logo and main navigation; a header inside main or an article isn't one.
+    since: 0.1.0
+    test: { kind: role, selector: ':scope', oneOf: [banner] }
+    css: false
+
+  - id: site-header/logo-has-name
+    description: The logo link has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: A logo image with empty alt inside a link leaves the first link on every page announced as just "link".
+    since: 0.1.0
+    test: { kind: name, selector: '{logo}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: site-header/logo-name-not-generic
+    description: The logo link isn't named only "Logo", "Image" or "Home".
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: Name the organisation and where the link goes ("Lund municipality, start page"); "Logo" says neither.
+    since: 0.1.0
+    test: { kind: nameNotGeneric, selector: '{logo}', generic: [logo, image, home, logotype, picture] }
+    css: false
+
+  - id: site-header/nav-role
+    description: The primary navigation is a navigation landmark.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: The landmark is how screen-reader users jump straight to the site's main links.
+    since: 0.1.0
+    test: { kind: role, selector: '{nav}', oneOf: [navigation] }
+    css: false
+
+  - id: site-header/nav-has-name
+    description: The navigation landmark has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: Pages have several navigation landmarks (header, breadcrumb, footer); the name tells them apart.
+    since: 0.1.0
+    test: { kind: name, selector: '{nav}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: site-header/one-current-at-most
+    description: At most one navigation link marks the current page.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/TR/wai-aria-1.2/#aria-current
+    rationale: aria-current tells users where they are; two "current" links contradict each other.
+    since: 0.1.0
+    test: { kind: absent, selector: '{item}:has([aria-current="page"]) ~ {item}:has([aria-current="page"])' }
+    css: false
+
+  - id: site-header/links-have-names
+    description: Every navigation link has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: An icon link with no name is announced as just "link".
+    since: 0.1.0
+    test: { kind: name, selector: '{link}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: site-header/focus-ring-visible
+    description: The logo link and every navigation link show a focus ring with at least 3:1 contrast when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: The header is the first thing keyboard users tab through; they must see where they are. WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{logo}, {link}', min: 3 }
+    css: false
+
+  - id: site-header/target-size
+    description: The logo link and every navigation link are at least 24 by 24 CSS pixels.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: Header links are pressed on every visit, often on phones; small targets are hard to hit.
+    since: 0.1.0
+    test: { kind: targetSize, selector: '{logo}, {link}', min: 24 }
+    css: false
+
+  - id: site-header/unique-ids
+    description: Ids inside the header are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes aria-labelledby and in-page links point at the wrong element.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+
+  - id: site-header/header-element
+    description: The root is a <header> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/sections.html#the-header-element
+    rationale: A top-level header is the banner landmark without ARIA.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(header)' }
+    css:
+      violation: '[data-gui="site-header"]:not(header)'
+      message: "site-header/header-element: data-gui=site-header must be a <header>."
+    editor: { level: refuse }
+
+  - id: site-header/nav-element
+    description: The navigation is a <nav> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/sections.html#the-nav-element
+    rationale: The native element is a navigation landmark without ARIA.
+    since: 0.1.0
+    test: { kind: absent, selector: '{nav}:not(nav)' }
+    css:
+      violation: '[data-gui="site-header"] [data-gui-part="nav"]:not(nav)'
+      message: "site-header/nav-element: the navigation should be a <nav>."
+
+  - id: site-header/nav-labelled
+    description: The navigation is named with aria-label or aria-labelledby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: A nav has no name of its own; aria-label ("Main") is the reliable way to give it one.
+    since: 0.1.0
+    test: { kind: absent, selector: '{nav}:not([aria-label], [aria-labelledby])' }
+    css:
+      violation: '[data-gui="site-header"] [data-gui-part="nav"]:not([aria-label], [aria-labelledby])'
+      message: "site-header/nav-labelled: add aria-label=\"Main\" to the nav."
+
+  - id: site-header/list-element
+    description: The navigation links are in a list.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/tutorials/menus/structure/
+    rationale: A list announces how many links there are, so users know how long the menu is.
+    since: 0.1.0
+    test: { kind: absent, selector: '{list}:not(ul, ol)' }
+    css:
+      violation: '[data-gui="site-header"] [data-gui-part="list"]:not(ul, ol)'
+      message: "site-header/list-element: put the links in a <ul>."
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "Banner and navigation landmarks; links in a list" }
+  - { criterion: "2.4.1", name: Bypass Blocks, level: A, how: "Landmarks let users jump past the header; pair it with a skip link" }
+  - { criterion: "2.4.4", name: Link Purpose (In Context), level: A, how: "Every link, including the logo, has a name" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring on every link, at least 3:1" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "Links are at least 24 CSS pixels" }
+  - { criterion: "1.4.10", name: Reflow, level: AA, how: "Links wrap onto more lines at narrow widths; nothing is hidden or scrolls sideways" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Landmark roles, names, and aria-current for the current page" }
+
+siteResponsibilities:
+  - { criterion: "3.2.3", title: Same navigation everywhere, text: "Keep the header links in the same order on every page." }
+  - { criterion: "2.4.1", title: Skip link, text: "Put a skip link before the header, pointing at the main content." }
+  - { title: Long menus, text: "For more than about seven links, group them or use a details element as a menu disclosure; the zero-JS header never hides links behind a script." }
+  - { criterion: "1.4.3", title: Logo contrast, text: "A logo with text is an image of text; its contrast and alt text are the site's responsibility." }
+
+editor:
+  help:
+    logo: 'Write the alt text as the organisation and where it goes: "Lund municipality, start page".'
+    link: 'Short, stable page names: "Waste and recycling", not "Click here".'
+  softWarnings:
+    - { id: SH-W1, text: More than seven navigation links }
+    - { id: SH-W2, text: A logo alt text that is only the word "logo" }
+
+attributes:
+  - { on: root, name: data-gui, type: '"site-header"', required: true, description: Marks the element as a Grounded UI site header. }
+  - { on: root, name: data-gui-variant, type: '"stacked"', description: Logo above the navigation. }
+  - { on: nav, name: aria-label, type: string, required: true, description: 'Names the landmark, for example "Main".' }
+  - { on: link, name: aria-current, type: '"page"', description: Marks the link to the page you are on. }
+
+customProperties:
+  --gui-site-header-gap: Space between the logo and the navigation, and between links.
+  --gui-site-header-border: Line under the header.
+  --gui-site-header-muted: Navigation link colour.
+  --gui-site-header-focus: Focus ring colour.
+  --gui-site-header-radius: Focus ring corner radius.

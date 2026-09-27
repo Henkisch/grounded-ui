@@ -1,0 +1,68 @@
+---
+title: Performance
+description: What Grounded UI's CSS costs a host page, measured in Chromium, Firefox and WebKit on a page with over 1,000 components, and what we changed because of it.
+---
+
+Grounded UI should feel invisible on the page it's dropped into. So we measure what its CSS costs, against no Grounded CSS at all and against the same look written as plain class selectors.
+
+## How it's measured
+
+`pnpm perf` builds one heavy page: a site shell plus 1,027 component instances, cloned from every example in the contracts, with every component's base and styled CSS. It measures in Playwright's Chromium, Firefox and WebKit, median of 10 runs:
+
+- **First render:** insert the markup, then force style and layout.
+- **Full restyle:** change an inherited custom property on `<html>`, which restyles every element.
+- **100 insert/remove:** add and remove a block of components 100 times, forcing layout each time.
+
+Variants of the same page:
+
+| Variant | What it is |
+| --- | --- |
+| No Grounded CSS | The markup with only the site's own CSS: the floor |
+| Grounded UI | What ships: `@scope`, `:where()`, cascade layers |
+| Plain classes | The same rules as BEM-style classes, no `@scope`, no layers, generated mechanically from the Grounded CSS |
+| Without `:has()` / `:where()` / `@scope` | The shipped CSS with one technique removed, to price it |
+
+In Chromium, the DevTools `SelectorStats` trace also lists the costliest selectors. Results go to `dist/perf.json`.
+
+## Results
+
+Chromium 153, Firefox 155, WebKit 26.6 (Playwright builds), macOS, September 2026. Times in ms for 1,027 instances.
+
+| Engine | Metric | No Grounded CSS | Grounded UI | Plain classes | Without `:where()` | Without `@scope` |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Chromium | First render | 45 | 73 | 52 | 60 | 62 |
+| Chromium | Full restyle | 7.5 | 35 | 13 | 25 | 24 |
+| Firefox | First render | 48 | 67 | 62 | 67 | 65 |
+| Firefox | Full restyle | 6.0 | 11 | 10 | 11 | 11 |
+| WebKit | First render | 76 | 255 | 132 | 255 | 142 |
+| WebKit | Full restyle | 27 | 171 | 48 | 172 | 57 |
+
+Per component, that is well under a millisecond in every engine: WebKit, the slowest, adds about 0.17 ms per instance on first render. On a typical page with a few dozen components it doesn't register. On very large pages it does, and it's worth knowing where it comes from.
+
+## What we changed
+
+**The dialog no longer locks page scroll by default.** The rule `html:has([data-gui="dialog"]:modal)` made every DOM change anywhere on the page slower, because the browser re-checks it on each change: 100 insert/remove went from 127 to 102 ms in Chromium and from 72 to 47 ms in Firefox once it was gone. No cheaper form of it helped (`dialog:modal`, `:root:has(:modal)` and a child-combinator form measured the same). Scrolling the inert page behind a modal is native `<dialog>` behaviour, so it isn't part of the contract. To lock scroll anyway, add this to your own CSS:
+
+```css
+html:has(dialog:modal) { overflow: hidden; }
+```
+
+The other `:has()` rules (card focus, toggletip open state, disabled options) cost nothing measurable.
+
+## What the design choices cost
+
+Two techniques Grounded UI relies on carry a real cost, and we keep both for now:
+
+- **`:where()` around part hooks costs Chromium about 30% of restyle time.** Chromium pre-filters rules by the last simple selector, and it can't look inside `:where()`, so every part rule is tried on every part element. Removing `:where()` wouldn't weaken overrides, since every rule sits in a cascade layer and your unlayered CSS wins regardless of specificity.
+- **`@scope` costs WebKit about two thirds of its time.** WebKit's `@scope` matching doesn't benefit from rule filtering (tag-qualifying the part selectors changed nothing), while the same rules without `@scope` run close to plain classes. Firefox handles both at no measurable cost.
+
+Both are engine characteristics rather than mistakes in the CSS; they're the first candidates if the numbers above ever matter for a real site.
+
+## Rerun it
+
+```sh
+pnpm perf          # prints the table, writes dist/perf.json
+pnpm perf:check    # fails if the first-render overhead exceeds budgets.json → perf
+```
+
+`PERF_RUNS=3 pnpm perf` runs faster. Timings depend on the machine, so the budget check is for comparing before and after a change on one machine, not a CI gate.

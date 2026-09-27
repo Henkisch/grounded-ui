@@ -1,0 +1,10 @@
+# What to test: the published, documented examples (fixtures not marked hidden) from the npm package.
+implementation: GOV.UK Frontend
+package: govuk-frontend
+homepage: https://design-system.service.gov.uk/
+components:
+  text-field:
+    binding: text-field.binding.yaml
+    fixtures:
+      - govuk-frontend/dist/govuk/components/input/fixtures.json
+      - govuk-frontend/dist/govuk/components/textarea/fixtures.json

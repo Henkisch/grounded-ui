@@ -1,0 +1,32 @@
+/*
+ * button base CSS: only what the contract and accessibility need.
+ * The site's font, a target of at least 24 CSS px (WCAG 2.5.8), a focus ring that is never removed,
+ * and a clear not-allowed cursor when disabled. For a finished look, add button.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.button {
+  @scope ([data-gui="button"]) to ([data-gui]) {
+    /* Form controls don't inherit the page font by default, and each engine picks another one. */
+    :scope {
+      min-inline-size: 1.5em;
+      min-block-size: 1.5em;
+      font: inherit;
+    }
+
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :scope:focus-visible {
+      outline: 2px solid var(--gui-button-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+
+    :scope:is(:disabled, [aria-disabled="true"]) {
+      cursor: not-allowed;
+    }
+
+    :where([data-gui-part="icon"]) {
+      flex: none;
+    }
+  }
+}

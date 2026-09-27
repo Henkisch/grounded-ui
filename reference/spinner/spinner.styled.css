@@ -1,0 +1,62 @@
+/* Hallmark · component: spinner · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: loading · reduced motion (hover, focus, active, disabled, error, success: not states of a spinner)
+ * contrast: the moving arc is the text colour; the track is decorative
+ */
+/*
+ * spinner styled CSS: the Grounded house style on top of spinner.css.
+ * A thin ring in the text colour on a faint track, turning once every 0.9 s; under reduced motion it pulses
+ * slowly instead. Colours come from currentColor, Canvas and CanvasText. Remove this file and the contract holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.spinner {
+  @keyframes gui-spinner-turn {
+    to {
+      rotate: 1turn;
+    }
+  }
+
+  @keyframes gui-spinner-pulse {
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  @scope ([data-gui="spinner"]) to ([data-gui]) {
+    /* The box stays still; the ring is drawn on ::before and turns, so layout never moves. */
+    :where([data-gui-part="graphic"]) {
+      display: inline-block;
+      inline-size: var(--gui-spinner-size, 1.25em);
+      block-size: var(--gui-spinner-size, 1.25em);
+    }
+
+    :where([data-gui-part="graphic"])::before {
+      content: "";
+      display: block;
+      inline-size: 100%;
+      block-size: 100%;
+      box-sizing: border-box;
+      border-width: 0.1875em;
+      border-style: solid;
+      border-color: currentColor var(--gui-spinner-track, color-mix(in oklab, CanvasText 18%, Canvas)) var(--gui-spinner-track, color-mix(in oklab, CanvasText 18%, Canvas));
+      border-radius: 50%;
+      animation: gui-spinner-turn var(--gui-spinner-duration, 0.9s) linear infinite;
+    }
+
+    :scope[data-gui-variant="large"] {
+      flex-direction: column;
+    }
+
+    :scope[data-gui-variant="large"] > :where([data-gui-part="graphic"]) {
+      inline-size: var(--gui-spinner-large-size, 2.5em);
+      block-size: var(--gui-spinner-large-size, 2.5em);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :where([data-gui-part="graphic"])::before {
+        animation: gui-spinner-pulse 2s ease-in-out infinite;
+      }
+    }
+  }
+}

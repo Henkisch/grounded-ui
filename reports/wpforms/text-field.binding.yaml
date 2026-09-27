@@ -1,0 +1,16 @@
+# Maps the text-field contract's parts to WPForms markup.
+# Roots: single-input fields, plus each sub-field of a compound field (Name: First / Last).
+# Excluded: WPForms' anti-spam honeypot fields (aria-hidden, tabindex=-1, visually hidden), which no user sees.
+component: text-field
+implementation: WPForms
+root: >-
+  .wpforms-field:is(.wpforms-field-text, .wpforms-field-email, .wpforms-field-textarea, .wpforms-field-number,
+  .wpforms-field-phone, .wpforms-field-url):not(:has(input[aria-hidden="true"][tabindex="-1"])),
+  .wpforms-field-row-block:has(> input:not([type="hidden"]))
+boundary: .wpforms-field, .wpforms-field-row-block
+parts:
+  label: .wpforms-field-label, .wpforms-field-sublabel
+  description: .wpforms-field-description
+  control: 'input:not([type="hidden"], .iti__search-input), textarea'
+  error: .wpforms-error:not(input, textarea)
+  required-indicator: .wpforms-required-label

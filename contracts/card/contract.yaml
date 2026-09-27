@@ -1,0 +1,264 @@
+# Contract: card
+# A linked content card for listing pages (news, services, events): one link in the heading, and the whole card
+# clickable through the "block link" technique, so there is one tab stop and the link's name is just the title.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({title}, {link}, …); `:scope` is the root.
+component: card
+contractVersion: 0.2.0
+title: Card
+summary: A linked content card for news, services and events. One link, named by the title, and the whole card clickable. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+  - feature: has
+    optional: true
+    fallback: The card's border doesn't darken while the link has focus; the link's own focus ring still shows.
+  - feature: aspect-ratio
+    optional: true
+    fallback: The image keeps its own proportions.
+
+anatomy:
+  root:
+    label: Root
+    element: [article]
+    required: true
+  media:
+    label: Image
+    element: [img]
+  title:
+    label: Title
+    element: [h2, h3, h4]
+    required: true
+  link:
+    label: Link
+    element: [a]
+    required: true
+  meta:
+    label: Meta (date, category)
+    element: [p]
+  summary:
+    label: Summary
+    element: [p]
+
+# The title comes first in the DOM, so heading navigation and the reading order start with it; the image is moved
+# above it visually with CSS order.
+domOrder: [title, meta, summary, media]
+
+states:
+  - { name: hover, label: Hover, hook: ":hover" }
+  - { name: focus, label: Link focus, hook: ":has(:focus-visible)" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: "Moves focus to the card's one link, and on to the next card" }
+  - { key: Enter, behavior: Follows the link }
+  - { key: Click anywhere on the card, behavior: "Follows the link (block link); text in the card can't be selected by dragging" }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: card/one-link
+    description: The card has exactly one link.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: An image link, a title link and a "Read more" link to the same page are three tab stops and three announcements for one destination.
+    since: 0.1.0
+    test: { kind: count, selector: 'a[href]', equals: 1 }
+    css: false
+
+  - id: card/link-has-name
+    description: The link has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: A nameless link is announced only as "link", so nobody knows where the card goes.
+    since: 0.1.0
+    test: { kind: name, selector: '{link}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: card/link-name-includes-title
+    description: The link's accessible name contains the title text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: Voice-control users say the title they see; a link named something else can't be reached by it.
+    since: 0.1.0
+    test: { kind: name, selector: '{link}', includes: '{title}' }
+    css: false
+
+  - id: card/title-has-text
+    description: The title has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels
+    rationale: An empty heading leaves the card without a name in the heading list and the link without a label.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{title}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="card"] [data-gui-part="title"]:empty'
+      pseudo: before
+      message: "card/title-has-text: the title is empty."
+    editor: { level: refuse }
+
+  - id: card/images-have-alt
+    description: Every image has an alt attribute.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/non-text-content
+    rationale: Without alt, screen readers read the file name. Use alt="" when the image only illustrates the title.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope img:not([alt])' }
+    css:
+      violation: '[data-gui="card"] img:not([alt])'
+      message: "card/images-have-alt: add alt, or alt=\"\" when the image only illustrates."
+    editor: { level: refuse }
+
+  - id: card/no-other-interactive
+    description: The card contains no buttons, form fields or other focusable elements besides the link.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-order
+    rationale: The block link covers the whole card, so a second control underneath can't be clicked, and extra tab stops break the one-card-one-stop rhythm of a listing.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope :is(button, input, select, textarea, [tabindex])' }
+    css:
+      violation: '[data-gui="card"]:has(button, input, select, textarea, [tabindex])'
+      message: "card/no-other-interactive: a card holds one link and no other controls."
+
+  - id: card/target-size
+    description: The link is at least 24 by 24 CSS pixels.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: The block link makes the whole card clickable, but without it the title link alone must still be easy to hit.
+    since: 0.1.0
+    test: { kind: targetSize, selector: '{link}', min: 24 }
+    css: false
+
+  - id: card/focus-ring-visible
+    description: The link shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users tab from card to card; each stop must be visible. WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{link}', min: 3 }
+    css: false
+
+  - id: card/article-element
+    description: The root is an <article> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/sections.html#the-article-element
+    rationale: Each card is a self-contained item; article lets screen-reader users move between them.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(article)' }
+    css:
+      violation: '[data-gui="card"]:not(article)'
+      message: "card/article-element: data-gui=card should be an <article>."
+
+  - id: card/title-is-heading
+    description: The title is a heading element.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H42
+    rationale: Headings let screen-reader users skim a listing by its titles.
+    since: 0.1.0
+    test: { kind: absent, selector: '{title}:not(h2, h3, h4, h5, h6)' }
+    css:
+      violation: '[data-gui="card"] [data-gui-part="title"]:not(h2, h3, h4, h5, h6)'
+      message: "card/title-is-heading: the title should be a heading."
+
+  - id: card/link-in-title
+    description: The link sits inside the title.
+    level: recommended
+    type: technique
+    source: https://inclusive-components.design/cards/
+    rationale: Linking just the title keeps the link's name short; wrapping the whole card in a link makes screen readers read every word of it as the link name.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(:has({title} {link}))' }
+    css:
+      violation: '[data-gui="card"]:not(:has([data-gui-part="title"] [data-gui-part="link"]))'
+      message: "card/link-in-title: put the link inside the title."
+
+  - id: card/title-before-image
+    description: The title comes before the image in the DOM.
+    level: recommended
+    type: technique
+    source: https://inclusive-components.design/cards/
+    rationale: Screen-reader users reach the card by its heading; an image first means they land past it. CSS order puts the image on top visually.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:has({media} ~ {title})' }
+    css: false
+
+  - id: card/decorative-image-empty-alt
+    description: The card image has an empty alt.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/tutorials/images/decorative/
+    rationale: The title already names the card; describing an illustrative photo again adds noise. Give it text only if it shows something the title doesn't.
+    since: 0.1.0
+    test: { kind: absent, selector: '{media}:not([alt=""])' }
+    css: false
+
+  - id: card/link-name-not-generic
+    description: The link isn't named only "Read more", "Click here" or a similar phrase.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: Screen-reader users list links out of context; ten links all called "Read more" can't be told apart.
+    since: 0.2.0
+    test: { kind: nameNotGeneric, selector: '{link}', generic: [read more, click here, more, here, learn more, continue, details, link] }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.1.1", name: Non-text Content, level: A, how: "Every image has alt; illustrative ones alt=\"\"" }
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "article and heading structure; title first in the DOM" }
+  - { criterion: "2.4.4", name: Link Purpose (In Context), level: A, how: "One link, named by the title" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring on the link, card border darkens" }
+  - { criterion: "2.5.3", name: Label in Name, level: A, how: "The link's name is its visible title" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "The whole card is clickable; the link alone is at least 24px" }
+
+siteResponsibilities:
+  - { criterion: "1.3.1", title: Heading level, text: "Pick the title heading level that fits the page outline (usually h2 or h3 under the listing's heading)." }
+  - { criterion: "1.4.3", title: Text contrast, text: "Meta and summary text use muted mixes of the site's text colour; check them if the site changes the card background." }
+  - { criterion: "2.4.4", title: Unique titles, text: 'Two cards with the same title go to different pages but sound identical. Make titles distinct, not "News" and "News".' }
+
+editor:
+  help:
+    title: 'Write the title as the link text people will hear: "Road works on Storgatan from 1 October", not "Read more".'
+    media: 'Leave the image description empty when the picture only illustrates the title. Describe it when it shows something the text doesn''t.'
+    summary: "One or two sentences that say what the page offers."
+  softWarnings:
+    - { id: CD-W1, text: 'A title that is only "News", "Read more" or similar' }
+    - { id: CD-W2, text: Two cards in one listing with the same title }
+
+attributes:
+  - { on: root, name: data-gui, type: '"card"', required: true, description: Marks the element as a Grounded UI card. }
+  - { on: link, name: href, type: url, required: true, description: The page the card leads to. }
+  - { on: media, name: alt, type: string, required: true, description: 'Empty ("") when the image only illustrates the title.' }
+  - { on: media, name: loading, type: '"lazy"', description: Lets the browser defer images below the fold. }
+
+customProperties:
+  --gui-card-bg: Card background.
+  --gui-card-edge: Card border colour at rest.
+  --gui-card-edge-hover: Card border colour on hover and while the link has focus.
+  --gui-card-radius: Corner radius.
+  --gui-card-padding: Inner spacing.
+  --gui-card-focus: Focus ring colour.
+  --gui-card-muted: Meta and summary text colour.
+  --gui-card-media-ratio: Image aspect ratio.
+  --gui-card-duration: Hover transition duration.
+  --gui-card-easing: Transition easing.

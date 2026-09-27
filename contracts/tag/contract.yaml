@@ -1,0 +1,183 @@
+# Contract: tag
+# A small label for a status ("Open", "Closed") or a category, static or linked to a topic page.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({label}, {icon}); `:scope` is the root (the tag itself).
+component: tag
+contractVersion: 0.1.0
+title: Tag
+summary: A small label for a status or a category, static or linking to a topic. The words carry the meaning; colour only repeats them. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [span, a]
+    required: true
+  icon:
+    label: Icon
+    element: [span, svg]
+  label:
+    label: Label
+    element: [span]
+    required: true
+
+domOrder: [icon, label]
+
+variants:
+  - name: success
+    description: A positive status, such as Open or Approved. The label says it in words.
+  - name: warning
+    description: A status to watch, such as Closing soon.
+  - name: danger
+    description: A negative status, such as Closed or Cancelled.
+
+states:
+  - { name: hover, label: Hover (linked tag), hook: ":hover" }
+  - { name: focus, label: Focus (linked tag), hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: "Moves to and from a linked tag; a static tag isn't focusable" }
+  - { key: Enter on a linked tag, behavior: Follows the link }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: tag/has-label
+    description: The tag has a text label.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/use-of-color
+    rationale: A coloured dot or icon alone doesn't tell colour-blind or screen-reader users what the status is.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(:has({label}))' }
+    css:
+      violation: '[data-gui="tag"]:not(:has([data-gui-part="label"]))'
+      message: "tag/has-label: add the status or category in words."
+    editor: { level: refuse }
+
+  - id: tag/label-has-text
+    description: The label has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/use-of-color
+    rationale: An empty label leaves the meaning to colour alone.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{label}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="tag"] [data-gui-part="label"]:empty'
+      pseudo: before
+      message: "tag/label-has-text: the label is empty."
+    editor: { level: refuse }
+
+  - id: tag/link-has-name
+    description: A linked tag has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: A link with no name is announced as just "link".
+    since: 0.1.0
+    test: { kind: name, selector: ':scope:is(a[href])' }
+    css: false
+
+  - id: tag/target-size
+    description: A linked tag is at least 24 by 24 CSS pixels.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: Tags sit close together in lists; small targets are hard to hit with a finger or a tremor. WCAG allows smaller targets with enough spacing, so this is our recommendation.
+    since: 0.1.0
+    test: { kind: targetSize, selector: ':scope:is(a[href])', min: 24 }
+    css: false
+
+  - id: tag/focus-ring-visible
+    description: A linked tag shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see which tag they are on; a tinted pill can hide a site's ring.
+    since: 0.1.0
+    test: { kind: focusRing, selector: ':scope:is(a[href])', min: 3 }
+    css: false
+
+  - id: tag/no-interactive-content
+    description: The tag contains no links, buttons or form fields.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
+    rationale: Interactive content inside a link is invalid HTML, and a button inside a static tag is too small to use.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope :is(a[href], button, input, select, textarea, [tabindex])' }
+    css:
+      violation: '[data-gui="tag"]:has(a[href], button, input, select, textarea, [tabindex])'
+      message: "tag/no-interactive-content: a tag must not contain links, buttons or fields."
+
+  - id: tag/tag-element
+    description: The root is a <span>, or an <a> when the tag links to a page.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-span-element
+    rationale: A static tag is text, not a control; a linked tag is a link. A button or a div with a click handler is neither.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(span, a[href])' }
+    css:
+      violation: '[data-gui="tag"]:not(span, a[href])'
+      message: "tag/tag-element: use a <span>, or an <a href> for a linked tag."
+
+  - id: tag/icon-hidden
+    description: The icon is hidden from assistive technology.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA14
+    rationale: The label already says the status; an icon read aloud ("image", an emoji name) is noise.
+    since: 0.1.0
+    test: { kind: absent, selector: '{icon}:not([aria-hidden="true"])' }
+    css:
+      violation: '[data-gui="tag"] [data-gui-part="icon"]:not([aria-hidden="true"])'
+      message: "tag/icon-hidden: add aria-hidden=true to the icon."
+
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.4.1", name: Use of Color, level: A, how: "The status is a text label; the colour only repeats it" }
+  - { criterion: "1.4.3", name: Contrast (Minimum), level: AA, how: "Text in the full text colour on a light tint, in light and dark" }
+  - { criterion: "2.4.4", name: Link Purpose (In Context), level: A, how: "A linked tag's name is its label, the topic it leads to" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "Linked tags get a 2px focus ring in base CSS" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "Linked tags are at least 24px tall" }
+
+siteResponsibilities:
+  - { criterion: "1.4.1", title: "Words, not colours", text: 'Write the status in the label ("Closed", not a red dot). Keep the same word for the same status across the site.' }
+  - { criterion: "2.4.4", title: Topic links, text: "A linked tag should lead to a page listing everything with that tag." }
+  - { criterion: "1.3.1", title: A list of tags, text: "Several tags together belong in a list (ul), so screen readers announce how many there are." }
+
+editor:
+  help:
+    label: 'One or two words: "Open", "Closing soon", "Parking". Use the same word for the same status everywhere.'
+    icon: "An icon never replaces the word."
+  softWarnings:
+    - { id: TG-W1, text: A label longer than three words }
+    - { id: TG-W2, text: Two tags with the same label and different colours on one page }
+
+attributes:
+  - { on: root, name: data-gui, type: '"tag"', required: true, description: Marks the element as a Grounded UI tag. }
+  - { on: root, name: href, type: url, description: "Only on a linked tag (an <a>): the topic page." }
+  - { on: root, name: data-gui-variant, type: '"success" | "warning" | "danger"', description: "The status colour. The label says it in words; the default is neutral." }
+  - { on: icon, name: aria-hidden, type: '"true"', required: true, description: Hides the decorative icon from assistive technology. }
+
+customProperties:
+  --gui-tag-bg: Neutral background tint.
+  --gui-tag-border: Neutral border colour.
+  --gui-tag-success: Success colour (border and tint).
+  --gui-tag-warning: Warning colour (border and tint).
+  --gui-tag-danger: Danger colour (border and tint).
+  --gui-tag-focus: Focus ring colour on linked tags.
+  --gui-tag-radius: Corner radius.

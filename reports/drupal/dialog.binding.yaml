@@ -1,0 +1,12 @@
+# Maps the dialog contract's parts to Drupal core's Dialog API (jQuery UI dialog, div role="dialog"),
+# opened by a use-ajax link with data-dialog-type="modal". The trigger is a link, not a commandfor button.
+component: dialog
+implementation: Drupal core (Claro)
+root: '.ui-dialog[role="dialog"], .ui-dialog[role="alertdialog"]'
+boundary: .ui-dialog
+parts:
+  trigger: ':not(*)'
+  title: .ui-dialog-title
+  body: .ui-dialog-content
+  actions: .ui-dialog-buttonpane
+  close: '.ui-dialog-titlebar-close, .ui-dialog-buttonpane button'

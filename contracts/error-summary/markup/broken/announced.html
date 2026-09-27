@@ -1,0 +1,8 @@
+<!-- Breaks error-summary/announced: no role="alert" and the title doesn't take focus, so nobody is taken to the summary. also: title-receives-focus -->
+<section data-gui="error-summary" aria-labelledby="problem-title">
+  <h2 data-gui-part="title" id="problem-title">There is a problem</h2>
+  <ul data-gui-part="list">
+    <li><a data-gui-part="link" href="#email">Enter your email address</a></li>
+  </ul>
+</section>
+<p id="email" tabindex="-1">Field placeholder for the link target.</p>

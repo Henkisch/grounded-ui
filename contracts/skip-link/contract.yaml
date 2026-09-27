@@ -1,0 +1,176 @@
+# Contract: skip-link
+# A link at the very start of the page that jumps past the header and navigation to the main content.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# `:scope` is the root: the link itself. Its target (the main content) is outside the component.
+component: skip-link
+contractVersion: 0.2.0
+title: Skip link
+summary: A link at the start of the page that lets keyboard users jump past the navigation to the main content. Hidden until it gets focus, zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+  - feature: clip-path
+
+anatomy:
+  root:
+    label: Root
+    element: [a]
+    required: true
+
+variants:
+  - name: visible
+    description: Always shown instead of only on focus, for sites that keep it in view (and for demonstrating the look).
+
+states:
+  - { name: hidden, label: Waiting (hidden until focus), dom: not focused, hook: ":not(:focus)" }
+  - { name: focus, label: Focused (shown), hook: ":focus" }
+
+keyboard:
+  - { key: Tab (first press on the page), behavior: Moves focus to the skip link and shows it }
+  - { key: Enter, behavior: "Follows the link: the page scrolls to the main content and focus moves there, so the next Tab continues inside it" }
+  - { key: Tab again, behavior: Moves on to the navigation; the skip link hides again }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: skip-link/role
+    description: The skip link has the role link.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: Screen-reader users hear "link" and know Enter takes them somewhere; a button role promises an action on this page instead.
+    since: 0.1.0
+    test: { kind: role, selector: ':scope', oneOf: [link] }
+    css: false
+
+  - id: skip-link/has-name
+    description: The skip link has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks
+    rationale: The name is the only way to know where the link goes; an empty link is announced as just "link".
+    since: 0.1.0
+    test: { kind: name, selector: ':scope' }
+    css:
+      coverage: partial
+      violation: '[data-gui="skip-link"]:empty'
+      pseudo: before
+      message: "skip-link/has-name: the skip link has no text."
+    editor: { level: refuse }
+
+  - id: skip-link/target-exists
+    description: The link's target (href="#id") exists on the page.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks
+    rationale: A skip link to a missing id goes nowhere, so keyboard users still have to tab through the whole header.
+    since: 0.1.0
+    test: { kind: hrefTargetsExist, selector: ':scope' }
+    css: false
+    editor: { level: refuse }
+
+  - id: skip-link/reachable
+    description: The skip link isn't hidden from keyboard and screen-reader users (no hidden, inert or aria-hidden).
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks
+    rationale: Hiding it with the hidden attribute or display none also removes it from the Tab order, so nobody can use it. Hide it visually only, until it has focus.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:is([hidden], [inert], [aria-hidden="true"])' }
+    css:
+      violation: '[data-gui="skip-link"]:is([hidden], [inert], [aria-hidden="true"])'
+      message: "skip-link/reachable: hide the skip link visually, not with hidden, inert or aria-hidden."
+
+  - id: skip-link/focus-ring-visible
+    description: The skip link shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: It appears only on focus, so the ring (with the link itself) is what tells a keyboard user it's there.
+    since: 0.1.0
+    test: { kind: focusRing, selector: ':scope', min: 3 }
+    css: false
+
+  - id: skip-link/target-size
+    description: The skip link is at least 24 by 24 CSS pixels.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: Once shown it is a real target; pointer and touch users may tap it too.
+    since: 0.1.0
+    test: { kind: targetSize, selector: ':scope', min: 24 }
+    css: false
+
+  - id: skip-link/link-element
+    description: The skip link is an <a> whose href points at an id on the same page.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/general/G1
+    rationale: A same-page link moves focus to the main content with no script, and still works when CSS or JavaScript fails.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(a[href^="#"])' }
+    css:
+      violation: '[data-gui="skip-link"]:not(a[href^="#"])'
+      message: 'skip-link/link-element: use <a href="#main">.'
+    editor: { level: refuse }
+
+  - id: skip-link/first-focusable
+    description: The skip link is the first thing keyboard focus reaches on the page.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks
+    rationale: It exists to save keyboard users from tabbing through the header; after other links it saves nothing.
+    since: 0.2.0
+    test: { kind: firstFocusable, selector: ':scope' }
+    css: false
+
+  - id: skip-link/visible-on-focus
+    description: The skip link becomes visible when it receives keyboard focus.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: A focused link that stays invisible leaves sighted keyboard users with focus they can't see.
+    since: 0.2.0
+    test: { kind: visibleOnFocus, selector: ':scope' }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "2.4.1", name: Bypass Blocks, level: A, how: "A same-page link past repeated header and navigation to the main content" }
+  - { criterion: "2.4.3", name: Focus Order, level: A, how: "First in the Tab order; following it moves focus to the main content" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "Shown whenever it has focus, with a 2px ring" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "At least 24 by 24 CSS pixels when shown" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "A native link with a descriptive name" }
+
+siteResponsibilities:
+  - { criterion: "2.4.1", title: First in the page, text: "Put the skip link as the first element in <body>, before the header and navigation, so it's the first thing Tab reaches." }
+  - { criterion: "2.4.3", title: A focusable target, text: 'Point it at the main content, usually <main id="main" tabindex="-1">. tabindex="-1" lets the target take focus, so the next Tab continues inside the content in every browser.' }
+  - { title: One per page, text: "One skip link to the main content is enough for most sites. Add a second (to search, say) only when users need it often." }
+
+editor:
+  help:
+    root: 'Say where it goes: "Skip to main content". It is read out as the first thing on every page, so keep it short.'
+  softWarnings:
+    - { id: SL-W1, text: 'Text that is only "Skip" or doesn''t say where the link goes' }
+
+attributes:
+  - { on: root, name: data-gui, type: '"skip-link"', required: true, description: Marks the element as a Grounded UI skip link. }
+  - { on: root, name: href, type: '"#<id of the main content>"', required: true, description: 'The main content''s id, for example "#main".' }
+  - { on: root, name: data-gui-variant, type: '"visible"', description: Always shown instead of only on focus. }
+
+customProperties:
+  --gui-skip-link-bg: Background.
+  --gui-skip-link-color: Text colour.
+  --gui-skip-link-radius: Corner radius.
+  --gui-skip-link-focus: Focus ring colour.
+  --gui-skip-link-duration: Slide-in duration.
+  --gui-skip-link-easing: Slide-in easing.

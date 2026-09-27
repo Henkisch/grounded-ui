@@ -1,0 +1,31 @@
+/*
+ * accordion base CSS: only what the contract and accessibility need.
+ * Native <details>/<summary>: the browser draws the marker and handles the state. Base adds the touch target,
+ * the focus ring, and keeps a heading inside the summary on the marker's line.
+ * For a finished look, add accordion.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.accordion {
+  @scope ([data-gui="accordion"]) to ([data-gui]) {
+    /* WCAG 2.5.8: the summary is the button; keep it tappable. */
+    :where([data-gui-part="summary"]) {
+      min-block-size: var(--gui-accordion-touch-target, 2.75em);
+      cursor: pointer;
+    }
+
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :where([data-gui-part="summary"]):focus-visible {
+      outline: 2px solid var(--gui-accordion-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+
+    /* A block heading would drop below the marker and separate the label from its control. */
+    :where([data-gui-part="heading"]) {
+      display: inline;
+      margin: 0;
+      font-size: inherit;
+    }
+  }
+}

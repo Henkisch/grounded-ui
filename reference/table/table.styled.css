@@ -1,0 +1,59 @@
+/* Hallmark · component: table · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · region focus · zebra and numeric variants (hover, active, disabled, loading, error, success: not states of a table)
+ * contrast: all text in CanvasText on Canvas; row lines are decorative
+ */
+/*
+ * table styled CSS: the Grounded house style on top of table.css.
+ * Calm lines between rows, a heavier header row that stays on top while rows scroll, tabular numbers.
+ * Few, short selectors on purpose: a table can hold thousands of cells.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.table {
+  @scope ([data-gui="table"]) to ([data-gui]) {
+    :where(table) {
+      inline-size: 100%;
+      border-collapse: collapse;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Aligned with the cell text below it. */
+    :where(caption) {
+      padding-block-end: 0.5em;
+      padding-inline: 0.75em;
+      font-weight: 600;
+      text-align: start;
+    }
+
+    :where(th, td) {
+      padding-block: 0.5em;
+      padding-inline: 0.75em;
+      text-align: start;
+      vertical-align: top;
+      border-block-end-width: 1px;
+      border-block-end-style: solid;
+      border-block-end-color: var(--gui-table-border, color-mix(in oklab, CanvasText 18%, Canvas));
+    }
+
+    :where(th) {
+      font-weight: 600;
+    }
+
+    /* Sticky header cells need a background, or scrolled rows show through. */
+    :where(thead th) {
+      position: sticky;
+      inset-block-start: 0;
+      background: var(--gui-table-header-bg, Canvas);
+      border-block-end-color: color-mix(in oklab, CanvasText 55%, Canvas);
+    }
+
+    :scope[data-gui-variant="zebra"] :where(tbody tr:nth-child(even)) {
+      background: var(--gui-table-zebra, color-mix(in oklab, CanvasText 4%, Canvas));
+    }
+
+    :scope[data-gui-variant="numeric"] :where(th, td):not(:first-child) {
+      text-align: end;
+    }
+  }
+}

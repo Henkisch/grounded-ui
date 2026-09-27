@@ -3,27 +3,32 @@ title: Theming
 description: Every component takes its font and colours from your site, and exposes custom properties for the rest.
 ---
 
-grund-ui has no theme of its own. Text and borders use `currentColor`, backgrounds are transparent or the browser's `Canvas`, and sizes are in `em` — so a component placed on your site already looks like it belongs there.
+grounded-ui has no theme of its own. Text and borders use `currentColor`, backgrounds are transparent or the browser's `Canvas`, and sizes are in `em` — so a component placed on your site already looks like it belongs there.
 
 ## Custom properties
 
-When you want more control, set the component's custom properties from your own CSS. Each component page lists them, with defaults, under **Custom properties**.
+When you want more control, set custom properties from your own CSS. They come in two levels:
+
+- **Roles** theme every component at once: `--gui-border` (field borders), `--gui-focus` (focus rings), `--gui-danger` (errors) and `--gui-radius` (corners).
+- **Component tokens** change one component: `--gui-<component>-<property>`, for example `--gui-text-field-border` or `--gui-dialog-bg`. Each component page lists them, with defaults, under **Custom properties**.
+
+A component reads its own token first, then the role, then its built-in default: `var(--gui-text-field-border, var(--gui-border, …))`. Grounded UI never sets any of them itself, so your value always wins.
 
 ```css
 /* your-site.css */
-[data-component] {
-  --grund-radius: 0;
-  --grund-border-color: #6b6b6b;
-  --grund-focus-color: #0b57d0;
+:root {
+  --gui-radius: 0;
+  --gui-border: #6b6b6b;
+  --gui-focus: #0b57d0;
 }
 
-[data-component="dialog"] {
-  --grund-dialog-bg: #fffdf7;
-  --grund-radius-large: 0.25rem;
+[data-gui="dialog"] {
+  --gui-dialog-bg: #fffdf7;
+  --gui-dialog-radius: 0.25em;
 }
 ```
 
-No `!important` and no extra specificity: grund's own rules sit in a lower cascade layer, so any rule of yours wins.
+No `!important` and no extra specificity: Grounded UI's own rules sit in a lower cascade layer, so any rule of yours wins.
 
 ## Scope a theme
 
@@ -31,8 +36,8 @@ Custom properties inherit, so you can theme one area of a page:
 
 ```css
 .site-footer {
-  --grund-border-color: currentColor;
-  --grund-control-bg: transparent;
+  --gui-border: currentColor;
+  --gui-text-field-control-bg: transparent;
 }
 ```
 
@@ -41,7 +46,7 @@ Custom properties inherit, so you can theme one area of a page:
 Target the same hooks the components use. Your selector wins even though it's no more specific:
 
 ```css
-[data-component="text-field"] [data-part="label"] {
+[data-gui="text-field"] [data-gui-part="label"] {
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }

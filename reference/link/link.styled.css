@@ -1,0 +1,44 @@
+/* Hallmark · component: link · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · hover · focus · visited (active, disabled, loading, error, success: not states of a link)
+ * contrast: LinkText and VisitedText are the browser's own link colours; the underline carries the link without colour
+ */
+/*
+ * link styled CSS: the Grounded house style on top of link.css.
+ * The browser's link colours, an underline with some air, a thicker underline on hover,
+ * and small icons for new tabs and files. Three short rules: links are everywhere.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.link {
+  @scope ([data-gui="link"]) to ([data-gui]) {
+    :scope {
+      color: var(--gui-link-color, LinkText);
+      text-decoration-line: underline;
+      text-decoration-thickness: 0.0625em;
+      text-underline-offset: 0.2em;
+    }
+
+    :scope:visited {
+      color: var(--gui-link-visited, VisitedText);
+    }
+
+    @media (hover: hover) {
+      :scope:hover {
+        text-decoration-thickness: 0.125em;
+      }
+    }
+
+    :where([data-gui-part="icon"]) {
+      display: inline-block;
+      inline-size: 0.875em;
+      block-size: 0.875em;
+      margin-inline-start: 0.25em;
+      vertical-align: -0.0625em;
+    }
+
+    :where([data-gui-part="file-info"]) {
+      color: color-mix(in oklab, currentColor 75%, Canvas);
+    }
+  }
+}

@@ -1,0 +1,100 @@
+/* Hallmark · component: card · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · hover · focus (link) · (disabled, loading, error, success: not states of a card)
+ * contrast: text on Canvas; the hover/focus border is a 40% CanvasText mix (≥ 3:1); meta 55% (≥ 4.5:1)
+ */
+/*
+ * card styled CSS: the Grounded house style on top of card.css.
+ * A calm surface with a faint edge, the image on top, and the whole card clickable through the link's ::after
+ * (block link). The edge darkens on hover and while the link has keyboard focus.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.card {
+  @scope ([data-gui="card"]) to ([data-gui]) {
+    :scope {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      padding: var(--gui-card-padding, 1em);
+      background: var(--gui-card-bg, Canvas);
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--gui-card-edge, color-mix(in oklab, CanvasText 14%, Canvas));
+      border-radius: var(--gui-card-radius, var(--gui-radius, 0.75em));
+      transition-property: border-color;
+      transition-duration: var(--gui-card-duration, 120ms);
+      transition-timing-function: var(--gui-card-easing, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    :scope:has([data-gui-part="link"]:focus-visible) {
+      border-color: var(--gui-card-edge-hover, color-mix(in oklab, CanvasText 40%, Canvas));
+    }
+
+    @media (hover: hover) {
+      :scope:hover {
+        border-color: var(--gui-card-edge-hover, color-mix(in oklab, CanvasText 40%, Canvas));
+      }
+
+      :scope:hover :where([data-gui-part="link"]) {
+        text-decoration-line: underline;
+      }
+    }
+
+    /* The title leads the DOM; the image is moved on top visually. */
+    :where([data-gui-part="media"]) {
+      order: -1;
+      inline-size: 100%;
+      aspect-ratio: var(--gui-card-media-ratio, 16 / 9);
+      object-fit: cover;
+      border-radius: calc(var(--gui-card-radius, var(--gui-radius, 0.75em)) - 0.25em);
+    }
+
+    :where([data-gui-part="title"]) {
+      margin: 0;
+      font-size: 1.125em;
+      font-weight: 600;
+      line-height: 1.3;
+      text-wrap: balance;
+    }
+
+    :where([data-gui-part="link"]) {
+      color: inherit;
+      text-decoration-line: none;
+      text-decoration-thickness: 0.0625em;
+      text-underline-offset: 0.15em;
+    }
+
+    :where([data-gui-part="link"]):focus-visible {
+      text-decoration-line: underline;
+      outline-color: var(--gui-card-focus, var(--gui-focus, CanvasText));
+    }
+
+    /* Block link: the link's ::after covers the card, so a click anywhere follows it. One tab stop, short name. */
+    :where([data-gui-part="link"])::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+    }
+
+    :where([data-gui-part="meta"], [data-gui-part="summary"]) {
+      margin: 0;
+    }
+
+    :where([data-gui-part="meta"]) {
+      font-size: 0.875em;
+      color: var(--gui-card-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+    }
+
+    :where([data-gui-part="summary"]) {
+      color: var(--gui-card-muted, color-mix(in oklab, CanvasText 75%, Canvas));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :scope {
+        transition-duration: 0s;
+      }
+    }
+  }
+}

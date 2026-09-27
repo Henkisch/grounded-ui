@@ -1,0 +1,59 @@
+/* Hallmark · component: breadcrumb · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · hover · focus · current (active, disabled, loading, error, success: not states of a breadcrumb)
+ * contrast: links 55% CanvasText mix (≥ 4.5:1 in light and dark); current page in full text colour
+ */
+/*
+ * breadcrumb styled CSS: the Grounded house style on top of breadcrumb.css.
+ * Small, muted links that underline on hover, a quieter chevron, and the current page in the text colour.
+ * All colours come from Canvas and CanvasText. Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.breadcrumb {
+  @scope ([data-gui="breadcrumb"]) to ([data-gui]) {
+    :scope {
+      font-size: 0.875em;
+      line-height: 1.4;
+    }
+
+    :where([data-gui-part="item"] + [data-gui-part="item"])::before {
+      color: var(--gui-breadcrumb-separator, color-mix(in oklab, CanvasText 40%, Canvas));
+    }
+
+    :where([data-gui-part="link"]) {
+      padding-block: 0.25em;
+      color: var(--gui-breadcrumb-muted, color-mix(in oklab, CanvasText 60%, Canvas));
+      text-decoration-line: underline;
+      text-decoration-color: transparent;
+      text-underline-offset: 0.2em;
+      border-radius: var(--gui-breadcrumb-radius, var(--gui-radius, 0.25em));
+      transition-property: color, text-decoration-color;
+      transition-duration: var(--gui-breadcrumb-duration, 120ms);
+    }
+
+    @media (hover: hover) {
+      :where([data-gui-part="link"]):hover {
+        color: CanvasText;
+        text-decoration-color: currentColor;
+      }
+    }
+
+    /* The base ring uses currentColor (the muted link colour); the text colour is clearer. */
+    :where([data-gui-part="link"]):focus-visible {
+      outline-color: var(--gui-breadcrumb-focus, var(--gui-focus, CanvasText));
+      transition-duration: 0s;
+    }
+
+    :where([aria-current="page"]) {
+      color: CanvasText;
+      font-weight: 600;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :where([data-gui-part="link"]) {
+        transition-duration: 0s;
+      }
+    }
+  }
+}

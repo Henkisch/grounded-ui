@@ -1,0 +1,6 @@
+<!-- Breaks toggletip/focus-ring-visible: the site's theme removes focus outlines on buttons. -->
+<style>button:focus { outline: 0; }</style>
+<span data-gui="toggletip">
+  <button type="button" data-gui-part="trigger" commandfor="vat-tip" command="toggle-popover" aria-label="About VAT numbers"><span aria-hidden="true">i</span></button>
+  <span data-gui-part="content" id="vat-tip" popover>Two-letter country code followed by the number, for example SE556677889901.</span>
+</span>

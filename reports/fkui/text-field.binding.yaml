@@ -1,0 +1,11 @@
+# Maps the text-field contract's parts to Försäkringskassan's FKUI markup (FTextField, FTextareaField).
+component: text-field
+implementation: Försäkringskassan FKUI
+root: .text-field, .textarea-field
+boundary: .text-field, .textarea-field
+parts:
+  label: label.label
+  description: .label__description
+  control: .text-field__input, .textarea-field__textarea
+  error: .label__message--error
+  required-indicator: ':not(*)'

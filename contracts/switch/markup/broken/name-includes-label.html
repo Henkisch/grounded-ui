@@ -1,0 +1,6 @@
+<!-- Breaks switch/name-includes-label: aria-labelledby names the switch "Theme", not its visible label "Dark mode". -->
+<div data-gui="switch">
+  <label data-gui-part="label" for="dark-mode">Dark mode</label>
+  <span id="dark-mode-name" hidden>Theme</span>
+  <input data-gui-part="control" type="checkbox" role="switch" switch id="dark-mode" name="dark-mode" aria-labelledby="dark-mode-name">
+</div>

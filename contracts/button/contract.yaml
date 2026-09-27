@@ -1,0 +1,209 @@
+# Contract: button
+# A native button: an action on the page, a form submit, or an on/off toggle.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({label}, {icon}); `:scope` is the root (the button itself).
+component: button
+contractVersion: 0.2.0
+title: Button
+summary: A native button for actions, form submits and on/off toggles, with an optional icon. Zero JavaScript to be accessible.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [button]
+    required: true
+  icon:
+    label: Icon
+    element: [span, svg]
+  label:
+    label: Visible label
+    element: [span]
+
+variants:
+  - name: secondary
+    description: A less prominent action next to a primary one, such as Cancel.
+  - name: danger
+    description: A destructive action, such as Delete. Say what is destroyed in the label.
+
+states:
+  - { name: hover, label: Hover, hook: ":hover" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+  - { name: active, label: Pressed down, hook: ":active" }
+  - { name: pressed, label: Toggled on, dom: 'aria-pressed="true"', hook: '[aria-pressed="true"]' }
+  - { name: disabled, label: Disabled, dom: disabled, hook: ":disabled" }
+  - { name: aria-disabled, label: Disabled but focusable, dom: 'aria-disabled="true"', hook: '[aria-disabled="true"]' }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: Moves focus to and from the button }
+  - { key: Enter or Space, behavior: Activates the button }
+  - { key: Tab in Safari, behavior: "Safari tabs only to form fields and links by default. Users reach buttons with Option + Tab, or by turning on \"Press Tab to highlight each item\". This is Safari behaviour on every site." }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: button/role
+    description: The button has the role button.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: The role tells users it can be activated; a clickable div is announced as plain text.
+    since: 0.1.0
+    test: { kind: role, selector: ':scope', oneOf: [button] }
+    css: false
+
+  - id: button/has-name
+    description: The button has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: An icon-only button with no name is announced as just "button".
+    since: 0.1.0
+    test: { kind: name, selector: ':scope' }
+    css: false
+    editor: { level: refuse }
+
+  - id: button/name-includes-label
+    description: The button's accessible name contains its visible label text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: Voice-control users say the label they see; an aria-label that differs leaves them unable to press it.
+    since: 0.1.0
+    test: { kind: name, selector: ':scope', includes: '{label}' }
+    css: false
+
+  - id: button/target-size
+    description: The button is at least 24 by 24 CSS pixels.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: Small targets are hard to hit for people with tremors and on touch screens.
+    since: 0.1.0
+    test: { kind: targetSize, selector: ':scope', min: 24 }
+    css: false
+
+  - id: button/valid-pressed-state
+    description: If the button is a toggle, aria-pressed is true, false or mixed.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/TR/wai-aria-1.2/#aria-pressed
+    rationale: Any other value isn't a state assistive technology understands, so users can't tell if it's on.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope[aria-pressed]:not([aria-pressed="true"], [aria-pressed="false"], [aria-pressed="mixed"])' }
+    css:
+      violation: '[data-gui="button"][aria-pressed]:not([aria-pressed="true"], [aria-pressed="false"], [aria-pressed="mixed"])'
+      message: "button/valid-pressed-state: aria-pressed must be true, false or mixed."
+
+  - id: button/no-interactive-content
+    description: The button contains no links, buttons or form fields.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#the-button-element
+    rationale: Interactive content inside a button is invalid HTML; keyboard and screen-reader users can't reach it reliably.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope :is(a[href], button, input, select, textarea, [tabindex])' }
+    css:
+      violation: '[data-gui="button"]:has(a[href], button, input, select, textarea, [tabindex])'
+      message: "button/no-interactive-content: a button must not contain interactive content."
+
+  - id: button/button-element
+    description: The root is a <button> element.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/button/
+    rationale: A native button is focusable, activates on Enter and Space, and takes part in forms without script.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(button)' }
+    css:
+      violation: '[data-gui="button"]:not(button)'
+      message: "button/button-element: data-gui=button must be a <button>."
+    editor: { level: refuse }
+
+  - id: button/explicit-type
+    description: The button has an explicit type.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-type
+    rationale: A button without a type submits its form, so a Cancel or toggle button inside a form sends it by accident.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not([type])' }
+    css:
+      violation: '[data-gui="button"]:not([type])'
+      message: "button/explicit-type: set type=button, submit or reset."
+    editor: { level: warn }
+
+  - id: button/icon-hidden
+    description: The icon is hidden from assistive technology.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA14
+    rationale: A decorative icon read aloud ("image", or an emoji name) adds noise to the button's name; the label or aria-label carries the meaning.
+    since: 0.1.0
+    test: { kind: absent, selector: '{icon}:not([aria-hidden="true"])' }
+    css:
+      violation: '[data-gui="button"] [data-gui-part="icon"]:not([aria-hidden="true"])'
+      message: "button/icon-hidden: add aria-hidden=true to the icon."
+
+  - id: button/focus-ring-visible
+    description: The button shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see where they are; a ring in the same colour as the page (or none at all) hides it. WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.2.0
+    test: { kind: focusRing, selector: ':scope', min: 3 }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "2.1.1", name: Keyboard, level: A, how: "Native button: focusable, activates on Enter and Space" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring in base CSS, never removed" }
+  - { criterion: "2.5.3", name: Label in Name, level: A, how: "The accessible name contains the visible label" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "At least 24 by 24 CSS pixels, measured on the rendered button" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Native button role; name from content or aria-label; aria-pressed for toggles" }
+  - { criterion: "1.4.11", name: Non-text Contrast, level: AA, how: "Secondary border and focus ring at least 3:1" }
+
+siteResponsibilities:
+  - { criterion: "2.4.6", title: Say what happens, text: 'Label buttons with the result ("Save draft", "Delete account"), not "Click here" or "OK".' }
+  - { criterion: "2.4.7", title: Don't remove the focus ring, text: "Grounded UI never uses !important, so a site rule like :focus { outline: 0 } removes it." }
+  - { criterion: "3.2.2", title: Links are links, text: "If it goes to another page, use a link, not a button." }
+
+editor:
+  help:
+    label: 'Name the button after what it does: "Send message", "Download the report (PDF, 2 MB)".'
+    icon: "An icon never replaces the text. Without visible text, the button needs an aria-label that says what it does."
+  softWarnings:
+    - { id: BT-W1, text: 'A label that is only "Click here", "Read more", "OK" or "Submit"' }
+    - { id: BT-W2, text: Two buttons with the same label that do different things }
+
+attributes:
+  - { on: root, name: data-gui, type: '"button"', required: true, description: Marks the element as a Grounded UI button. }
+  - { on: root, name: type, type: '"button" | "submit" | "reset"', required: true, description: '"button" for actions, "submit" to send a form.' }
+  - { on: root, name: data-gui-variant, type: '"secondary" | "danger"', description: 'Less prominent, or destructive. Default is the primary look.' }
+  - { on: root, name: aria-pressed, type: '"true" | "false"', description: Makes it a toggle; keep the label the same in both states. }
+  - { on: root, name: aria-label, type: string, description: "Only for icon-only buttons: what the button does." }
+  - { on: root, name: disabled, type: boolean, description: "Not focusable and not announced as available. Prefer explaining why nearby." }
+  - { on: icon, name: aria-hidden, type: '"true"', required: true, description: Hides the decorative icon from assistive technology. }
+
+customProperties:
+  --gui-button-radius: Corner radius.
+  --gui-button-bg: Primary background.
+  --gui-button-color: Primary text colour.
+  --gui-button-border: Secondary border colour.
+  --gui-button-danger: Danger background.
+  --gui-button-focus: Focus ring colour.
+  --gui-button-touch-target: Minimum height.
+  --gui-button-duration: Hover and press transition duration.
+  --gui-button-easing: Transition easing.

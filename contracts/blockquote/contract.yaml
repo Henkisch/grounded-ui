@@ -1,0 +1,215 @@
+# Contract: blockquote
+# A quotation in an article, with its attribution (who said it, where) in a caption outside the quote.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({quote}, {caption}, {source}); `:scope` is the root.
+component: blockquote
+contractVersion: 0.1.0
+title: Blockquote
+summary: A quotation with its attribution. The source sits in a caption outside the quote, so it is never read as part of what was said. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [figure]
+    required: true
+  quote:
+    label: Quote
+    element: [blockquote]
+    required: true
+  caption:
+    label: Attribution
+    element: [figcaption]
+  source:
+    label: Title of the work
+    element: [cite]
+
+domOrder: [quote, caption]
+
+variants:
+  - name: pull
+    description: A pull quote that lifts a line from the surrounding article; larger text between two rules.
+
+states:
+  - { name: link-focus, label: Link in the quote or caption focused, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: "Moves to links in the quote or the attribution; the quote itself isn't focusable" }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: blockquote/quote-has-text
+    description: The quote has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H49
+    rationale: A quotation element without words is used for its indentation, and screen readers announce a quotation that isn't there.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{quote}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="blockquote"] blockquote:empty'
+      pseudo: before
+      message: "blockquote/quote-has-text: the quote is empty."
+    editor: { level: refuse }
+
+  - id: blockquote/attribution-outside-quote
+    description: The attribution sits outside the quote element.
+    level: recommended
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-blockquote-element
+    rationale: Everything inside the quotation is read as quoted words; a name placed inside it becomes part of what the person said.
+    since: 0.1.0
+    test: { kind: absent, selector: '{quote} {caption}' }
+    css: false
+
+  - id: blockquote/not-for-layout
+    description: The quote holds quoted text, not headings, tables, forms or navigation.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H49
+    rationale: A quotation used to indent a section of the page tells screen-reader users the page itself is a quote.
+    since: 0.1.0
+    test: { kind: absent, selector: '{quote} :is(h1, h2, h3, h4, h5, h6, table, form, nav)' }
+    css: false
+
+  - id: blockquote/role
+    description: The root has the role figure.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/TR/html-aam-1.0/#el-figure
+    rationale: The role keeps the quote and its attribution together as one unit for screen-reader users.
+    since: 0.1.0
+    test: { kind: role, selector: ':scope', oneOf: [figure] }
+    css: false
+
+  - id: blockquote/caption-names-figure
+    description: When there is an attribution, it names the figure (a figcaption, or aria-labelledby or aria-label).
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: An attribution that only sits visually below the quote isn't tied to it for screen-reader users.
+    since: 0.1.0
+    # Structural on purpose, as in the figure contract: a figure's name comes from its figcaption, not its content.
+    test: { kind: absent, selector: ':scope:has({caption}):not(:has(> figcaption), [aria-labelledby], [aria-label])' }
+    css: false
+
+  - id: blockquote/caption-has-text
+    description: The attribution has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: An empty attribution leaves an unnamed figure and a gap where the source should be.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{caption}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="blockquote"] figcaption:empty'
+      pseudo: before
+      message: "blockquote/caption-has-text: the attribution is empty."
+    editor: { level: warn }
+
+  - id: blockquote/focus-ring-visible
+    description: Links in the quote or the attribution show a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see which link they are on.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{quote} a[href], {caption} a[href]', min: 3 }
+    css: false
+
+  - id: blockquote/figure-element
+    description: The root is a <figure> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-blockquote-element
+    rationale: The HTML spec's own pattern for a quote with attribution is a figure holding the blockquote and a figcaption.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(figure)' }
+    css:
+      violation: '[data-gui="blockquote"]:not(figure)'
+      message: "blockquote/figure-element: data-gui=blockquote must be a <figure>."
+
+  - id: blockquote/quote-element
+    description: The quote is a <blockquote> element.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H49
+    rationale: blockquote gives the quote its blockquote role, so screen readers announce where the quotation starts and ends.
+    since: 0.1.0
+    test: { kind: absent, selector: '{quote}:not(blockquote)' }
+    css: false
+
+  - id: blockquote/one-quote
+    description: There is exactly one quote.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-figcaption-element
+    rationale: One attribution names one quotation; several quotes under one caption leave it unclear who said what.
+    since: 0.1.0
+    test: { kind: count, selector: '{quote}', equals: 1 }
+    css: false
+
+  - id: blockquote/caption-element
+    description: The attribution is a <figcaption> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-figcaption-element
+    rationale: Only a figcaption names the figure automatically; a paragraph needs aria-labelledby to do the same.
+    since: 0.1.0
+    test: { kind: absent, selector: '{caption}:not(figcaption)' }
+    css: false
+
+  - id: blockquote/source-element
+    description: The title of a quoted work is a <cite> element inside the attribution.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-cite-element
+    rationale: cite marks the title of a work; kept in the attribution, it stays out of the quoted words.
+    since: 0.1.0
+    test: { kind: absent, selector: '{source}:not({caption} cite)' }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "blockquote marks the quoted words; figure and figcaption tie the attribution to them, outside the quote" }
+  - { criterion: "1.4.3", name: Contrast (Minimum), level: AA, how: "Quote text and the muted attribution at least 4.5:1 in light and dark" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "Links get a 2px focus ring in base CSS" }
+
+siteResponsibilities:
+  - { title: Quote accurately, text: "The contract checks structure, not wording. Quote the source exactly and link to it when you can." }
+  - { criterion: "3.1.2", title: Language of the quote, text: 'A quote in another language needs lang on the blockquote, such as lang="en", so screen readers pronounce it right.' }
+  - { title: Not for indentation, text: "Use the blockquote for quotations only. To indent or highlight other content, use a notice or plain CSS." }
+
+editor:
+  help:
+    quote: "Paste the quoted words only, without quotation marks: the layout marks it as a quote."
+    caption: 'Who said it, and where: "Anna Berg, head of the planning office".'
+    source: 'The title of a report, book or article, such as "Annual report 2025".'
+  softWarnings:
+    - { id: BQ-W1, text: Quotation marks typed around the whole quote }
+    - { id: BQ-W2, text: A quote longer than about five sentences }
+
+attributes:
+  - { on: root, name: data-gui, type: '"blockquote"', required: true, description: Marks the element as a Grounded UI blockquote. }
+  - { on: root, name: data-gui-variant, type: '"pull"', description: A pull quote lifted from the surrounding article. }
+  - { on: quote, name: cite, type: url, description: "Where the quote comes from; not shown, so link it in the attribution as well." }
+  - { on: quote, name: lang, type: language tag, description: The quote's language when it differs from the page. }
+
+customProperties:
+  --gui-blockquote-rule: Colour of the quote's start rule and the pull quote's rules.
+  --gui-blockquote-caption: Attribution text colour.
+  --gui-blockquote-focus: Focus ring colour on links.

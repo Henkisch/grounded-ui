@@ -1,0 +1,206 @@
+# Contract: link
+# A text link in running content, including links that open a new tab and links to files.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({new-window}, {file-info}, {icon}); `:scope` is the root (the link itself).
+component: link
+contractVersion: 0.2.0
+title: Link
+summary: A text link that says where it goes, including links that open a new tab and links to files. Underlined, so it never relies on colour alone. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [a]
+    required: true
+  icon:
+    label: Icon
+    element: [span, svg]
+  new-window:
+    label: New-tab notice
+    element: [span]
+    requiredWhen: '[target="_blank"]'
+  file-info:
+    label: File type and size
+    element: [span]
+
+variants:
+  - name: file
+    description: A link to a document. The file type and size are part of the link text.
+
+states:
+  - { name: hover, label: Hover, hook: ":hover" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+  - { name: visited, label: Visited, hook: ":visited" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: Moves focus to and from the link }
+  - { key: Enter, behavior: Follows the link }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: link/role
+    description: The link has the role link.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: The role tells users it leads somewhere; a link announced as a button promises an action instead.
+    since: 0.1.0
+    test: { kind: role, selector: ':scope', oneOf: [link] }
+    css: false
+
+  - id: link/has-name
+    description: The link has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: An icon-only link with no name is announced as just "link".
+    since: 0.1.0
+    test: { kind: name, selector: ':scope' }
+    css: false
+    editor: { level: refuse }
+
+  - id: link/name-not-generic
+    description: The link isn't named only "Click here", "Read more" or a similar phrase.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: Screen-reader users list links out of context; ten links all called "Read more" can't be told apart.
+    since: 0.1.0
+    test: { kind: nameNotGeneric, selector: ':scope', generic: [click here, read more, here, link, more, learn more, this page] }
+    css: false
+
+  - id: link/new-window-announced
+    description: A link that opens a new tab says so.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Techniques/general/G201
+    rationale: A new tab breaks the Back button; people who can't see the page change need to know before they follow the link.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope[target="_blank"]:not(:has({new-window}))' }
+    css:
+      violation: '[data-gui="link"][target="_blank"]:not(:has([data-gui-part="new-window"]))'
+      message: "link/new-window-announced: say that the link opens a new tab."
+
+  - id: link/name-includes-new-window
+    description: The new-tab notice is part of the link's accessible name.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Techniques/general/G201
+    rationale: A notice outside the name, or hidden from assistive technology, never reaches the people it is for.
+    since: 0.1.0
+    test: { kind: name, selector: ':scope', includes: '{new-window}' }
+    css: false
+
+  - id: link/name-includes-file-info
+    description: A file link's accessible name includes the file type and size.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: People on slow or metered connections, and screen-reader users, need to know a link starts a 20 MB PDF download.
+    since: 0.1.0
+    test: { kind: name, selector: ':scope', includes: '{file-info}' }
+    css: false
+
+  - id: link/focus-ring-visible
+    description: The link shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see which link they are on.
+    since: 0.1.0
+    test: { kind: focusRing, selector: ':scope', min: 3 }
+    css: false
+
+  - id: link/no-interactive-content
+    description: The link contains no links, buttons or form fields.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
+    rationale: Interactive content inside a link is invalid HTML; keyboard and screen-reader users can't reach it reliably.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope :is(a[href], button, input, select, textarea, [tabindex])' }
+    css:
+      violation: '[data-gui="link"]:has(a[href], button, input, select, textarea, [tabindex])'
+      message: "link/no-interactive-content: a link must not contain links, buttons or fields."
+
+  - id: link/link-element
+    description: The root is an <a> with an href.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
+    rationale: A native link is focusable, opens in a new tab on request, shows its address and can be bookmarked; a clickable span can do none of that.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(a[href])' }
+    css:
+      violation: '[data-gui="link"]:not(a[href])'
+      message: "link/link-element: use an <a href>."
+    editor: { level: refuse }
+
+  - id: link/icon-hidden
+    description: The icon is hidden from assistive technology.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA14
+    rationale: The link text and notices carry the meaning; an icon read aloud adds noise to the name.
+    since: 0.1.0
+    test: { kind: absent, selector: '{icon}:not([aria-hidden="true"])' }
+    css:
+      violation: '[data-gui="link"] [data-gui-part="icon"]:not([aria-hidden="true"])'
+      message: "link/icon-hidden: add aria-hidden=true to the icon."
+
+  - id: link/underlined
+    description: Links in running text are underlined, not told apart by colour alone.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/use-of-color
+    rationale: People who can't tell the link colour from the text colour need another cue; the underline is the one everyone recognises.
+    since: 0.2.0
+    test: { kind: computedStyle, selector: ':scope', property: text-decoration-line, includes: [underline] }
+    css: false
+
+
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.4.1", name: Use of Color, level: A, how: "Links are underlined, not told apart from text by colour alone" }
+  - { criterion: "2.4.4", name: Link Purpose (In Context), level: A, how: "The name says where the link goes; file type and size are part of it" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring in base CSS" }
+  - { criterion: "3.2.5", name: Change on Request, level: AAA, how: "Links that open a new tab say so in their name" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Native link role; name from the link text" }
+
+siteResponsibilities:
+  - { criterion: "2.4.4", title: Say where it goes, text: 'Write the destination as the link text ("Opening hours for the library"), not "Click here".' }
+  - { criterion: "3.2.5", title: New tabs sparingly, text: "Open a new tab only when leaving would lose the user's work, and always say so." }
+  - { criterion: "1.4.1", title: Keep the underline, text: "Grounded UI never uses !important, so a site rule like a { text-decoration: none } removes the underline. Keep another non-colour cue if you do." }
+
+editor:
+  help:
+    text: 'Write where the link goes: "Apply for a parking permit", not "Click here".'
+    file-info: 'For documents, add the type and size: "Annual report 2025 (PDF, 2 MB)".'
+  softWarnings:
+    - { id: LK-W1, text: Two links with the same text that go to different places }
+    - { id: LK-W2, text: A link text that is a bare web address }
+
+attributes:
+  - { on: root, name: data-gui, type: '"link"', required: true, description: Marks the element as a Grounded UI link. }
+  - { on: root, name: href, type: url, required: true, description: Where the link goes. }
+  - { on: root, name: target, type: '"_blank"', description: "Opens a new tab. Needs the new-window part." }
+  - { on: root, name: data-gui-variant, type: '"file"', description: A link to a document; add the file-info part. }
+  - { on: new-window, name: data-gui-part, type: '"new-window"', description: "Text such as \"(opens in a new tab)\", visually hidden in the reference CSS and shown as an icon." }
+  - { on: icon, name: aria-hidden, type: '"true"', required: true, description: Hides the decorative icon from assistive technology. }
+
+customProperties:
+  --gui-link-color: Link colour (default LinkText).
+  --gui-link-visited: Visited link colour (default VisitedText).
+  --gui-link-focus: Focus ring colour.

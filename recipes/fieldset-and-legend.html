@@ -1,0 +1,24 @@
+<style>
+  .demo { display: grid; gap: 1.5em; }
+  fieldset { margin: 0; padding: 0; border: 0; min-inline-size: 0; display: grid; gap: 0.5em; }
+  legend { padding: 0; font-weight: 600; margin-block-end: 0.25em; }
+  label { display: flex; gap: 0.5em; align-items: center; }
+  input { accent-color: CanvasText; font: inherit; inline-size: 1.125em; block-size: 1.125em; margin: 0; }
+  .boxed { border: 1px solid color-mix(in oklab, CanvasText 40%, Canvas); border-radius: 0.5em; padding: 1em; }
+  .boxed > legend { float: left; inline-size: 100%; margin-block-end: 0.5em; }
+  .boxed > legend + * { clear: both; }
+  .hint { margin: 0; font-size: 0.875em; color: color-mix(in oklab, CanvasText 60%, Canvas); }
+</style>
+<div class="demo">
+  <fieldset>
+    <legend>Delivery method</legend>
+    <label><input type="radio" name="d" checked> Post</label>
+    <label><input type="radio" name="d"> Email</label>
+  </fieldset>
+  <fieldset class="boxed">
+    <legend>Contact preferences</legend>
+    <p class="hint">Floated legend: inside the border, like a heading.</p>
+    <label><input type="checkbox" checked> Newsletter</label>
+    <label><input type="checkbox"> Event invitations</label>
+  </fieldset>
+</div>

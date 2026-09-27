@@ -1,0 +1,260 @@
+# Contract: pagination
+# Page links for search results and listings, in a named navigation landmark.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({list}, {item}, {link}, {current}, {previous}, {next}, {ellipsis}); `:scope` is the root (the nav).
+component: pagination
+contractVersion: 0.1.0
+title: Pagination
+summary: Page links for search results and listings, in a named navigation landmark. The current page is marked for screen readers, and previous and next say what they do in words. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: nav
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [nav]
+    required: true
+  list:
+    label: List
+    element: [ul, ol]
+    required: true
+  item:
+    label: Item
+    element: [li]
+    required: true
+  previous:
+    label: Previous page link
+    element: [a]
+  link:
+    label: Page link
+    element: [a]
+  current:
+    label: Current page (as text)
+    element: [span]
+  ellipsis:
+    label: Gap between page numbers
+    element: [span]
+  next:
+    label: Next page link
+    element: [a]
+
+domOrder: [list]
+
+variants:
+  - name: compact
+    description: Previous and next only, with the position as text ("Page 3 of 12"). For narrow screens and long result lists.
+
+states:
+  - { name: current, label: Current page, dom: 'aria-current="page"', hook: '[aria-current="page"]' }
+  - { name: hover, label: Hover, hook: ":hover" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: "Moves between the previous, page and next links" }
+  - { key: Enter, behavior: Follows the focused link }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: pagination/landmark-role
+    description: The pagination is a navigation landmark.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: Screen-reader users jump between landmarks to find the page links below a long result list.
+    since: 0.1.0
+    test: { kind: role, selector: ':scope', oneOf: [navigation] }
+    css: false
+
+  - id: pagination/has-name
+    description: The navigation landmark has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: A page usually has several navigation landmarks; the name ("Pagination") tells them apart.
+    since: 0.1.0
+    test: { kind: name, selector: ':scope' }
+    css: false
+    editor: { level: refuse }
+
+  - id: pagination/one-current
+    description: Exactly one element marks the current page with aria-current="page".
+    level: normative
+    type: outcome
+    source: https://www.w3.org/TR/wai-aria-1.2/#aria-current
+    rationale: aria-current is how screen-reader users learn which page they are on; the filled square alone is only visual.
+    since: 0.1.0
+    test: { kind: count, selector: '[aria-current="page"]', equals: 1 }
+    css:
+      violation: '[data-gui="pagination"]:not(:has([aria-current="page"]))'
+      message: "pagination/one-current: no element has aria-current=page."
+    editor: { level: warn }
+
+  - id: pagination/links-have-names
+    description: Every link has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: A link with no name (an arrow icon alone) is announced as just "link".
+    since: 0.1.0
+    test: { kind: name, selector: '{link}, {previous}, {next}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: pagination/previous-next-in-words
+    description: The previous and next links aren't named only "Prev", "Next" or a similar short word.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: A link read out of context as just "Next" doesn't say next what; "Next page" does. A name that is only an arrow symbol has no words at all and fails links-have-names.
+    since: 0.1.0
+    test: { kind: nameNotGeneric, selector: '{previous}, {next}', generic: [prev, next, previous, back, forward, more] }
+    css: false
+    editor: { level: warn }
+
+  - id: pagination/target-size
+    description: Every link is at least 24 by 24 CSS pixels.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: Single-digit page links are tiny targets packed close together. (WCAG allows smaller targets with enough spacing, hence recommended.)
+    since: 0.1.0
+    test: { kind: targetSize, selector: '{link}, {previous}, {next}', min: 24 }
+    css: false
+
+  - id: pagination/focus-ring-visible
+    description: Every link shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see which page link they are on; WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{link}, {previous}, {next}', min: 3 }
+    css: false
+
+  - id: pagination/no-separator-text
+    description: No separator characters are typed as text between the links.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: A "|" or "·" typed between page numbers is read aloud between every link; space the items with CSS instead.
+    since: 0.1.0
+    test: { kind: noLooseText, selector: '{list}, {item}', pattern: '[|/·•]' }
+    css: false
+
+  - id: pagination/unique-ids
+    description: Ids inside the pagination are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes aria-labelledby and in-page links point at the wrong element.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+
+  - id: pagination/nav-element
+    description: The root is a <nav> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/sections.html#the-nav-element
+    rationale: The native element is a navigation landmark without ARIA.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(nav)' }
+    css:
+      violation: '[data-gui="pagination"]:not(nav)'
+      message: "pagination/nav-element: data-gui=pagination must be a <nav>."
+    editor: { level: refuse }
+
+  - id: pagination/list-element
+    description: The items are in one list.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-ul-element
+    rationale: A list announces how many page links there are and lets screen-reader users skip past them.
+    since: 0.1.0
+    test: { kind: count, selector: 'ul{list}, ol{list}', equals: 1 }
+    css: false
+
+  - id: pagination/aria-label
+    description: The landmark is named with aria-label or aria-labelledby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
+    rationale: A nav has no name of its own; the label is how it gets one.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not([aria-label], [aria-labelledby])' }
+    css:
+      violation: '[data-gui="pagination"]:not([aria-label], [aria-labelledby])'
+      message: "pagination/aria-label: add aria-label=\"Pagination\"."
+
+  - id: pagination/ellipsis-hidden
+    description: The gap between page numbers ("…") is hidden from assistive technology.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/practices/hiding-semantics/
+    rationale: '"Horizontal ellipsis" read between page links is noise; the numbers either side already say pages are skipped.'
+    since: 0.1.0
+    test: { kind: absent, selector: '{ellipsis}:not([aria-hidden="true"])' }
+    css:
+      violation: '[data-gui="pagination"] [data-gui-part="ellipsis"]:not([aria-hidden="true"])'
+      message: "pagination/ellipsis-hidden: add aria-hidden=true to the ellipsis."
+
+  - id: pagination/page-links-say-page
+    description: Every page number link is named "Page N", not just the number.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: '"Page 3" makes sense in a links list read out of context; "3" only makes sense inside the landmark. aria-label keeps the visible number in the name (Label in Name).'
+    since: 0.1.0
+    test: { kind: absent, selector: '{link}:not([aria-label^="Page "])' }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "A list of links inside a named navigation landmark" }
+  - { criterion: "2.4.4", name: Link Purpose (In Context), level: A, how: 'Previous and next in words; page links named "Page N"' }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring on every link, at least 3:1" }
+  - { criterion: "2.5.3", name: Label in Name, level: A, how: 'The visible number is part of the name "Page N"' }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "Links are at least 24 CSS pixels in both directions" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Navigation role, a name, and aria-current for the current page" }
+
+siteResponsibilities:
+  - { criterion: "2.4.2", title: Page number in the title, text: 'Put the page number in the page title too ("Search results, page 3 of 12"), so it is announced on arrival.' }
+  - { criterion: "2.4.3", title: Focus after following a link, text: "A full page load starts at the top. If results load in place with script, move focus to the result heading." }
+  - { criterion: "3.2.3", title: Same place on every page, text: "Keep the pagination in the same place below the results on every page." }
+
+editor:
+  help:
+    previous: 'Keep the words: "Previous page" and "Next page", even when an arrow is shown.'
+    link: 'Each page link is named "Page N" for screen readers; the visible number stays as it is.'
+  softWarnings:
+    - { id: PG-W1, text: More than about nine page links in a row }
+
+attributes:
+  - { on: root, name: data-gui, type: '"pagination"', required: true, description: Marks the element as a Grounded UI pagination. }
+  - { on: root, name: aria-label, type: string, required: true, description: 'Names the landmark, for example "Pagination".' }
+  - { on: root, name: data-gui-variant, type: '"compact"', description: "Previous and next only, with the position as text." }
+  - { on: link, name: aria-label, type: string, required: true, description: '"Page N", keeping the visible number in the name.' }
+  - { on: link, name: aria-current, type: '"page"', description: Marks the link to the page you are on. }
+  - { on: current, name: aria-current, type: '"page"', description: 'In the compact variant: marks the position text ("Page 3 of 12").' }
+  - { on: ellipsis, name: aria-hidden, type: '"true"', required: true, description: Hides the gap from assistive technology. }
+
+customProperties:
+  --gui-pagination-gap: Space between links.
+  --gui-pagination-focus: Focus ring colour.
+  --gui-pagination-border: Page link border colour.
+  --gui-pagination-radius: Page link corner radius.
+  --gui-pagination-current-bg: Current page background.
+  --gui-pagination-current-color: Current page text colour.
+  --gui-pagination-duration: Hover transition duration.

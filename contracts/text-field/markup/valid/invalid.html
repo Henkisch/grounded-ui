@@ -1,0 +1,15 @@
+<div data-gui="text-field">
+  <label data-gui-part="label" for="email">Email</label>
+  <p data-gui-part="description" id="email-desc">We only use it for the confirmation.</p>
+  <input data-gui-part="control"
+         type="email"
+         id="email"
+         name="email"
+         autocomplete="email"
+         aria-invalid="true"
+         aria-describedby="email-error email-desc">
+  <p data-gui-part="error" id="email-error">
+    <span aria-hidden="true">⚠</span>
+    Enter a valid email address, for example name@example.com
+  </p>
+</div>

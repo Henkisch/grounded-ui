@@ -1,0 +1,100 @@
+/* Hallmark · component: file-upload · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · hover · focus · disabled · error (loading, success: the site's, after the upload)
+ * contrast: drop zone and button border ≥ 3:1, muted and error text ≥ 4.5:1 in light and dark (system-colour mixes)
+ */
+/*
+ * file-upload styled CSS: the Grounded house style on top of file-upload.css.
+ * The input's own box is a dashed drop zone; its button looks like the secondary button. Every neutral is mixed
+ * from Canvas and CanvasText, so it follows the site's colour scheme. Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.file-upload {
+  @scope ([data-gui="file-upload"]) to ([data-gui]) {
+    :where([data-gui-part="label"]) {
+      font-weight: var(--gui-file-upload-label-weight, 600);
+    }
+
+    :where([data-gui-part="description"]) {
+      margin-block-start: calc(var(--gui-file-upload-gap, 0.375em) * -0.5);
+      font-size: 0.875em;
+      color: var(--gui-file-upload-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+    }
+
+    :where([data-gui-part="required-indicator"]) {
+      color: var(--gui-file-upload-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+    }
+
+    /* The input's box is the drop zone. One border width in every state: states change colour, never geometry. */
+    :where([data-gui-part="control"]) {
+      padding: 0.75em;
+      background: var(--gui-file-upload-control-bg, Canvas);
+      border-width: 1px;
+      border-style: dashed;
+      border-color: var(--gui-file-upload-border, var(--gui-border, color-mix(in oklab, CanvasText 40%, Canvas)));
+      border-radius: var(--gui-file-upload-radius, var(--gui-radius, 0.375em));
+      cursor: pointer;
+      transition-property: border-color;
+      transition-duration: var(--gui-file-upload-duration, 120ms);
+    }
+
+    /* The button: the house secondary button. */
+    :where([data-gui-part="control"])::file-selector-button {
+      min-block-size: 2.5em;
+      margin-inline-end: 0.75em;
+      padding-block: 0.375em;
+      padding-inline: 0.875em;
+      font-weight: 600;
+      color: CanvasText;
+      background: Canvas;
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--gui-file-upload-border, var(--gui-border, color-mix(in oklab, CanvasText 40%, Canvas)));
+      border-radius: var(--gui-file-upload-radius, var(--gui-radius, 0.375em));
+      cursor: pointer;
+    }
+
+    @media (hover: hover) {
+      :where([data-gui-part="control"]):hover:not(:disabled, [aria-invalid="true"]) {
+        border-color: var(--gui-file-upload-border-hover, color-mix(in oklab, CanvasText 65%, Canvas));
+      }
+
+      :where([data-gui-part="control"]):hover:not(:disabled)::file-selector-button {
+        background: color-mix(in oklab, CanvasText 6%, Canvas);
+      }
+    }
+
+    /* Instant, never animated; the site's accent can take over through the token. */
+    :where([data-gui-part="control"]):focus-visible {
+      outline-color: var(--gui-file-upload-focus, var(--gui-focus, CanvasText));
+      transition-duration: 0s;
+    }
+
+    :where([data-gui-part="control"]):disabled {
+      cursor: not-allowed;
+      color: var(--gui-file-upload-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+    }
+
+    /* Base draws a 2px border for the non-colour error cue; here the second pixel is an inset shadow,
+       so the zone keeps its size and the cue stays. */
+    :where([data-gui-part="control"][aria-invalid="true"]) {
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--gui-file-upload-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+      box-shadow: inset 0 0 0 0.0625em var(--gui-file-upload-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    :where([data-gui-part="error"]) {
+      font-size: 0.875em;
+      font-weight: 500;
+      color: var(--gui-file-upload-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :where([data-gui-part="control"]) {
+        transition-duration: 0s;
+      }
+    }
+  }
+}

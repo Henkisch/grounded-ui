@@ -1,0 +1,393 @@
+# Contract: date-field
+# A date entry: either one native <input type="date"> with its label, or a fieldset with three labelled text
+# inputs for day, month and year (the "memorable date" pattern, for dates people know, such as a birth date).
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({label}, {control}, …); `:scope` is the root; {id} is the root's id.
+component: date-field
+contractVersion: 0.1.0
+title: Date field
+summary: A date entry, either one native date input or three labelled fields for day, month and year, with an optional description and an error message.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+# Support versions and Baseline status are read from the web-features package, never written by hand.
+requires:
+  - feature: scope
+  - feature: input-date-time
+    optional: true
+    fallback: Browsers without a date picker show a plain text field; the memorable-date variant needs no picker at all.
+
+anatomy:
+  root:
+    label: Root
+    element: [div, fieldset]
+    required: true
+  legend:
+    label: Legend (three-field variant)
+    element: [legend]
+  label:
+    label: Label
+    element: [label]
+    required: true
+  description:
+    label: Description
+    element: [p, div]
+  error:
+    label: Error message
+    element: [p, div]
+    requiredWhen: '[aria-invalid="true"]'
+  items:
+    label: Field row (three-field variant)
+    element: [div]
+  item:
+    label: Field (three-field variant)
+    element: [div]
+  control:
+    label: Control
+    element: [input]
+    required: true
+
+domOrder: [legend, label, description, error, items, control]
+
+variants:
+  - name: memorable
+    description: 'A fieldset with three text inputs for day, month and year. For dates people know without a calendar, such as a date of birth.'
+
+states:
+  - { name: required, label: Required, dom: required, hook: ":required" }
+  - { name: invalid, label: Invalid, dom: 'aria-invalid="true"', hook: '[aria-invalid="true"]' }
+  - { name: disabled, label: Disabled, dom: disabled, hook: ":disabled" }
+  - { name: focus, label: Focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: "Native: moves into the date input and between its day, month and year segments (varies by browser). Three fields: each is its own tab stop" }
+  - { key: Up / Down arrows, behavior: "Native: changes the focused segment. Three fields: none (they are text fields)" }
+  - { key: Space / Enter, behavior: "Native: opens the browser's date picker where it has one" }
+  - { key: Click on a label, behavior: Moves focus to its control }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: date-field/control-has-name
+    description: Every control has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: A date input without a name is announced as just "edit text"; with three fields, users can't tell day from year.
+    since: 0.1.0
+    test: { kind: name, selector: '{control}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: date-field/control-name-includes-label
+    description: Every control's accessible name contains the visible text of its own label.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: Voice-control users say the label they see ("Day", "Year"); a name that differs leaves them unable to reach the field.
+    since: 0.1.0
+    test: { kind: labelInName, selector: '{control}' }
+    css: false
+
+  - id: date-field/control-role
+    description: Every control has the role textbox or spinbutton.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: The role tells users they can type a value here; a date exposed as anything else is misannounced.
+    since: 0.1.0
+    test: { kind: role, selector: '{control}', oneOf: [textbox, spinbutton] }
+    css: false
+
+  - id: date-field/label-has-text
+    description: Every label has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
+    rationale: An empty label leaves its control without a visible or spoken name.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{label}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="date-field"] [data-gui-part="label"]:empty'
+      pseudo: before
+      message: "date-field/label-has-text: a label is empty."
+    editor: { level: refuse }
+
+  - id: date-field/group-has-name
+    description: A three-field date is a fieldset named by its legend.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: Without a group name, users hear "Day", "Month" and "Year" without the question they answer.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:has({item}):not(:has(> {legend}))' }
+    css:
+      violation: '[data-gui="date-field"]:has([data-gui-part="item"]):not(:has(> [data-gui-part="legend"]))'
+      message: "date-field/group-has-name: a three-field date needs a legend."
+    editor: { level: refuse }
+
+  - id: date-field/legend-has-text
+    description: The legend has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
+    rationale: The legend is the visible question; an empty one leaves the group unnamed for everyone.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{legend}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="date-field"] [data-gui-part="legend"]:empty'
+      pseudo: before
+      message: "date-field/legend-has-text: the legend is empty."
+
+  - id: date-field/name-includes-legend
+    description: A three-field date's group name contains the legend text.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: Users should hear the question they see; a group name unrelated to the legend is confusing.
+    since: 0.1.0
+    test: { kind: name, selector: ':scope', includes: '{legend}' }
+    css: false
+
+  - id: date-field/description-reaches-control
+    description: If there is a description, its text reaches every control's accessible description or name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
+    rationale: The format hint ("For example, 27 3 2007") is what makes the fields usable; screen-reader users must hear it in each field.
+    since: 0.1.0
+    test: { kind: exposes, selector: '{control}', text: '{description}' }
+    css: false
+
+  - id: date-field/invalid-has-error
+    description: If a control has aria-invalid="true", there is an error message in the field or referenced by the control.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: WCAG 3.3.1 requires the error to be described in text, not only flagged.
+    since: 0.1.0
+    test: { kind: invalidHasError, control: '{control}', error: '{error}' }
+    css:
+      violation: '[data-gui="date-field"]:has([aria-invalid="true"]):not(:has([data-gui-part="error"]))'
+      message: "date-field/invalid-has-error: aria-invalid=true but no [data-gui-part=error]."
+    editor: { level: refuse }
+
+  - id: date-field/error-reaches-control
+    description: If there is an error message, its text reaches the accessible description or name of every invalid control.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: An error shown only visually leaves screen-reader users with an invalid field and no reason.
+    since: 0.1.0
+    test: { kind: exposes, selector: '{control}[aria-invalid="true"]', text: '{error}' }
+    css: false
+
+  - id: date-field/error-has-text
+    description: The error message has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: An empty error part flags the date without saying what is wrong.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{error}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="date-field"] [data-gui-part="error"]:empty'
+      pseudo: before
+      message: "date-field/error-has-text: the error message is empty."
+    editor: { level: warn }
+
+  - id: date-field/target-size
+    description: Every control is at least 24 by 24 CSS pixels.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: A two-digit day field sized to its content can end up tiny; it must stay easy to hit.
+    since: 0.1.0
+    test: { kind: targetSize, selector: '{control}', min: 24 }
+    css: false
+
+  - id: date-field/focus-ring-visible
+    description: Every control shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see which field they are in; WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{control}', min: 3 }
+    css: false
+
+  - id: date-field/unique-ids
+    description: Ids inside the date field are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes for and aria-describedby point at the wrong element.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+    editor: { level: warn }
+
+  - id: date-field/fieldset-for-three-fields
+    description: A three-field date's root is a <fieldset>.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H71
+    rationale: A native fieldset groups the three fields and takes its name from the legend without extra ARIA.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:has({item}):not(fieldset)' }
+    css:
+      violation: '[data-gui="date-field"]:has([data-gui-part="item"]):not(fieldset)'
+      message: "date-field/fieldset-for-three-fields: a three-field date must be a <fieldset>."
+
+  - id: date-field/legend-element
+    description: The legend part is a <legend> element.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H71
+    rationale: Only a legend names its fieldset without extra ARIA.
+    since: 0.1.0
+    test: { kind: absent, selector: '{legend}:not(legend)' }
+    css:
+      violation: '[data-gui="date-field"] [data-gui-part="legend"]:not(legend)'
+      message: "date-field/legend-element: the legend part must be a <legend>."
+
+  - id: date-field/label-tied-to-control
+    description: Every label is tied to its control, with for or by wrapping it.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H44
+    rationale: A tied label names the control and makes the label text clickable.
+    since: 0.1.0
+    test: { kind: absent, selector: '{label}:not([for]):not(:has({control}))' }
+    css:
+      violation: '[data-gui="date-field"] [data-gui-part="label"]:not([for]):not(:has([data-gui-part="control"]))'
+      message: "date-field/label-tied-to-control: the label has no for and doesn't wrap its control."
+    editor: { level: warn }
+
+  - id: date-field/native-input
+    description: Every control is an <input>.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: Native inputs bring their role, value, keyboard, autofill and form submission for free.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:not(input)' }
+    css:
+      violation: '[data-gui="date-field"] [data-gui-part="control"]:not(input)'
+      message: "date-field/native-input: the control must be an <input>."
+
+  - id: date-field/numeric-keyboard
+    description: Each of the three fields asks for a numeric keyboard (inputmode="numeric").
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute
+    rationale: A number pad on phones makes a date quicker to type; type="number" is avoided because it adds spin buttons and drops leading zeros.
+    since: 0.1.0
+    test: { kind: absent, selector: '{item} {control}:not([inputmode="numeric"])' }
+    css:
+      violation: '[data-gui="date-field"] [data-gui-part="item"] [data-gui-part="control"]:not([inputmode="numeric"])'
+      message: "date-field/numeric-keyboard: add inputmode=numeric to each day, month and year field."
+
+  - id: date-field/autocomplete-token
+    description: Each of the three fields has an autocomplete attribute (a bday-* token for a birth date, or off).
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose
+    rationale: For a birth date, bday-day, bday-month and bday-year let browsers fill it in (WCAG 1.3.5); for other dates, off stops wrong suggestions.
+    since: 0.1.0
+    test: { kind: absent, selector: '{item} {control}:not([autocomplete])' }
+    css: false
+
+  - id: date-field/description-in-describedby
+    description: If there is a description, its id is referenced in the first control's aria-describedby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: aria-describedby reads the format hint when the field gets focus, without repeating it in the label.
+    since: 0.1.0
+    test:
+      kind: idrefIncludes
+      from: { selector: '{control}', attr: aria-describedby }
+      to: '{description}'
+    css: false
+
+  - id: date-field/error-first-in-describedby
+    description: The error's id comes first in an invalid control's aria-describedby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/TR/wai-aria-1.2/#aria-describedby
+    rationale: Screen readers read describedby in id order; the error is the most urgent information.
+    since: 0.1.0
+    test:
+      kind: idrefFirst
+      from: { selector: '{control}[aria-invalid="true"]', attr: aria-describedby }
+      to: '{error}'
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "Label tied to its control; the three-field variant grouped by a fieldset and named by its legend" }
+  - { criterion: "1.3.5", name: Identify Input Purpose, level: AA, how: "bday-day, bday-month and bday-year autocomplete tokens for birth dates" }
+  - { criterion: "3.3.2", name: Labels or Instructions, level: A, how: "Visible labels, and a format hint in the description" }
+  - { criterion: "3.3.1", name: Error Identification, level: A, how: "An error message referenced by the invalid controls, with aria-invalid" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Native inputs: role, name and value" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "Every field at least 24 by 24 CSS pixels" }
+  - { criterion: "1.4.11", name: Non-text Contrast, level: AA, how: "Field borders and focus ring at least 3:1" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring on every field, never removed" }
+
+siteResponsibilities:
+  - { criterion: "1.4.3", title: Text contrast, text: "Labels and the legend use the site's text colour; 4.5:1 against the background is the site's job." }
+  - { title: Pick the right variant, text: "Use the three fields for dates people know by heart (a birth date, a passport issue date). Use the native date input for dates people pick from a calendar (a booking, an appointment)." }
+  - { title: Dark mode picker icon, text: "The native date input's calendar icon follows color-scheme. Set color-scheme: light dark on the page, or the icon stays black on a dark background." }
+  - { criterion: "3.3.1", title: Validate on the server, text: "Check the date itself (31 February, a year of 20) after submit and say exactly what's wrong in the error message." }
+  - { criterion: "2.4.7", title: Don't remove the focus ring, text: "Grounded UI never uses !important, so a site rule like :focus { outline: 0 } removes the fields' focus ring." }
+
+editor:
+  help:
+    legend: 'Ask the question: "What is your date of birth?" works better than "Date".'
+    label: 'For three fields, keep the labels as "Day", "Month" and "Year".'
+    description: 'Give an example in the expected order: "For example, 27 3 2007".'
+    error: 'Say what is missing or wrong: "Date of birth must include a year", not "Invalid date".'
+  softWarnings:
+    - { id: DF-W1, text: 'A native date input for a date of birth (use three fields)' }
+    - { id: DF-W2, text: A three-field date without a format example }
+
+# The component's API: the attributes a user writes. Rendered as tables in the docs.
+attributes:
+  - { on: root, name: data-gui, type: '"date-field"', required: true, description: Marks the element as a Grounded UI date field. }
+  - { on: root, name: data-gui-variant, type: '"memorable"', description: 'The three-field variant: a fieldset with day, month and year.' }
+  - { on: label, name: for, type: id, required: true, description: The control's id. }
+  - { on: control, name: type, type: '"date" | "text"', required: true, description: '"date" for the native input; "text" for each of the three fields.' }
+  - { on: control, name: inputmode, type: '"numeric"', description: 'Three fields: shows a number pad on phones.' }
+  - { on: control, name: autocomplete, type: '"bday-day" | "bday-month" | "bday-year" | "off"', description: 'Three fields: bday-* for a birth date, off otherwise.' }
+  - { on: control, name: size, type: '"2" | "4"', description: 'Three fields: 2 for day and month, 4 for year; sets the field width.' }
+  - { on: control, name: aria-describedby, type: id list, description: "The error's id first, then the description's id." }
+  - { on: control, name: aria-invalid, type: '"true"', description: Marks a field whose value was rejected. }
+  - { on: control, name: min, type: date, description: 'Native input: the earliest date the picker offers.' }
+  - { on: control, name: max, type: date, description: 'Native input: the latest date the picker offers.' }
+
+customProperties:
+  --gui-date-field-gap: Space between parts.
+  --gui-date-field-touch-target: Minimum control height.
+  --gui-date-field-focus: Focus ring colour.
+  --gui-date-field-label-weight: Label and legend font weight.
+  --gui-date-field-label: Label and legend text colour.
+  --gui-date-field-muted: Description text colour.
+  --gui-date-field-control-bg: Control background.
+  --gui-date-field-border: Control border colour (keep it at least 3:1 against the background).
+  --gui-date-field-border-hover: Control border colour on hover.
+  --gui-date-field-control-muted-bg: Background of disabled controls.
+  --gui-date-field-radius: Control corner radius.
+  --gui-date-field-danger: Error text and border colour.
+  --gui-date-field-duration: Hover transition duration.
+  --gui-date-field-easing: Transition easing.

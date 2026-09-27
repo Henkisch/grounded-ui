@@ -1,0 +1,17 @@
+/*
+ * definition-list base CSS: only what the contract and accessibility need.
+ * Links in the descriptions get a focus ring; the list's layout is the browser's or the site's.
+ * For a finished look, add definition-list.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.definition-list {
+  @scope ([data-gui="definition-list"]) to ([data-gui]) {
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :where(a):focus-visible {
+      outline: 2px solid var(--gui-definition-list-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+  }
+}

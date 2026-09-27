@@ -1,0 +1,27 @@
+/*
+ * link base CSS: only what the contract and accessibility need.
+ * A focus ring that is never removed, and the new-tab notice kept in the name but off screen.
+ * For a finished look, add link.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.link {
+  @scope ([data-gui="link"]) to ([data-gui]) {
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :scope:focus-visible {
+      outline: 2px solid var(--gui-link-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+
+    /* Read as part of the name, not shown: the icon carries it visually. */
+    :where([data-gui-part="new-window"]) {
+      position: absolute;
+      inline-size: 0.0625em;
+      block-size: 0.0625em;
+      overflow: hidden;
+      white-space: nowrap;
+      clip-path: inset(50%);
+    }
+  }
+}

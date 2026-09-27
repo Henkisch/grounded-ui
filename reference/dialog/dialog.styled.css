@@ -1,0 +1,85 @@
+/* Hallmark · component: dialog · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: closed · opening · open · closing (the buttons are the site's own)
+ * contrast: text on Canvas/CanvasText; the surface edge is a shadow plus a faint border, both from system colours
+ */
+/*
+ * dialog styled CSS: the Grounded house style on top of dialog.css.
+ * A lifted surface with a soft shadow, a dimmed backdrop, and a short scale-and-fade on open.
+ * Colours come from Canvas and CanvasText, so it follows the site's light or dark scheme.
+ * Remove this file and the component still meets its contract.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.dialog {
+  @scope ([data-gui="dialog"]) to ([data-gui]) {
+    :scope {
+      padding: 1.5em;
+      color: var(--gui-dialog-color, CanvasText);
+      background: var(--gui-dialog-bg, Canvas);
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--gui-dialog-border, color-mix(in oklab, CanvasText 14%, Canvas));
+      border-radius: var(--gui-dialog-radius, 0.75em);
+      box-shadow: var(--gui-dialog-shadow, 0 1.5em 3em -1em oklch(0% 0 0 / 0.25));
+      opacity: 0;
+      scale: 0.98;
+      translate: 0 0.25em;
+      transition-property: opacity, scale, translate, overlay, display;
+      transition-duration: var(--gui-dialog-duration-exit, 120ms);
+      transition-timing-function: ease-in;
+      transition-behavior: allow-discrete;
+    }
+
+    :scope[open] {
+      opacity: 1;
+      scale: 1;
+      translate: 0 0;
+      transition-duration: var(--gui-dialog-duration, 180ms);
+      transition-timing-function: var(--gui-dialog-easing, cubic-bezier(0.2, 0, 0, 1));
+
+      @starting-style {
+        opacity: 0;
+        scale: 0.98;
+        translate: 0 0.25em;
+      }
+    }
+
+    :scope::backdrop {
+      backdrop-filter: brightness(0.5);
+      opacity: 0;
+      transition-property: opacity, overlay, display;
+      transition-duration: var(--gui-dialog-duration, 180ms);
+      transition-behavior: allow-discrete;
+    }
+
+    :scope[open]::backdrop {
+      opacity: 1;
+
+      @starting-style {
+        opacity: 0;
+      }
+    }
+
+    :where([data-gui-part="title"]) {
+      font-size: var(--gui-dialog-title-size, 1.25em);
+      font-weight: var(--gui-dialog-title-weight, 600);
+      line-height: 1.3;
+      text-wrap: balance;
+    }
+
+    /* Muted only when the body is running text; a form body keeps full-strength labels. */
+    :where(p[data-gui-part="body"]) {
+      color: var(--gui-dialog-muted, color-mix(in oklab, CanvasText 70%, Canvas));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :scope,
+      :scope::backdrop {
+        scale: 1;
+        translate: 0 0;
+        transition-duration: 0s;
+      }
+    }
+  }
+}

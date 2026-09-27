@@ -1,0 +1,204 @@
+# Contract: progress
+# How far a task has come (an upload, a multi-step form), on the native <progress> element.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({label}, {control}, {value}); `:scope` is the root.
+component: progress
+contractVersion: 0.1.0
+title: Progress bar
+summary: How far a task has come, such as an upload or a step in a form, on the native progress element. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: progress
+  - feature: indeterminate
+  - feature: appearance
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [div]
+    required: true
+  label:
+    label: Label
+    element: [label]
+    required: true
+  control:
+    label: Progress bar
+    element: [progress]
+    required: true
+  value:
+    label: Value text
+    element: [span, p]
+
+domOrder: [label, control, value]
+
+states:
+  - { name: determinate, label: Known progress, dom: value set, hook: ":not(:indeterminate)" }
+  - { name: indeterminate, label: Busy (unknown progress), dom: no value attribute, hook: ":indeterminate" }
+
+keyboard:
+  - { key: Tab, behavior: "Skips the bar: a progress bar is information, not a control" }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: progress/role
+    description: The bar has the role progressbar.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: The role is what makes screen readers announce it as progress with its percentage.
+    since: 0.1.0
+    test: { kind: role, selector: '{control}', oneOf: [progressbar] }
+    css: false
+
+  - id: progress/has-name
+    description: The bar has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/
+    rationale: '"Progress bar, 64 %" alone doesn''t say what is loading.'
+    since: 0.1.0
+    test: { kind: name, selector: '{control}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: progress/name-includes-label
+    description: The bar's accessible name contains the visible label text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: What people see and what they hear should match.
+    since: 0.1.0
+    test: { kind: name, selector: '{control}', includes: '{label}' }
+    css: false
+
+  - id: progress/label-has-text
+    description: The label has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
+    rationale: An empty label leaves the bar unnamed for everyone.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{label}' }
+    css: false
+
+  - id: progress/valid-range
+    description: The maximum is above zero and the value isn't negative.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#the-progress-element
+    rationale: HTML requires a positive maximum; with a zero or negative one the bar shows no progress at all.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:is([max="0"], [max^="-"], [value^="-"])' }
+    css:
+      violation: '[data-gui="progress"] [data-gui-part="control"]:is([max="0"], [max^="-"], [value^="-"])'
+      message: "progress/valid-range: max must be above zero and value can't be negative."
+
+  - id: progress/not-focusable
+    description: The bar isn't in the Tab order.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-order
+    rationale: A progress bar can't be operated; a Tab stop on it only slows keyboard users down.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope[tabindex], {control}[tabindex], {label}[tabindex]' }
+    css: false
+
+  - id: progress/unique-ids
+    description: Ids inside the progress bar are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes the label point at the wrong element.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+
+  - id: progress/progress-element
+    description: The bar is a <progress> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#the-progress-element
+    rationale: The native element brings the role, the value and the busy state without ARIA or script.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:not(progress)' }
+    css:
+      violation: '[data-gui="progress"] [data-gui-part="control"]:not(progress)'
+      message: "progress/progress-element: use a <progress> element."
+
+  - id: progress/label-element
+    description: The label is a <label> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/forms.html#the-label-element
+    rationale: A progress element is labelable, so a native label names it without ARIA.
+    since: 0.1.0
+    test: { kind: absent, selector: '{label}:not(label)' }
+    css: false
+
+  - id: progress/label-for-matches-id
+    description: The label's for matches the bar's id.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/forms.html#attr-label-for
+    rationale: for/id ties the label to the bar wherever they sit in the DOM.
+    since: 0.1.0
+    test:
+      kind: attrEquals
+      a: { selector: '{label}', attr: for }
+      b: { selector: '{control}', attr: id }
+    css: false
+
+  - id: progress/fallback-text
+    description: The progress element holds fallback text.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#the-progress-element
+    rationale: The HTML spec recommends the current value as text inside the element, for software that doesn't render the bar.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{control}' }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Native progress: role progressbar, name from the label, value and busy state exposed" }
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "The label is tied to the bar with for/id" }
+  - { criterion: "1.4.11", name: Non-text Contrast, level: AA, how: "The fill is the text colour, well above 3:1 against the track and the page" }
+  - { criterion: "2.3.3", name: Animation from Interactions, level: AAA, how: "The busy animation stops under prefers-reduced-motion" }
+
+siteResponsibilities:
+  - { criterion: "4.1.3", title: Announce completion, text: "Screen readers don't read every change of a progress bar. When the task finishes or fails, say so in a status message." }
+  - { title: Update the value, text: "Without JavaScript the bar shows the value the server rendered. Update the value attribute from your own script if the page tracks progress live." }
+  - { criterion: "1.4.1", title: The value in words, text: "Add the value as text (\"Step 2 of 4\", \"64 %\") next to the bar when the exact number matters." }
+
+editor:
+  help:
+    label: 'Say what is in progress: "Uploading report.pdf", "Step 2 of 4: Your details".'
+  softWarnings:
+    - { id: PR-W1, text: 'A label that is only "Progress" or "Loading"' }
+
+# The component's API: the attributes a user writes. Rendered as tables in the docs.
+attributes:
+  - { on: root, name: data-gui, type: '"progress"', required: true, description: Marks the element as a Grounded UI progress bar. }
+  - { on: control, name: id, type: string, required: true, description: Target for the label's for. }
+  - { on: control, name: max, type: number, description: 'The total amount of work. Defaults to 1.' }
+  - { on: control, name: value, type: number, description: 'How much is done. Leave it out while the amount is unknown: the bar shows it is busy.' }
+  - { on: label, name: for, type: id, required: true, description: The bar's id. }
+
+customProperties:
+  --gui-progress-gap: Space between the label, the bar and the value text.
+  --gui-progress-height: Bar height.
+  --gui-progress-track: Track colour (the part not yet done).
+  --gui-progress-fill: Fill colour (the part done).
+  --gui-progress-muted: Value text colour.
+  --gui-progress-duration: One pass of the busy animation.

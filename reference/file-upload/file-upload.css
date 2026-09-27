@@ -1,0 +1,46 @@
+/*
+ * file-upload base CSS: only what the contract and accessibility need.
+ * Layout of the parts, the site's font on the input and its button, a 44px target, a focus ring that is never
+ * removed, and a non-colour error cue. For a finished look, add file-upload.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.file-upload {
+  @scope ([data-gui="file-upload"]) to ([data-gui]) {
+    :scope {
+      display: grid;
+      gap: var(--gui-file-upload-gap, 0.375em);
+      justify-items: start;
+    }
+
+    /* Parts sit in the grid gap; user-agent margins on p/label would double it. */
+    :where([data-gui-part]) {
+      margin: 0;
+    }
+
+    :where([data-gui-part="control"]) {
+      inline-size: 100%;
+      min-block-size: var(--gui-file-upload-touch-target, 2.75em);
+      font: inherit;
+      color: inherit;
+    }
+
+    /* Form controls don't inherit the page font by default, and each engine picks another one. */
+    :where([data-gui-part="control"])::file-selector-button {
+      font: inherit;
+    }
+
+    /* WCAG 2.4.7 / 1.4.11: at least 2 CSS px, never removed. */
+    :where([data-gui-part="control"]):focus-visible {
+      outline: 2px solid var(--gui-file-upload-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+
+    /* Error is shown by more than colour (WCAG 1.4.1). */
+    :where([data-gui-part="control"][aria-invalid="true"]) {
+      border-width: 2px;
+      border-style: solid;
+    }
+  }
+}

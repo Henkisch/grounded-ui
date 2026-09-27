@@ -1,0 +1,5 @@
+<!-- Breaks file-upload/no-competing-aria-label: aria-label repeats the visible label. Harmless today, but the two drift apart. -->
+<div data-gui="file-upload">
+  <label data-gui-part="label" for="cv">Your CV</label>
+  <input data-gui-part="control" type="file" id="cv" name="cv" accept=".pdf" aria-label="Your CV">
+</div>

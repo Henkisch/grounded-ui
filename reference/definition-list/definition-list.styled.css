@@ -1,0 +1,49 @@
+/* Hallmark · component: definition-list · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · link focus (hover, active, disabled, loading, error, success: not states of a list)
+ * contrast: terms 62% CanvasText mix, at least 4.5:1 in light and dark; row rules are decorative
+ */
+/*
+ * definition-list styled CSS: the Grounded house style on top of definition-list.css.
+ * Each group is a row: the muted term in a narrow column beside its values (several values stack in the value
+ * column), with a quiet rule between rows. Both columns shrink, so nothing scrolls sideways on a phone.
+ * Logical properties, so it mirrors on right-to-left pages.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.definition-list {
+  @scope ([data-gui="definition-list"]) to ([data-gui]) {
+    :scope {
+      margin: 0;
+    }
+
+    :where([data-gui-part="group"]) {
+      display: grid;
+      grid-template-columns: minmax(0, 10em) minmax(0, 1fr);
+      column-gap: 1.5em;
+      padding-block: 0.75em;
+      border-block-end-width: 1px;
+      border-block-end-style: solid;
+      border-block-end-color: var(--gui-definition-list-rule, color-mix(in oklab, CanvasText 18%, Canvas));
+    }
+
+    /* The term spans however many values follow it. */
+    :where([data-gui-part="term"]) {
+      grid-row: span 99;
+      color: var(--gui-definition-list-term, color-mix(in oklab, CanvasText 62%, Canvas));
+    }
+
+    :where([data-gui-part="description"]) {
+      grid-column: 2;
+      margin: 0;
+    }
+
+    :scope[data-gui-variant="compact"] {
+      font-size: 0.875em;
+    }
+
+    :scope[data-gui-variant="compact"] :where([data-gui-part="group"]) {
+      padding-block: 0.375em;
+    }
+  }
+}

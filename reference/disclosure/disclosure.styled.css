@@ -1,0 +1,106 @@
+/* Hallmark · component: disclosure · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: closed · hover · focus · open (disabled, loading, error, success: not states of a details element)
+ * contrast: text on Canvas; the chevron is currentColor
+ */
+/*
+ * disclosure styled CSS: the Grounded house style on top of disclosure.css.
+ * A link-like summary with a small chevron that turns on open, and a height animation where the browser
+ * supports animating to auto. Colours come from Canvas and CanvasText. Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.disclosure {
+  @scope ([data-gui="disclosure"]) to ([data-gui]) {
+    :where([data-gui-part="summary"]) {
+      display: flex;
+      gap: 0.5em;
+      align-items: center;
+      inline-size: fit-content;
+      font-weight: var(--gui-disclosure-summary-weight, 600);
+      text-decoration: underline;
+      text-decoration-thickness: 0.0625em;
+      text-underline-offset: 0.2em;
+      list-style: none;
+    }
+
+    /* Safari still draws its own marker unless this is hidden. */
+    :where([data-gui-part="summary"])::-webkit-details-marker {
+      display: none;
+    }
+
+    /* The chevron: two borders of a small square, in the text colour, pointing down when open. */
+    :where([data-gui-part="summary"])::before {
+      flex: none;
+      inline-size: 0.4em;
+      block-size: 0.4em;
+      content: "";
+      border-block-end: 2px solid currentColor;
+      border-inline-end: 2px solid currentColor;
+      rotate: -45deg;
+      transition-property: rotate;
+      transition-duration: var(--gui-disclosure-duration, 200ms);
+      transition-timing-function: var(--gui-disclosure-easing, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    :scope[open] > :where([data-gui-part="summary"])::before {
+      rotate: 45deg;
+    }
+
+    /* Right-to-left: the logical borders mirror, so the rotation mirrors too (points left when closed, down when open). */
+    :where([data-gui-part="summary"]:dir(rtl))::before {
+      rotate: 45deg;
+    }
+
+    :scope[open] > :where([data-gui-part="summary"]:dir(rtl))::before {
+      rotate: -45deg;
+    }
+
+    @media (hover: hover) {
+      :where([data-gui-part="summary"]):hover {
+        text-decoration-thickness: 0.125em;
+      }
+    }
+
+    :where([data-gui-part="panel"]) {
+      padding-block-start: 0.5em;
+      padding-inline-start: 0.9em;
+      color: var(--gui-disclosure-muted, color-mix(in oklab, CanvasText 75%, Canvas));
+    }
+
+    :where([data-gui-part="panel"]) > :first-child {
+      margin-block-start: 0;
+    }
+
+    :where([data-gui-part="panel"]) > :last-child {
+      margin-block-end: 0;
+    }
+
+    /* Animate to and from auto height where the browser can; elsewhere it simply opens. */
+    @supports (interpolate-size: allow-keywords) {
+      :scope {
+        interpolate-size: allow-keywords;
+      }
+
+      :scope::details-content {
+        block-size: 0;
+        overflow: clip;
+        transition-property: block-size, content-visibility;
+        transition-duration: var(--gui-disclosure-duration, 200ms);
+        transition-timing-function: var(--gui-disclosure-easing, cubic-bezier(0.2, 0, 0, 1));
+        transition-behavior: allow-discrete;
+      }
+
+      :scope[open]::details-content {
+        block-size: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :where([data-gui-part="summary"])::before,
+      :scope::details-content {
+        transition-duration: 0s;
+      }
+    }
+  }
+}

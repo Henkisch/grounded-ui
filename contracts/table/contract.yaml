@@ -1,0 +1,235 @@
+# Contract: table
+# A data table (fees, opening hours, statistics) in a named, keyboard-reachable scroll region.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({table}, {caption}); `:scope` is the root (the scroll region).
+component: table
+contractVersion: 0.1.0
+title: Table
+summary: A data table with a caption and header cells, in a scroll region that keyboard and screen-reader users can reach. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+  - feature: sticky-positioning
+    optional: true
+    fallback: The header scrolls away with the rows instead of staying on top.
+
+anatomy:
+  root:
+    label: Scroll region
+    element: [section, div]
+    required: true
+  table:
+    label: Table
+    element: [table]
+    required: true
+  caption:
+    label: Caption
+    element: [caption]
+    required: true
+
+domOrder: [table, caption]
+
+variants:
+  - name: zebra
+    description: Every other row gets a light tint, for long rows that are hard to follow.
+  - name: numeric
+    description: Every column after the first is right-aligned, for tables of numbers.
+
+states:
+  - { name: focus, label: Region focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: Moves focus to and from the scroll region }
+  - { key: Arrow keys, behavior: Scroll the region when it has focus and the table is wider or taller than it }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: table/table-role
+    description: The table has the role table.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: A table that loses its role (role="presentation", or CSS display that drops semantics) is read as loose text, and rows and columns disappear.
+    since: 0.1.0
+    test: { kind: role, selector: '{table}', oneOf: [table] }
+    css: false
+
+  - id: table/has-name
+    description: The table has a non-empty accessible name, from its caption.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: Screen-reader users list tables by name; an unnamed table gives no clue what it holds.
+    since: 0.1.0
+    # Structural: the engine's name computation also takes text from the cells, which tables don't allow.
+    test: { kind: absent, selector: '{table}:not([aria-label], [aria-labelledby]):not(:has(> caption))' }
+    css: false
+    editor: { level: refuse }
+
+  - id: table/has-headers
+    description: The table has header cells.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H51
+    rationale: Without header cells, a screen reader reads each value with no column or row to say what it means.
+    since: 0.1.0
+    test: { kind: absent, selector: '{table}:not(:has(th))' }
+    css:
+      violation: '[data-gui="table"] table:not(:has(th))'
+      message: "table/has-headers: use th cells for the header row or column."
+    editor: { level: refuse }
+
+  - id: table/headers-have-text
+    description: Every header cell has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: An empty header cell names its column or row with nothing.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{table} th' }
+    css: false
+    editor: { level: warn }
+
+  - id: table/region-has-name
+    description: The scroll region has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: The region takes focus so keyboard users can scroll it; focus on an unnamed element is announced as nothing useful.
+    since: 0.1.0
+    # Structural: the engine's name computation also takes text from the content, which a section doesn't allow.
+    test: { kind: absent, selector: ':scope:not([aria-label], [aria-labelledby], [title])' }
+    css: false
+
+  - id: table/region-keyboard-reachable
+    description: The scroll region is in the tab order.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/keyboard
+    rationale: A table wider than the screen can only be scrolled with a mouse or touch unless the region can take keyboard focus; WebKit doesn't make it focusable on its own.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not([tabindex="0"])' }
+    css:
+      violation: '[data-gui="table"]:not([tabindex="0"])'
+      message: "table/region-keyboard-reachable: add tabindex=0 to the scroll region."
+
+  - id: table/focus-ring-visible
+    description: The scroll region shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see that the region has focus before they scroll it with the arrow keys.
+    since: 0.1.0
+    test: { kind: focusRing, selector: ':scope', min: 3 }
+    css: false
+
+  - id: table/no-layout-tables
+    description: No table inside is used for layout.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: A table nested inside a data table is almost always layout, and screen readers announce it as data with meaningless rows and columns.
+    since: 0.1.0
+    test: { kind: absent, selector: '{table} table:not([role="presentation"], [role="none"])' }
+    css: false
+
+  - id: table/unique-ids
+    description: Ids inside the table are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes aria-labelledby point at another table's caption.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+
+  - id: table/caption-element
+    description: The table's first child is a <caption>.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H39
+    rationale: A caption names the table for everyone, visibly, and screen readers announce it when entering the table.
+    since: 0.1.0
+    test: { kind: absent, selector: '{table}:not(:has(> caption))' }
+    css:
+      violation: '[data-gui="table"] table:not(:has(> caption))'
+      message: "table/caption-element: add a caption that says what the table shows."
+    editor: { level: warn }
+
+  - id: table/region-labelled-by-caption
+    description: The scroll region's aria-labelledby points at the caption's id.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/
+    rationale: Naming the region after the visible caption keeps what users see and hear the same, without repeating text.
+    since: 0.1.0
+    test:
+      kind: attrEquals
+      a: { selector: ':scope', attr: aria-labelledby }
+      b: { selector: '{caption}', attr: id }
+    css: false
+
+  - id: table/header-scope
+    description: Every header cell has a scope attribute.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H63
+    rationale: scope="col" or "row" makes the header relationship explicit, so it holds up in tables with both header rows and header columns.
+    since: 0.1.0
+    test: { kind: absent, selector: '{table} th:not([scope])' }
+    css: false
+
+  - id: table/thead-element
+    description: The header row sits in a <thead>.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/tables.html#the-thead-element
+    rationale: A thead groups the header row for assistive technology and lets it stay on top while the rows scroll.
+    since: 0.1.0
+    test: { kind: absent, selector: '{table}:not(:has(> thead))' }
+    css: false
+
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "Native table with a caption, header cells and scope" }
+  - { criterion: "2.1.1", name: Keyboard, level: A, how: "The scroll region is in the tab order, so arrow keys scroll a wide table" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring on the scroll region in base CSS" }
+  - { criterion: "1.4.10", name: Reflow, level: AA, how: "A wide table scrolls inside its own region instead of making the page scroll sideways" }
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "The region is named by the caption via aria-labelledby" }
+
+siteResponsibilities:
+  - { criterion: "1.3.1", title: No merged cells for layout, text: "Merged cells (colspan, rowspan) make headers hard to follow; split complex tables into simpler ones." }
+  - { criterion: "1.3.1", title: Tables for data only, text: "Never lay out a page or a form with a table." }
+  - { criterion: "1.4.1", title: Zebra is decoration, text: "Row tints help the eye; never use colour to carry meaning in a cell." }
+
+editor:
+  help:
+    caption: 'Say what the table shows, such as "Waste collection fees 2026". It names the table for everyone.'
+    table: "Use the first row for column headers, and the first column for row headers when it labels each row. Don't merge cells to make it look right."
+  softWarnings:
+    - { id: TB-W1, text: A caption that is only "Table" or empty }
+    - { id: TB-W2, text: Cells merged with colspan or rowspan }
+    - { id: TB-W3, text: A table with a single column }
+
+attributes:
+  - { on: root, name: data-gui, type: '"table"', required: true, description: Marks the scroll region as a Grounded UI table. }
+  - { on: root, name: tabindex, type: '"0"', required: true, description: Lets keyboard users focus and scroll the region. }
+  - { on: root, name: aria-labelledby, type: id, required: true, description: "The caption's id; names the region." }
+  - { on: root, name: data-gui-variant, type: '"zebra" | "numeric"', description: "Row tints, or right-aligned number columns." }
+  - { on: caption, name: id, type: string, required: true, description: Target for the region's aria-labelledby. }
+
+customProperties:
+  --gui-table-focus: Focus ring colour on the scroll region.
+  --gui-table-max-block-size: Maximum height of the scroll region; set it to make the header stick while rows scroll.
+  --gui-table-border: Line between rows.
+  --gui-table-header-bg: Background of header cells (needed for the sticky header).
+  --gui-table-zebra: Tint of every other row.

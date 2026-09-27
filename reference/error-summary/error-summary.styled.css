@@ -1,0 +1,67 @@
+/* Hallmark · component: error-summary · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · title focused on load · link hover · link focus (disabled, loading, success: not states of an error summary)
+ * contrast: link and border colour ≥ 4.5:1 in light and dark (danger mix); focus ring in the text colour
+ */
+/*
+ * error-summary styled CSS: the Grounded house style on top of error-summary.css.
+ * A block with a thick danger-coloured rule on its start edge; the heading and the list carry the message,
+ * so the colour is never the only cue. Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.error-summary {
+  @scope ([data-gui="error-summary"]) to ([data-gui]) {
+    :scope {
+      display: grid;
+      gap: 0.5em;
+      padding-block: 1em;
+      padding-inline: 1.25em;
+      border-width: 1px;
+      border-inline-start-width: 0.375em;
+      border-style: solid;
+      border-color: var(--gui-error-summary-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+      border-radius: var(--gui-error-summary-radius, var(--gui-radius, 0.375em));
+    }
+
+    :where([data-gui-part]) {
+      margin: 0;
+    }
+
+    :where([data-gui-part="title"]) {
+      font-size: 1.125em;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    /* The title is focused on load; the ring shows in the text colour, never removed. */
+    :where([data-gui-part="title"]):focus-visible {
+      outline-color: var(--gui-error-summary-focus, var(--gui-focus, CanvasText));
+    }
+
+    :where([data-gui-part="list"]) {
+      display: grid;
+      gap: 0.25em;
+      padding: 0;
+      list-style: none;
+    }
+
+    :where([data-gui-part="link"]) {
+      font-weight: 600;
+      color: var(--gui-error-summary-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+      text-decoration-line: underline;
+      text-decoration-thickness: 0.0625em;
+      text-underline-offset: 0.15em;
+    }
+
+    @media (hover: hover) {
+      :where([data-gui-part="link"]):hover {
+        text-decoration-thickness: 0.125em;
+      }
+    }
+
+    :where([data-gui-part="link"]):focus-visible {
+      outline-color: var(--gui-error-summary-focus, var(--gui-focus, CanvasText));
+    }
+  }
+}

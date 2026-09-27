@@ -1,0 +1,242 @@
+# Contract: error-summary
+# A list of a form's errors at the top of the page after a failed submit, each linking to its field.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({title}, {list}, {link}); `:scope` is the root.
+component: error-summary
+contractVersion: 0.2.0
+title: Error summary
+summary: A list of what went wrong at the top of a form after a failed submit, each error linking to its field. Rendered by the server, zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [div, section]
+    required: true
+  title:
+    label: Title
+    element: [h2, h3]
+    required: true
+  body:
+    label: Description
+    element: [p]
+  list:
+    label: List of errors
+    element: [ul, ol]
+    required: true
+  link:
+    label: Link to a field
+    element: [a]
+    required: true
+
+domOrder: [title, body, list]
+
+states:
+  - { name: focus, label: Title focused on page load, dom: 'tabindex="-1" autofocus', hook: ":focus" }
+  - { name: link-focus, label: Link focus, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Page load, behavior: "Focus moves to the title (autofocus), so screen readers read the summary first" }
+  - { key: Tab / Shift + Tab, behavior: Moves between the links }
+  - { key: Enter on a link, behavior: "Jumps to the field; the browser focuses it, since the link points at the field's id" }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: error-summary/announced
+    description: The summary is announced when the page loads, either as an alert or because its title receives focus.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: A summary nobody is taken to is only found by chance; screen-reader users would submit again without knowing why.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not([role="alert"]):not(:has({title}[tabindex="-1"][autofocus]))' }
+    css: false
+
+  - id: error-summary/has-title
+    description: The summary has a title.
+    level: recommended
+    type: outcome
+    source: https://design-system.service.gov.uk/components/error-summary/
+    rationale: The title tells users at once that the form wasn't sent, before they read the list.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(:has({title}))' }
+    css:
+      violation: '[data-gui="error-summary"]:not(:has([data-gui-part="title"]))'
+      message: "error-summary/has-title: the summary has no [data-gui-part=title]."
+    editor: { level: refuse }
+
+  - id: error-summary/title-has-text
+    description: The title has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels
+    rationale: An empty heading is announced as nothing and tells users nothing.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{title}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="error-summary"] [data-gui-part="title"]:empty'
+      pseudo: before
+      message: "error-summary/title-has-text: the title is empty."
+    editor: { level: refuse }
+
+  - id: error-summary/has-links
+    description: The summary lists at least one error link.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion
+    rationale: A summary without links makes users hunt for the fields; each error should take them straight there.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(:has({link}))' }
+    css:
+      violation: '[data-gui="error-summary"]:not(:has([data-gui-part="link"]))'
+      message: "error-summary/has-links: the summary has no [data-gui-part=link]."
+    editor: { level: refuse }
+
+  - id: error-summary/links-have-name
+    description: Every link has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: The link text is the error message; an empty link is announced as just "link".
+    since: 0.1.0
+    test: { kind: name, selector: '{link}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: error-summary/target-size
+    description: Every link is at least 24 by 24 CSS pixels.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+    rationale: The links sit in a list, not in a sentence, so the inline exception doesn't apply; small targets are hard to hit on touch screens.
+    since: 0.1.0
+    test: { kind: targetSize, selector: '{link}', min: 24 }
+    css: false
+
+  - id: error-summary/focus-ring-visible
+    description: Every link shows a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users move through the errors one link at a time; without a visible ring they lose their place. WCAG 1.4.11 sets the 3:1 floor.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{link}', min: 3 }
+    css: false
+
+  - id: error-summary/unique-ids
+    description: Ids inside the summary are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id breaks the links and anything that references the summary.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+
+  - id: error-summary/title-receives-focus
+    description: The title has tabindex="-1" and autofocus, so focus moves to it on page load.
+    level: recommended
+    type: technique
+    source: https://design-system.service.gov.uk/components/error-summary/
+    rationale: Moving focus reads the summary once and puts keyboard users right above the links; role="alert" alone is also announced, but focus stays at the top of the page.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(:has({title}[tabindex="-1"][autofocus]))' }
+    css:
+      violation: '[data-gui="error-summary"]:not(:has([data-gui-part="title"][tabindex="-1"][autofocus]))'
+      message: "error-summary/title-receives-focus: give the title tabindex=-1 and autofocus."
+    editor: { level: warn }
+
+  - id: error-summary/title-heading
+    description: The title is an h2.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H42
+    rationale: A heading lets screen-reader users jump to the summary; h2 sits under the page's h1.
+    since: 0.1.0
+    test: { kind: absent, selector: '{title}:not(h2)' }
+    css:
+      violation: '[data-gui="error-summary"] [data-gui-part="title"]:not(h2)'
+      message: "error-summary/title-heading: the title should be an <h2>."
+
+  - id: error-summary/list-element
+    description: The list is a <ul> or <ol>.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/WAI/WCAG22/Techniques/html/H48
+    rationale: A real list tells screen-reader users how many errors there are before they start.
+    since: 0.1.0
+    test: { kind: absent, selector: '{list}:not(ul, ol)' }
+    css:
+      violation: '[data-gui="error-summary"] [data-gui-part="list"]:not(ul, ol)'
+      message: "error-summary/list-element: the list should be a <ul> or <ol>."
+
+  - id: error-summary/link-element
+    description: Every link is an <a> whose href points at an id on the page.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/browsing-the-web.html#scroll-to-fragid
+    rationale: A same-page link moves focus to the field without script, and keeps working if CSS or JavaScript fails.
+    since: 0.1.0
+    test: { kind: absent, selector: '{link}:not(a[href^="#"])' }
+    css:
+      violation: '[data-gui="error-summary"] [data-gui-part="link"]:not(a[href^="#"])'
+      message: "error-summary/link-element: each error should be an <a href=\"#field-id\">."
+
+  - id: error-summary/link-targets-exist
+    description: Every link points at an element that exists on the page.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: The link is how a user gets from the summary to the field; a link to a missing id goes nowhere.
+    since: 0.2.0
+    test: { kind: hrefTargetsExist, selector: '{link}' }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "3.3.1", name: Error Identification, level: A, how: "Every error is listed in text at the top of the page, and at its field" }
+  - { criterion: "3.3.3", name: Error Suggestion, level: AA, how: "Link text says what to fix, not only that something is wrong" }
+  - { criterion: "2.4.3", name: Focus Order, level: A, how: "Focus moves to the summary on page load, then to each field through its link" }
+  - { criterion: "2.4.4", name: Link Purpose (In Context), level: A, how: "Each link names the field and the problem" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "2px focus ring on every link" }
+  - { criterion: "2.5.8", name: Target Size (Minimum), level: AA, how: "Links are at least 24 CSS px tall" }
+  - { criterion: "1.4.1", name: Use of Color, level: A, how: "The heading and the list carry the error, not the red border alone" }
+
+siteResponsibilities:
+  - { criterion: "2.4.2", title: Page title, text: 'Start the page title with "Error: " after a failed submit, so the problem is heard first.' }
+  - { criterion: "3.3.1", title: Errors at the fields too, text: "Show each error at its field as well (text field, select, choice group), with the same wording as the summary link." }
+  - { criterion: "2.4.3", title: Link to the field, text: "Point each link at the field's id; for a choice group, at its first option." }
+  - { criterion: "3.2.2", title: Only after submit, text: "Render the summary only after the user submits, never on first load." }
+
+editor:
+  help:
+    title: 'Say that the form was not sent: "There is a problem" works; "Error" alone does not say what to do.'
+    link: 'Write each link as the fix, matching the message at the field: "Enter your email address", not "Email invalid".'
+  softWarnings:
+    - { id: ES-W1, text: 'A link that only repeats the field label, such as "Email"' }
+    - { id: ES-W2, text: More errors than the form has fields }
+
+attributes:
+  - { on: root, name: data-gui, type: '"error-summary"', required: true, description: Marks the element as a Grounded UI error summary. }
+  - { on: root, name: aria-labelledby, type: id, description: "The title's id. Use a <section> root, so the summary becomes a named region." }
+  - { on: title, name: tabindex, type: '"-1"', required: true, description: Lets the title take focus without adding it to the Tab order. }
+  - { on: title, name: autofocus, type: boolean, required: true, description: Moves focus to the title when the page loads. }
+  - { on: link, name: href, type: '"#<field id>"', required: true, description: "The invalid field's id." }
+
+customProperties:
+  --gui-error-summary-danger: Border and link colour.
+  --gui-error-summary-radius: Corner radius.
+  --gui-error-summary-focus: Focus ring colour.

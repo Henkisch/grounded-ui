@@ -1,0 +1,49 @@
+<style>
+  .field { display: grid; gap: 0.375em; max-inline-size: 22em; }
+  .field label { font-weight: 600; }
+  .field select {
+    appearance: none;
+    inline-size: 100%;
+    min-block-size: 2.75em;
+    padding-block: 0.5em;
+    padding-inline: 0.75em 2.5em;
+    font: inherit;
+    color: inherit;
+    background-color: Canvas;
+    border: 1px solid color-mix(in oklab, CanvasText 40%, Canvas);
+    border-radius: 0.375em;
+    background-image:
+      linear-gradient(45deg, transparent 50%, currentColor 50%),
+      linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position: right 1.25em top 55%, right 0.9em top 55%;
+    background-size: 0.35em 0.35em;
+    background-repeat: no-repeat;
+  }
+  .field select:focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
+  @supports (appearance: base-select) and selector(::picker(select)) {
+    .field select, .field select::picker(select) { appearance: base-select; }
+    .field select { background-image: none; }
+    .field select::picker(select) {
+      padding: 0.25em;
+      border: 1px solid color-mix(in oklab, CanvasText 20%, Canvas);
+      border-radius: 0.5em;
+      box-shadow: 0 0.75em 1.5em -0.5em oklch(0% 0 0 / 0.25);
+    }
+    .field option { padding: 0.5em 0.75em; border-radius: 0.25em; }
+    .field option:checked { font-weight: 600; }
+  }
+</style>
+<div class="field">
+  <label for="service">Service</label>
+  <select id="service" name="service">
+    <option>Choose a service</option>
+    <optgroup label="Waste and recycling">
+      <option>Bin collection</option>
+      <option>Bulky waste pickup</option>
+    </optgroup>
+    <optgroup label="Streets and parks">
+      <option>Street lighting</option>
+      <option>Snow clearing</option>
+    </optgroup>
+  </select>
+</div>

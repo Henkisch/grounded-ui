@@ -1,0 +1,20 @@
+# What to test: WPForms' own live template previews on wpforms.com (real WPForms markup, rendered by the plugin).
+implementation: WPForms
+package: wpforms
+version: 2.0.3
+homepage: https://wpforms.com/
+components:
+  text-field:
+    binding: text-field.binding.yaml
+    pages:
+      - url: https://wpforms.com/templates/simple-contact-form-template/
+      - url: https://wpforms.com/templates/simple-contact-form-template/
+        name: simple-contact-form-template, invalid email (validated on blur)
+        # Not submitted: on submit, wpforms.com opens a marketing <dialog> modal over the demo, which makes the
+        # form inert. Blur triggers the same client-side validation and error markup.
+        fill: { selector: '.wpforms-form input[type="email"]', value: not-an-email }
+      - url: https://wpforms.com/templates/request-a-quote-form-template/
+      - url: https://wpforms.com/templates/newsletter-signup-form-template/
+      - url: https://wpforms.com/templates/customer-enquiry-form-template/
+      - url: https://wpforms.com/templates/blog-post-submission-form-template/
+      - url: https://wpforms.com/templates/job-application-upload-form-template/

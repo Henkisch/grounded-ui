@@ -1,0 +1,27 @@
+# What to test: markup WordPress core renders for visitors, captured from a real WordPress 7.1.2 running in
+# WordPress Playground (capture.mjs → fixtures.json), plus live pages from the wordpress.org theme previews.
+implementation: WordPress core
+package: wordpress
+version: 7.1.2
+homepage: https://wordpress.org/
+components:
+  text-field:
+    binding: text-field.binding.yaml
+    fixtures:
+      - ./wordpress-core/fixtures.json
+    pages:
+      - url: https://wp-themes.com/twentytwentyfive/?s=hello
+        name: Search results with Search block (Twenty Twenty-Five, live preview)
+      - url: https://wp-themes.com/twentytwenty/?p=1
+        name: Search form in footer (Twenty Twenty, live preview)
+  dialog:
+    binding: dialog.binding.yaml
+    fixtures:
+      - ./wordpress-core/fixtures.json
+    pages:
+      - url: https://wp-themes.com/twentytwenty/?p=1
+        name: Twenty Twenty search modal, opened
+        click: .desktop-search-toggle
+      - url: https://wp-themes.com/twentytwenty/?p=1
+        name: Twenty Twenty menu modal, opened
+        click: .desktop-nav-toggle

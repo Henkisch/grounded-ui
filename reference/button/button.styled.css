@@ -1,0 +1,110 @@
+/* Hallmark · component: button · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · hover · focus · active · pressed (toggle) · disabled · aria-disabled (loading, error, success: not states of a native button)
+ * contrast: primary is CanvasText on Canvas; danger text ≥ 4.5:1 in light and dark; secondary border ≥ 3:1
+ */
+/*
+ * button styled CSS: the Grounded house style on top of button.css.
+ * Primary is the text colour filled, secondary an outline, danger a red that follows light and dark.
+ * All neutrals come from Canvas and CanvasText. Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.button {
+  @scope ([data-gui="button"]) to ([data-gui]) {
+    :scope {
+      display: inline-flex;
+      gap: 0.5em;
+      align-items: center;
+      justify-content: center;
+      min-block-size: var(--gui-button-touch-target, 2.75em);
+      padding-block: 0.5em;
+      padding-inline: 1em;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--gui-button-color, Canvas);
+      background: var(--gui-button-bg, CanvasText);
+      border-width: 1px;
+      border-style: solid;
+      border-color: transparent;
+      border-radius: var(--gui-button-radius, var(--gui-radius, 0.375em));
+      cursor: pointer;
+      transition-property: background-color, border-color, scale;
+      transition-duration: var(--gui-button-duration, 120ms);
+      transition-timing-function: var(--gui-button-easing, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    @media (hover: hover) {
+      :scope:hover:not(:disabled, [aria-disabled="true"]) {
+        background: color-mix(in oklab, var(--gui-button-bg, CanvasText) 82%, Canvas);
+      }
+    }
+
+    :scope:active:not(:disabled, [aria-disabled="true"]) {
+      scale: 0.98;
+    }
+
+    /* The base ring uses currentColor, which on a filled button is the page colour: draw it in the text colour. */
+    :scope:focus-visible {
+      outline-color: var(--gui-button-focus, var(--gui-focus, CanvasText));
+      transition-duration: 0s;
+    }
+
+    :scope[data-gui-variant="secondary"] {
+      color: CanvasText;
+      background: Canvas;
+      border-color: var(--gui-button-border, var(--gui-border, color-mix(in oklab, CanvasText 40%, Canvas)));
+    }
+
+    @media (hover: hover) {
+      :scope[data-gui-variant="secondary"]:hover:not(:disabled, [aria-disabled="true"]) {
+        background: color-mix(in oklab, CanvasText 6%, Canvas);
+        border-color: color-mix(in oklab, CanvasText 65%, Canvas);
+      }
+    }
+
+    /* A toggle that is on: filled and outlined in the text colour, so the state shows without colour alone. */
+    :scope[aria-pressed="true"] {
+      color: CanvasText;
+      background: color-mix(in oklab, CanvasText 12%, Canvas);
+      border-color: CanvasText;
+    }
+
+    :scope[data-gui-variant="danger"] {
+      color: Canvas;
+      background: var(--gui-button-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    @media (hover: hover) {
+      :scope[data-gui-variant="danger"]:hover:not(:disabled, [aria-disabled="true"]) {
+        background: color-mix(in oklab, var(--gui-button-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText))) 85%, CanvasText);
+      }
+    }
+
+    :scope:is(:disabled, [aria-disabled="true"]) {
+      opacity: 0.55;
+    }
+
+    :where([data-gui-part="icon"]) {
+      inline-size: 1.125em;
+      block-size: 1.125em;
+    }
+
+    /* Forced colours drop backgrounds; keep the button's edge visible. */
+    @media (forced-colors: active) {
+      :scope {
+        border-color: ButtonText;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :scope {
+        transition-duration: 0s;
+      }
+
+      :scope:active:not(:disabled, [aria-disabled="true"]) {
+        scale: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,170 @@
+# Contract: status-message
+# A live region that announces a result without moving focus: "Draft saved", "12 results", "Couldn't save".
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({icon}, {text}); `:scope` is the root (the live region itself).
+# The region must be in the page before its text changes: a script (or the server, on a page reload after a form
+# post) swaps the text. An empty region waiting for a message is valid: it has no text part yet.
+component: status-message
+contractVersion: 0.1.0
+title: Status message
+summary: A live region that announces a result, such as "Draft saved" or "12 results", without moving focus. Polite by default, assertive for errors.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [div, output]
+    required: true
+  icon:
+    label: Icon
+    element: [span, svg]
+  text:
+    label: Message text
+    element: [span, p]
+
+variants:
+  - name: success
+    description: A completed action, such as "Draft saved". Still role="status" (polite).
+  - name: error
+    description: A failure the user must act on, such as "Couldn't save, try again". Uses role="alert" (assertive).
+
+states:
+  - { name: waiting, label: Waiting (empty), dom: no text part, hook: ":empty" }
+  - { name: shown, label: Shown, dom: a text part with text, hook: ':not(:empty)' }
+
+keyboard:
+  - { key: None, behavior: "The message is announced where the user already is; focus never moves to it." }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: status-message/role
+    description: The region has the role status or alert.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/status-messages
+    rationale: The live-region role is what makes screen readers announce the new text without the user moving to it.
+    since: 0.1.0
+    test: { kind: role, selector: ':scope', oneOf: [status, alert] }
+    css: false
+    editor: { level: refuse }
+
+  - id: status-message/text-has-content
+    description: If there is a message text part, it has text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/status-messages
+    rationale: An empty message part is announced as nothing; the region should stay empty until there is something to say.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{text}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="status-message"] [data-gui-part="text"]:empty'
+      pseudo: before
+      message: "status-message/text-has-content: the message text is empty."
+    editor: { level: refuse }
+
+  - id: status-message/not-only-icon
+    description: A region that shows an icon also has message text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/use-of-color
+    rationale: A tick or a red cross alone says nothing to a screen reader, and relies on shape and colour for everyone else.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:has({icon}):not(:has({text}))' }
+    css:
+      violation: '[data-gui="status-message"]:has([data-gui-part="icon"]):not(:has([data-gui-part="text"]))'
+      message: "status-message/not-only-icon: add message text next to the icon."
+    editor: { level: refuse }
+
+  - id: status-message/icon-hidden
+    description: The icon is hidden from assistive technology.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA14
+    rationale: The text carries the message; an icon read aloud ("image", "check mark") adds noise to every announcement.
+    since: 0.1.0
+    test: { kind: absent, selector: '{icon}:not([aria-hidden="true"])' }
+    css:
+      violation: '[data-gui="status-message"] [data-gui-part="icon"]:not([aria-hidden="true"])'
+      message: "status-message/icon-hidden: add aria-hidden=true to the icon."
+
+  - id: status-message/role-attribute
+    description: The root is an <output> or carries an explicit role attribute.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/TR/wai-aria-1.2/#status
+    rationale: role="status" or role="alert" on a div, or a native <output>, gives the live region its politeness without extra attributes.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not([role], output)' }
+    css:
+      violation: '[data-gui="status-message"]:not([role], output)'
+      message: "status-message/role-attribute: add role=status (or role=alert for errors)."
+
+  - id: status-message/no-conflicting-live
+    description: The root has no aria-live attribute; the role supplies the politeness.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/TR/wai-aria-1.2/#aria-live
+    rationale: role="status" is polite and role="alert" is assertive; an aria-live next to them can contradict the role and screen readers disagree on which wins.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope[aria-live]' }
+    css:
+      violation: '[data-gui="status-message"][aria-live]'
+      message: "status-message/no-conflicting-live: remove aria-live; the role sets the politeness."
+
+  - id: status-message/error-is-alert
+    description: The error variant uses role="alert".
+    level: recommended
+    type: technique
+    source: https://www.w3.org/TR/wai-aria-1.2/#alert
+    rationale: A failure the user must act on should interrupt; a polite status can be queued behind other speech and missed.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope[data-gui-variant="error"]:not([role="alert"])' }
+    css:
+      violation: '[data-gui="status-message"][data-gui-variant="error"]:not([role="alert"])'
+      message: "status-message/error-is-alert: error messages need role=alert."
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "4.1.3", name: Status Messages, level: AA, how: "role status (polite) or alert (assertive) announces the result without moving focus" }
+  - { criterion: "1.1.1", name: Non-text Content, level: A, how: "The icon is decorative and hidden; the text carries the message" }
+  - { criterion: "1.4.1", name: Use of Color, level: A, how: "Success and error differ by icon and text, not only by colour" }
+  - { criterion: "1.4.3", name: "Contrast (Minimum)", level: AA, how: "Message text uses the page's text colour" }
+
+siteResponsibilities:
+  - { criterion: "4.1.3", title: The region exists first, text: "Put the empty region in the page on load and change only its text. A live region added together with its message is often not announced." }
+  - { title: Short messages only, text: "One sentence. Long content, lists or links belong in the page, not in a live region." }
+  - { title: Server-rendered results, text: "On a page without JavaScript, render the region with its message after the form post; the page reload announces the page, and the message sits where the user looks next." }
+  - { criterion: "2.2.1", title: Don't auto-hide errors, text: "An error message stays until it's fixed. Only success messages may fade, and never faster than they can be read." }
+
+editor:
+  help:
+    text: 'Say what happened and what to do next, in one sentence: "Draft saved", "Couldn''t save the draft. Check your connection and try again."'
+    icon: "The icon never replaces the text."
+  softWarnings:
+    - { id: SM-W1, text: 'A message that is only "Error", "Done" or "OK"' }
+    - { id: SM-W2, text: More than one sentence }
+
+attributes:
+  - { on: root, name: data-gui, type: '"status-message"', required: true, description: Marks the element as a Grounded UI status message. }
+  - { on: root, name: role, type: '"status" | "alert"', required: true, description: '"status" announces politely; "alert" interrupts, for errors. Not needed on <output>.' }
+  - { on: root, name: data-gui-variant, type: '"success" | "error"', description: 'The look: a completed action, or a failure (use with role="alert").' }
+  - { on: icon, name: aria-hidden, type: '"true"', required: true, description: Hides the decorative icon from assistive technology. }
+
+customProperties:
+  --gui-status-message-border: Border colour of a neutral message.
+  --gui-status-message-success: Accent colour of a success message.
+  --gui-status-message-danger: Accent colour of an error message.
+  --gui-status-message-radius: Corner radius.

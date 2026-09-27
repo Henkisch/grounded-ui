@@ -1,0 +1,6 @@
+<!-- Breaks file-upload/name-includes-label: aria-labelledby names the control "Attachment", not its visible label. -->
+<div data-gui="file-upload">
+  <label data-gui-part="label" for="cv">Your CV</label>
+  <span id="cv-name" hidden>Attachment</span>
+  <input data-gui-part="control" type="file" id="cv" name="cv" accept=".pdf" aria-labelledby="cv-name">
+</div>

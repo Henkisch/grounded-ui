@@ -1,0 +1,13 @@
+<!-- Breaks choice-group/description-in-describedby: the description is repeated in aria-description instead of being referenced by id. Screen readers still get it. -->
+<fieldset data-gui="choice-group" aria-description="Choose any.">
+  <legend data-gui-part="legend">How should we contact you?</legend>
+  <p data-gui-part="description" id="g-desc">Choose any.</p>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="checkbox" id="o-1" name="c-1">
+    <label data-gui-part="label" for="o-1">Email</label>
+  </div>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="checkbox" id="o-2" name="c-2">
+    <label data-gui-part="label" for="o-2">Phone</label>
+  </div>
+</fieldset>

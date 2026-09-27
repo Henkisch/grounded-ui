@@ -1,0 +1,5 @@
+<!-- Breaks disclosure/summary-element: an APG-style button with aria-expanded instead of a summary. Outcome rules pass. also: details-element -->
+<div data-gui="disclosure">
+  <button type="button" style="font: inherit;" data-gui-part="summary" aria-expanded="true" aria-controls="hours">Show opening hours</button>
+  <div data-gui-part="panel" id="hours"><p>Monday to Friday 8–17.</p></div>
+</div>

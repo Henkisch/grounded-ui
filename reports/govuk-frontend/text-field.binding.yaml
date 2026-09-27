@@ -1,0 +1,11 @@
+# Maps the text-field contract's parts to GOV.UK Frontend's markup (govuk-input and govuk-textarea).
+component: text-field
+implementation: GOV.UK Frontend
+root: '.govuk-form-group:has(> .govuk-input, > .govuk-textarea, > .govuk-input__wrapper)'
+boundary: .govuk-form-group
+parts:
+  label: .govuk-label
+  description: .govuk-hint
+  control: .govuk-input, .govuk-textarea
+  error: .govuk-error-message
+  required-indicator: ':not(*)'

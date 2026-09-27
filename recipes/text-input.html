@@ -1,0 +1,54 @@
+<style>
+  .form { display: grid; gap: 1em; max-inline-size: 26em; }
+  .form label { display: grid; gap: 0.25em; font-weight: 600; }
+
+  /* One look for every text-like control. */
+  .form :is(input, textarea) {
+    font: inherit;
+    color: inherit;
+    padding: 0.5em 0.75em;
+    background: Canvas;
+    border: 1px solid color-mix(in oklab, CanvasText 40%, Canvas); /* at least 3:1 */
+    border-radius: 0.375em;
+    font-weight: 400;
+  }
+
+  /* Placeholder: set the colour yourself. Browser defaults differ, and Safari's is too faint. */
+  .form ::placeholder {
+    color: color-mix(in oklab, CanvasText 55%, Canvas);
+    opacity: 1;
+  }
+
+  /* Number: hide the spin buttons (Chromium and Safari need the pseudo-elements, Firefox the appearance). */
+  .form input[type="number"] { appearance: textfield; }
+  .form input[type="number"]::-webkit-inner-spin-button,
+  .form input[type="number"]::-webkit-outer-spin-button { appearance: none; margin: 0; }
+
+  /* Search: the clear button is Chromium and Safari only. */
+  .form input[type="search"]::-webkit-search-cancel-button { cursor: pointer; }
+
+  /* Textarea grows with its content where field-sizing is supported. */
+  .form textarea { min-block-size: 4lh; field-sizing: content; resize: vertical; }
+
+  /* Invalid only after the user has interacted. Colour changes, border width doesn't. */
+  .form :is(input, textarea):user-invalid {
+    border-color: color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText);
+  }
+
+  /* Autofill: the browser forces its own background; an inset shadow paints over it. */
+  .form input:autofill {
+    box-shadow: inset 0 0 0 10em Canvas;
+    -webkit-text-fill-color: CanvasText;
+  }
+
+  .form :is(input, textarea):focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
+</style>
+
+<div class="form">
+  <label>Name <input type="text" name="name" autocomplete="name" placeholder="Anna Berg"></label>
+  <label>Email <input type="email" name="email" autocomplete="email" required placeholder="name@example.com"></label>
+  <label>Number of guests <input type="number" name="guests" min="1" max="20" value="2" inputmode="numeric"></label>
+  <label>Search the site <input type="search" name="q" value="opening hours"></label>
+  <label>Message <textarea name="message" placeholder="What can we help with?"></textarea></label>
+</div>

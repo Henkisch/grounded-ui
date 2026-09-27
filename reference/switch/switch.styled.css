@@ -1,0 +1,124 @@
+/* Hallmark · component: switch · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: off · on · hover · focus · disabled (loading, error, success: not states of a native switch)
+ * contrast: off track border and thumb ≥ 3:1; on is CanvasText with a Canvas thumb; state shown by position, not colour alone
+ */
+/*
+ * switch styled CSS: the Grounded house style on top of switch.css.
+ * A track and thumb drawn on the native checkbox (appearance: none keeps role, state, Space and the form value),
+ * mixed from Canvas and CanvasText so it follows light and dark. Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.switch {
+  @scope ([data-gui="switch"]) to ([data-gui]) {
+    /* Label on the left, switch on the right, description under the label: a settings row. */
+    :scope {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: var(--gui-switch-gap, 1em);
+      row-gap: 0.125em;
+      align-items: center;
+    }
+
+    :where([data-gui-part="label"]) {
+      grid-column: 1;
+      grid-row: 1;
+      cursor: pointer;
+    }
+
+    :where([data-gui-part="control"]) {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+
+    :where([data-gui-part="description"]) {
+      grid-column: 1;
+      grid-row: 2;
+      font-size: 0.875em;
+      color: var(--gui-switch-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+    }
+
+    /* The track: the native checkbox without its native look (Safari's native switch included). */
+    :where([data-gui-part="control"]) {
+      appearance: none;
+      display: inline-grid;
+      align-items: center;
+      inline-size: 2.75em;
+      block-size: 1.5em;
+      padding-inline: 0.1875em;
+      background: var(--gui-switch-track, Canvas);
+      border-width: 0.0625em;
+      border-style: solid;
+      border-color: var(--gui-switch-border, var(--gui-border, color-mix(in oklab, CanvasText 40%, Canvas)));
+      border-radius: 0.75em;
+      cursor: pointer;
+      transition-property: background-color, border-color;
+      transition-duration: var(--gui-switch-duration, 160ms);
+      transition-timing-function: var(--gui-switch-easing, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    /* The thumb: travel = track width - 2 × border - 2 × padding - thumb = 1.125em. */
+    :where([data-gui-part="control"])::before {
+      content: "";
+      inline-size: 1.125em;
+      block-size: 1.125em;
+      background: var(--gui-switch-border, var(--gui-border, color-mix(in oklab, CanvasText 40%, Canvas)));
+      border-radius: 50%;
+      transition: translate var(--gui-switch-duration, 160ms) var(--gui-switch-easing, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    :where([data-gui-part="control"]):checked {
+      background: var(--gui-switch-on, CanvasText);
+      border-color: var(--gui-switch-on, CanvasText);
+    }
+
+    :where([data-gui-part="control"]):checked::before {
+      background: Canvas;
+      translate: 1.125em 0;
+    }
+
+    /* Right-to-left pages: the thumb travels the other way. */
+    :where([data-gui-part="control"]:dir(rtl)):checked::before {
+      translate: -1.125em 0;
+    }
+
+    @media (hover: hover) {
+      :where([data-gui-part="control"]):hover:not(:checked, :disabled) {
+        border-color: color-mix(in oklab, CanvasText 65%, Canvas);
+      }
+    }
+
+    /* The base ring's currentColor can match the on track; draw it in the text colour. */
+    :where([data-gui-part="control"]):focus-visible {
+      outline-color: var(--gui-switch-focus, var(--gui-focus, CanvasText));
+    }
+
+    :where([data-gui-part="control"]):disabled {
+      opacity: 0.55;
+    }
+
+    /* Forced colours replace backgrounds: draw the on state with system colours. */
+    @media (forced-colors: active) {
+      :where([data-gui-part="control"])::before {
+        background: ButtonText;
+      }
+
+      :where([data-gui-part="control"]):checked {
+        background: Highlight;
+        border-color: Highlight;
+      }
+
+      :where([data-gui-part="control"]):checked::before {
+        background: HighlightText;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :where([data-gui-part="control"]),
+      :where([data-gui-part="control"])::before {
+        transition-duration: 0s;
+      }
+    }
+  }
+}

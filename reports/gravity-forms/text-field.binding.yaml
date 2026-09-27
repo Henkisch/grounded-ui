@@ -1,0 +1,16 @@
+# Maps the text-field contract's parts to Gravity Forms markup.
+# Roots: single-input fields, plus each sub-input of a compound field (Name: First / Last; Email + Confirm Email).
+# Excluded: the honeypot field (.gfield--type-honeypot, hidden with display: none).
+component: text-field
+implementation: Gravity Forms
+root: >-
+  .gfield:is(.gfield--type-text, .gfield--type-email, .gfield--type-textarea, .gfield--type-phone,
+  .gfield--type-website, .gfield--type-number):not(:has(.ginput_complex)),
+  .ginput_complex > span:has(> input:not([type="hidden"]))
+boundary: .gfield, .ginput_complex > span
+parts:
+  label: label.gform-field-label
+  description: .gfield_description:not(.ginput_counter, .validation_message)
+  control: 'input:not([type="hidden"]), textarea'
+  error: .gfield_validation_message, .validation_message
+  required-indicator: .gfield_required
