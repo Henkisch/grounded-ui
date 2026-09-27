@@ -6,10 +6,14 @@ import { join } from 'node:path';
 import { createRequire } from 'node:module';
 import { parse } from 'yaml';
 import { AxeBuilder } from '@axe-core/playwright';
+import ariaQuery from 'aria-query';
 import { evaluateComponent } from './engine.js';
 
 const repo = new URL('../..', import.meta.url).pathname;
 const MARKER = 'data-grounded-conformance-root';
+// ARIA roles that may take their accessible name from their content (aria-query: nameFrom includes "contents").
+// Every other role, and no role at all, is named only by its author or a native label, never by its text.
+const NAME_FROM_CONTENT = [...ariaQuery.roles.entries()].filter(([, def]) => def.nameFrom?.includes('contents')).map(([role]) => role);
 const axeSource = readFileSync(createRequire(import.meta.url).resolve('axe-core/axe.min.js'), 'utf8');
 
 /** All contracts in contracts/, keyed by slug. */
@@ -90,6 +94,7 @@ export async function checkPage(page, { contracts = loadContracts(), bindings = 
       boundary: binding.boundary ?? null,
       rules,
       markerAttr: MARKER,
+      nameFromContent: NAME_FROM_CONTENT,
     });
     for (const root of roots) {
       let axeViolations = null;

@@ -62,6 +62,15 @@
       translate: 0 0.125em;
     }
 
+    /* Right-to-left: the logical borders mirror, so the rotation mirrors too (still down when closed, up when open). */
+    :where([data-gui-part="summary"]:dir(rtl))::after {
+      rotate: -45deg;
+    }
+
+    :where([data-gui-part="item"][open] > [data-gui-part="summary"]:dir(rtl))::after {
+      rotate: 135deg;
+    }
+
     @media (hover: hover) {
       /* Square rows between hairlines: hover underlines the title rather than tinting a block. */
       :where([data-gui-part="summary"]):hover {

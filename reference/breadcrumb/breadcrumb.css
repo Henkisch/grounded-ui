@@ -35,6 +35,11 @@
       flex: none;
     }
 
+    /* Right-to-left pages mirror the logical borders, so the rotation mirrors too: the chevron points left. */
+    :where([data-gui-part="item"] + [data-gui-part="item"]:dir(rtl))::before {
+      rotate: -45deg;
+    }
+
     :where([data-gui-part="link"], [data-gui-part="current"]) {
       display: inline-flex;
       align-items: center;

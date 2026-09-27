@@ -3,7 +3,7 @@
 // Output: one result per root found on the page.
 // Computed names, roles and descriptions come from axe-core's accessibility engine (window.axe, injected first),
 // so outcome rules judge what assistive technology gets, whatever markup produced it.
-export function evaluateComponent({ rootSelector, boundary, rules, markerAttr }) {
+export function evaluateComponent({ rootSelector, boundary, rules, markerAttr, nameFromContent = [] }) {
   const roots = [...document.querySelectorAll(rootSelector)];
   const ax = window.axe;
   ax.setup(document);
@@ -15,10 +15,24 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
     ax.commons.text.accessibleTextVirtual(ax.utils.getNodeFromTree(el), { ...context, includeHidden: !rendered(el) });
   const refsOf = (el, attr) => (el.getAttribute(attr) ?? '').split(/\s+/).filter(Boolean).map((ref) => document.getElementById(ref)).filter(Boolean);
   // aria-labelledby first, resolved per target, since axe drops hidden targets when includeHidden is off.
+  // Native labels for elements whose role can't be named by content: <caption>, <legend>, <figcaption>, <label>, alt.
+  const nativeLabel = (el) => {
+    const first = (sel) => [...el.children].find((child) => child.matches(sel));
+    const source = el.matches('table') ? first('caption') : el.matches('fieldset') ? first('legend') : el.matches('figure') ? first('figcaption') : null;
+    if (source) return text(source, { inLabelledByContext: true });
+    if (el.labels?.length) return [...el.labels].map((label) => text(label, { inLabelledByContext: true })).join(' ');
+    return el.getAttribute('alt') ?? '';
+  };
   const accText = (el) => {
     const refs = refsOf(el, 'aria-labelledby');
     const labelled = refs.map((ref) => text(ref, { inLabelledByContext: true })).join(' ').trim();
-    return labelled || text(el);
+    if (labelled) return labelled;
+    const role = ax.commons.aria.getRole(el);
+    if (role && nameFromContent.includes(role)) return text(el);
+    // Roles named by the author only (table, region, dialog, navigation…) and elements with no role.
+    // HTML-AAM: title, then placeholder, are the last resorts for form fields.
+    return (el.getAttribute('aria-label') ?? '').trim() || nativeLabel(el).trim() || (el.getAttribute('title') ?? '').trim()
+      || (el.matches('input, textarea') ? (el.getAttribute('placeholder') ?? el.getAttribute('aria-placeholder') ?? '').trim() : '');
   };
   const accDescription = (el) => {
     const refs = refsOf(el, 'aria-describedby');

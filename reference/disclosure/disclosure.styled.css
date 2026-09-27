@@ -47,6 +47,15 @@
       rotate: 45deg;
     }
 
+    /* Right-to-left: the logical borders mirror, so the rotation mirrors too (points left when closed, down when open). */
+    :where([data-gui-part="summary"]:dir(rtl))::before {
+      rotate: 45deg;
+    }
+
+    :scope[open] > :where([data-gui-part="summary"]:dir(rtl))::before {
+      rotate: -45deg;
+    }
+
     @media (hover: hover) {
       :where([data-gui-part="summary"]):hover {
         text-decoration-thickness: 0.125em;
