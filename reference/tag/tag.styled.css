@@ -1,0 +1,61 @@
+/* Hallmark · component: tag · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · hover · focus (linked tag) (active, disabled, loading, error, success: not states of a tag)
+ * contrast: text in the full text colour on a light tint; the coloured border only repeats the word
+ */
+/*
+ * tag styled CSS: the Grounded house style on top of tag.css.
+ * A small pill with a tinted background and a hairline border in the status colour.
+ * Few, short selectors on purpose: a list of tags should cost nothing on the page.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.tag {
+  @scope ([data-gui="tag"]) to ([data-gui]) {
+    :scope {
+      display: inline-flex;
+      gap: 0.375em;
+      align-items: center;
+      min-block-size: 1.75em;
+      padding-inline: 0.625em;
+      font-size: 0.875em;
+      font-weight: 600;
+      line-height: 1.2;
+      color: CanvasText;
+      text-decoration: none;
+      background: var(--gui-tag-bg, color-mix(in oklab, CanvasText 6%, Canvas));
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--gui-tag-border, color-mix(in oklab, CanvasText 30%, Canvas));
+      border-radius: var(--gui-tag-radius, var(--gui-radius, 1em));
+    }
+
+    /* The colour repeats the word in the label; text stays in the full text colour. */
+    :scope[data-gui-variant="success"] {
+      background: color-mix(in oklab, var(--gui-tag-success, color-mix(in oklab, oklch(58% 0.14 150) 80%, CanvasText)) 14%, Canvas);
+      border-color: var(--gui-tag-success, color-mix(in oklab, oklch(58% 0.14 150) 80%, CanvasText));
+    }
+
+    :scope[data-gui-variant="warning"] {
+      background: color-mix(in oklab, var(--gui-tag-warning, color-mix(in oklab, oklch(75% 0.16 75) 80%, CanvasText)) 14%, Canvas);
+      border-color: var(--gui-tag-warning, color-mix(in oklab, oklch(75% 0.16 75) 80%, CanvasText));
+    }
+
+    :scope[data-gui-variant="danger"] {
+      background: color-mix(in oklab, var(--gui-tag-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText))) 14%, Canvas);
+      border-color: var(--gui-tag-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    @media (hover: hover) {
+      :scope:where([href]):hover {
+        text-decoration-line: underline;
+        text-underline-offset: 0.2em;
+      }
+    }
+
+    :where([data-gui-part="icon"]) {
+      inline-size: 1em;
+      block-size: 1em;
+    }
+  }
+}
