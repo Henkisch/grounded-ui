@@ -3,7 +3,7 @@
 # The single source for the conformance tests, warning CSS, editor validation and the docs page.
 # Test selectors name parts ({legend}, {control}, …); `:scope` is the root; {id} is the root's id.
 component: choice-group
-contractVersion: 0.1.0
+contractVersion: 0.2.0
 title: Choice group
 summary: A group of checkboxes or radio buttons in a fieldset, named by its legend, with an optional description and error message.
 
@@ -346,6 +346,26 @@ rules:
     css:
       violation: '[data-gui="choice-group"] [data-gui-part="option"]:has([data-gui-part="label"]) [data-gui-part="control"][aria-label]'
       message: "CG-23: the control has both a label and an aria-label."
+
+  - id: CG-24
+    description: Radio buttons in one group share one name.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/input.html#radio-button-group
+    rationale: The shared name is what makes them one group; without it every radio can be selected at once, and arrow keys don't move between them.
+    since: 0.2.0
+    test: { kind: sameAttr, selector: '{control}[type="radio"]', attr: name }
+    css: false
+
+  - id: CG-25
+    description: Every control's accessible name contains the visible text of its own label.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: Voice-control users say the option they see; a name that differs from its label leaves them unable to pick it.
+    since: 0.2.0
+    test: { kind: labelInName, selector: '{control}' }
+    css: false
 
 # Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
 knownDifferences: []

@@ -614,6 +614,41 @@
             }
           },
           "$comment": "each focusable match, focused as by keyboard, draws a focus indicator; an outline ring contrasts at least `min`:1 with the background behind it"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector",
+            "attr"
+          ],
+          "properties": {
+            "kind": {
+              "const": "sameAttr"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            },
+            "attr": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "$comment": "all matches (two or more) share one non-empty value for attr"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector"
+          ],
+          "properties": {
+            "kind": {
+              "const": "labelInName"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            }
+          },
+          "$comment": "each match's accessible name contains the visible text of its own associated label(s)"
         }
       ],
       "properties": {
@@ -632,7 +667,9 @@
             "role",
             "invalidHasError",
             "targetSize",
-            "focusRing"
+            "focusRing",
+            "sameAttr",
+            "labelInName"
           ]
         }
       }

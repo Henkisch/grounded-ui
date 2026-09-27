@@ -153,6 +153,21 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
         const el = pick(selector).find((candidate) => !oneOf.includes(ax.commons.aria.getRole(candidate) ?? 'none'));
         return el ? `${describe(el)} has role "${ax.commons.aria.getRole(el) ?? 'none'}", expected ${oneOf.join(' or ')}` : null;
       },
+      // Every match carries the same non-empty value for attr (e.g. radios in one group share a name).
+      sameAttr({ selector, attr }) {
+        const values = pick(selector).map((el) => el.getAttribute(attr) ?? '');
+        if (values.length < 2) return null;
+        return new Set(values).size === 1 && values[0] ? null : `${attr} differs across the group: ${[...new Set(values)].map((v) => `"${v}"`).join(', ')}`;
+      },
+      // WCAG 2.5.3: each control's accessible name contains the visible text of its own label(s).
+      labelInName({ selector }) {
+        for (const el of pick(selector)) {
+          const expected = words([...(el.labels ?? [])].map(visibleText).join(' '));
+          const name = words(accText(el));
+          if (expected && name && !name.includes(expected)) return `accessible name ${quote(accText(el).trim())} does not contain the label text ${quote(expected)}`;
+        }
+        return null;
+      },
       // WCAG 2.4.7 + 1.4.11: keyboard focus draws an indicator, and an outline ring contrasts `min`:1 with the
       // background around it. Parts that can't take focus right now (disabled, inert) are skipped.
       focusRing({ selector, min }) {
