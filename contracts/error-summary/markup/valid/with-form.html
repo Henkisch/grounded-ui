@@ -1,0 +1,29 @@
+<form action="/apply" method="post" style="display: grid; gap: 1.25em;">
+  <section data-gui="error-summary" aria-labelledby="problem-title">
+    <h2 data-gui-part="title" id="problem-title" tabindex="-1" autofocus>There is a problem</h2>
+    <ul data-gui-part="list">
+      <li><a data-gui-part="link" href="#bin-size">Choose a bin size</a></li>
+      <li><a data-gui-part="link" href="#address">Enter the collection address</a></li>
+    </ul>
+  </section>
+
+  <div data-gui="text-field">
+    <label data-gui-part="label" for="address">Collection address</label>
+    <input data-gui-part="control" type="text" id="address" name="address" autocomplete="address-line1" aria-invalid="true" aria-describedby="address-error">
+    <p data-gui-part="error" id="address-error"><span aria-hidden="true">⚠</span> Enter the collection address</p>
+  </div>
+
+  <div data-gui="select">
+    <label data-gui-part="label" for="bin-size">Bin size</label>
+    <select data-gui-part="control" id="bin-size" name="bin-size" aria-invalid="true" aria-describedby="bin-size-error">
+      <option value="">Choose a bin size</option>
+      <option value="140">140 litres</option>
+      <option value="370">370 litres</option>
+    </select>
+    <p data-gui-part="error" id="bin-size-error"><span aria-hidden="true">⚠</span> Choose a bin size</p>
+  </div>
+
+  <div>
+    <button data-gui="button" type="submit">Send request</button>
+  </div>
+</form>

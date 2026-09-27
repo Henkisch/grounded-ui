@@ -1,0 +1,12 @@
+<section data-gui="error-summary" aria-labelledby="problem-title">
+  <h2 data-gui-part="title" id="problem-title" tabindex="-1" autofocus>There is a problem</h2>
+  <ul data-gui-part="list">
+    <li><a data-gui-part="link" href="#email">Enter your email address, for example name@example.com</a></li>
+  </ul>
+</section>
+
+<div data-gui="text-field">
+  <label data-gui-part="label" for="email">Email</label>
+  <input data-gui-part="control" type="email" id="email" name="email" autocomplete="email" aria-invalid="true" aria-describedby="email-error">
+  <p data-gui-part="error" id="email-error"><span aria-hidden="true">⚠</span> Enter your email address, for example name@example.com</p>
+</div>

@@ -1,0 +1,33 @@
+<section data-gui="error-summary" aria-labelledby="problem-title">
+  <h2 data-gui-part="title" id="problem-title" tabindex="-1" autofocus>There is a problem</h2>
+  <ul data-gui-part="list">
+    <li><a data-gui-part="link" href="#full-name">Enter your full name</a></li>
+    <li><a data-gui-part="link" href="#email">Enter your email address, for example name@example.com</a></li>
+    <li><a data-gui-part="link" href="#consent-stats">Choose at least one way we may use your answers</a></li>
+  </ul>
+</section>
+
+<div data-gui="text-field">
+  <label data-gui-part="label" for="full-name">Full name</label>
+  <input data-gui-part="control" type="text" id="full-name" name="full-name" autocomplete="name" aria-invalid="true" aria-describedby="full-name-error">
+  <p data-gui-part="error" id="full-name-error"><span aria-hidden="true">⚠</span> Enter your full name</p>
+</div>
+
+<div data-gui="text-field">
+  <label data-gui-part="label" for="email">Email</label>
+  <input data-gui-part="control" type="email" id="email" name="email" autocomplete="email" aria-invalid="true" aria-describedby="email-error">
+  <p data-gui-part="error" id="email-error"><span aria-hidden="true">⚠</span> Enter your email address, for example name@example.com</p>
+</div>
+
+<fieldset data-gui="choice-group" aria-describedby="consent-error">
+  <legend data-gui-part="legend">How may we use your answers?</legend>
+  <p data-gui-part="error" id="consent-error"><span aria-hidden="true">⚠</span> Choose at least one way we may use your answers</p>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="checkbox" id="consent-stats" name="consent-stats" value="stats" aria-invalid="true">
+    <label data-gui-part="label" for="consent-stats">Anonymous statistics</label>
+  </div>
+  <div data-gui-part="option">
+    <input data-gui-part="control" type="checkbox" id="consent-contact" name="consent-contact" value="contact" aria-invalid="true">
+    <label data-gui-part="label" for="consent-contact">Contacting me about my case</label>
+  </div>
+</fieldset>

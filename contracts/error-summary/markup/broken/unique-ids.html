@@ -1,0 +1,8 @@
+<!-- Breaks error-summary/unique-ids: the title's id is also used elsewhere on the page. -->
+<section data-gui="error-summary" aria-labelledby="problem-title">
+  <h2 data-gui-part="title" id="problem-title" tabindex="-1" autofocus>There is a problem</h2>
+  <ul data-gui-part="list">
+    <li><a data-gui-part="link" href="#email">Enter your email address</a></li>
+  </ul>
+</section>
+<p id="problem-title">Another element with the same id.</p>
