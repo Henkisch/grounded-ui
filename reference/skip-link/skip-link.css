@@ -1,0 +1,35 @@
+/*
+ * skip-link base CSS: only what the contract and accessibility need.
+ * Hidden visually until focused (clip-path keeps it in the Tab order and the accessibility tree, and keeps its
+ * full size for the target-size rule), shown in the top-start corner on focus, with a ring that's never removed.
+ * For a finished look, add skip-link.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.skip-link {
+  @scope ([data-gui="skip-link"]) to ([data-gui]) {
+    :scope {
+      position: absolute;
+      inset-block-start: 0.5em;
+      inset-inline-start: 0.5em;
+      z-index: 2147483647;
+      min-block-size: 1.5em;
+    }
+
+    /* Hidden, not removed: display: none or visibility: hidden would take it out of the Tab order. */
+    :scope:not(:focus, [data-gui-variant="visible"]) {
+      clip-path: inset(50%);
+    }
+
+    :scope[data-gui-variant="visible"] {
+      position: static;
+    }
+
+    /* WCAG 2.4.7: at least 2 CSS px, never removed. */
+    :scope:focus-visible {
+      outline: 2px solid var(--gui-skip-link-focus, var(--gui-focus, currentColor));
+      outline-offset: 2px;
+    }
+  }
+}

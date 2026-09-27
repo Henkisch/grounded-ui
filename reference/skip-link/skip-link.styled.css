@@ -1,0 +1,47 @@
+/* Hallmark · component: skip-link · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: hidden · focused (shown) · visible variant (hover, loading, error, success: not states of a skip link)
+ * contrast: Canvas text on CanvasText (full contrast in light and dark); the ring is CanvasText against the page
+ */
+/*
+ * skip-link styled CSS: the Grounded house style on top of skip-link.css.
+ * The text colour filled, like a primary button, sliding in a little when it appears.
+ * Remove this file and the contract still holds.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.skip-link {
+  @scope ([data-gui="skip-link"]) to ([data-gui]) {
+    :scope {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: 2.75em;
+      padding-block: 0.5em;
+      padding-inline: 1em;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--gui-skip-link-color, Canvas);
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+      background: var(--gui-skip-link-bg, CanvasText);
+      border-radius: var(--gui-skip-link-radius, var(--gui-radius, 0.375em));
+      translate: 0 -0.25em;
+      transition: translate var(--gui-skip-link-duration, 120ms) var(--gui-skip-link-easing, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    :scope:is(:focus, [data-gui-variant="visible"]) {
+      translate: 0 0;
+    }
+
+    /* The base ring uses currentColor, which here is the page colour: draw it in the text colour instead. */
+    :scope:focus-visible {
+      outline-color: var(--gui-skip-link-focus, var(--gui-focus, CanvasText));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :scope {
+        transition-duration: 0s;
+      }
+    }
+  }
+}
