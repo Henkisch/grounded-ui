@@ -1,0 +1,41 @@
+/* Hallmark · component: figure · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: default · caption link focus (hover, active, disabled, loading, error, success: not states of a figure)
+ * contrast: caption 70% and credit 55% CanvasText mixes, both at least 4.5:1 in light and dark
+ */
+/*
+ * figure styled CSS: the Grounded house style on top of figure.css.
+ * A softly rounded image, a small muted caption underneath and a quieter credit. Few, short selectors.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.figure {
+  @scope ([data-gui="figure"]) to ([data-gui]) {
+    :scope {
+      margin-block: 1.5em;
+      margin-inline: 0;
+    }
+
+    :where([data-gui-part="image"]) {
+      display: block;
+      border-radius: var(--gui-figure-radius, var(--gui-radius, 0.375em));
+    }
+
+    :scope[data-gui-variant="wide"] :where([data-gui-part="image"]) {
+      inline-size: 100%;
+    }
+
+    :where([data-gui-part="caption"]) {
+      margin-block-start: var(--gui-figure-gap, 0.625em);
+      font-size: 0.875em;
+      color: var(--gui-figure-caption, color-mix(in oklab, CanvasText 70%, Canvas));
+    }
+
+    :where([data-gui-part="credit"]) {
+      display: block;
+      margin-block-start: 0.25em;
+      font-size: 0.875em;
+      color: var(--gui-figure-credit, color-mix(in oklab, CanvasText 55%, Canvas));
+    }
+  }
+}

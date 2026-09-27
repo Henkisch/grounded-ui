@@ -1,0 +1,201 @@
+# Contract: figure
+# An image with an optional caption and credit, as editors place it in an article.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({image}, {caption}, {credit}); `:scope` is the root.
+component: figure
+contractVersion: 0.1.0
+title: Figure
+summary: An image with an optional caption and credit. The caption names the figure, the image never shifts the layout while it loads. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [figure]
+    required: true
+  image:
+    label: Image
+    element: [img]
+    required: true
+  caption:
+    label: Caption
+    element: [figcaption]
+  credit:
+    label: Credit
+    element: [small]
+
+domOrder: [image, caption]
+
+variants:
+  - name: wide
+    description: The image fills the full width of its column, whatever its own width.
+
+states:
+  - { name: link-focus, label: Link in the caption focused, hook: ":focus-visible" }
+
+keyboard:
+  - { key: Tab / Shift + Tab, behavior: "Moves to links in the caption; the figure and the image aren't focusable" }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: figure/image-has-alt
+    description: Every image has an alt attribute (empty when the image is decorative or the caption says it all).
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/non-text-content
+    rationale: Without alt, screen readers read the file name; alt="" tells them to skip a decorative image.
+    since: 0.1.0
+    test: { kind: absent, selector: '{image}:not([alt])' }
+    css:
+      violation: '[data-gui="figure"] img:not([alt])'
+      message: "figure/image-has-alt: add alt, or alt=\"\" if the image is decorative."
+    editor: { level: refuse }
+
+  - id: figure/role
+    description: The figure has the role figure.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/TR/html-aam-1.0/#el-figure
+    rationale: The role lets screen-reader users recognise the image and its caption as one unit, and jump between figures.
+    since: 0.1.0
+    test: { kind: role, selector: ':scope', oneOf: [figure] }
+    css: false
+
+  - id: figure/caption-names-figure
+    description: When there is a caption, the figure is named by it (a figcaption, or aria-labelledby or aria-label).
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: A caption that only looks attached to the image isn't connected for screen-reader users; the figure's name is what ties them.
+    since: 0.1.0
+    # Structural on purpose: axe-core computes a figure's name from its content, which browsers don't, so a name check
+    # would pass a caption that isn't connected.
+    test: { kind: absent, selector: ':scope:has({caption}):not(:has(> figcaption), [aria-labelledby], [aria-label])' }
+    css: false
+
+  - id: figure/caption-has-text
+    description: The caption has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: An empty caption leaves the figure unnamed and puts an empty box on the page.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{caption}' }
+    css:
+      coverage: partial
+      violation: '[data-gui="figure"] figcaption:empty'
+      pseudo: before
+      message: "figure/caption-has-text: the caption is empty."
+    editor: { level: warn }
+
+  - id: figure/image-dimensions
+    description: Every image has width and height attributes, so the page doesn't shift while it loads.
+    level: recommended
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/rendering.html#attributes-for-embedded-content-and-images
+    rationale: The browser reserves the image's space from width and height before it loads; without them the text below jumps, which also moves what a reader was about to click.
+    since: 0.1.0
+    test: { kind: absent, selector: '{image}:not([width][height])' }
+    css:
+      violation: '[data-gui="figure"] img:not([width][height])'
+      message: "figure/image-dimensions: add width and height to the image."
+
+  - id: figure/focus-ring-visible
+    description: Links in the caption show a focus ring with at least 3:1 contrast against the background when focused by keyboard.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible
+    rationale: Keyboard users need to see which link they are on.
+    since: 0.1.0
+    test: { kind: focusRing, selector: '{caption} a[href]', min: 3 }
+    css: false
+
+  - id: figure/figure-element
+    description: The root is a <figure> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-figure-element
+    rationale: A native figure gets its role and its name from the figcaption without any ARIA.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(figure)' }
+    css:
+      violation: '[data-gui="figure"]:not(figure)'
+      message: "figure/figure-element: data-gui=figure must be a <figure>."
+
+  - id: figure/caption-element
+    description: The caption part is a <figcaption> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-figcaption-element
+    rationale: Only a figcaption names the figure automatically; a paragraph needs aria-labelledby to do the same.
+    since: 0.1.0
+    test: { kind: absent, selector: '{caption}:not(figcaption)' }
+    css: false
+
+  - id: figure/one-caption
+    description: There is at most one caption.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/grouping-content.html#the-figure-element
+    rationale: HTML allows one figcaption per figure; a second one isn't part of the name and confuses the structure.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:has({caption} ~ {caption})' }
+    css: false
+
+  - id: figure/credit-element
+    description: The credit is a <small> element inside the caption.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-small-element
+    rationale: small is HTML's element for side comments such as attribution; inside the caption it stays part of the figure's name.
+    since: 0.1.0
+    test: { kind: absent, selector: '{credit}:not({caption} small)' }
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "1.1.1", name: Non-text Content, level: A, how: "Every image has alt; empty alt for decorative images or when the caption carries the meaning" }
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "figure and figcaption tie the caption to the image; the caption names the figure" }
+  - { criterion: "1.4.3", name: Contrast (Minimum), level: AA, how: "Caption and credit text at least 4.5:1 in light and dark" }
+  - { criterion: "2.4.7", name: Focus Visible, level: AA, how: "Links in the caption get a 2px focus ring in base CSS" }
+
+siteResponsibilities:
+  - { criterion: "1.1.1", title: Good alt text, text: "The contract checks that alt exists, not that it is right. Describe what the image shows that the text doesn't; don't repeat the caption." }
+  - { title: Loading below the fold, text: 'Add loading="lazy" to images further down the page and keep the first one eager; only the page knows which is which.' }
+  - { title: Image files, text: "Serve images in a sensible size and format (AVIF, WebP) with srcset; the component only sets how they're laid out." }
+
+editor:
+  help:
+    image: 'Alt text says what the image shows, for someone who can''t see it: "Children planting trees in the school garden", not "image" or the file name. If the caption already says it, or the image is only decoration, leave alt empty.'
+    caption: "The caption is for everyone: context, not a description of the pixels. It becomes the figure's name for screen readers."
+    credit: 'Photographer or source, such as "Photo: Anna Berg".'
+  softWarnings:
+    - { id: FG-W1, text: Alt text that repeats the caption word for word }
+    - { id: FG-W2, text: 'Alt text such as "image", "photo" or a file name' }
+
+attributes:
+  - { on: root, name: data-gui, type: '"figure"', required: true, description: Marks the element as a Grounded UI figure. }
+  - { on: root, name: data-gui-variant, type: '"wide"', description: The image fills the column width. }
+  - { on: image, name: alt, type: string, required: true, description: 'What the image shows; "" when decorative or the caption says it.' }
+  - { on: image, name: width, type: number, required: true, description: The image's intrinsic width in pixels; reserves its space before it loads. }
+  - { on: image, name: height, type: number, required: true, description: The image's intrinsic height in pixels. }
+  - { on: image, name: loading, type: '"lazy" | "eager"', description: '"lazy" for images below the fold.' }
+
+customProperties:
+  --gui-figure-radius: Image corner radius.
+  --gui-figure-gap: Space between image and caption.
+  --gui-figure-caption: Caption text colour.
+  --gui-figure-credit: Credit text colour.
+  --gui-figure-focus: Focus ring colour on caption links.
