@@ -100,12 +100,13 @@ export function scorecardOverview(cards) {
 /** One component's receipts as a row of badges, for the top of its page. */
 export function scorecardBadges(card) {
   const badge = (ok, text, tooltip) => `<Badge variant="${ok ? 'success' : 'danger'}" tooltip="${tooltip}">${text}</Badge>`;
-  return [
+  // A wrapping row with a gap in both directions, so badges on a narrow screen don't touch.
+  return `<div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>\n${[
     badge(card.allPass, `${card.allPass ? '✓' : '✗'} ${card.rules} contract rules`, `Run on all ${card.fixtures} examples in the build`),
     badge(card.axe === 0, card.axe === 0 ? '✓ axe: 0 violations' : `✗ axe: ${card.axe}`, 'axe-core on every example'),
     `<Badge tooltip="Brotli-compressed; base is required, styled optional">${kb(card.cssBase)} + ${kb(card.cssStyled)} CSS</Badge>`,
     `<Badge tooltip="JavaScript shipped">${card.js === 0 ? '0 B' : kb(card.js)} JS</Badge>`,
     `<Badge tooltip="From the web-features data">Baseline: ${card.baseline.label}</Badge>`,
     ...(card.consistency ? [badge(card.consistency.unexplained === 0, `${card.consistency.unexplained === 0 ? '✓' : '✗'} Same in 3 engines`, `${card.consistency.passed} of ${card.consistency.checks} measurements match in Chromium, Firefox and WebKit${card.consistency.checks - card.consistency.passed ? `; ${card.consistency.checks - card.consistency.passed} known difference(s)` : ''}`)] : []),
-  ].join(' ');
+  ].join('\n')}\n</div>`;
 }

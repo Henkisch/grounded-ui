@@ -25,7 +25,9 @@ ${cssFiles(referenceDir, markup, styled).map(({ slug, file }) => `<link rel="sty
   :root { color-scheme: light dark; color: CanvasText; }
   body { margin: 0.5rem; font: 1rem/1.5 system-ui, sans-serif; }
   /* Every example sits centred in the same-height box; a dialog demo is only its trigger until opened. */
-  body { display: grid; align-content: center; min-block-size: calc(100dvb - 1rem); }${markup.includes('<dialog') ? `
+  body { display: grid; align-content: center; justify-items: start; min-block-size: calc(100dvb - 1rem); }
+  /* Fields and groups take the full width; buttons and inline toggletips keep their own size. */
+  body > :not(button, span) { justify-self: stretch; }${markup.includes('<dialog') ? `
   body { place-items: center; }` : ''}
 </style>
 </head>

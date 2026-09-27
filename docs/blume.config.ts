@@ -13,6 +13,8 @@ export default defineConfig({
   navigation: {
     tabs: [
       { label: "Docs", path: "/" },
+      { label: "CSS recipes", path: "/recipes" },
+      { label: "Reports", path: "/reports" },
       { label: "Examples", path: "/examples" },
       { label: "Guides", path: "/guides" },
     ],

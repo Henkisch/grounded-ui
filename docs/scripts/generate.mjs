@@ -46,7 +46,7 @@ writeFileSync(join(out.components, 'index.mdx'), [
   '</CardGroup>',
   '',
 ].join('\n'));
-writeFileSync(join(out.components, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Components", order: 3 });\n`);
+writeFileSync(join(out.components, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Components", order: 2 });\n`);
 writeFileSync(join(out.generated, 'scorecard.mdx'), scorecardOverview(cards) + '\n');
 // Examples: composed page fragments from examples/*.html; title and description from its two leading comments.
 const examplesDir = join(repo, 'examples');
@@ -70,6 +70,16 @@ for (const [order, fileName] of exampleFiles.entries()) {
   writeFileSync(join(out.examples, fileName.replace(/\.html$/, '.mdx')), page);
   console.log(`docs: example ${fileName}`);
 }
+writeFileSync(join(out.examples, 'index.mdx'), [
+  ...frontmatter({ title: 'Examples', description: 'Components composed into real page fragments: each is plain HTML with only Grounded UI CSS.', sidebar: { order: 0, label: 'Overview' } }),
+  '<CardGroup cols={2}>',
+  ...exampleFiles.map((fileName) => {
+    const source = readFileSync(join(examplesDir, fileName), 'utf8');
+    const meta = (key) => source.match(new RegExp(`<!--\\s*${key}:\\s*(.+?)\\s*-->`))?.[1] ?? '';
+    return `  <Card title="${esc(meta('title'))}" href="/examples/${fileName.replace(/\.html$/, '')}" arrow>\n    ${esc(meta('description'))}\n  </Card>`;
+  }),
+  '</CardGroup>', '',
+].join('\n'));
 writeFileSync(join(out.examples, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Examples", order: 5 });\n`);
 
 // Conformance reports: the human reading (README.md) plus the generated tables from `pnpm report <impl>`.
@@ -90,7 +100,21 @@ for (const [order, impl] of impls.entries()) {
   ].join('\n'));
   console.log(`docs: report ${impl}`);
 }
-writeFileSync(join(out.reports, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Conformance reports", order: 4 });\n`);
+// Reports overview: every implementation's verdict per component, read from the generated tables.
+writeFileSync(join(out.reports, 'index.mdx'), [
+  ...frontmatter({ title: 'Conformance reports', description: 'Grounded UI contracts run against real implementations: which outcome rules fail, and whether axe noticed.', sidebar: { order: 0, label: 'Overview' } }),
+  'Each report runs the contracts on an implementation\'s own published examples or live pages. Outcome rules are the verdict; technique differences are listed in each report but never count as failures.',
+  '',
+  '| Implementation | Component | Verdict |', '| --- | --- | --- |',
+  ...impls.flatMap((impl) => readdirSync(join(reportsDir, impl)).filter((f) => f.endsWith('.md') && f !== 'README.md').sort().map((f) => {
+    const md = readFileSync(join(reportsDir, impl, f), 'utf8');
+    const title = readFileSync(join(reportsDir, impl, 'README.md'), 'utf8').match(/^# (.+?)(?: —.*)?$/m)?.[1] ?? impl;
+    const verdict = md.match(/^\*\*Verdict: (.+?)\.\*\*$/m)?.[1] ?? '—';
+    return `| [${esc(title)}](/reports/${impl}) | ${f.replace(/\.md$/, '')} | ${esc(verdict.charAt(0).toUpperCase() + verdict.slice(1))} |`;
+  })),
+  '',
+].join('\n'));
+writeFileSync(join(out.reports, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "Conformance reports", order: 3 });\n`);
 
 // CSS recipes: recipes/<slug>.md (frontmatter: title, description, order, features = web-features ids) plus an
 // optional recipes/<slug>.html demo: a standalone fragment with its own <style>, no Grounded UI CSS. The demo
@@ -135,7 +159,16 @@ for (const fileName of recipeFiles) {
   ].join('\n'));
   console.log(`docs: recipe ${slug}`);
 }
-if (recipeFiles.length) writeFileSync(join(out.recipes, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "CSS recipes", order: 3.5 });\n`);
+if (recipeFiles.length) writeFileSync(join(out.recipes, 'index.mdx'), [
+  ...frontmatter({ title: 'CSS recipes', description: 'How to style native elements that are known to be hard to style, with the quirks checked in Chromium, Firefox and WebKit.', sidebar: { order: 0, label: 'Overview' } }),
+  '<CardGroup cols={2}>',
+  ...recipeFiles.map((fileName) => {
+    const meta = parse(readFileSync(join(recipesDir, fileName), 'utf8').match(/^---\n([\s\S]*?)\n---/)[1]);
+    return { ...meta, slug: fileName.replace(/\.md$/, '') };
+  }).sort((a, b) => (a.order ?? 99) - (b.order ?? 99)).map((m) => `  <Card title="${esc(m.title)}" href="/recipes/${m.slug}" arrow>\n    ${esc(m.description ?? '')}\n  </Card>`),
+  '</CardGroup>', '',
+].join('\n'));
+if (recipeFiles.length) writeFileSync(join(out.recipes, 'meta.ts'), `import { defineMeta } from "blume";\n\nexport default defineMeta({ title: "CSS recipes", order: 4 });\n`);
 
 function recipeShell(title, markup) {
   return `<!doctype html>
