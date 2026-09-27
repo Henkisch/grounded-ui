@@ -1,0 +1,74 @@
+/* Hallmark · component: meter · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: optimum · suboptimum · even less good (hover, focus, disabled: not states of a meter)
+ * contrast: every fill at least 3:1 against the track in light and dark; the value is always in words too
+ */
+/*
+ * meter styled CSS: the Grounded house style on top of meter.css.
+ * A rounded track and a fill whose colour follows the browser's own low/high/optimum state.
+ * Chromium and Safari have a pseudo-element per state; Firefox has one bar and the state as a
+ * pseudo-class on the meter. Each gets its own rule: an unknown pseudo-element in a selector list
+ * drops the whole rule in Chromium and Safari.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.meter {
+  @scope ([data-gui="meter"]) to ([data-gui]) {
+    :where([data-gui-part="label"]) {
+      font-weight: 600;
+    }
+
+    :where([data-gui-part="value"]) {
+      font-size: 0.875em;
+      color: var(--gui-meter-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+    }
+
+    /* Firefox paints the element itself as the track. */
+    :where([data-gui-part="control"]) {
+      appearance: none;
+      block-size: var(--gui-meter-height, 0.625em);
+      background: var(--gui-meter-track, color-mix(in oklab, CanvasText 15%, Canvas));
+      border: 0;
+      border-radius: 1em;
+      overflow: hidden;
+    }
+
+    :where([data-gui-part="control"])::-webkit-meter-bar {
+      block-size: var(--gui-meter-height, 0.625em);
+      background: var(--gui-meter-track, color-mix(in oklab, CanvasText 15%, Canvas));
+      border: 0;
+      border-radius: 1em;
+    }
+
+    :where([data-gui-part="control"])::-webkit-meter-optimum-value {
+      background: var(--gui-meter-good, color-mix(in oklab, oklch(55% 0.13 150) 80%, CanvasText));
+    }
+
+    :where([data-gui-part="control"])::-webkit-meter-suboptimum-value {
+      background: var(--gui-meter-warning, color-mix(in oklab, oklch(70% 0.15 75) 80%, CanvasText));
+    }
+
+    :where([data-gui-part="control"])::-webkit-meter-even-less-good-value {
+      background: var(--gui-meter-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    :where([data-gui-part="control"])::-moz-meter-bar {
+      background: var(--gui-meter-good, color-mix(in oklab, oklch(55% 0.13 150) 80%, CanvasText));
+    }
+
+    :where([data-gui-part="control"]):-moz-meter-sub-optimum::-moz-meter-bar {
+      background: var(--gui-meter-warning, color-mix(in oklab, oklch(70% 0.15 75) 80%, CanvasText));
+    }
+
+    :where([data-gui-part="control"]):-moz-meter-sub-sub-optimum::-moz-meter-bar {
+      background: var(--gui-meter-danger, var(--gui-danger, color-mix(in oklab, oklch(60% 0.215 31) 80%, CanvasText)));
+    }
+
+    /* Forced colours drop backgrounds: give the bar back to the system. */
+    @media (forced-colors: active) {
+      :where([data-gui-part="control"]) {
+        appearance: auto;
+      }
+    }
+  }
+}

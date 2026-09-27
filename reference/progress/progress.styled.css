@@ -1,0 +1,85 @@
+/* Hallmark · component: progress · genre: modern-minimal · theme: custom "Grounded" (austere-utilitarian)
+ * states: determinate · indeterminate (busy) (hover, focus, disabled, error: not states of a progress bar)
+ * contrast: the fill is the text colour, well above 3:1 against the track and the page
+ */
+/*
+ * progress styled CSS: the Grounded house style on top of progress.css.
+ * A rounded track, a fill in the text colour, and a moving band while the amount is unknown.
+ * Each engine draws the bar with its own pseudo-elements, so each gets its own rule: an unknown
+ * pseudo-element in a selector list drops the whole rule in Chromium and Safari.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.styled.progress {
+  @keyframes gui-progress-busy {
+    from { background-position: 100% 0, 0 0; }
+    to { background-position: 0% 0, 0 0; }
+  }
+
+  @scope ([data-gui="progress"]) to ([data-gui]) {
+    :where([data-gui-part="label"]) {
+      font-weight: 600;
+    }
+
+    :where([data-gui-part="value"]) {
+      font-size: 0.875em;
+      color: var(--gui-progress-muted, color-mix(in oklab, CanvasText 55%, Canvas));
+    }
+
+    /* Firefox paints the element itself as the track. */
+    :where([data-gui-part="control"]) {
+      appearance: none;
+      block-size: var(--gui-progress-height, 0.625em);
+      background: var(--gui-progress-track, color-mix(in oklab, CanvasText 15%, Canvas));
+      border: 0;
+      border-radius: 1em;
+      overflow: hidden;
+    }
+
+    :where([data-gui-part="control"])::-webkit-progress-bar {
+      background: var(--gui-progress-track, color-mix(in oklab, CanvasText 15%, Canvas));
+    }
+
+    :where([data-gui-part="control"])::-webkit-progress-value {
+      background: var(--gui-progress-fill, CanvasText);
+      border-radius: 1em;
+    }
+
+    :where([data-gui-part="control"])::-moz-progress-bar {
+      background: var(--gui-progress-fill, CanvasText);
+      border-radius: 1em;
+    }
+
+    /* Unknown amount: after the reset Chromium and Safari show an empty track and Firefox a full bar,
+       so draw a moving band on the element and make the engine's own bars transparent. */
+    :where([data-gui-part="control"]):indeterminate {
+      background:
+        linear-gradient(90deg, transparent 0 35%, var(--gui-progress-fill, CanvasText) 35% 65%, transparent 65%) 0 0 / 250% 100% no-repeat,
+        var(--gui-progress-track, color-mix(in oklab, CanvasText 15%, Canvas));
+      animation: gui-progress-busy var(--gui-progress-duration, 1.4s) linear infinite;
+    }
+
+    :where([data-gui-part="control"]):indeterminate::-webkit-progress-bar {
+      background: transparent;
+    }
+
+    :where([data-gui-part="control"]):indeterminate::-moz-progress-bar {
+      background: transparent;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :where([data-gui-part="control"]):indeterminate {
+        background-position: 50% 0, 0 0;
+        animation: none;
+      }
+    }
+
+    /* Forced colours drop backgrounds: give the bar back to the system. */
+    @media (forced-colors: active) {
+      :where([data-gui-part="control"]) {
+        appearance: auto;
+      }
+    }
+  }
+}

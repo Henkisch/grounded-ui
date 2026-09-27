@@ -1,0 +1,23 @@
+/*
+ * progress base CSS: only what the contract and accessibility need.
+ * The label above a full-width bar. The browser draws the bar; for the finished look, add progress.styled.css.
+ */
+/* Repeated in every file: if a CMS aggregates or reorders stylesheets, the order still holds. */
+@layer gui.core, gui.components, gui.styled, gui.warnings;
+
+@layer gui.components.progress {
+  @scope ([data-gui="progress"]) to ([data-gui]) {
+    :scope {
+      display: grid;
+      gap: var(--gui-progress-gap, 0.375em);
+    }
+
+    :where([data-gui-part]) {
+      margin: 0;
+    }
+
+    :where([data-gui-part="control"]) {
+      inline-size: 100%;
+    }
+  }
+}

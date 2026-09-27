@@ -1,0 +1,5 @@
+<!-- Breaks progress/label-element: the label part is a span; aria-labelledby still names the bar. -->
+<div data-gui="progress">
+  <span data-gui-part="label" id="upload-label" for="upload">Uploading report.pdf</span>
+  <progress data-gui-part="control" id="upload" max="100" value="64" aria-labelledby="upload-label">64 %</progress>
+</div>

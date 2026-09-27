@@ -1,0 +1,5 @@
+<!-- Breaks progress/label-for-matches-id: the label's for points at another id; aria-labelledby still names the bar. -->
+<div data-gui="progress">
+  <label data-gui-part="label" id="upload-label" for="upload-bar">Uploading report.pdf</label>
+  <progress data-gui-part="control" id="upload" max="100" value="64" aria-labelledby="upload-label">64 %</progress>
+</div>

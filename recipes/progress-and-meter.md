@@ -24,6 +24,8 @@ features: [progress, meter, indeterminate, appearance]
 - **The meter's state comes from `low`, `high` and `optimum`,** not from CSS. With `optimum` near the minimum, a value between `low` and `high` is "suboptimum" and above `high` is "even less good". Both engine families picked the same state for the demo's values. Checked in all three engines.
 - **`::-webkit-meter-bar` doesn't exist in Firefox;** Firefox styles the meter's own box as the track. Checked in all three engines.
 
+- **A meter value exactly at `high` is drawn differently:** Firefox shows the "not ideal" state, Chromium the "good" one. Keep values off the `low`/`high` edges, or say the state in text. Found building the meter.
+
 ## Accessibility traps
 
 - **Give both a label.** Wrap them in a `<label>` or point `aria-labelledby` at the heading; "progress bar, 64 %" alone doesn't say what is loading.

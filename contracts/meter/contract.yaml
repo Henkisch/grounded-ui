@@ -1,0 +1,238 @@
+# Contract: meter
+# A measurement within a known range (storage used, password strength), on the native <meter> element.
+# The single source for the conformance tests, warning CSS, editor validation and the docs page.
+# Test selectors name parts ({label}, {control}, {value}); `:scope` is the root.
+component: meter
+contractVersion: 0.1.0
+title: Meter
+summary: A measurement within a known range, such as storage used, on the native meter element, with the value also in words. Zero JavaScript.
+
+budget:
+  css: 1536
+  js: 0
+
+# Browser features the reference implementation relies on, by web-features id.
+requires:
+  - feature: meter
+  - feature: appearance
+  - feature: scope
+
+anatomy:
+  root:
+    label: Root
+    element: [div]
+    required: true
+  label:
+    label: Label
+    element: [label]
+    required: true
+  control:
+    label: Meter
+    element: [meter]
+    required: true
+  value:
+    label: Value text
+    element: [span, p]
+    required: true
+
+domOrder: [label, control, value]
+
+states:
+  - { name: optimum, label: Good, dom: "value in the optimum range", hook: ":not(:-moz-meter-sub-optimum, :-moz-meter-sub-sub-optimum)" }
+  - { name: suboptimum, label: Not ideal, dom: "value between low and high on the far side of optimum", hook: "::-webkit-meter-suboptimum-value / :-moz-meter-sub-optimum" }
+  - { name: even-less-good, label: Bad, dom: "value past low or high, away from optimum", hook: "::-webkit-meter-even-less-good-value / :-moz-meter-sub-sub-optimum" }
+
+keyboard:
+  - { key: Tab, behavior: "Skips the meter: it is information, not a control" }
+
+# level: normative = a standard requires it (source says which); recommended = our judgement, open to review.
+# type: outcome = what any implementation must achieve, judged on the rendered result (computed name, role,
+#       description, visible text); outside implementations are judged on these.
+#       technique = how Grounded UI's reference markup achieves it; always recommended, never a verdict on other markup.
+rules:
+  - id: meter/role
+    description: The meter has the role meter.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value
+    rationale: The role tells screen readers it is a measurement, not task progress, and they announce its value.
+    since: 0.1.0
+    test: { kind: role, selector: '{control}', oneOf: [meter] }
+    css: false
+
+  - id: meter/has-name
+    description: The meter has a non-empty accessible name.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/
+    rationale: '"Meter, 3.1" alone doesn''t say what is measured.'
+    since: 0.1.0
+    test: { kind: name, selector: '{control}' }
+    css: false
+    editor: { level: refuse }
+
+  - id: meter/name-includes-label
+    description: The meter's accessible name contains the visible label text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+    rationale: What people see and what they hear should match.
+    since: 0.1.0
+    test: { kind: name, selector: '{control}', includes: '{label}' }
+    css: false
+
+  - id: meter/label-has-text
+    description: The label has non-empty text.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
+    rationale: An empty label leaves the meter unnamed for everyone.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{label}' }
+    css: false
+
+  - id: meter/has-value
+    description: The meter has a value attribute.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#the-meter-element
+    rationale: HTML requires a value; without one the meter shows and announces 0, which is a claim, not a measurement.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:not([value])' }
+    css:
+      violation: '[data-gui="meter"] [data-gui-part="control"]:not([value])'
+      message: "meter/has-value: set the meter's value."
+
+  - id: meter/value-in-words
+    description: The value is also shown as text next to the meter.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/use-of-color
+    rationale: The meter's state is shown by colour and length only; people who can't tell the colours apart need the value in words.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope:not(:has({value}))' }
+    css:
+      violation: '[data-gui="meter"]:not(:has([data-gui-part="value"]))'
+      message: "meter/value-in-words: add the value as text next to the meter."
+
+  - id: meter/value-has-text
+    description: The value text is not empty.
+    level: normative
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/use-of-color
+    rationale: An empty value part leaves only the colour to carry the measurement.
+    since: 0.1.0
+    test: { kind: nonEmptyText, selector: '{value}' }
+    css: false
+
+  - id: meter/value-reaches-meter
+    description: The value text reaches the meter's accessible description.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+    rationale: Screen readers announce the raw number ("3.1"); the text gives the unit and the range ("3.1 of 5 GB").
+    since: 0.1.0
+    test: { kind: exposes, selector: '{control}', text: '{value}' }
+    css: false
+
+  - id: meter/not-focusable
+    description: The meter isn't in the Tab order.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/focus-order
+    rationale: A meter can't be operated; a Tab stop on it only slows keyboard users down.
+    since: 0.1.0
+    test: { kind: absent, selector: ':scope[tabindex], {control}[tabindex], {label}[tabindex], {value}[tabindex]' }
+    css: false
+
+  - id: meter/unique-ids
+    description: Ids inside the meter are unique on the page.
+    level: normative
+    type: outcome
+    source: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+    rationale: A duplicate id makes the label or the description point at the wrong element.
+    since: 0.1.0
+    test: { kind: uniqueIds }
+    css: false
+
+  - id: meter/meter-element
+    description: The meter is a <meter> element.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/form-elements.html#the-meter-element
+    rationale: The native element brings the role, the value and the low/high/optimum states without ARIA or script.
+    since: 0.1.0
+    test: { kind: absent, selector: '{control}:not(meter)' }
+    css:
+      violation: '[data-gui="meter"] [data-gui-part="control"]:not(meter)'
+      message: "meter/meter-element: use a <meter> element."
+
+  - id: meter/label-for-matches-id
+    description: The label's for matches the meter's id.
+    level: recommended
+    type: technique
+    source: https://html.spec.whatwg.org/multipage/forms.html#attr-label-for
+    rationale: for/id ties the label to the meter wherever they sit in the DOM.
+    since: 0.1.0
+    test:
+      kind: attrEquals
+      a: { selector: '{label}', attr: for }
+      b: { selector: '{control}', attr: id }
+    css: false
+
+  - id: meter/value-in-describedby
+    description: The value text's id is referenced in the meter's aria-describedby.
+    level: recommended
+    type: technique
+    source: https://www.w3.org/TR/wai-aria-1.2/#aria-describedby
+    rationale: aria-describedby is how the value text reaches the meter without replacing its name.
+    since: 0.1.0
+    test:
+      kind: idrefIncludes
+      from: { selector: '{control}', attr: aria-describedby }
+      to: '{value}'
+    css: false
+
+# Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
+knownDifferences: []
+
+wcag:
+  - { criterion: "4.1.2", name: "Name, Role, Value", level: A, how: "Native meter: role meter, name from the label, value exposed" }
+  - { criterion: "1.4.1", name: Use of Color, level: A, how: "The value is always shown in words next to the coloured bar" }
+  - { criterion: "1.3.1", name: Info and Relationships, level: A, how: "Label tied with for/id; value text referenced by aria-describedby" }
+  - { criterion: "1.4.11", name: Non-text Contrast, level: AA, how: "The fill contrasts at least 3:1 with the track in light and dark" }
+
+siteResponsibilities:
+  - { title: "Meter, not progress", text: "Use a meter for a measurement in a known range (storage, strength). For how far a task has come, use the progress bar." }
+  - { title: "Set low, high and optimum", text: "The colour comes from the browser comparing value with low, high and optimum. Without them every value looks the same." }
+  - { criterion: "1.4.1", title: Say the state in words, text: 'When the state matters ("Almost full"), put it in the value text, not only in the colour.' }
+
+editor:
+  help:
+    label: 'Say what is measured: "Storage used", "Password strength".'
+    value: 'Give the value with its unit and range: "3.1 of 5 GB", and the state when it matters: "Almost full".'
+  softWarnings:
+    - { id: MT-W1, text: A value text without a unit or range }
+
+# The component's API: the attributes a user writes. Rendered as tables in the docs.
+attributes:
+  - { on: root, name: data-gui, type: '"meter"', required: true, description: Marks the element as a Grounded UI meter. }
+  - { on: control, name: id, type: string, required: true, description: Target for the label's for. }
+  - { on: control, name: value, type: number, required: true, description: The measurement. }
+  - { on: control, name: min, type: number, default: "0", description: The lowest possible value. }
+  - { on: control, name: max, type: number, default: "1", description: The highest possible value. }
+  - { on: control, name: low, type: number, description: Where the low range ends. }
+  - { on: control, name: high, type: number, description: Where the high range starts. }
+  - { on: control, name: optimum, type: number, description: 'The best value; decides which range counts as good.' }
+  - { on: control, name: aria-describedby, type: id, description: The value text's id. }
+  - { on: label, name: for, type: id, required: true, description: The meter's id. }
+  - { on: value, name: id, type: string, description: Referenced from the meter's aria-describedby. }
+
+customProperties:
+  --gui-meter-gap: Space between the label, the meter and the value text.
+  --gui-meter-height: Bar height.
+  --gui-meter-track: Track colour.
+  --gui-meter-good: Fill colour in the optimum range.
+  --gui-meter-warning: Fill colour in the suboptimum range.
+  --gui-meter-danger: Fill colour in the worst range.
+  --gui-meter-muted: Value text colour.
