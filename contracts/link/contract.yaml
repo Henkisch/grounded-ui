@@ -3,7 +3,7 @@
 # The single source for the conformance tests, warning CSS, editor validation and the docs page.
 # Test selectors name parts ({new-window}, {file-info}, {icon}); `:scope` is the root (the link itself).
 component: link
-contractVersion: 0.1.0
+contractVersion: 0.2.0
 title: Link
 summary: A text link that says where it goes, including links that open a new tab and links to files. Underlined, so it never relies on colour alone. Zero JavaScript.
 
@@ -158,6 +158,17 @@ rules:
     css:
       violation: '[data-gui="link"] [data-gui-part="icon"]:not([aria-hidden="true"])'
       message: "link/icon-hidden: add aria-hidden=true to the icon."
+
+  - id: link/underlined
+    description: Links in running text are underlined, not told apart by colour alone.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/use-of-color
+    rationale: People who can't tell the link colour from the text colour need another cue; the underline is the one everyone recognises.
+    since: 0.2.0
+    test: { kind: computedStyle, selector: ':scope', property: text-decoration-line, includes: [underline] }
+    css: false
+
 
 knownDifferences: []
 

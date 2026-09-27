@@ -737,6 +737,34 @@
             }
           },
           "$comment": "each match, focused by keyboard, has a visible box: not clipped, not transparent, at least 2px"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector",
+            "property",
+            "includes"
+          ],
+          "properties": {
+            "kind": {
+              "const": "computedStyle"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            },
+            "property": {
+              "type": "string",
+              "minLength": 1
+            },
+            "includes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "$comment": "each match's computed value for property contains one of includes (rendered with the page's CSS)"
         }
       ],
       "properties": {
@@ -762,7 +790,8 @@
             "noLooseText",
             "nameNotGeneric",
             "firstFocusable",
-            "visibleOnFocus"
+            "visibleOnFocus",
+            "computedStyle"
           ]
         }
       }
