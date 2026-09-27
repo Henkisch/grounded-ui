@@ -1,0 +1,91 @@
+---
+title: Use with AI agents
+description: Give your coding agent the contracts and the check, so it builds accessible components and proves them before it says it's done.
+---
+
+An agent can write a dialog or a form field in seconds. What it can't do on its own is prove the result is accessible. Grounded UI gives it the contract to build from and the check to run afterwards, in a loop:
+
+<Steps>
+<Step title="Get the component">The agent reads the contract: parts, outcome rules, reference markup, CSS and tokens.</Step>
+<Step title="Write it">It adapts the reference markup to your page.</Step>
+<Step title="Check it">It runs the contracts and axe on its own HTML, and gets each failing rule with what it found and why it matters.</Step>
+<Step title="Fix until it passes">It repeats until the verdict is PASS, then tells you what the page itself must still handle.</Step>
+</Steps>
+
+## Add the MCP server
+
+The MCP server gives the agent four tools. Until the first npm release, run it from a clone of the repository.
+
+<CodeGroup>
+
+```sh Claude Code
+claude mcp add grounded-ui -- node /path/to/grounded-ui/conformance/src/mcp.mjs
+```
+
+```json Other clients (mcp.json)
+{
+  "mcpServers": {
+    "grounded-ui": {
+      "command": "node",
+      "args": ["/path/to/grounded-ui/conformance/src/mcp.mjs"]
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+| Tool | What it does |
+| --- | --- |
+| `list_components` | The components with a contract, their outcome rules and examples |
+| `get_component` | Everything needed to build one: parts, rules, reference markup, CSS, tokens, what the site must handle |
+| `check_html` | Runs the contracts and axe on HTML, returns a verdict and each failure with its reason and source |
+| `check_url` | The same on a live page |
+
+The checks run in a local Chromium (Playwright), so HTML never leaves your machine.
+
+## Add the skill
+
+The `grounded-ui` skill tells the agent when to use the tools and the rules to follow: no JavaScript, outcome rules are the verdict, and never call a component accessible without a PASS. Copy it into your project or user skills:
+
+```sh
+cp -r /path/to/grounded-ui/skills/grounded-ui .claude/skills/
+```
+
+The docs site also publishes it for discovery at `/.well-known/agent-skills/index.json`, and lists it in `llms.txt`.
+
+## What the agent sees
+
+A field whose error never reaches a screen reader:
+
+```text
+VERDICT: NOT YET. 1 outcome rule failure(s), 0 axe violation(s). Fix them and check again.
+
+## text-field <div data-gui="text-field">
+9/10 outcome rules pass; axe: 0 violation(s)
+- FAIL TF-20 (normative) If there is an error message, its text reaches
+  the control's accessible description or name.
+  Found: the error text "enter a complete email address" is in neither the
+  accessible name nor the description of <input type="email" id="e">
+  Why: An error announced only visually leaves screen-reader users with an
+  invalid field and no reason.
+  Source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+```
+
+After the agent adds `aria-describedby`:
+
+```text
+VERDICT: PASS. Every outcome rule passes and axe reports nothing, on 1 component(s).
+```
+
+## Existing markup
+
+The agent doesn't have to rewrite a component to check it. With a `binding` (which selector matches each part), `check_html` and `check_url` test any markup, and report technique differences as recommendations, not failures. See [Test your components](/getting-started/test-your-components).
+
+## Without MCP
+
+Every docs page is available as Markdown (add `.md` to the URL), and [`llms.txt`](/llms.txt) indexes them. The check also runs from the command line:
+
+```sh
+npx grounded-conformance page.html --component text-field
+```

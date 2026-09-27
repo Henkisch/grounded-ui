@@ -6,6 +6,10 @@ export default defineConfig({
   content: {
     root: "content",
   },
+  // Publishes skills/grounded-ui for agent discovery (/.well-known/agent-skills/, listed in llms.txt).
+  agents: {
+    skills: "../skills",
+  },
   navigation: {
     tabs: [
       { label: "Docs", path: "/" },
