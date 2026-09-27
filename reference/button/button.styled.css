@@ -44,7 +44,9 @@
       scale: 0.98;
     }
 
+    /* The base ring uses currentColor, which on a filled button is the page colour: draw it in the text colour. */
     :scope:focus-visible {
+      outline-color: var(--gui-button-focus, var(--gui-focus, CanvasText));
       transition-duration: 0s;
     }
 
