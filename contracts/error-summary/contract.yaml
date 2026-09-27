@@ -3,7 +3,7 @@
 # The single source for the conformance tests, warning CSS, editor validation and the docs page.
 # Test selectors name parts ({title}, {list}, {link}); `:scope` is the root.
 component: error-summary
-contractVersion: 0.1.0
+contractVersion: 0.2.0
 title: Error summary
 summary: A list of what went wrong at the top of a form after a failed submit, each error linking to its field. Rendered by the server, zero JavaScript.
 
@@ -192,6 +192,16 @@ rules:
     css:
       violation: '[data-gui="error-summary"] [data-gui-part="link"]:not(a[href^="#"])'
       message: "error-summary/link-element: each error should be an <a href=\"#field-id\">."
+
+  - id: error-summary/link-targets-exist
+    description: Every link points at an element that exists on the page.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+    rationale: The link is how a user gets from the summary to the field; a link to a missing id goes nowhere.
+    since: 0.2.0
+    test: { kind: hrefTargetsExist, selector: '{link}' }
+    css: false
 
 # Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
 knownDifferences: []

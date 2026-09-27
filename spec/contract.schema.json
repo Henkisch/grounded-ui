@@ -649,6 +649,64 @@
             }
           },
           "$comment": "each match's accessible name contains the visible text of its own associated label(s)"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector"
+          ],
+          "properties": {
+            "kind": {
+              "const": "hrefTargetsExist"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            }
+          },
+          "$comment": "every match with href=\"#id\" points at an element with that id"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector",
+            "pattern"
+          ],
+          "properties": {
+            "kind": {
+              "const": "noLooseText"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            },
+            "pattern": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "$comment": "no text node directly inside a match matches pattern (a regular expression)"
+        },
+        {
+          "additionalProperties": false,
+          "required": [
+            "selector",
+            "generic"
+          ],
+          "properties": {
+            "kind": {
+              "const": "nameNotGeneric"
+            },
+            "selector": {
+              "$ref": "#/$defs/selector"
+            },
+            "generic": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "$comment": "no match's accessible name is only one of the generic phrases"
         }
       ],
       "properties": {
@@ -669,7 +727,10 @@
             "targetSize",
             "focusRing",
             "sameAttr",
-            "labelInName"
+            "labelInName",
+            "hrefTargetsExist",
+            "noLooseText",
+            "nameNotGeneric"
           ]
         }
       }

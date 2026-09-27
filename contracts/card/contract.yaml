@@ -4,7 +4,7 @@
 # The single source for the conformance tests, warning CSS, editor validation and the docs page.
 # Test selectors name parts ({title}, {link}, …); `:scope` is the root.
 component: card
-contractVersion: 0.1.0
+contractVersion: 0.2.0
 title: Card
 summary: A linked content card for news, services and events. One link, named by the title, and the whole card clickable. Zero JavaScript.
 
@@ -208,6 +208,16 @@ rules:
     rationale: The title already names the card; describing an illustrative photo again adds noise. Give it text only if it shows something the title doesn't.
     since: 0.1.0
     test: { kind: absent, selector: '{media}:not([alt=""])' }
+    css: false
+
+  - id: card/link-name-not-generic
+    description: The link isn't named only "Read more", "Click here" or a similar phrase.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context
+    rationale: Screen-reader users list links out of context; ten links all called "Read more" can't be told apart.
+    since: 0.2.0
+    test: { kind: nameNotGeneric, selector: '{link}', generic: [read more, click here, more, here, learn more, continue, details, link] }
     css: false
 
 # Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.

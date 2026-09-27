@@ -3,7 +3,7 @@
 # The single source for the conformance tests, warning CSS, editor validation and the docs page.
 # Test selectors name parts ({list}, {item}, {link}, {current}); `:scope` is the root (the nav).
 component: breadcrumb
-contractVersion: 0.1.0
+contractVersion: 0.2.0
 title: Breadcrumb
 summary: A trail of links from the start page to the current page, in a named navigation landmark. Separators are drawn in CSS, so screen readers don't read them. Zero JavaScript.
 
@@ -187,6 +187,16 @@ rules:
     css:
       violation: '[data-gui="breadcrumb"] [data-gui-part="item"]:not(:last-child) [aria-current="page"]'
       message: "breadcrumb/current-last: the current page should be the last item."
+
+  - id: breadcrumb/no-separator-text
+    description: No separator characters are typed as text between the links.
+    level: recommended
+    type: outcome
+    source: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
+    rationale: A "/" or "›" typed between links is read aloud between every item; draw separators in CSS instead.
+    since: 0.2.0
+    test: { kind: noLooseText, selector: '{list}, {item}', pattern: '[/>›»|\\\\]' }
+    css: false
 
 # Where the component can't look the same in every engine (checked by scripts/consistency.mjs), and why.
 knownDifferences: []

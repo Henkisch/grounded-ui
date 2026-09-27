@@ -153,6 +153,31 @@ export function evaluateComponent({ rootSelector, boundary, rules, markerAttr })
         const el = pick(selector).find((candidate) => !oneOf.includes(ax.commons.aria.getRole(candidate) ?? 'none'));
         return el ? `${describe(el)} has role "${ax.commons.aria.getRole(el) ?? 'none'}", expected ${oneOf.join(' or ')}` : null;
       },
+      // Same-page links (href="#id") point at an element that exists.
+      hrefTargetsExist({ selector }) {
+        const dead = pick(selector).find((el) => {
+          const href = el.getAttribute('href') ?? '';
+          if (!href.startsWith('#')) return false;
+          const id = decodeURIComponent(href.slice(1));
+          return !id || !document.getElementById(id);
+        });
+        return dead ? `${describe(dead)} points at an id that isn't on the page` : null;
+      },
+      // No bare text matching `pattern` directly inside the matches (e.g. "/" or "›" typed between breadcrumb links).
+      noLooseText({ selector, pattern }) {
+        const re = new RegExp(pattern, 'u');
+        for (const el of pick(selector)) {
+          const loose = [...el.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && re.test(node.textContent));
+          if (loose) return `${describe(el)} holds the text ${quote(loose.textContent.trim())}, which screen readers read out`;
+        }
+        return null;
+      },
+      // The accessible name isn't only a generic word ("Read more", "Click here", "Info").
+      nameNotGeneric({ selector, generic }) {
+        const banned = new Set(generic.map(words));
+        const el = pick(selector).find((candidate) => banned.has(words(accText(candidate))));
+        return el ? `${describe(el)} is named only ${quote(accText(el).trim())}, which says nothing out of context` : null;
+      },
       // Every match carries the same non-empty value for attr (e.g. radios in one group share a name).
       sameAttr({ selector, attr }) {
         const values = pick(selector).map((el) => el.getAttribute(attr) ?? '');
