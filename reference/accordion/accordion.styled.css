@@ -34,10 +34,6 @@
       padding-inline: 0.5em;
       font-weight: var(--gui-accordion-summary-weight, 600);
       list-style: none;
-      border-radius: var(--gui-accordion-radius, var(--gui-radius, 0.375em));
-      transition-property: background-color;
-      transition-duration: var(--gui-accordion-duration, 200ms);
-      transition-timing-function: var(--gui-accordion-easing, cubic-bezier(0.2, 0, 0, 1));
     }
 
     /* Safari still draws its own marker unless this is hidden. */
@@ -67,8 +63,11 @@
     }
 
     @media (hover: hover) {
+      /* Square rows between hairlines: hover underlines the title rather than tinting a block. */
       :where([data-gui-part="summary"]):hover {
-        background: var(--gui-accordion-control-muted-bg, color-mix(in oklab, CanvasText 4%, Canvas));
+        text-decoration: underline;
+        text-decoration-thickness: 0.0625em;
+        text-underline-offset: 0.2em;
       }
     }
 

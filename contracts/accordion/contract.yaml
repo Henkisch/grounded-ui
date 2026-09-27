@@ -229,10 +229,8 @@ attributes:
 
 customProperties:
   --gui-accordion-border: Separator between items.
-  --gui-accordion-radius: Corner radius of the summary's hover and focus area.
   --gui-accordion-touch-target: Minimum summary height.
   --gui-accordion-focus: Focus ring colour.
-  --gui-accordion-control-muted-bg: Summary background on hover.
   --gui-accordion-summary-weight: Summary font weight.
   --gui-accordion-muted: Panel text colour.
   --gui-accordion-duration: Open and close duration.
