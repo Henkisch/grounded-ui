@@ -41,7 +41,7 @@ jobs:
       - name: Build size report
         if: github.event_name == 'pull_request'
         run: node scripts/size-diff.mjs ../base/dist/sizes.json dist/sizes.json > dist/size-report.md
-      - uses: marocchino/sticky-pull-request-comment@v2
+      - uses: marocchino/sticky-pull-request-comment@v3
         if: github.event_name == 'pull_request'
         with:
           header: size
